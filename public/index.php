@@ -8,7 +8,7 @@ include('common/topbar.php');
     ?>
     <div class="container">
        <h1>Recherche</h1>
-       <div class="spec_research"><a href="">Dernier enregistrement</a><a href="">Par producteur</a>
+       <div class="spec"><a href="">Dernier enregistrement</a><a href="">Par producteur</a>
        <br><a href="">Par mots cle</a><a href="">Par classe</a></div> 
         <div class="result">
       <h4>Lettre commande n°012223 du 15 mars 2012</h4>

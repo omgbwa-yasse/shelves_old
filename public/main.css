@@ -31,14 +31,15 @@ a{
     padding: 1%;
 }
 .top{
-    margin: left 80%; 
+   position: relative;
+   margin-left: 70%;
 }
-.spec_research{
+.spec{
     border: 2px solid rgb(0, 0, 0);
     border-radius: 12px;
-    padding: 10%;
+    padding: 2%;
 }
-.spec_research a{
+.spec a{
     
     margin: 10%;
     text-decoration: none;
