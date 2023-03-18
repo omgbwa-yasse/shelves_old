@@ -7,8 +7,16 @@ include('common/topbar.php');
        include('common/menu.php');
     ?>
     <div class="container">
-       <p>felementf</p>
-    </div>    
+       <h1>Recherche</h1>
+       <div class="spec_research"><a href="">Dernier enregistrement</a><a href="">Par producteur</a>
+       <br><a href="">Par mots cle</a><a href="">Par classe</a></div>
+    </div> 
+    <div class="result">
+      <h2>Lettre commande n°012223 du 15 mars 2012</h2>
+      <p>Service des marchés ; 2012/03/02, - 14523</p>
+      <p>Gestion des marchés</p>
+      <p>Localisation : Salle 1, référence: 14A2</p>
+    </div>   
 </section>
 
 </body>
