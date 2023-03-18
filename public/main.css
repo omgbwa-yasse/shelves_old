@@ -36,8 +36,10 @@ a{
 .spec_research{
     border: 2px solid rgb(0, 0, 0);
     border-radius: 12px;
+    padding: 10%;
 }
 .spec_research a{
+    
     margin: 10%;
     text-decoration: none;
 }

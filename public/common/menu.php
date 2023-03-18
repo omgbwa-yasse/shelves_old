@@ -10,11 +10,11 @@
 <body>
     <div class="menu">
         <ul>
-            <li><a href="../index.php">recherche</a> </li>
-            <li><a href="../message.php">message</a> </li>
-            <li><a href="../versement.php">Versement</a> </li>
-            <li><a href="../chariot.php">Chariot</a> </li>
-            <li><a href="../parametre.php">Parametre</a> </li>
+            <li><a href="index.php">recherche</a> </li>
+            <li><a href="message.php">message</a> </li>
+            <li><a href="versement.php">Versement</a> </li>
+            <li><a href="chariot.php">Chariot</a> </li>
+            <li><a href="parametre.php">Parametre</a> </li>
         </ul>
     </div>
 </body>
