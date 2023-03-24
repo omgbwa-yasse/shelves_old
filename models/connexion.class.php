@@ -1,5 +1,5 @@
 <?php
- abstract class Connexion{
+ abstract class connexion{
     private static $cnx;
 
     private static function setCnx(){

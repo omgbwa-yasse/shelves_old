@@ -1,0 +1,29 @@
+<style type="text/css">
+nav{
+    background-color : white ;
+    position : sticky;
+    top: 0px;
+}
+nav ul{
+    display: flex;
+    flex-flow: nowrap;
+    list-style-type: none;
+}
+nav li{
+    flex : 1 1 auto;
+    text-align : center;
+}
+nav a{
+    display: block;
+    text-decoration: none;
+    color : black;
+    border-bottom: 2px solid transparent;
+    margin: 10px;
+}
+nav a:hover{
+    color : orange;
+    border-bottom:2px solid gold;
+}
+
+
+<style>
