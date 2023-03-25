@@ -1,8 +1,10 @@
-<style type="text/css">
+*{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
 nav{
     background-color : white ;
     position : sticky;
-    top: 0px;
+    top: 30px;
 }
 nav ul{
     display: flex;
@@ -24,6 +26,6 @@ nav a:hover{
     color : orange;
     border-bottom:2px solid gold;
 }
-
-
-<style>
+header{
+    text-align : center;
+}
