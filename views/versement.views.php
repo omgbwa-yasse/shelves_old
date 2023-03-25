@@ -1,3 +1,12 @@
+<!DOCTYPE html>
+<head>
+     <link rel="stylesheet" href="../template/css/style.css">
+</head>
+<body>
+        
+
+
+<div class="sous-menu">
 <?php 
 
 echo '<ul>
@@ -20,4 +29,6 @@ echo '<ul>
                 </ul>
 </ul>';
 
-?>
+?></div>
+        
+</body>
