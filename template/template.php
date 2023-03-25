@@ -20,6 +20,7 @@ $q = $_GET['q'];
     <ul>
         <li><a href ="../shelves/index.php?q=repertoire">Repertoire</a></li>
         <li><a href ="../shelves/index.php?q=versement">Versement</a></li>
+        <li><a href ="../shelves/index.php?q=demande">Demande</a></li>
         <li><a href ="../shelves/index.php?q=deposit">Dépôt</a></li>
         <li><a href ="../shelves/index.php?q=dolly">Chariot</a></li>
         <li><a href ="../shelves/index.php?q=outilsGestion">Outils de gestion</a></li>
