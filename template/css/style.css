@@ -29,3 +29,35 @@ nav a:hover{
 header{
     text-align : center;
 }
+/*  Sous menu de navigation des onglets*/
+.sous-menu {
+    display: block;
+grid-area: men;
+border: 2px solid rgb(0, 0, 0);
+border-radius: 12px;
+padding: 5%;
+margin-top: 5%;
+text-align: left;
+ background: var(--secondary-color);
+
+}
+.sous-menu ul {
+    list-style: none;
+    margin: 1%;
+    padding: 1%;
+}
+.sous-menu li:hover{
+    transition: 0.5s all;
+    color: #3f0000;
+    background-color: rgba(255, 255, 255, 0.349);
+    border-top-right-radius: 10px 10px;
+    border-bottom-right-radius: 10px 10px;
+    cursor: pointer;
+}
+.sous-menu a {
+    font-size: 20px;
+    color: #f1f1f1;
+    text-decoration: none;
+    padding: 20px;
+    text-align: center;
+}
