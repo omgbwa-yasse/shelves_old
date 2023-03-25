@@ -1,23 +1,29 @@
 <?php
-include('common/topbar.php');
-
+include('template/common/topbar.php');
+include ('../controller/config.php');
+$stmt = $conn->query('SELECT * FROM records');
+$con = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <section class="main">
     <?php 
-       include('common/menu.php');
+       include('template/common/menu.php');
     ?>
+    
     <div class="container">
        <h1>Recherche</h1>
        <div class="spec"><a href="">Dernier enregistrement</a><a href="">Par producteur</a>
        <br><a href="">Par mots cle</a><a href="">Par classe</a></div> 
-        <div class="result">
-      <h4>Lettre commande n°012223 du 15 mars 2012</h4>
-      <p>Service des marchés ; 2012/03/02, - 14523 <br>
-      Gestion des marchés <br>
-      Localisation : Salle 1, référence: 14A2</p>
-    </div> 
-    </div> 
+        <?php foreach($con as $con): ?>
+      <div class="result">
+      <h4><?=$con['records_title']?></h4>
+      <p><?=$con['records_observation']?>; <?=$con['records_date_start']?>, - <?=$con['records_date_end']?> <br>
+ <br>
+      </p>
+    </div>
+      <?php endforeach; ?>
     
+   </div> 
+  
 </section>
 
 </body>

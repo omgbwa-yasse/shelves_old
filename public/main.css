@@ -11,6 +11,7 @@ gap: 0 20px;
 .container{
 display: block;
 grid-area: con;
+
 }
 .menu{
 display: block;
@@ -20,6 +21,7 @@ border-radius: 12px;
 padding: 5%;
 margin-top: 5%;
 text-align: left;
+ background: var(--secondary-color);
 }
 a{
     text-decoration: none;
@@ -27,7 +29,7 @@ a{
 }
 .menu ul{
     list-style: none;
-    margin: 0%;
+    margin: 1%;
     padding: 1%;
 }
 .top{
@@ -35,6 +37,7 @@ a{
    margin-left: 70%;
 }
 .spec{
+     background: var(--light-color);
     border: 2px solid rgb(0, 0, 0);
     border-radius: 12px;
     padding: 2%;
@@ -48,3 +51,55 @@ a{
     border-bottom: 2px solid rgb(0, 0, 0) ;
 
 }
+
+h3{
+    color: #301d49;
+}
+  
+  :root {
+  --primary-color: #D96AA7;
+  --secondary-color: #625383;
+  --complimentary-color: #88BFB5;
+  --contrast-color: #F2E527;
+  --light-color: #D2A9D9;
+  }
+  
+
+  .menu nav a {
+      font-size: 20px;
+      color: #f1f1f1;
+      text-decoration: none;
+      padding: 20px;
+      text-align: center;
+  }
+  
+  .menu nav {
+
+      left: 0;
+      z-index: 50;
+      display: flex;
+      justify-content: space-around;
+     
+  }
+  
+
+ 
+  
+  li:hover{
+    transition: 0.5s all;
+    color: #3f0000;
+    background-color: rgba(255, 255, 255, 0.349);
+    border-top-right-radius: 10px 10px;
+    border-bottom-right-radius: 10px 10px;
+    cursor: pointer;
+  }
+  
+ 
+  
+
+  
+  /* Styles applied on trigger */
+
+  @keyframes fadeIn {
+      100% { opacity:1 }
+  }

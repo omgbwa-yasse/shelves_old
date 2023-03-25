@@ -1,10 +1,10 @@
 <?php
-include('common/topbar.php');
+include('template/common/topbar.php');
 
 ?>
 <section class="main">
     <?php 
-       include('common/menu.php');
+       include('template/common/menu.php');
     ?>
     <div class="container">
 

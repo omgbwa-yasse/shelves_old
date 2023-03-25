@@ -9,6 +9,7 @@
 </head>
 <body>
     <div class="menu">
+        <nav>
         <ul>
             <li><a href="index.php">recherche</a> </li>
             <li><a href="message.php">message</a> </li>
@@ -16,6 +17,7 @@
             <li><a href="chariot.php">Chariot</a> </li>
             <li><a href="parametre.php">Parametre</a> </li>
         </ul>
+    </nav>
     </div>
 </body>
 </html>
