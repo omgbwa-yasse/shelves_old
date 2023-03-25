@@ -9,7 +9,7 @@
 <div class="sous-menu">
 <?php 
 
-echo '<ul>
+echo '
         <p>Recherche</p>
         <ul>
                 <li><a href="/'.'../shelves/'.'index?q=versement&categ=search&sub=allversement"/> Tous les recherche </a></li>
@@ -27,7 +27,7 @@ echo '<ul>
                 <li><a href="/'.'../shelves/'.'index?q=dolly&categ=transfert&sub=allversement"/>Tous les chariot de versements</a></li>
                 <li><a href="/'.'../shelves/'.'index?q=dolly&categ=transfert&sub=create"/> Ajouter chariot de versements</a></li>        
                 </ul>
-</ul>';
+';
 
 ?></div>
         

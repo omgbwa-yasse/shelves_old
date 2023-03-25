@@ -3,7 +3,7 @@
    
 }
 body{
-     background-image: linear-gradient(rgb(210, 210, 210), rgb(235, 164, 255));
+    background-color: rgba(0, 0, 0, 0.153);
 }
 nav{
     background-color : white ;
@@ -49,16 +49,17 @@ width: 20%;
 .sous-menu ul {
     list-style: none;
    
-    padding: 0%;
+   
    
 }
+
 .sous-menu a {
     background-color: rgba(154, 145, 145, 0.315);
     font-size: 12px;
     color: #2c1818;
     text-decoration: none;
     padding: 10px;
-    text-align: center;
+    text-align: left;
     display: block;
     border-top-right-radius: 5px 5px;
     border-bottom-right-radius: 5px 5px;
