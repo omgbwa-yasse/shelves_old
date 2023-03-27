@@ -1,5 +1,17 @@
+
+<?php include_once 'template/template.php'; ?>
+<!DOCTYPE html>
+<head>
+     <link rel="stylesheet" href="../template/css/style.css">
+</head>
+<body>
+        
+<section class="main">
+
+<div class="sous-menu">
+
 <?php 
-include_once 'template/template.php';
+
 if(isset($q)){
     switch($q){
         case "repertoire" : include '../shelves/views/repertoire.views.php';
@@ -19,4 +31,7 @@ if(isset($q)){
     }
 }
 
-?>
+?></div>
+<div class="container"></div>
+        </section>
+</body>
