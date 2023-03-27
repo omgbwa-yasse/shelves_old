@@ -75,15 +75,23 @@ h3{
       font-size: 20px;
       color: #f1f1f1;
       text-decoration: none;
-      padding: 20px;
+      padding: 10px;
       text-align: center;
+  }
+  .menu nav a:hover{
+    transition: 0.5s all;
+    color: #000000;
+    background-color: rgb(255, 255, 255);
+    border-top-right-radius: 10px 10px;
+    border-bottom-right-radius: 10px 10px;
+    
   }
   
   .menu nav {
 
       left: 0;
-      z-index: 50;
-      display: flex;
+    
+    
       justify-content: space-around;
      
   }
@@ -91,14 +99,7 @@ h3{
 
  
   
-  li:hover{
-    transition: 0.5s all;
-    color: #3f0000;
-    background-color: rgba(255, 255, 255, 0.349);
-    border-top-right-radius: 10px 10px;
-    border-bottom-right-radius: 10px 10px;
-    cursor: pointer;
-  }
+
   
  
   
