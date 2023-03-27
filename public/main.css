@@ -45,20 +45,7 @@ a{
     padding: 2%;
 }
 
-/*  Sous menu de navigation des onglets*/
-.sous-menu {
-    background: #625383;
 
-}
-.sous-menu ul {
-    border: ;
-}
-.sous-menu li {
-    background-clip: var(--light-color);
-}
-.sous-menu a {
-    border-bottom: #F2E527;
-}
 
 /*  xxxxxxxxxxxxxx */
 .spec a{

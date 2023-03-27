@@ -5,6 +5,7 @@
 body{
     background-color: rgba(0, 0, 0, 0.153);
 }
+
 nav{
     background-color : white ;
     position : sticky;
@@ -38,7 +39,7 @@ header{
     position:relative;
    background-color: #ffffff;
 grid-area: men;
-border: 2px solid rgb(104, 104, 104);
+
 border-radius: 12px;
 padding: 1%;
 margin: 0;
@@ -67,9 +68,14 @@ width: 20%;
 .sous-menu a:hover{
      display: block;
     transition: 0.5s all;
-    color: #ffffff;
+    color: #dafbff;
     background-color: rgb(0, 0, 0);
     border-top-right-radius: 10px 10px;
     border-bottom-right-radius: 10px 10px;
     cursor: pointer;
+}
+
+/* contenu principale pour faire une couleur differente sur le body*/
+.container{
+    background-color: #e4e4e4;
 }

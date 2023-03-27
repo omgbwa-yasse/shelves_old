@@ -4,7 +4,7 @@
 </head>
 <body>
         
-
+<section class="main">
 
 <div class="sous-menu">
 <?php 
@@ -30,5 +30,6 @@ echo '
 ';
 
 ?></div>
-        
+<div class="container"></div>
+        </section>
 </body>
