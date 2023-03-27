@@ -1,5 +1,9 @@
 <?php
-$q = $_GET['q'];
+$q ="repertoire";
+if (isset($_GET['q'])){
+   $q = $_GET['q']; 
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -29,5 +33,5 @@ $q = $_GET['q'];
 </nav>
 
     
-</body>
 </html>
+</body>

@@ -38,7 +38,7 @@ nav a:hover{
     border-bottom:2px solid gold;
 }
 
-nav li::after{
+nav li.active   {
     color : orange;
     border-bottom:2px solid gold;
 }

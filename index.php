@@ -1,5 +1,7 @@
 
-<?php include_once 'template/template.php'; ?>
+<?php include_once 'template/template.php';
+ ?>
+
 <!DOCTYPE html>
 <head>
      <link rel="stylesheet" href="../template/css/style.css">
