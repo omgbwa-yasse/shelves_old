@@ -39,8 +39,8 @@ nav a:hover{
 }
 
 nav li.active   {
-    color : orange;
-    border-bottom:2px solid gold;
+   
+    border-bottom:5px solid gold;
 }
 header{
     text-align : center;
