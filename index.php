@@ -10,7 +10,7 @@ if(isset($q)){
         break;
         case "versement" : include '../shelves/views/versement.views.php';
         break;
-        case "demande" : include '../shelves/views/demande.views.php';
+        case "loan" : include '../shelves/views/demande.views.php';
         break;
         case "deposit" : include '../shelves/views/deposit.views.php';
         break;

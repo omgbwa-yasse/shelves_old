@@ -4,8 +4,9 @@ include "template/sous_menu.inc.php";
 
     <p>Chariot des enregistrements</p>
     <ul>
-    <li><a href="../shelves/index?q=dolly&categ=records"> Tous les chariots </a></li>
-    <li><a href="../shelves/index?q=dolly&categ=records"> Ajouter un chariot </a></li>
+    <li><a href="../shelves/index?q=dolly&categ=records&sub=allTypeDolly"> Tous types de chariots </a></li>
+    <li><a href="../shelves/index?q=dolly&categ=search&sub=allRecords"> Tous les chariots </a></li>
+    <li><a href="../shelves/index?q=dolly&categ=create&sub=addRecords"> Ajouter un chariot </a></li>
     </ul>
 
     <p>Chariot des versements</p>
@@ -28,4 +29,7 @@ include "template/sous_menu.inc.php";
 
 <?php
 include "template/container.inc.php";
+if($_GET['q'] == "dolly" && $_GET['categ'] == "search" && $_GET['sub'] == "allTypeDolly"){
+    include "views/dolly/allTypeDolly.inc.php";
+}
 ?>

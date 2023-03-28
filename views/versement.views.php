@@ -20,6 +20,9 @@ echo '
                 <li><a href="/'.'../shelves/'.'index?q=dolly&categ=transfert&sub=create"/> Ajouter chariot de versements</a></li>        
                 </ul>
 ';
+if($_GET['q'] == "versement" && $_GET['categ'] == "search" && $_GET['sub'] == "alltransfert"){
+        include "views/transfer/allTransfer.inc.php";
+}
 
 
 include "template/container.inc.php";

@@ -30,6 +30,10 @@ include "template/sous_menu.inc.php";
 
 <?php
         include "template/container.inc.php";
+        
+        if($_GET['q'] == "outilsGestion" && $_GET['categ'] == "all" && $_GET['sub'] == "all"){
+                include "views/tools/allTools.inc.php";
+        }
 
         if($_GET['q'] == "outilsGestion" && $_GET['categ'] == "planClassement" && !empty($_GET['sub'])){
               switch($_GET['sub']){

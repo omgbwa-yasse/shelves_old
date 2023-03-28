@@ -34,6 +34,9 @@
                 </ul>';
 
 include "template/container.inc.php";
-        ?>
+if($_GET['q'] == "deposit" && $_GET['categ'] == "search" && $_GET['sub'] == "all"){
+    include "views/inventory/allTypeDeposit.inc.php";
+}
+?>
 
 

@@ -41,4 +41,9 @@ include "template/sous_menu.inc.php";
         </ul>
 <?php
 include "template/container.inc.php";
+
+if($_GET['q'] == "loan" && $_GET['categ'] == "search" && $_GET['sub'] == "allloan"){
+    include "views/transfer/allloan.inc.php";
+}
+
 ?>
