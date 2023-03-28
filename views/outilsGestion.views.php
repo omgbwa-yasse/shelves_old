@@ -27,6 +27,17 @@ include "template/sous_menu.inc.php";
                 <li><a href="../shelves/index.php?q=outilsGestion&categ=organization&sub=addOrganization"> Ajouter un service </a></li>
         </ul>
 
+
 <?php
         include "template/container.inc.php";
+
+        if($_GET['q'] == "outilsGestion" && $_GET['categ'] == "planClassement" && !empty($_GET['sub'])){
+              switch($_GET['sub']){
+                case "addClasse" : include "views/tools/planClassement/addClasse.inc.php";
+                break;
+                case "savedClasse" : include "views/tools/planClassement/saveClasse.inc.php";
+                break;
+                case "allClasse" : include "views/tools/planClassement/allClasse.inc.php";
+                break;
+        }}
 ?>
