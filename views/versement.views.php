@@ -1,6 +1,6 @@
 
 <?php 
-
+include "template/sous_menu.inc.php";
 echo '
         <p>Recherche</p>
         <ul>
@@ -21,4 +21,6 @@ echo '
                 </ul>
 ';
 
+
+include "template/container.inc.php";
 ?>
