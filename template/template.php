@@ -17,7 +17,8 @@ if (isset($_GET['q'])){
 </head>
 <body>
 <header>
- <h1>Shelves : Opensource records management solftware </h1>
+ <h1>Shelves </h1>
+ <h2>Opensource records management solftware </h2>
  <hr/>  
 </header>
 <nav>
