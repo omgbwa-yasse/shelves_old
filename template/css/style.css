@@ -39,12 +39,12 @@ nav a:hover{
 }
 
 nav li.active   {
-   
     border-bottom:5px solid gold;
 }
 header{
     text-align : center;
 }
+
 /*  Sous menu de navigation des onglets*/
 .sous-menu {
    background-color: #ffffff;
@@ -60,10 +60,7 @@ width: 100%;
 .sous-menu ul {
    list-style: none;
    margin-right: 10px;
-   
-   
 }
-
 .sous-menu a {
     background-color: rgba(154, 145, 145, 0.315);
     font-size: 12px;
@@ -90,4 +87,7 @@ width: 100%;
     background-color: #ffffff;
     grid-area: con;
     border-radius: 1%;
+    float : left;
+    margin-left: 300px;
+    width : 100%;
 }
