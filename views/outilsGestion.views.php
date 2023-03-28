@@ -37,7 +37,9 @@ include "template/sous_menu.inc.php";
                 break;
                 case "savedClasse" : include "views/tools/planClassement/saveClasse.inc.php";
                 break;
-                case "allClasse" : include "views/tools/planClassement/allClasse.inc.php";
+                case "allMainClasse" : include "views/tools/planClassement/allMainClasse.inc.php";
+                break;
+                default : include "views/tools/planClassement/allClasse.inc.php";
                 break;
         }}
 ?>
