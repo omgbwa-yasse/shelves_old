@@ -1,5 +1,5 @@
 <?php 
-
+include "template/sous_menu.inc.php";
 echo '<ul>
         <li><a href="/'.'../shelves/'.'index?q=outilsGestion&categ=planClassement"/> Plan de classement </a></li>
         <li><a href="/'.'../shelves/'.'index?q=outilsGestion&categ=retention"/> Referentiel de conservation </a></li>
@@ -8,5 +8,5 @@ echo '<ul>
         <li><a href="/'.'../shelves/'.'index?q=outilsGestion&categ=organization"/> Organigramme </a></li>
         </ul>';
 
-
+include "template/container.inc.php";
 ?>

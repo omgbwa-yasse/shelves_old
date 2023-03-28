@@ -4,20 +4,13 @@ if (isset($_GET['q'])){
    $q = $_GET['q']; 
 }
 
+ include_once "template/header.inc.php"
+
 ?>
 
-<!DOCTYPE html>
-<html lang="fr-fr">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="template/css/style.css">
-    <title></title>
-</head>
-<body>
 <header>
- <h1>Shelves : Opensource records management solftware </h1>
+ <h1>Shelves </h1>
+ <h2>Opensource records management solftware </h2>
  <hr/>  
 </header>
 <nav>
@@ -32,6 +25,3 @@ if (isset($_GET['q'])){
     </ul>
 </nav>
 
-    
-</html>
-</body>

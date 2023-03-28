@@ -1,18 +1,8 @@
-
-<?php include_once 'template/template.php';
- ?>
-
-<!DOCTYPE html>
-<head>
-     <link rel="stylesheet" href="../template/css/style.css">
-</head>
-<body>
-        
-<section class="main">
-
-<div class="sous-menu">
-
 <?php 
+ 
+ include_once "template/header.inc.php"; 
+ include_once 'template/template.php';
+ 
 
 if(isset($q)){
     switch($q){
@@ -31,11 +21,8 @@ if(isset($q)){
         case "parametre" : include '../shelves/views/parametre.views.php';
         break;
     }
-}
+} 
 
-?></div>
-<div class="container">
+include "template/footer.inc.php"; 
 
-</div>
-        </section>
-</body>
+?>
