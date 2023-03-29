@@ -2,29 +2,21 @@
 include "template/sous_menu.inc.php";
 ?>
 
-    <p>Chariot des enregistrements</p>
+    <p>Rechercher</p>
     <ul>
-    <li><a href="../shelves/index?q=dolly&categ=records&sub=allTypeDolly"> Tous types de chariots </a></li>
-    <li><a href="../shelves/index?q=dolly&categ=search&sub=allRecords"> Tous les chariots </a></li>
-    <li><a href="../shelves/index?q=dolly&categ=create&sub=addRecords"> Ajouter un chariot </a></li>
+    <li><a href="../shelves/index?q=dolly&categ=records&sub=allTypeDolly"> Tous les types de chariots </a></li>
+    <li><a href="../shelves/index?q=dolly&categ=search&sub=allRecords"> Chariots des enregistrements </a></li>
+    <li><a href="../shelves/index?q=dolly&categ=transfert"> Chariots de transferts </a></li>
+    <li><a href="../shelves/index?q=dolly&categ=container"> Chariots de contenants </a></li>
+    <li><a href="../shelves/index?q=dolly&categ=loan"> Chariots de demandes </a></li>
     </ul>
 
-    <p>Chariot des versements</p>
+    <p>Ajouter un chariot</p>
     <ul>
-    <li><a href="../shelves/index?q=dolly&categ=transfert"> Tous les chariots </a></li>
-    <li><a href="../shelves/index?q=dolly&categ=transfert"> Ajouter un chariot </a></li>
-    </ul>
-
-    <p>Chariot de contenants</p>
-    <ul>
-    <li><a href="../shelves/index?q=dolly&categ=container"> Tous les chariots </a></li>
-    <li><a href="../shelves/index?q=dolly&categ=container"> Ajouter un chariot </a></li>
-    </ul>
-
-    <p>Chariot de demandes</p>
-    <ul>
-    <li><a href="../shelves/index?q=dolly&categ=loan"> Tous les chariots </a></li>
-    <li><a href="../shelves/index?q=dolly&categ=loan"> Ajouter un chariot </a></li>
+    <li><a href="../shelves/index?q=dolly&categ=create&sub=addRecords"> Enregistrement </a></li>
+    <li><a href="../shelves/index?q=dolly&categ=transfert"> Transfert </a></li>
+    <li><a href="../shelves/index?q=dolly&categ=container"> Contenant </a></li>
+    <li><a href="../shelves/index?q=dolly&categ=loan"> Demande </a></li>
     </ul>
 
 <?php
