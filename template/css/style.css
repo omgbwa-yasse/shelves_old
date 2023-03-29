@@ -97,3 +97,11 @@ width: 100%;
     border-radius: 1%;
     width : 100%;
 }
+.records {
+    margin-left : 200px;
+    margin-bottom: 20px; 
+    background-color:#dafbff ;
+}
+.records .title {
+  font-weight: bold;
+}

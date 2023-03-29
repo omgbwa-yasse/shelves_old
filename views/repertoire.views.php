@@ -5,7 +5,7 @@
             <p>Recherche</p>
                 <ul>        
                     <li>
-                        <a href="/'.'../shelves/'.'index?q=repertoire&categ=recherche&sub=allrecords"/> Tous les enregistrements </a>
+                        <a href="/'.'../shelves/'.'index?q=repertoire&categ=search&sub=allrecords"/> Tous les enregistrements </a>
                     </li>
                     <li>
                         <a href="/'.'../shelves/'.'index?q=repertoire&categ=recherche&sub=allorgazination"/> Recherche par detenteur </a>
@@ -34,8 +34,8 @@
                 </ul>';
 
 include "template/container.inc.php";
-if($_GET['q'] == "deposit" && $_GET['categ'] == "search" && $_GET['sub'] == "all"){
-    include "views/inventory/allTypeDeposit.inc.php";
+if($_GET['q'] == "repertoire" && $_GET['categ'] == "search" && $_GET['sub'] == "allrecords"){
+    include "views/inventory/allrecords.inc.php";
 }
 ?>
 

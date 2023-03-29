@@ -12,7 +12,6 @@ class allRecords extends connexion{
 
     }
     public function getAllRecords(){
-        
 
     }
     public function setAllRecords(){
