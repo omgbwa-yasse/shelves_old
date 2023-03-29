@@ -8,5 +8,6 @@
     <link rel="stylesheet" href="../template/css/style.css">
     <title><?php if(!empty($_GET['q'])){ echo $_GET['q']; }else { echo "Accueil";} ?></title>
 </head>
-<body>
-       
+
+   <body>
+        
