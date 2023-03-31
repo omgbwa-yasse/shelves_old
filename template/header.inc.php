@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="template/css/style.css">
     <link rel="stylesheet" href="../template/css/style.css">
-    <title><?php if(!empty($_GET['q'])){ echo $_GET['q']; }else { echo "Accueil";} ?></title>
+    <title><?php if(!empty($q)){ echo $q; }else { echo "Accueil";} ?></title>
 </head>
 
    <body>

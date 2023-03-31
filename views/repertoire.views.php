@@ -34,7 +34,7 @@
                 </ul>';
 
 include "template/container.inc.php";
-if($_GET['q'] == "repertoire" && $_GET['categ'] == "search" && $_GET['sub'] == "allrecords"){
+if($q == "repertoire" && $_GET['categ'] == "search" && $_GET['sub'] == "allrecords"){
     include "views/inventory/allrecords.inc.php";
 }
 ?>
