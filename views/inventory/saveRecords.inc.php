@@ -1,16 +1,69 @@
 <?php
-echo "Conversion des données et recuparation des id - puis insertion - recupartion à la Database";
+$cnx = new PDO("mysql:host=localhost;dbname=dbms", "root", "");
+$cnx->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-echo "Resultat Base de données";
+echo '<hr> Liste des données envoyées par POST <br> ';
+echo $_POST['title'].'<br>';
+echo $_POST['date_start'].'<br>';
+echo $_POST['date_end'].'<br>';
+echo $_POST['observation'].'<br>';
+echo $_POST['classe'].'<br>';
+echo $_POST['support'].'<br>';
+echo $_POST['container'].'<br>';
+echo $_POST['statut'].'<br>';
+$supportTitle = $_POST['support'] ;
+
+echo '<hr> Recupartion des Id des données envoyées  <br>  ';
+$classe = "";
+$classeId = "SELECT classification_id FROM classification WHERE classification_code = '".$_POST['classe']."' " ;
+$classeId=$cnx->prepare($classeId);
+$classeId->execute();
+foreach($classeId as $id){
+    echo "id de la classe est :".$id['classification_id'];
+    $classe = $id['classification_id'];
+}
+$support ="";
+$supportId = "SELECT records_support_id FROM records_support WHERE records_support_title = '".$_POST['support']."' " ;
+$supportId=$cnx->prepare($supportId);
+$supportId->execute();
+foreach($supportId as $id){
+    echo "<br> id du support est :".$id['records_support_id'];
+    $support =$id['records_support_id'];
+
+}
+$statut = '';
+$statutId = "SELECT records_status_id FROM records_status WHERE records_status_title = '".$_POST['statut']."' " ;
+$statutId=$cnx->prepare($statutId);
+$statutId->execute();
+foreach($statutId as $id){
+    echo "<br> id du statut est :".$id['records_status_id'];
+    $statut = $id['records_status_id'];
+
+}
+$container = "";
+$containerId = "SELECT container_id FROM container WHERE container_reference = '".$_POST['container']."' " ;
+$containerId=$cnx->prepare($containerId);
+$containerId->execute();
+foreach($containerId as $id){
+    echo "<br> id du container est :".$id['container_id'];
+    $container = $id['container_id'];
+}
+$rqtSave = "INSERT INTO records (id_records, records_title, records_date_start, 
+                                records_date_end, records_observation,records_status_id,
+                                records_support_id,records_link_id,container_id) 
+            values ('".NULL."','".$_POST['title']."','".$_POST['date_start']."','".$_POST['date_end']."',
+            '".$_POST['observation']."','".$statut."','".$support."','".NULL."','".$container."')";
+$rqtSave = $cnx->prepare($rqtSave);
+if($rqtSave ->execute()){ echo "<br> enregistrement effectuée";} else{ echo "erreur";};
 
 ?>
 
 <br>
 
 <br>
-<a href="../shelves/index?q=repertoire&categ=create&sub=new">Nouveau Enregistrement</a>
+<a href="../shelves/index.php?q=repertoire&categ=create&sub=new">Nouveau Enregistrement</a>
 <br>
-<a href="../shelves/index?q=repertoire&categ=create&sub=new">Modifier l'enregistrement</a>
+<a href="../shelves/index.php?q=repertoire&categ=create&sub=new">Modifier l'enregistrement</a>
 <br>
-<a href="../shelves/index?q=repertoire&categ=create&sub=new">Supprimer</a>
+<a href="../shelves/index.php?q=repertoire&categ=create&sub=new">Supprimer</a>
 <br>

@@ -17,11 +17,6 @@ $allStatut->execute();
 $allSupport->execute();
 $allContainer->execute();
 
-var_dump($allClasse);
-var_dump($allStatut);
-var_dump($allSupport);
-var_dump($allContainer); 
-
 ?>
 
 <form method="POST" action="../shelves/index.php?q=repertoire&categ=create&sub=newSave">
@@ -32,7 +27,7 @@ var_dump($allContainer);
 <tr> <td> Observation</td>  <td><input type="text-area" name="observation" width="70"> </td></tr>
 
 <tr><td> Classe</td><td>
-<select>
+<select name="classe">
 <?php if(isset($allClasse)){
     foreach($allClasse as $classe){
         echo '<option>'. $classe['classe'].'</option>'; 
@@ -41,7 +36,7 @@ var_dump($allContainer);
 </select>
 </td></tr>
 <tr><td>Statut</td><td>
-<select>
+<select name="statut">
 <?php if(isset($allStatut)){
     foreach($allStatut as $statut){
         if ($statut['statut'] == "disponible"){
@@ -55,7 +50,7 @@ var_dump($allContainer);
 </select>
 </td></tr>
 <tr><td>Boite</td><td> 
-<select>
+<select name="container">
 <?php if(isset($allContainer)){
     foreach($allContainer as $container){
         echo '<option>'. $container['container'].'</option>'; 
@@ -64,7 +59,7 @@ var_dump($allContainer);
 </select>
 </td></tr>
 <tr> <td> Support</td><td> 
-<select>
+<select name="support">
 <?php if(isset($allSupport)){
     foreach($allSupport as $support){
         if ($support['support'] == "papier"){
