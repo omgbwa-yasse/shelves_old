@@ -2,9 +2,11 @@
  
  include_once "template/header.inc.php"; 
  include_once 'template/template.php';
- 
 
-if(isset($q)){
+if($_GET['categ'] == NULL && $_GET['sub'] == NULL){
+    header ('location:../shelves/index.php?q='.$q.'&categ=search&sub=allrecords') ;
+} 
+else if(isset($q)){
     switch($q){
         case "repertoire" : include '../shelves/views/repertoire.views.php';
         break;
@@ -19,6 +21,8 @@ if(isset($q)){
         case "outilsGestion" : include '../shelves/views/outilsGestion.views.php';
         break;
         case "parametre" : include '../shelves/views/parametre.views.php';
+        break;
+        default :include '../shelves/views/repertoire.views.php';
         break;
     }
 } 
