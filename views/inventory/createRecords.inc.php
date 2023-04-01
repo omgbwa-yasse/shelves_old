@@ -28,7 +28,7 @@ $allContainer->execute();
 <tr> <td> Observation</td>  <td><input type="text-area" name="observation" width="70"> </td></tr>
 
 <tr><td> Classe</td><td>
-<select name="classe">
+<select name="code_title">
 <?php if(isset($allClasse)){
     foreach($allClasse as $classe){
         echo '<option>'. $classe['code_title'].'</option>'; 

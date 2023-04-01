@@ -55,8 +55,8 @@ else {
     $dateEnd = ' au '. $elements['date_end'];   
     }
 echo'<table border="0" width="1000px">
-    <tr><td><b>'. $elements['title'].'</b></tr>
-    <tr><td> Nui : '. $elements['nui'].'<td> Classe : '.$elements['code_title'] .' </tr>
+    <tr><td><h3><b>'. $elements['title'].'</b></h3></tr>
+    <tr><td> Nui : '. $elements['nui'].' Classe : <b> '.$elements['code_title'] .'</b> </tr>
     <tr><td> '. $elements['date_start'].' ' .$dateEnd.'</tr>
     <tr><td> '. $elements['observation'].' </tr>
     <tr><td>Ref<b>:'. $elements['id']. '</b> </b>Support : <b>'. $elements['support'].' </b> Statut : <b>'. $elements['statut'].' </b> Boite : <b>'. $elements['boite'].' </b></tr>
