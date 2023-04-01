@@ -2,7 +2,7 @@
 $cnx = new PDO("mysql:host=localhost;dbname=dbms", "root", "");
 $cnx->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-$sqlClasse = "SELECT classification.classification_code as classe FROM classification";
+$sqlClasse = "SELECT classification.classification_code_title as code_title FROM classification";
 $sqlStatut = "SELECT records_status.records_status_title as statut FROM records_status";
 $sqlSupport = "SELECT records_support.records_support_title as support FROM records_support";
 $sqlContainer = "SELECT container.container_reference as container FROM container";
@@ -31,7 +31,7 @@ $allContainer->execute();
 <select name="classe">
 <?php if(isset($allClasse)){
     foreach($allClasse as $classe){
-        echo '<option>'. $classe['classe'].'</option>'; 
+        echo '<option>'. $classe['code_title'].'</option>'; 
     }
 } ?>
 </select>

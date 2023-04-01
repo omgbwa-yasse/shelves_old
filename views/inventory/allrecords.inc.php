@@ -11,7 +11,7 @@ $sql = "SELECT records.id_records as id,
         records.records_date_start as date_start, 
         records.records_date_end as date_end,
         records.records_observation as observation,
-        classification.classification_code as cote,
+        classification.classification_code_title as code_title,
         records_support.records_support_title as support,
         records_status.records_status_title as statut,
         container.container_reference as boite
@@ -42,7 +42,7 @@ foreach($allRecords as $elements){
     $elements['date_start'];
     $elements['date_end'];
     $elements['observation'];
-    $elements['cote'];
+    $elements['code_title'];
     $elements['support'];
     $elements['statut'];
     $elements['boite'];
@@ -54,13 +54,12 @@ if($elements['date_end'] == '0000-00-00'){
 else {
     $dateEnd = ' au '. $elements['date_end'];   
     }
-echo'
-    <table border="0" width="1000px">
-    <tr><td> Nui : '. $elements['nui'].' </tr>
+echo'<table border="0" width="1000px">
     <tr><td><b>'. $elements['title'].'</b></tr>
+    <tr><td> Nui : '. $elements['nui'].'<td> Classe : '.$elements['code_title'] .' </tr>
     <tr><td> '. $elements['date_start'].' ' .$dateEnd.'</tr>
     <tr><td> '. $elements['observation'].' </tr>
-    <tr><td>Ref  :'. $elements['id']. ' </b>Support : <b>'. $elements['support'].' </b> Statut : <b>'. $elements['statut'].' </b> Boite : <b>'. $elements['boite'].' </b></tr>
+    <tr><td>Ref<b>:'. $elements['id']. '</b> </b>Support : <b>'. $elements['support'].' </b> Statut : <b>'. $elements['statut'].' </b> Boite : <b>'. $elements['boite'].' </b></tr>
     </table><br/><br/>
     ';
 }
