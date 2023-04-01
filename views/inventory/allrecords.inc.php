@@ -30,20 +30,36 @@ $allRecords = $cnx -> prepare($sql);
 $allRecords->execute();
 
 // var_dump($allRecords);
+?>
 
-echo "<div style=\"align:center; margin-left:200px;\">";
-
+<div style="align:left; margin-left:200px;margin-top:80px;">
+<?php
 foreach($allRecords as $elements){
-    echo "<br><br><br>";
-    echo $elements['id'];
-    echo $elements['title'];
-    echo $elements['date_start'];
-    echo $elements['date_end'];
-    echo $elements['observation'];
-    echo $elements['cote'];
-    echo $elements['support'];
-    echo $elements['statut'];
-    echo $elements['boite'];
+    $elements['id'];
+    $elements['title'];
+    $elements['date_start'];
+    $elements['date_end'];
+    $elements['observation'];
+    $elements['cote'];
+    $elements['support'];
+    $elements['statut'];
+    $elements['boite'];
+
+$dateEnd = Null ;
+
+if($elements['date_end'] == '0000-00-00'){
+        $dateEnd = ''; }
+else {
+    $dateEnd = ' au '. $elements['date_end'];   
+    }
+echo'
+    <table border="0" width="1000px">
+    <tr><td><b>'. $elements['title'].'</b></tr>
+    <tr><td> '. $elements['date_start'].' ' .$dateEnd.'</tr>
+    <tr><td> '. $elements['observation'].' </tr>
+    <tr><td> Support : <b>'. $elements['support'].' </b> Statut : <b>'. $elements['statut'].' </b> Boite : <b>'. $elements['boite'].' </b></tr>
+    </table><br/><br/>
+    ';
 }
 ?>
 </div>

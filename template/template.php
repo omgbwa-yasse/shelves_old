@@ -5,9 +5,7 @@ if (isset($_GET['q'])){
 } else{
     $q = 'repertoire';
 }
-
 include_once "template/header.inc.php"
-
 ?>
 
 <header>
