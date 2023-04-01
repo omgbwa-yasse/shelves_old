@@ -21,6 +21,7 @@ $allContainer->execute();
 
 <form method="POST" action="../shelves/index.php?q=repertoire&categ=create&sub=newSave">
 <table>
+<tr> <td> Identifiant unique </td>  <td> <input type="text" name="nui" size="30"></td> </tr>
 <tr> <td> Intitulé </td>  <td> <input type="text" name="title" size="70"></td> </tr>
 <tr> <td> Date de debut</td>  <td><input type="date" name="date_start" size="70"> </td></tr>
 <tr> <td> Date de fin</td>  <td> <input type="date" name="date_end" size="70"></td></tr>

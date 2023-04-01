@@ -3,14 +3,15 @@ $cnx = new PDO("mysql:host=localhost;dbname=dbms", "root", "");
 $cnx->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 echo '<hr> Liste des données envoyées par POST <br> ';
-echo $_POST['title'].'<br>';
-echo $_POST['date_start'].'<br>';
-echo $_POST['date_end'].'<br>';
-echo $_POST['observation'].'<br>';
-echo $_POST['classe'].'<br>';
-echo $_POST['support'].'<br>';
-echo $_POST['container'].'<br>';
-echo $_POST['statut'].'<br>';
+echo $_POST['nui']= htmlspecialchars ($_POST['nui']);
+echo $_POST['title']= htmlspecialchars ($_POST['title']);
+echo $_POST['date_start'] = htmlspecialchars ($_POST['date_start']);
+echo $_POST['date_end']= htmlspecialchars ($_POST['date_end']);
+echo $_POST['observation'] = htmlspecialchars($_POST['observation']) ;
+echo $_POST['classe'] = htmlspecialchars ($_POST['classe']);
+echo $_POST['support']= htmlspecialchars ($_POST['support']);
+echo $_POST['container']= htmlspecialchars ($_POST['container']);
+echo $_POST['statut']= htmlspecialchars ($_POST['statut']);
 $supportTitle = $_POST['support'] ;
 
 echo '<hr> Recupartion des Id des données envoyées  <br>  ';
@@ -48,10 +49,10 @@ foreach($containerId as $id){
     echo "<br> id du container est :".$id['container_id'];
     $container = $id['container_id'];
 }
-$rqtSave = "INSERT INTO records (id_records, records_title, records_date_start, 
+$rqtSave = "INSERT INTO records (id_records,records_nui, records_title, records_date_start, 
                                 records_date_end, records_observation,records_status_id,
                                 records_support_id,records_link_id,container_id) 
-            values ('".NULL."','".$_POST['title']."','".$_POST['date_start']."','".$_POST['date_end']."',
+            values ('".NULL."','".$_POST['nui']."','".$_POST['title']."','".$_POST['date_start']."','".$_POST['date_end']."',
             '".$_POST['observation']."','".$statut."','".$support."','".NULL."','".$container."')";
 $rqtSave = $cnx->prepare($rqtSave);
 if($rqtSave ->execute()){ echo "<br> enregistrement effectuée";} else{ echo "erreur";};

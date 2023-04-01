@@ -7,6 +7,7 @@ $cnx->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 $sql = "SELECT records.id_records as id, 
         records.records_title as title, 
+        records.records_nui as nui, 
         records.records_date_start as date_start, 
         records.records_date_end as date_end,
         records.records_observation as observation,
@@ -23,7 +24,7 @@ $sql = "SELECT records.id_records as id,
         ON records_status.records_status_id = records.records_status_id
         LEFT JOIN container 
         ON container.container_id = records.container_id
-        ";
+        ORDER  BY id DESC";
 
 $allRecords = $cnx -> prepare($sql);
 
@@ -36,6 +37,7 @@ $allRecords->execute();
 <?php
 foreach($allRecords as $elements){
     $elements['id'];
+    $elements['nui'];
     $elements['title'];
     $elements['date_start'];
     $elements['date_end'];
@@ -54,10 +56,11 @@ else {
     }
 echo'
     <table border="0" width="1000px">
+    <tr><td> Nui : '. $elements['nui'].' </tr>
     <tr><td><b>'. $elements['title'].'</b></tr>
     <tr><td> '. $elements['date_start'].' ' .$dateEnd.'</tr>
     <tr><td> '. $elements['observation'].' </tr>
-    <tr><td> Support : <b>'. $elements['support'].' </b> Statut : <b>'. $elements['statut'].' </b> Boite : <b>'. $elements['boite'].' </b></tr>
+    <tr><td>Ref  :'. $elements['id']. ' </b>Support : <b>'. $elements['support'].' </b> Statut : <b>'. $elements['statut'].' </b> Boite : <b>'. $elements['boite'].' </b></tr>
     </table><br/><br/>
     ';
 }
