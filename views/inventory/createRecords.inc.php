@@ -72,7 +72,7 @@ $allContainer->execute();
 } ?>
 </select>
 </td></tr>
-<tr> <td> Mots-cléfs : </td> <td> <input type="text" name="keyword" size="70"> </td>  </tr>
+<tr> <td> Mots-cléfs : </td> <td> <input type="text" name="keywords" size="70"> </td>  </tr>
 <tr> <td> <input type="submit" size="30"> </td>  <td> <input type="reset" size="30"></td></tr>
 </table>
 </form>
