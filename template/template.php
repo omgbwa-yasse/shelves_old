@@ -9,7 +9,7 @@ include_once "template/header.inc.php"
 ?>
 
 <header>
- <h1>Shelves : Opensource records management solftware </h1> 
+ <h1>Shelves : Opensource records management software </h1> 
 </header>
 <nav>
     <ul>
