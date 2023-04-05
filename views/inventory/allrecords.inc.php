@@ -28,6 +28,7 @@ $sql = "SELECT records.id_records as id,
 
 $allRecords = $cnx -> prepare($sql);
 
+
 $allRecords->execute();
 
 // var_dump($allRecords);
@@ -59,9 +60,25 @@ echo'<table border="0" width="1000px">
     <tr><td> Nui : '. $elements['nui'].' Classe : <b> '.$elements['code_title'] .'</b> </tr>
     <tr><td> '. $elements['date_start'].' ' .$dateEnd.'</tr>
     <tr><td> '. $elements['observation'].' </tr>
-    <tr><td>Ref<b>:'. $elements['id']. '</b> </b>Support : <b>'. $elements['support'].' </b> Statut : <b>'. $elements['statut'].' </b> Boite : <b>'. $elements['boite'].' </b></tr>
-    </table><br/><br/>
+    <tr><td>Ref<b>:'. $elements['id']. '</b> </b>Support : <b>'. $elements['support'].' </b> Statut : <b>'. $elements['statut'].' </b> Boite : <b>'. $elements['boite'].' </b></tr><td>
     ';
-}
+
+    $keywords = "SELECT records_keywords.keyword_id FROM records_keywords WHERE records_keywords.records_id = '". $elements['id'] ."' ";
+    $keywords = $cnx -> prepare($keywords);
+    
+    if($keywords->execute()){
+        foreach($keywords as $kwId){
+            $listwords = "SELECT keyword FROM keywords WHERE keyword_id = '". $kwId['keyword_id']."' ";
+            $listwords = $cnx -> prepare($listwords);
+            $listwords -> execute() ;
+            foreach ($listwords as $words) {
+                echo "  <b>". $words['keyword'] ."</b>"; 
+                $keyArray = array_search($words['keyword'], $words);
+                if( $keyArray == "0"){echo "";} else {echo ";" ;} ; } 
+                } 
+        } else { echo "Pas de mots clés"; } 
+    
+    }
+    echo "</td><tr></table><br/><br/>";
 ?>
 </div>

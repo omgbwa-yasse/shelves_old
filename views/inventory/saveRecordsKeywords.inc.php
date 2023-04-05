@@ -44,22 +44,25 @@ echo "<br> enregistrement effectuée et début de la procédure de sauvergarde d
 
 // Enregistrement du dernier mot-clé
 echo "</br> <hr> fin de la bouble et enregistrement du dernier mot :" .$text;
-$savekeyword = "INSERT INTO keywords (keyword_id,keyword) VALUES ( NULL,'". $text."')";
+    $saveLastkeyword = "INSERT INTO keywords (keyword) VALUES ('". $text."')";
+    $saveLastkeyword = $cnx ->prepare($saveLastkeyword);
+    $saveLastkeyword->execute();
 
 // Recupère l'ID du dernier mot clé
-    $keywordID = "SELECT keyword_id FROM keywords WHERE keywords.keyword = '".$text."' " ;
-    $keywordID = $cnx -> prepare($keywordID);
-    $keywordID ->execute();
-    $keyID = NULL;
-    foreach($keywordID as $key){
-    $keyID = $key['keyword_id'] ; }
-    if($keyID){ echo "<br> Id du dernier mot clé enregistré est : " .$keyID; }
+    $LastKeywordId = "SELECT keyword_id FROM keywords WHERE keywords.keyword = '".$text."' " ;
+    $LastKeywordId = $cnx -> prepare($LastKeywordId);
+    $LastKeywordId ->execute();
+    foreach($LastKeywordId as $key){
+            $lastkeyId = $key['keyword_id'] ; 
+            if($lastkeyId){ echo "<br> Id du dernier mot clé enregistré est : " .$lastkeyId; }
 
-// Association dans la table records_keywords
-    $savekeyword = "INSERT INTO records_keywords (keyword_id,records_id) VALUES ('". $keyID."','". $id['id_records']."')";
-    $savekeyword = $cnx->prepare($savekeyword);
-    if($savekeyword->execute()){
-        echo "<br> dernier mot clé lié au records  dans records_keywords";
-    };
+            // Association dans la table records_keywords
+            $savekeyword = "INSERT INTO records_keywords (keyword_id,records_id) VALUES ('". $lastkeyId."','". $id['id_records']."')";
+            $savekeyword = $cnx->prepare($savekeyword);
+            if($savekeyword->execute()){
+                echo "<br> dernier mot clé lié au records  dans records_keywords";
+            }
+        }
+    ;
 
 ?>
