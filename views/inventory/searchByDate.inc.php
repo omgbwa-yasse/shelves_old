@@ -1,6 +1,4 @@
 <?php
-include "models/connexion.class.php";
-include "models/search/allRecords.class.php";
 
 $cnx = new PDO("mysql:host=localhost;dbname=dbms", "root", "");
 $cnx->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -24,18 +22,12 @@ $sql = "SELECT records.id_records as id,
         ON records_status.records_status_id = records.records_status_id
         LEFT JOIN container 
         ON container.container_id = records.container_id
-        ORDER  BY date_start DESC";
+        WHERE records.records_date_start <'".$_POST[date_start]."' 
+        AND records.records_date_end > '". $_POST[date_start]. "';
 
-$allRecords = $cnx -> prepare($sql);
+        $allRecords = $cnx -> prepare($sql);
+        $allRecords->execute();
 
-
-$allRecords->execute();
-
-// var_dump($allRecords);
-?>
-
-<div style="align:left; margin-left:200px;margin-top:80px;">
-<?php
 foreach($allRecords as $elements){
     $elements['id'];
     $elements['nui'];
@@ -81,4 +73,15 @@ echo'<table border="0" width="1000px">
     }
     echo "</td><tr></table><br/><br/>";
 ?>
-</div>
+
+  
+<?php } else{ ?>
+
+    <form>
+        <input type="date" name="date_start" size="70"><br>
+        <input type="date" name="date_End" size="70"><br>
+        <input type="Submit" value="Rechercher"/><br>
+    </form>
+
+<?php } ?>
+

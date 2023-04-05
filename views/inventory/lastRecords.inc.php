@@ -1,3 +1,9 @@
+<p align="center">Pour plus de résultat
+<b>
+    <a href ="../shelves/index?q=repertoire&categ=search&sub=allrecords">Tous les enregistrements</a>
+</p>
+</p>
+
 <?php
 include "models/connexion.class.php";
 include "models/search/allRecords.class.php";
@@ -24,7 +30,9 @@ $sql = "SELECT records.id_records as id,
         ON records_status.records_status_id = records.records_status_id
         LEFT JOIN container 
         ON container.container_id = records.container_id
-        ORDER  BY date_start DESC";
+        ORDER  BY id DESC
+        LIMIT 5
+        ";
 
 $allRecords = $cnx -> prepare($sql);
 

@@ -4,26 +4,26 @@
 <p>Recherche</p>
 <ul>        
     <li>
-    <a href="../shelves/index?q=repertoire&categ=search&sub=allrecords"> Tous les enregistrements </a>
+    <a href="../shelves/index?q=repository&categ=search&sub=allrecords"> Tous les enregistrements </a>
     </li>
     <li>
-    <a href="../shelves/index?q=repertoire&categ=recherche&sub=allorgazination"> Recherche par detenteur </a>
+    <a href="../shelves/index?q=repository&categ=search&sub=byOrganization"> Recherche par detenteur </a>
     </li>
     <li>
-    <a href="../shelves/index?q=repertoire&categ=recherche&sub=alldate"> Recherche par date </a>
+    <a href="../shelves/index?q=repository&categ=search&sub=byDate"> Recherche par date </a>
     </li>
     <li>
-    <a href="../shelves/index?q=repertoire&categ=recherche&sub=allkeyword"> Recherche par mots-clés </a>
+    <a href="../shelves/index?q=repository&categ=search&sub=byKeyword"> Recherche par mots-clés </a>
     </li>
     <li>
-    <a href="../shelves/index?q=repertoire&categ=recherche&sub=allclasse"> Recherche par classe </a>
+    <a href="../shelves/index?q=repository&categ=search&sub=byClasse"> Recherche par classe </a>
     </li>
 </ul>
         
 <p>Enregistrements</p>
 <ul>
-    <li><a href="../shelves/index?q=repertoire&categ=create&sub=new">Nouvel enregistrement </a></li>
-    <li><a href="../shelves/index?q=repertoire&categ=create&sub=last">Derniers enregistrements </a></li>
+    <li><a href="../shelves/index?q=repository&categ=create&sub=new">Nouvel enregistrement </a></li>
+    <li><a href="../shelves/index?q=repository&categ=create&sub=last">Derniers enregistrements </a></li>
 </ul>
             
 <p>Chariot</p>
@@ -35,14 +35,29 @@
 <?php
 
 include "template/container.inc.php";
-if($q == "repertoire" && $_GET['categ'] == "search" && $_GET['sub'] == "allrecords"){
+if($q == "repository" && $_GET['categ'] == "search" && $_GET['sub'] == "allrecords"){
     include "views/inventory/allrecords.inc.php";
 }
-if($q == "repertoire" && $_GET['categ'] == "create" && $_GET['sub'] == "new"){
+if($q == "repository" && $_GET['categ'] == "create" && $_GET['sub'] == "new"){
     include "views/inventory/createRecords.inc.php";
 }
-if($q == "repertoire" && $_GET['categ'] == "create" && $_GET['sub'] == "newSave"){
+if($q == "repository" && $_GET['categ'] == "create" && $_GET['sub'] == "newSave"){
     include "views/inventory/saveRecords.inc.php";
+}
+if($q == "repository" && $_GET['categ'] == "search" && $_GET['sub'] == "last"){
+    include "views/inventory/LastRecords.inc.php";
+}
+if($q == "repository" && $_GET['categ'] == "search" && $_GET['sub'] == "byClasse"){
+    include "views/inventory/searchByClasse.inc.php";
+}
+if($q == "repository" && $_GET['categ'] == "search" && $_GET['sub'] == "byKeyword"){
+    include "views/inventory/searchByKeyword.inc.php";
+}
+if($q == "repository" && $_GET['categ'] == "search" && $_GET['sub'] == "byDate"){
+    include "views/inventory/searchByDate.inc.php";
+}
+if($q == "repository" && $_GET['categ'] == "search" && $_GET['sub'] == "byOrganization"){
+    include "views/inventory/searchByOrganization.inc.php";
 }
 ?>
 
