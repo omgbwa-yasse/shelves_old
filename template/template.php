@@ -13,7 +13,7 @@ include_once "template/header.inc.php"
 </header>
 <nav>
     <ul>
-        <li class="<?php if ($q=="repertoire") {echo "active"; } else  {echo "";}?>"><a href ="../shelves/index.php?q=repertoire&categ=recherche&sub=allrecords">Repertoire</a></li>
+        <li class="<?php if ($q=="repertoire") {echo "active"; } else  {echo "";}?>"><a href ="../shelves/index.php?q=repository&categ=recherche&sub=allrecords">Repertoire</a></li>
         <li class="<?php if ($q=="versement") {echo "active"; } else  {echo "";}?>"><a href ="../shelves/index.php?q=versement&categ=search&sub=allversement">Versement</a></li>
         <li class="<?php if ($q=="loan") {echo "active"; } else  {echo "";}?>"><a href ="../shelves/index.php?q=loan&categ=search&sub=allloan">Demande</a></li>
         <li class="<?php if ($q=="deposit") {echo "active"; } else  {echo "";}?>"><a href ="../shelves/index.php?q=deposit&categ=search&sub=all">Dépôt</a></li>

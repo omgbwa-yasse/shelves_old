@@ -51,6 +51,9 @@ if($q == "repository" && $_GET['categ'] == "search" && $_GET['sub'] == "byClasse
     include "views/inventory/searchByClasse.inc.php";
 }
 if($q == "repository" && $_GET['categ'] == "search" && $_GET['sub'] == "byKeyword"){
+    include "views/inventory/searchAllKeyword.inc.php";
+}
+if($q == "repository" && $_GET['categ'] == "search" && $_GET['sub'] == "Keyword" && !empty($_GET['id']) ){
     include "views/inventory/searchByKeyword.inc.php";
 }
 if($q == "repository" && $_GET['categ'] == "search" && $_GET['sub'] == "byDate"){
@@ -59,6 +62,7 @@ if($q == "repository" && $_GET['categ'] == "search" && $_GET['sub'] == "byDate")
 if($q == "repository" && $_GET['categ'] == "search" && $_GET['sub'] == "byOrganization"){
     include "views/inventory/searchByOrganization.inc.php";
 }
+
 ?>
 
 

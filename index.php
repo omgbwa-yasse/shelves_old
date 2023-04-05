@@ -8,7 +8,7 @@ if($_GET['categ'] == NULL && $_GET['sub'] == NULL){
 } 
 else if(isset($q)){
     switch($q){
-        case "repertoire" : include '../shelves/views/repertoire.views.php';
+        case "repository" : include '../shelves/views/repository.views.php';
         break;
         case "versement" : include '../shelves/views/versement.views.php';
         break;
@@ -22,7 +22,7 @@ else if(isset($q)){
         break;
         case "parametre" : include '../shelves/views/parametre.views.php';
         break;
-        default :include '../shelves/views/repertoire.views.php';
+        default :include '../shelves/views/repository.views.php';
         break;
     }
 } 
