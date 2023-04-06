@@ -1,8 +1,9 @@
-<p align="center">Pour plus de résultat
-<b>
-    <a href ="../shelves/index?q=repertoire&categ=search&sub=allrecords">Tous les enregistrements</a>
-</p>
-</p>
+<h2>Pour plus de résultat 
+    <b>
+        <a href ="../shelves/index?q=repository&categ=search&sub=allrecords">Tous les enregistrements</a>
+    </b>
+</h2>
+
 
 <?php
 include "models/connexion.class.php";

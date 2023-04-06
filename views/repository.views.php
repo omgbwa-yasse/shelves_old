@@ -4,32 +4,32 @@
 <p>Recherche</p>
 <ul>        
     <li>
-    <a href="../shelves/index?q=repository&categ=search&sub=allrecords"> Tous les enregistrements </a>
+    <a href="../shelves/index.php?q=repository&categ=search&sub=allrecords"> Tous les enregistrements </a>
     </li>
     <li>
-    <a href="../shelves/index?q=repository&categ=search&sub=byOrganization"> Recherche par detenteur </a>
+    <a href="../shelves/index.php?q=repository&categ=search&sub=byOrganization"> Recherche par detenteur </a>
     </li>
     <li>
-    <a href="../shelves/index?q=repository&categ=search&sub=byDate"> Recherche par date </a>
+    <a href="../shelves/index.php?q=repository&categ=search&sub=byDate"> Recherche par date </a>
     </li>
     <li>
-    <a href="../shelves/index?q=repository&categ=search&sub=byKeyword"> Recherche par mots-clés </a>
+    <a href="../shelves/index.php?q=repository&categ=search&sub=byKeyword"> Recherche par mots-clés </a>
     </li>
     <li>
-    <a href="../shelves/index?q=repository&categ=search&sub=byClasse"> Recherche par classe </a>
+    <a href="../shelves/index.php?q=repository&categ=search&sub=byClasse"> Recherche par classe </a>
     </li>
 </ul>
         
 <p>Enregistrements</p>
 <ul>
-    <li><a href="../shelves/index?q=repository&categ=create&sub=new">Nouvel enregistrement </a></li>
-    <li><a href="../shelves/index?q=repository&categ=create&sub=last">Derniers enregistrements </a></li>
+    <li><a href="../shelves/index.php?q=repository&categ=create&sub=new">Nouvel enregistrement </a></li>
+    <li><a href="../shelves/index.php?q=repository&categ=create&sub=last">Derniers enregistrements </a></li>
 </ul>
             
 <p>Chariot</p>
 <ul>
-    <li><a href="../shelves/index?q=dolly&categ=container&sub=alldolly"> Tous les chariot de description </a></li>
-    <li><a href="../shelves/index?q=dolly&categ=container&sub=create"> Ajouter un chariot de description </a></li>
+    <li><a href="../shelves/index.php?q=dolly&categ=container&sub=alldolly"> Tous les chariot de description </a></li>
+    <li><a href="../shelves/index.php?q=dolly&categ=container&sub=create"> Ajouter un chariot de description </a></li>
 </ul>
 
 <?php
@@ -44,8 +44,8 @@ if($q == "repository" && $_GET['categ'] == "create" && $_GET['sub'] == "new"){
 if($q == "repository" && $_GET['categ'] == "create" && $_GET['sub'] == "newSave"){
     include "views/inventory/saveRecords.inc.php";
 }
-if($q == "repository" && $_GET['categ'] == "search" && $_GET['sub'] == "last"){
-    include "views/inventory/LastRecords.inc.php";
+if($q == "repository" && $_GET['categ'] == "create" && $_GET['sub'] == "last"){
+    include "views/inventory/lastRecords.inc.php";
 }
 if($q == "repository" && $_GET['categ'] == "search" && $_GET['sub'] == "byClasse"){
     include "views/inventory/searchByClasse.inc.php";
