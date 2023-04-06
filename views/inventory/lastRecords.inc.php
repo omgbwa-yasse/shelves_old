@@ -1,6 +1,6 @@
 <h2>Pour plus de résultat 
     <b>
-        <a href ="../shelves/index?q=repository&categ=search&sub=allrecords">Tous les enregistrements</a>
+        <a href ="../shelves/index.php?q=repository&categ=search&sub=allrecords">Tous les enregistrements</a>
     </b>
 </h2>
 
