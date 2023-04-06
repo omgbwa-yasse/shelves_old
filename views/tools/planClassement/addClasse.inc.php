@@ -1,5 +1,5 @@
 
-<form method="post" action="../shelves/index.php?q=outilsGestion&categ=planClassement&sub=savedClasse">
+<form method="post" action="index.php?q=outilsGestion&categ=planClassement&sub=savedClasse">
     Id : <input type="text" name="id"><br/>
     Code : <input type="text" name="code"><br/>
     Titre :<input type="text" name="title"><br/>
