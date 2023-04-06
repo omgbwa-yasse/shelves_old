@@ -16,7 +16,7 @@
     <a href="index.php?q=repository&categ=search&sub=byKeyword"> Recherche par mots-clés </a>
     </li>
     <li>
-    <a href="index.php?q=repository&categ=search&sub=byClasse"> Recherche par classe </a>
+    <a href="index.php?q=repository&categ=search&sub=selectClasse"> Recherche par classe </a>
     </li>
 </ul>
         
@@ -46,6 +46,9 @@ if($q == "repository" && $_GET['categ'] == "create" && $_GET['sub'] == "newSave"
 }
 if($q == "repository" && $_GET['categ'] == "create" && $_GET['sub'] == "last"){
     include "views/repository/lastRecords.inc.php";
+}
+if($q == "repository" && $_GET['categ'] == "search" && $_GET['sub'] == "selectClasse"){
+    include "views/repository/selecteClasse.inc.php";
 }
 if($q == "repository" && $_GET['categ'] == "search" && $_GET['sub'] == "byClasse"){
     include "views/repository/searchByClasse.inc.php";
