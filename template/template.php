@@ -3,7 +3,7 @@ $q ="repertoire";
 if (isset($_GET['q'])){
    $q = $_GET['q']; 
 } else{
-    $q = 'repertoire';
+    $q = 'repository';
 }
 include_once "template/header.inc.php"
 ?>

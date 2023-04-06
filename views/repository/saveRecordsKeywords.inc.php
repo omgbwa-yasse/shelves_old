@@ -1,39 +1,49 @@
 <?php
 echo "<br> enregistrement effectuée et début de la procédure de sauvergarde des mots clés ... <br><br><br>";
 
-    // Recupération de l'ID sur la base NUI
+// Recupération de l'ID sur la base NUI
     $idRecords = "SELECT records.id_records FROM records WHERE records_nui = '".$_POST['nui']."' " ;
     $idRecords =$cnx->prepare($idRecords);
     $idRecords->execute();
     foreach($idRecords as $id){
         echo "l'ID de l'enregistrement est " . $id['id_records'];
     }
-    
-    // Insertion des mots 
-    $text =$_POST['keywords'];   
+
+/*
+    V2.0 de l'insertion des données des mots clés
+    - vérifie si il y'a ;
+        - Découpage des mots 
+        - contrôle si le mot est dans la base
+            -- si oui recupère et enregistre ID et enregistrés dans la table de liaison
+            -- sinon Enregistrement du mot
+    - Sinon enregistre le mot
+*/
+
+
+// Boucle de découpage et insertion d'un mot-clé
+    $text = htmlspecialchars($_POST['keywords']);   
     while($pos = stripos($text, ";")){
-    echo "</br> Début de la boucle tant que ...";
+
+        //  Début de la boucle tant que pour coupé le texte...
         $motCle = substr($text, 0, $pos);
 
-    // Je traite les données
+        // Insertion du mot coupé au début de la boule
         $savekeyword = "INSERT INTO keywords (keyword_id,keyword) VALUES ( NULL,'". $motCle."')";
         $savekeyword = $cnx->prepare($savekeyword);
         if($savekeyword -> execute()){
             echo "</br> mot clé enregistrés est ". $motCle ;
         };
         
-    // xxxxxxxxxxxxxxxx
+        // Recupération de l'ID du mot clé enregistré
         $keywordID = "SELECT keyword_id FROM keywords WHERE keywords.keyword = '".$motCle."' " ;
         $keywordID = $cnx -> prepare($keywordID);
         $keywordID ->execute();
-        
-    // Parcourir les résulatats
         $keyID = NULL;
         foreach($keywordID as $key){
         $keyID = $key['keyword_id'] ; }
         if($keyID){ echo "<br> Id du clé enregistré est : " .$keyID; }
 
-    // Je sauvergarde les données
+        // Insertion des données dans la table d'association
         $savekeyword = "INSERT INTO records_keywords (keyword_id,records_id) VALUES ('". $keyID."','". $id['id_records']."')";
         $savekeyword = $cnx->prepare($savekeyword);
         if($savekeyword->execute()){
