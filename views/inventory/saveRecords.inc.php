@@ -69,9 +69,9 @@ if($rqtSave ->execute()){
 <br>
 
 <br>
-<a href="../shelves/index.php?q=repository&categ=create&sub=new">Nouveau Enregistrement</a>
+<a href="index.php?q=repository&categ=create&sub=new">Nouveau Enregistrement</a>
 <br>
-<a href="../shelves/index.php?q=repository&categ=create&sub=new">Modifier l'enregistrement</a>
+<a href="index.php?q=repository&categ=create&sub=new">Modifier l'enregistrement</a>
 <br>
-<a href="../shelves/index.php?q=repository&categ=create&sub=new">Supprimer</a>
+<a href="index.php?q=repository&categ=create&sub=new">Supprimer</a>
 <br>

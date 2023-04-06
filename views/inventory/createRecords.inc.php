@@ -19,7 +19,7 @@ $allContainer->execute();
 
 ?>
 
-<form method="POST" action="../shelves/index.php?q=repository&categ=create&sub=newSave">
+<form method="POST" action="index.php?q=repository&categ=create&sub=newSave">
 <table>
 <tr> <td> Identifiant unique </td>  <td> <input type="text" name="nui" size="30"></td> </tr>
 <tr> <td> Intitulé </td>  <td> <input type="text" name="title" size="70"></td> </tr>
