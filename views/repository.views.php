@@ -36,31 +36,31 @@
 
 include "template/container.inc.php";
 if($q == "repository" && $_GET['categ'] == "search" && $_GET['sub'] == "allrecords"){
-    include "views/inventory/allrecords.inc.php";
+    include "views/repository/allrecords.inc.php";
 }
 if($q == "repository" && $_GET['categ'] == "create" && $_GET['sub'] == "new"){
-    include "views/inventory/createRecords.inc.php";
+    include "views/repository/createRecords.inc.php";
 }
 if($q == "repository" && $_GET['categ'] == "create" && $_GET['sub'] == "newSave"){
-    include "views/inventory/saveRecords.inc.php";
+    include "views/repository/saveRecords.inc.php";
 }
 if($q == "repository" && $_GET['categ'] == "create" && $_GET['sub'] == "last"){
-    include "views/inventory/lastRecords.inc.php";
+    include "views/repository/lastRecords.inc.php";
 }
 if($q == "repository" && $_GET['categ'] == "search" && $_GET['sub'] == "byClasse"){
-    include "views/inventory/searchByClasse.inc.php";
+    include "views/repository/searchByClasse.inc.php";
 }
 if($q == "repository" && $_GET['categ'] == "search" && $_GET['sub'] == "byKeyword"){
-    include "views/inventory/searchAllKeyword.inc.php";
+    include "views/repository/searchAllKeyword.inc.php";
 }
 if($q == "repository" && $_GET['categ'] == "search" && $_GET['sub'] == "Keyword" && !empty($_GET['id']) ){
-    include "views/inventory/searchByKeyword.inc.php";
+    include "views/repository/searchByKeyword.inc.php";
 }
 if($q == "repository" && $_GET['categ'] == "search" && $_GET['sub'] == "byDate"){
-    include "views/inventory/searchByDate.inc.php";
+    include "views/repository/searchByDate.inc.php";
 }
 if($q == "repository" && $_GET['categ'] == "search" && $_GET['sub'] == "byOrganization"){
-    include "views/inventory/searchByOrganization.inc.php";
+    include "views/repository/searchByOrganization.inc.php";
 }
 
 ?>
