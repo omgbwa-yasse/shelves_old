@@ -55,7 +55,7 @@ if($elements['date_end'] == '0000-00-00'){
 else {
     $dateEnd = ' au '. $elements['date_end'];   
     }
-echo'<table border="0" width="1000px">
+echo'<br><br><table border="0" width="1000px">
     <tr><td><h3><b>'. $elements['title'].'</b></h3></tr>
     <tr><td> Nui : '. $elements['nui'].' Classe : <b> '.$elements['code_title'] .'</b> </tr>
     <tr><td> '. $elements['date_start'].' ' .$dateEnd.'</tr>
