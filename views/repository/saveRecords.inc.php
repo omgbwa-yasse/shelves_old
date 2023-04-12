@@ -1,6 +1,5 @@
 <?php
-$cnx = new PDO("mysql:host=localhost;dbname=dbms", "root", "");
-$cnx->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+require 'models/repository/records.class.php';
 
 $_POST['nui']= htmlspecialchars ($_POST['nui']);
 $_POST['title']= htmlspecialchars ($_POST['title']);
@@ -14,57 +13,21 @@ $_POST['statut']= htmlspecialchars ($_POST['statut']);
 $_POST['keywords']= htmlspecialchars ($_POST['keywords']);
 $supportTitle = $_POST['support'] ;
 
-// echo '<hr> Recupartion des Id des données envoyées  <br>  ';
 
-$classe = "";
-$classeId = "SELECT classification_id FROM classification WHERE classification_code_title = '".$_POST['code_title']."' " ;
-$classeId=$cnx->prepare($classeId);
-$classeId->execute();
-foreach($classeId as $id){
-    echo "id de la classe est :".$id['classification_id'];
-    $classe = $id['classification_id'];
-}
-$support ="";
-$supportId = "SELECT records_support_id FROM records_support WHERE records_support_title = '".$_POST['support']."' " ;
-$supportId=$cnx->prepare($supportId);
-$supportId->execute();
-foreach($supportId as $id){
-    echo "<br> id du support est :".$id['records_support_id'];
-    $support =$id['records_support_id'];
+$record = new records( NULL,$_POST['nui'],
+        $_POST['title'], $_POST['date_start'],               
+        $_POST['date_end'], $_POST['observation'],
+        $_POST['statut'], $_POST['code_title'],
+        $_POST['support'], NULL, $_POST['container']);
 
-}
-$statut = '';
-$statutId = "SELECT records_status_id FROM records_status WHERE records_status_title = '".$_POST['statut']."' " ;
-$statutId=$cnx->prepare($statutId);
-$statutId->execute();
-foreach($statutId as $id){
-    echo "<br> id du statut est :".$id['records_status_id'];
-    $statut = $id['records_status_id'];
-
-}
-$container = "";
-$containerId = "SELECT container_id FROM container WHERE container_reference = '".$_POST['container']."' " ;
-$containerId=$cnx->prepare($containerId);
-$containerId->execute();
-foreach($containerId as $id){
-    echo "<br> id du container est :".$id['container_id'];
-    $container = $id['container_id'];
-}
-
-
-$rqtSave = "INSERT INTO records (id_records,records_nui, records_title, records_date_start, 
-                                records_date_end, records_observation, records_status_id,
-                                records_support_id, records_link_id, container_id, classification_id ) 
-            values ('".NULL."','".$_POST['nui']."','".$_POST['title']."','".$_POST['date_start']."','".$_POST['date_end']."',
-            '".$_POST['observation']."','".$statut."','".$support."','".NULL."','".$container."','".$classe."' )";
-
-$rqtSave = $cnx->prepare($rqtSave);
-if($rqtSave ->execute()){ 
-
-     include_once "views/repository/saveRecordsKeywords.inc.php";
-     
-} else{ echo "erreur";};
-
+if($record ->controlNui() == TRUE){
+        $record->setRecordTempNui();
+        $record->saveRecord();
+        include "views/repository/saveRecordsKeywords.inc.php";
+    } else {
+        $record->saveRecord();
+        include "views/repository/saveRecordsKeywords.inc.php";
+    };
 ?>
 
 <br>

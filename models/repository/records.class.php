@@ -21,49 +21,30 @@ public $_record_container_title;
 public $_record_classe;
 public $_controlStatus;
 
-public function __construct($id,$nui,$title,$date_start,$date_end,$observation,$status_title,$code_title,$support_title,$link,$container_title){
-    $this->_id_record = $id ;
-    $this->_record_nui = $nui;
-    $this->_record_title = $title ;
-    $this->_record_date_start = $date_start ;
-    $this->_record_date_end = $date_end ;
-    $this->_record_observation = $observation ;
-    $this->_record_status_title = $status_title;
-    $this->_record_classe_code_title = $code_title;
-    $this->_record_support_title = $support_title ;
-    $this->_record_link_id = $link;
-    $this->_record_container_title = $container_title ;
+private function __construct(){
+    $this->_id_record;
+    $this->_record_nui;
+    $this->_record_title;
+    $this->_record_date_start;
+    $this->_record_date_end;
+    $this->_record_observation;
+    $this->_record_status_title;
+    $this->_record_classe_code_title;
+    $this->_record_support_title;
+    $this->_record_link_id ;
+    $this->_record_container_title ;
 }
-public function saveRecord(){
-    // je recupère les ID des container, support, status, classe
-    $this->setStatusId();
-    $this->setSupportId();
-    $this->setContainerId();
-    $this->setClasseId();
 
-    // Je contrôle si le numéro unique existe dans la base
-    if($this->controlNui() == TRUE){
-        echo "Enreistrement annuler, le numéro existe déjà ...";
-    } else {
-        // J'enregistre les données
-        $rqt = " INSERT INTO records (id_records,records_nui, records_title, 
-        records_date_start,records_date_end, records_observation, 
-        records_status_id, records_support_id, records_link_id, 
-        container_id, classification_id ) 
-        values ('".NULL."','".$this->_record_nui."','". $this->_record_title."','".$this->_record_date_start."',
-        '". $this->_record_date_start."', '".$this->_record_observation."','".$this->_record_status_id."',
-        '".$this->_record_support_id."', '".$this->_record_link_id."','".$this->_record_container_id."',
-        '".$this->_record_classe_id."' )";
+// Les Setters et les Getters
+// Les Identifiants de la notices
+public function setIdRecord($id){ $this->_id_record = $id;}
+public function getIdRecord(){ return $this->_id_record;}
 
-        $rqt = $this->getCnx()->prepare($rqt);
-        if($rqt ->execute()){
-        echo "Enregistrement effectué par la classe records...";
-        };
-    }
-    
-}
+// Numéro d'identifiaction Unique
+public function setRecordNui($nui){ $this->_record_nui = $nui;}
+public function getRecordNui(){ return $this->_record_nui;}
 public function controlNui(){
-    $control = "SELECT records_nui FROM records WHERE records.records_nui = '".$this->_record_nui."' " ;
+    $control = "SELECT records_nui FROM records WHERE records.records_nui = '".$this->getRecordNui()."' " ;
     $control = $this->getCnx()->prepare($control);
     $control ->execute();
     foreach($control as $crtl){
@@ -72,25 +53,43 @@ public function controlNui(){
         }
         return $this->_controlStatus ;
 }
-public function setClasseId(){
-    $classeId = "SELECT classification_id FROM classification WHERE classification_code_title = '".$this->_record_classe_title."' " ;
-    $classeId=$this->getCnx()->prepare($classeId);
-    $classeId->execute();
-    foreach($classeId as $id){
-        $this->_record_classe_id = $id['classification_id'];
+public function setRecordTempNui(){
+    $id = NULL;
+    $lastId = "SELECT id_records FROM records LIMIT 1 ORDER BY id_records DESC";
+    $lastId = $this->getCnx() -> prepare($lastId);
+    $lastId -> execute();
+    foreach($lastId as $ref){
+        $id = $ref['id_records'] + 1 . rand(0,21);
     }
+    $this->_record_nui = "temp_". $id ;
+    return  $this->_record_nui;
 }
 
-public function setSupportId(){
-    $supportId = "SELECT records_support_id FROM records_support WHERE records_support_title = '".$this->_record_support_title."' " ;
-    $supportId = $this->getCnx()->prepare($supportId);
-    $supportId ->execute();
-    foreach($supportId as $id){
-        $this->_record_support_id = $id['records_support_id'];
-    }
-}
-public function setStatusId(){
-    $statutId = "SELECT records_status_id FROM records_status WHERE records_status_title = '".$this->_record_status_title."' " ;
+// Intitulé de la ressource
+
+public function setRecordTitle($title){ $this->_record_title = $title;}
+public function getRecordTitle(){ return $this->_record_title;}
+
+// date de début
+
+public function setRecordDateStart($date_start){ $this->_record_date_start = $date_start;}
+public function getRecordDateStart(){ return $this->_record_date_start;}
+
+// date de fin
+
+public function setRecordDateEnd($date_end){ $this->_record_date_end = $date_end;}
+public function getRecordDateEnd(){ return $this->_record_date_end;}
+
+// Les observations
+
+public function setRecordObservation($observation){ $this->_record_observation = $observation;}
+public function getRecordObservation(){ return $this->_record_observation;}
+
+// Statut des documents
+public function setRecordStatusTitle($tatus_title){ $this->_record_status_title = $tatus_title ;}
+public function getRecordStatusTitle(){ return $this->_record_status_title;}
+public function setRecordStatusId(){
+    $statutId = "SELECT records_status_id FROM records_status WHERE records_status_title = '".$this->getRecordStatusTitle()."' " ;
     $statutId =$this->getCnx()->prepare($statutId);
     $statutId->execute();
     foreach($statutId as $id){
@@ -99,17 +98,75 @@ public function setStatusId(){
     }
 }
 
-public function setContainerId(){
-    $containerId = "SELECT container_id FROM container WHERE container_reference = '".$this->_record_container_title."' " ;
+public function getRecordStatusId(){ return $this->_record_status_id;}
+
+// Classe de la classification
+
+public function setRecordClasseCodeTitle($classe_code_title){ $this->_record_classe_code_title = $classe_code_title;}
+public function getRecordClasseCodeTitle(){ return $this->_record_classe_code_title;}
+public function setRecordClasseId(){
+    $classeId = "SELECT classification_id FROM classification WHERE classification_code_title = '".$this->getRecordStatusTitle()."' " ;
+    $classeId=$this->getCnx()->prepare($classeId);
+    $classeId->execute();
+    foreach($classeId as $id){
+        $this->_record_classe_id = $id['classification_id'];
+    }
+}
+public function getRecordClasseId(){return $this->_record_classe_id;}
+// Support
+
+public function setRecordSupportTitle($support_title){ $this->_record_support_title = $support_title;}
+public function getRecordSupportTitle(){ return $this->_record_support_title;}
+
+public function setRecordSupportId(){
+    $supportId = "SELECT records_support_id FROM records_support WHERE records_support_title = '".$this->getRecordSupportTitle()."' " ;
+    $supportId = $this->getCnx()->prepare($supportId);
+    $supportId ->execute();
+    foreach($supportId as $id){
+        $this->_record_support_id = $id['records_support_id'];
+    }
+}
+public function getRecordSupportId(){return $this->_record_support_id; }
+
+// Lien decription parent
+public function setRecordLinkId($link_id){ $this->_record_link_id = $link_id;}
+public function getRecordLinkId(){ return $this->_record_link_id;}
+
+// Contenant (boite) archives
+public function setRecordContainerTitle($container_title){ $this->_record_container_title = $container_title;}
+public function getRecordContainerTitle(){ return $this->_record_container_title;}
+
+public function setRecordContainerId(){
+    $containerId = "SELECT container_id FROM container WHERE container_reference = '".$this->getRecordContainerTitle()."' " ;
     $containerId = $this->getCnx()->prepare($containerId);
     $containerId ->execute();
     foreach($containerId as $id){
         $this->_record_container_id = $id['container_id'];
     }
 }
+public function getRecordContainerId(){ return $this->_record_container_id;}
+// Les fonctions 
+public function saveRecord(){
+        // je recupère les ID des container, support, status, classe
+        $this->setRecordStatusId();
+        $this->setRecordSupportId();
+        $this->setRecordContainerId();
+        $this->setRecordClasseId();
 
-public function setIdRecords($id){
-    $this->_id_record = $id ;
+        // J'enregistre les données
+        $rqt = " INSERT INTO records (id_records,records_nui, records_title, 
+        records_date_start,records_date_end, records_observation, 
+        records_status_id, records_support_id, records_link_id, 
+        container_id, classification_id ) 
+        values ('".$this->getIdRecord()."','".$this->getRecordNui()."','". $this->getRecordTitle()."','".$this->getRecordDateStart()."',
+        '". $this->getRecordDateEnd()."', '".$this->getRecordObservation()."','".$this->getRecordStatusId()."',
+        '".$this->getRecordSupportId()."', '".$this->getRecordLinkId()."','".$this->getRecordContainerId()."',
+        '".$this->getRecordClasseId()."' )";
+
+        $rqt = $this->getCnx()->prepare($rqt);
+        if($rqt ->execute()){
+        echo "Enregistrement effectué par la classe records...";
+        };
 }
 public function getRecordById(){
     // Je recupère les donnée avec condition sur ID
@@ -132,7 +189,7 @@ public function getRecordById(){
             ON records_status.records_status_id = records.records_status_id
             LEFT JOIN container 
             ON container.container_id = records.container_id
-            WHERE records.id_records = '".$this->_id_record."'";
+            WHERE records.id_records = '".$this->getIdRecord()."'";
 
     $record = $this->getCnx() -> prepare($record);
     $record ->execute();
