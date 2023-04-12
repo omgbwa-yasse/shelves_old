@@ -14,26 +14,22 @@ echo "<br> enregistrement effectuée et début de la procédure de sauvergarde d
             }
     
     // Boucle de découpage, controle, lie ou insertion d'un mot-clé
-    $text = htmlspecialchars($_POST['keywords']);   
-    while($pos = stripos($text, ";")){
-            $motCle = substr($text, 0, $pos);    
-            $Keyword = new keywords();
-            $Keyword -> setKeyword($motCle);
-            $Keyword -> setRecordId($id_records);
-
-    // verifie si le mot existe j'enregistre dans la table de liaison, sinon je l'enregistre
-           if($Keyword->KeywordVerification() == TRUE){
-                $Keyword ->linkKeywordRecord();
-           }else{
-                $Keyword ->saveNewKeyword($motCle);
-           }
-           $text = substr($text,$pos+1);}
-        
-    // en sortant de la boucle on enregistre le dernier mot clés
-    $Keyword -> setKeyword($text);
-        If($Keyword->KeywordVerification() == TRUE){
-            $Keyword ->linkKeywordRecord();
+    $text = htmlspecialchars($_POST['keywords']);
+    $lenText = strlen($text);
+    $text = explode(';', $text, $lenText);
+    var_dump($text);
+    echo "<br/>";
+    $text = array_filter($text);
+    var_dump($text);
+    foreach($text as $tab){
+        $Keyword = new keywords();
+        $Keyword -> setKeyword($tab);
+        $Keyword -> setRecordId($id_records);
+        if($Keyword->KeywordVerification() == TRUE){
+            $Keyword ->linkKeywordRecord(); 
         } else {
-            $Keyword ->saveNewKeyword($motCle);
-        }
+            $Keyword ->saveNewKeyword($tab);
+            $Keyword ->linkKeywordRecord();
+        } 
+    }
 ?>
