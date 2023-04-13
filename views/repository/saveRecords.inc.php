@@ -14,11 +14,18 @@ $_POST['keywords']= htmlspecialchars ($_POST['keywords']);
 $supportTitle = $_POST['support'] ;
 
 
-$record = new records( NULL,$_POST['nui'],
-        $_POST['title'], $_POST['date_start'],               
-        $_POST['date_end'], $_POST['observation'],
-        $_POST['statut'], $_POST['code_title'],
-        $_POST['support'], NULL, $_POST['container']);
+$record = new records();
+$record->setIdRecord(NULL);
+$record->setRecordNui($_POST['nui']);
+$record->setRecordTitle($_POST['title']); 
+$record->setRecordDateStart($_POST['date_start']);               
+$record->setRecordDateEnd($_POST['date_end']);
+$record->setRecordObservation($_POST['observation']);
+$record->setRecordStatusTitle($_POST['statut']);
+$record->setRecordClasseCodeTitle($_POST['code_title']);
+$record->setRecordSupportTitle($_POST['support']);
+$record->setRecordLinkId(NULL); 
+$record->setRecordContainerTitle($_POST['container']);
 
 if($record ->controlNui() == TRUE){
         $record->setRecordTempNui();
