@@ -21,7 +21,7 @@ public $_record_container_title;
 public $_record_classe;
 public $_controlStatus;
 
-private function __construct(){
+public function __construct(){
     $this->_id_record;
     $this->_record_nui;
     $this->_record_title;

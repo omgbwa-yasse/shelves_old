@@ -1,4 +1,5 @@
 <?php
+
 require 'models/repository/records.class.php';
 
 $_POST['nui']= htmlspecialchars ($_POST['nui']);

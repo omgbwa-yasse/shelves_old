@@ -4,6 +4,8 @@ class keywords extends connexion{
     private $_idrecords;
     private $_keyword;
     private $_idkeyword ;
+    private $_record_nui;
+
 public function getKeywordId($keyword){
     $idkeyword = "SELECT keyword_id FROM keywords WHERE keywords.keyword = '".$keyword ."'";
     $idkeyword = $this->getCnx()-> prepare($idkeyword);
@@ -13,6 +15,19 @@ public function getKeywordId($keyword){
     }
     return $this->_idkeyword ;
 }
+public function setRecordNui($nui){ $this->_record_nui = $nui; }
+public function getRecordNui(){ return $this->_record_nui ;}
+public function setRecordIdByNui(){
+    $idRecords = "SELECT records.id_records FROM records WHERE records_nui = '".$this->getRecordNui()."' " ;
+    $idRecords =$this->getCnx()->prepare($idRecords);
+    $idRecords->execute();
+    foreach($idRecords as $id) {
+            echo "l'ID de l'enregistrement est " . $id['id_records'];
+            $this->_idrecords =  $id['id_records'];
+            }
+
+}
+
 public function setRecordId($records_id){
     $this->_idrecords = $records_id ;
     return $this->_idrecords ;
