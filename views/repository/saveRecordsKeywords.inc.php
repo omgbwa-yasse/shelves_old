@@ -1,5 +1,5 @@
 <?php
-require 'models/repository/keywords.class.php';
+require_once 'models/repository/keywords.class.php';
 
 echo "<br> enregistrement effectuée et début de la procédure de sauvergarde des mots clés ... <br><br><br>";
 

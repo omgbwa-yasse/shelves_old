@@ -1,12 +1,12 @@
 <?php 
-require 'models/connexion.class.php';
-class keywords extends connexion{
+require_once 'models/repository/records.class.php';
+class keywords extends records{
     private $_idrecords;
     private $_keyword;
     private $_idkeyword ;
-    private $_record_nui;
+    public $_record_nui;
 
-public function getKeywordId($keyword){
+public function KeywordId($keyword){
     $idkeyword = "SELECT keyword_id FROM keywords WHERE keywords.keyword = '".$keyword ."'";
     $idkeyword = $this->getCnx()-> prepare($idkeyword);
     $idkeyword->execute();
@@ -14,6 +14,9 @@ public function getKeywordId($keyword){
         $this->_idkeyword = $id['keyword_id'];
     }
     return $this->_idkeyword ;
+}
+public function getKeywordId(){
+    return $this->_idkeyword;
 }
 public function setRecordNui($nui){ $this->_record_nui = $nui; }
 public function getRecordNui(){ return $this->_record_nui ;}
@@ -55,7 +58,7 @@ public function getAllKeywords(){
     foreach($allKeywords as $keyword)
     { 
         $idKeyword = "SELECT keyword_id FROM keywords WHERE  keywords.keyword = '".$keyword['keyword']."'";
-        $idKeyword = $this->getCnx()->prepare($idKeyword);
+        $idKeyword = connexion::getCnx()->prepare($idKeyword);
         $idKeyword->execute();
         foreach($idKeyword as $kId){
 
@@ -206,7 +209,7 @@ public function KeywordVerification(){
             $KeywordStatus = FALSE ;
         }
         return $KeywordStatus;
-}
+    }
 }
 public function saveNewKeyword($_keyword){
         $savekeyword = "INSERT INTO keywords (keyword_id,keyword) VALUES ( NULL,'". $this->_keyword."')";
@@ -231,6 +234,32 @@ public function saveNewKeyword($_keyword){
             echo "<br> mot clé et records liés dans records_keywords";
         };
 }
+ public function deleteKeyword(){
+        // On affiche la liste de mots clés associés au document
+        $rqt = "SELECT keyword_id FROM records_keywords WHERE records_keywords.id_records = '". $this->getIdRecord()."'";    
+        $rqt = $this->getCnx()->prepare($rqt);
+        $rqt -> execute();
+        foreach($rqt as $keyId){
+           $this->setKeywordId($keyId['keyword_id']);
+        }
+        
+        // On compte le nombre de fois qu'un mot clé de la liste précédente est utilisé, si c'est moins ou égal à de 1 fois on supprime
+        $rqt = "SELECT count() FROM records_keywords WHERE records_keywords.id_records = '". $this->getKeywordId() ."'";
+        $rqt = $this->getCnx()->prepare($rqt);
+        $rqt ->execute();
+        foreach($rqt as $delkey){
+            if($delkey == 1 || $delkey == 0){
+                echo "Mot de clé à supprimer est : ". $this->getKeywordById($this->_idkeyword);
+                $rqt="DELETE FROM records WHERE records.id_records = '". $this->_idkeyword ."'";
+            } else{
+                echo "Ce mot clé (".  $this->getKeywordById($this->_idkeyword) .") est en cours d\'utilisation";
+            }
+        }
+        
+ }
+
+
+
 }
 
 ?>

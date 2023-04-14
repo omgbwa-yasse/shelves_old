@@ -1,6 +1,6 @@
 <?php
-require 'models/connexion.class.php';
-class records extends connexion{
+require_once 'models/repository/recordsManager.class.php';
+class records extends recordsManager{
 public $_id_record = NULL;
 public $_record_nui;
 public $_record_title;
@@ -193,21 +193,25 @@ public function getRecordById(){
 
     $record = $this->getCnx() -> prepare($record);
     $record ->execute();
-    $record->fetchAll($record);
-    
+
     // Je set toute les propriétés de la classe courante
     foreach ($record as $current) {
-       $this->_id_record = $current['id'];
-       $this->_record_title = $current['title'];
-       $this->_record_nui = $current['nui'];
-       $this->_record_date_start = $current['date_start'];
-       $this->_record_date_end = $current['date_end'];
-       $this->_record_observation = $current['observation'];
-       $this->_record_classe_code_title = $current['code_title'];
-       $this->_record_support_title = $current['support'];
-       $this->_record_container_title = $current['boite'];
+       $this->setIdRecord($current['id']);
+       $this->setRecordTitle($current['title']);
+       $this->setRecordNui($current['nui']);
+       $this->setRecordDateStart($current['date_start']);
+       $this->setRecordDateStart($current['date_end']);
+       $this->setRecordObservation($current['observation']);
+       $this->setRecordClasseCodeTitle($current['code_title']);
+       $this->setRecordSupportTitle($current['support']);
+       $this->setRecordContainerTitle($current['boite']);
     }
 }
-
-
-}?>
+public function deleteRecord(){
+    // On supprime le document
+    $rqt ="DELETE FROM records WHERE records.id_records = '". $this->_id_record ."'";
+    $rqt = $this->getCnx()->prepare($rqt);
+    $rqt -> execute();
+}
+}
+?>
