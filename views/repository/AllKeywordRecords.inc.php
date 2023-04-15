@@ -1,6 +1,9 @@
 <?php
-require 'models/repository/keywords.class.php';
-    $allRecordsOfKeyword = new keywords() ;
-    $allRecordsOfKeyword ->getAllKeywords();
+include_once 'models/repository/keyword.class.php';
+include_once 'models/repository/keywordsManager.class.php';
+
+    $allRecordsOfKeyword = new keywordsManager() ;
+    $allRecordsOfKeyword -> getAllKeywords();
+
 
 ?>

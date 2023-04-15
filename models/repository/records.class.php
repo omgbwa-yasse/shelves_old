@@ -37,8 +37,8 @@ public function __construct(){
 
 // Les Setters et les Getters
 // Les Identifiants de la notices
-public function setIdRecord($id){ $this->_id_record = $id;}
-public function getIdRecord(){ return $this->_id_record;}
+public function setRecordId($id){ $this->_id_record = $id;}
+public function getRecordId(){ return $this->_id_record;}
 
 // Numéro d'identifiaction Unique
 public function setRecordNui($nui){ $this->_record_nui = $nui;}
@@ -158,7 +158,7 @@ public function saveRecord(){
         records_date_start,records_date_end, records_observation, 
         records_status_id, records_support_id, records_link_id, 
         container_id, classification_id ) 
-        values ('".$this->getIdRecord()."','".$this->getRecordNui()."','". $this->getRecordTitle()."','".$this->getRecordDateStart()."',
+        values ('".$this->getRecordId()."','".$this->getRecordNui()."','". $this->getRecordTitle()."','".$this->getRecordDateStart()."',
         '". $this->getRecordDateEnd()."', '".$this->getRecordObservation()."','".$this->getRecordStatusId()."',
         '".$this->getRecordSupportId()."', '".$this->getRecordLinkId()."','".$this->getRecordContainerId()."',
         '".$this->getRecordClasseId()."' )";
@@ -189,14 +189,14 @@ public function getRecordById(){
             ON records_status.records_status_id = records.records_status_id
             LEFT JOIN container 
             ON container.container_id = records.container_id
-            WHERE records.id_records = '".$this->getIdRecord()."'";
+            WHERE records.id_records = '".$this->getRecordId()."'";
 
     $record = $this->getCnx() -> prepare($record);
     $record ->execute();
 
     // Je set toute les propriétés de la classe courante
     foreach ($record as $current) {
-       $this->setIdRecord($current['id']);
+       $this->setRecordId($current['id']);
        $this->setRecordTitle($current['title']);
        $this->setRecordNui($current['nui']);
        $this->setRecordDateStart($current['date_start']);

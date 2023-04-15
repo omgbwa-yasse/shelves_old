@@ -3,17 +3,17 @@ require 'models/repository/keywords.class.php';
 
 
 
-$New = new keywords();
-$New ->getKeywordId("cadrage");
+$New = new keyword();
+$New ->getKeywordId();
 
 echo "<hr/>";
 
 
-$New1 = new keywords();
-$New1 ->getKeywordId("bois");
+$New1 = new keyword();
+$New1 ->getKeywordId();
 echo "<hr/>";
 
-$New1->setRecordsId(20);
+$New1->setRecordId(20);
 
 $New1->getAllKeywords();
 

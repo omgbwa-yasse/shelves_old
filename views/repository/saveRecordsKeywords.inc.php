@@ -5,8 +5,8 @@ echo "<br> enregistrement effectuée et début de la procédure de sauvergarde d
 
     $Keyword = new keywords();
 // Recupération de l'ID sur la base NUI
-    $Keyword -> setRecordNui($_POST['nui']);
-    $Keyword -> setRecordIdByNui();
+    $Keyword -> setKeywordRecordNui($_POST['nui']);
+    $Keyword -> setKeywordRecordIdByNui();
     
     // Boucle de découpage, controle, lie ou insertion d'un mot-clé
     $text = htmlspecialchars($_POST['keywords']);
