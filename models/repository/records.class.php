@@ -168,6 +168,14 @@ public function saveRecord(){
         echo "Enregistrement effectué par la classe records...";
         };
 }
+public function getAllKeywordsIdByRecordId(){
+    $listwords = NULL;
+    $rqt = "SELECT records_keywords.keyword_id FROM records_keywords WHERE records_keywords.records_id = '". $this->getRecordId()."' ";
+    $rqt = $this->getCnx()-> prepare($rqt);
+    $rqt -> execute();
+    return $rqt;
+}
+
 public function getRecordById(){
     // Je recupère les donnée avec condition sur ID
     $record = "SELECT records.id_records as id, 
