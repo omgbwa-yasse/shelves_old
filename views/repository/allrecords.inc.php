@@ -30,25 +30,23 @@ foreach($idrecords as $Idrecord){
     echo $record -> getRecordLinkId();
     echo "<br/> observation :";
     echo $record -> getRecordObservation();
-    echo "<br/> <br/> <hr/>";
+    echo "<br/> <br/> <br/>";
 
-    // Afficher les mots clés associés
-    $keywords = new keywordsManager(); 
-    $keywords -> setRecordId($Idrecord['id_records']);
-    $allKeywords = $keywords->getAllKeywordsByRecordId();
     
-    // Je parcours les mots clés 
-    foreach ($allKeywords as $word) {
-        if(empty($word['keyword']) == NULL){
-            echo '';
-        } else {
-            $keyword = new keyword();
-            $keyword ->setKeyword($word['keyword']);
-            echo "  <b>". $keyword->getKeyword() ."</b> "; 
-        }
+   // Afficher les mots clés associés
+    $KeywordsId = $record -> getAllKeywordsIdByRecordId();
+    if(isset($KeywordsId)){
+        foreach($KeywordsId as $KeywordId){
+            $word = new keyword();
+            $word -> setKeywordId($KeywordId['keyword_id']);
+            echo $word -> getKeywordById() . " ;";
             
-} 
+        }
+    } 
+    echo "<br/><a href=\"index.php?q=repository&categ=create&sub=delete&id=". $record->getRecordId() ." \">Supprimer</a>";
+    echo '<hr/>';
 }
 ?>
+
 
 

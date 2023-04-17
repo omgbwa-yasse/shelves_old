@@ -47,7 +47,7 @@ if($q == "repository" && $_GET['categ'] == "create" && isset($_GET['sub'])){
         break ;
         case "update" : include "views/repository/updateRecords.inc.php"; // n'existe pas encore
         break ;
-        case "delete" : include "views/repository/deleteRecords.inc.php"; // n'existe pas encore
+        case "delete" : include "views/repository/deleteRecord.inc.php"; 
         break ;
         case "last" : include "views/repository/lastRecords.inc.php";
         break ;

@@ -13,7 +13,7 @@ public function setKeywordIdByKeyword($keyword){
     foreach($idkeyword as $id){
         $this->setKeywordId($id['keyword_id']);
     }
-    return $this->getKeywordId() ;
+    return $this->_idkeyword ;
 }
 public function getKeywordId(){ return $this->_idkeyword; }
 public function setKeywordRecordNui($nui){ $this->_record_nui = $nui; }
@@ -31,12 +31,12 @@ public function setKeywordRecordIdByNui(){
 public function setKeyword($_keyword){ $this->_keyword = $_keyword; }
 public function getKeyword(){ return $this->_keyword;}
 public function getKeywordById(){
-    $rqt = "SELECT keyword FROM Keywords WHERE keyword_id = ".$this->getKeywordId()."";
+    $rqt = "SELECT Keywords.keyword FROM Keywords WHERE Keywords.keyword_id = '".$this->_idkeyword."'";
     $rqt = $this->getCnx()->prepare($rqt);
     $rqt->execute();
-    foreach($rqt as $keywordId){
-        $this->_keyword = $keywordId['keyword'];
-    }   
+        foreach($rqt as $keyword){
+            $this->_keyword = $keyword['keyword'];
+        }   
     return $this->_keyword;
 }
 
@@ -104,23 +104,31 @@ public function saveNewKeyword($_keyword){
 }
  public function deleteKeyword(){
         // On affiche la liste de mots clés associés au document
-        $rqt = "SELECT keyword_id FROM records_keywords WHERE records_keywords.id_records = '". $this->getRecordId()."'";    
+        $rqt = "SELECT records_keywords.keyword_id FROM records_keywords WHERE records_keywords.records_id = '". $this->getRecordId()."'";    
         $rqt = $this->getCnx()->prepare($rqt);
         $rqt -> execute();
         foreach($rqt as $keyId){
            $this->_idkeyword = $keyId['keyword_id'];
-        }
         
         // On compte le nombre de fois qu'un mot clé de la liste précédente est utilisé, si c'est moins ou égal à de 1 fois on supprime
-        $rqt = "SELECT count(*) FROM records_keywords WHERE records_keywords.id_records = '". $this->getKeywordId() ."'";
+        $rqt = "SELECT count(*) FROM records_keywords WHERE records_keywords.records_id = '". $this->getKeywordId() ."'";
         $rqt = $this->getCnx()->prepare($rqt);
         $rqt ->execute();
         foreach($rqt as $delkey){
-            if($delkey == 1 || $delkey == 0){
+            if($delkey['0'] == 1 OR $delkey['0'] == 0){
+                $delid = $this->getKeywordId();
                 echo "Mot de clé à supprimer est : ". $this->getKeywordById();
-                $rqt="DELETE FROM records WHERE records.id_records = '". $this->getKeywordId()."'";
+                $rqt="DELETE FROM keywords WHERE keywords.keyword_id = '". $delid ."'";
+                $rqt=$this->getCnx()->prepare($rqt);
+                if($rqt->execute()){ echo "mot supprimé ...";}
+                
+                $rqt="DELETE FROM records_keywords WHERE records_keywords.keyword_id = '". $delid."'";
+                $rqt=$this->getCnx()->prepare($rqt);
+                if($rqt->execute()){ echo "<br>Liaison supprimé avec le records ...";}
+
             } else{
                 echo "Ce mot clé (".$this->getKeywordById() .") est en cours d\'utilisation";
+            }
             }
         }
     }

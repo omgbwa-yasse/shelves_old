@@ -215,11 +215,12 @@ public function getRecordById(){
        $this->setRecordContainerTitle($current['boite']);
     }
 }
-public function deleteRecord(){
-    // On supprime le document
-    $rqt ="DELETE FROM records WHERE records.id_records = '". $this->_id_record ."'";
+public function deleteRecord($id){
+    $rqt ="DELETE FROM records WHERE records.id_records = '". $id ."'";
     $rqt = $this->getCnx()->prepare($rqt);
-    $rqt -> execute();
+    if($rqt -> execute()){echo " Enregistrement supprimé ... ";};
 }
-}
-?>
+
+
+
+}?>
