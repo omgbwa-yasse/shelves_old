@@ -1,9 +1,9 @@
 <?php
-require_once 'models/repository/keywords.class.php';
+require_once 'models/repository/keyword.class.php';
 
 echo "<br> enregistrement effectuée et début de la procédure de sauvergarde des mots clés ... <br><br><br>";
 
-    $Keyword = new keywords();
+    $Keyword = new keyword();
 // Recupération de l'ID sur la base NUI
     $Keyword -> setKeywordRecordNui($_POST['nui']);
     $Keyword -> setKeywordRecordIdByNui();

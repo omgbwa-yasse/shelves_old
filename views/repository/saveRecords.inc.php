@@ -16,7 +16,7 @@ $supportTitle = $_POST['support'] ;
 
 
 $record = new records();
-$record->setIdRecord(NULL);
+$record->setRecordId(NULL);
 $record->setRecordNui($_POST['nui']);
 $record->setRecordTitle($_POST['title']); 
 $record->setRecordDateStart($_POST['date_start']);               
