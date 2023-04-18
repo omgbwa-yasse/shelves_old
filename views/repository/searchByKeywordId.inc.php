@@ -1,17 +1,25 @@
 <?php
-echo $_GET['id'];
-require 'models/repository/keywords.class.php';
 
-echo "Recherche par mot clé";
+require_once 'models/repository/keyword.class.php';
+require_once 'models/repository/records.class.php';
 
-$recordsByKeywords = new keywords();
+$Keywords = new keyword();
+$Keywords->setKeywordId($_GET['id']);
+$allRecordsId = NULL;
+$allRecordsId = $Keywords-> getAllRecordsIdByKeywordId();
+echo "<hr/>";
+if(!empty($allRecordsId)){
+    foreach($allRecordsId as $id){
+        $record = new records();
+        $record->setRecordId($id['records_id']); 
+        $record->getRecordById();
+        echo $record->getRecordTitle();
+        echo "<br/>";
+        echo $record->getRecordObservation();
+        echo "<br/>";
+        echo "<hr/>";
 
-$recordsByKeywords->setKeywordId($_GET['id']);
-
-
-echo "l'ID de la classe est : ". $recordsByKeywords->getClassKeywordId();
-
-$recordsByKeywords -> getAllRecordsByKeywordID();
+    }}
 
 
 ?>

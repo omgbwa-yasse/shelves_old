@@ -16,17 +16,6 @@ public function setKeywordIdByKeyword($keyword){
     return $this->_idkeyword ;
 }
 public function getKeywordId(){ return $this->_idkeyword; }
-public function setKeywordRecordNui($nui){ $this->_record_nui = $nui; }
-public function getKeywordRecordNui(){ return $this->_record_nui ;}
-public function setKeywordRecordIdByNui(){
-    $idRecords = "SELECT records.id_records FROM records WHERE records_nui = '".$this->getRecordNui()."' " ;
-    $idRecords =$this->getCnx()->prepare($idRecords);
-    $idRecords->execute();
-    foreach($idRecords as $id) {
-            $this->setRecordId($id['id_records']) ;
-            }
-
-}
 
 public function setKeyword($_keyword){ $this->_keyword = $_keyword; }
 public function getKeyword(){ return $this->_keyword;}
@@ -60,8 +49,7 @@ public function linkKeywordRecord(){
                     $savekeyword = $this->getCnx() ->prepare($savekeyword);
                     if($savekeyword->execute()){
                         echo "<br> mot clé et keyword liés dans records_keywords (Keywords) : ". $this->getKeyword() ;
-                        echo "<br> mot clé et idrecord liés dans records_keywords (id_records) : ". $this->getRecordId() ;
-                        echo "<br> mot clé et idkeyword liés dans records_keywords (id_records) : ". $this->getKeywordId() ;
+                        echo "<br> mot clé et idrecord liés dans records_keywords (id_records) : ". $this->getRecordId();
                     }
                 }
 public function KeywordVerification(){
@@ -132,38 +120,12 @@ public function saveNewKeyword($_keyword){
             }
         }
     }
-    public function getAllRecordsByKeywordId(){
+    public function getAllRecordsIdByKeywordId(){
         // Je recupère d'abord les Id_records des enregistrements situés dans la table records_keyword
-        $searchRecordsId = "SELECT records_keywords.records_id as records_id FROM records_keywords WHERE keyword_id = ". $this->getRecordId()."";
-        $searchRecordsId = $this->getCnx()->prepare($searchRecordsId);
-        $searchRecordsId ->execute ();
-        foreach($searchRecordsId as $idr){
-            
-        // En parcourant chaque Id re recupère directement l'enregistrement en question
-        $sql = "SELECT records.id_records as id, 
-        records.records_title as title, 
-        records.records_nui as nui, 
-        records.records_date_start as date_start, 
-        records.records_date_end as date_end,
-        records.records_observation as observation,
-        classification.classification_code_title as code_title,
-        records_support.records_support_title as support,
-        records_status.records_status_title as statut,
-        container.container_reference as boite
-        FROM records
-        LEFT JOIN records_support 
-        ON records_support.records_support_id = records.records_support_id
-        LEFT JOIN classification 
-        ON classification.classification_id = records.classification_id
-        LEFT JOIN records_status 
-        ON records_status.records_status_id = records.records_status_id
-        LEFT JOIN container 
-        ON container.container_id = records.container_id
-        WHERE records.id_records = ".$idr['records_id']."";
-        $allRecords = $this->getCnx() -> prepare($sql);
-        $allRecords->execute();
-                
-    }}
-
+        $RecordsId = "SELECT records_keywords.records_id as records_id FROM records_keywords WHERE keyword_id = '". $this->getKeywordId()."'";
+        $RecordsId = $this->getCnx()->prepare($RecordsId);
+        $RecordsId ->execute();
+        return $RecordsId;   
+    }
 
 }?>

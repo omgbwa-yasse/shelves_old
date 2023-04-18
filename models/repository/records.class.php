@@ -43,6 +43,16 @@ public function getRecordId(){ return $this->_id_record;}
 // Numéro d'identifiaction Unique
 public function setRecordNui($nui){ $this->_record_nui = $nui;}
 public function getRecordNui(){ return $this->_record_nui;}
+
+public function setRecordIdByNui(){
+    $idRecords = "SELECT records.id_records FROM records WHERE records_nui = '".$this->getRecordNui()."' " ;
+    $idRecords =$this->getCnx()->prepare($idRecords);
+    $idRecords->execute();
+    foreach($idRecords as $id) {
+            $this->setRecordId($id['id_records']) ;
+            }
+
+}
 public function controlNui(){
     $control = "SELECT records_nui FROM records WHERE records.records_nui = '".$this->getRecordNui()."' " ;
     $control = $this->getCnx()->prepare($control);
@@ -55,13 +65,14 @@ public function controlNui(){
 }
 public function setRecordTempNui(){
     $id = NULL;
-    $lastId = "SELECT id_records FROM records LIMIT 1 ORDER BY id_records DESC";
+    $lastId = "SELECT records.id_records FROM records ORDER BY records.id_records DESC LIMIT 1 ";
     $lastId = $this->getCnx() -> prepare($lastId);
     $lastId -> execute();
     foreach($lastId as $ref){
         $id = $ref['id_records'] + 1 . rand(0,21);
+        $this->_record_nui = "temp_". $id ;
     }
-    $this->_record_nui = "temp_". $id ;
+    
     return  $this->_record_nui;
 }
 
