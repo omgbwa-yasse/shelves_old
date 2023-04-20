@@ -32,15 +32,15 @@ public function getAllClassification(){
   $allClasse->execute();
   $result = $allClasse->setFetchMode(PDO::FETCH_ASSOC);
 
-  echo "<table border=1>";
-  echo "<tr><th>classification_type_id </th><th>classification_type_title</th><th>classification_id</th><th>classification_code</th><th>access_classe_id</th><th>access_classe_code</th></tr>";
+  echo "<table border=0>";
+  echo "<tr><th>type de classification </th><th>code de classification</th><th>code de la classe</th></tr>";
   foreach($allClasse->fetchAll() as $row) {
     echo "<tr>";
-    echo "<td>" . $row["classification_type_id"] . "</td>";
+   
     echo "<td>" . $row["classification_type_title"] . "</td>";
-    echo "<td>" . $row["classification_id"] . "</td>";
+   
     echo "<td>" . $row["classification_code"] . "</td>";
-    echo "<td>" . $row["access_classe_id"] . "</td>";
+  
     echo "<td>" . $row["access_classe_code"] . "</td>";
     echo "</tr>";
 }
