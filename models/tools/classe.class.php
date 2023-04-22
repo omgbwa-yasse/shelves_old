@@ -23,5 +23,33 @@ public function getAllrecordsIdClasse($id){
        echo $classe_id['classification_id'] ;
     }
 }
+public function getAllClassification(){
+  $sql = "SELECT *
+  FROM dbms.classification_type
+  JOIN dbms.classification ON classification_type.classification_type_id = classification.classification_type_id
+  JOIN dbms.access_classe ON classification.classification_id = access_classe.classification_id;";
+  $allClasse = $this->getCnx()->prepare($sql);
+  $allClasse->execute();
+  $result = $allClasse->setFetchMode(PDO::FETCH_ASSOC);
+
+  echo "<table border=1>";
+  echo "<tr><th>classification_type_id </th><th>classification_type_title</th><th>classification_id</th><th>classification_code</th><th>access_classe_id</th><th>access_classe_code</th></tr>";
+  foreach($allClasse->fetchAll() as $row) {
+    echo "<tr>";
+    echo "<td>" . $row["classification_type_id"] . "</td>";
+    echo "<td>" . $row["classification_type_title"] . "</td>";
+    echo "<td>" . $row["classification_id"] . "</td>";
+    echo "<td>" . $row["classification_code"] . "</td>";
+    echo "<td>" . $row["access_classe_id"] . "</td>";
+    echo "<td>" . $row["access_classe_code"] . "</td>";
+    echo "</tr>";
 }
+echo "</table>";
+  }
+}
+
+
+
+
+
 ?>
