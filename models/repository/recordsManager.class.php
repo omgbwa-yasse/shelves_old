@@ -8,7 +8,17 @@ public function getAllrecordsId(){
         $allrecords -> execute();
         return $allrecords;
 }
+public function MggetRecordById($id){
+        // à completer
+}
+public function MgDeleteRecordById($id){
+        // à completer
+}
+public function MgGetRecordsByDates($date_start, $date_end){
 
-
+        // à completer
+        $recordsId = 1;
+        return $recordsId;
+}
 }
 ?>

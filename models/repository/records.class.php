@@ -114,14 +114,26 @@ public function getRecordStatusId(){ return $this->_record_status_id;}
 // Classe de la classification
 
 public function setRecordClasseCodeTitle($classe_code_title){ $this->_record_classe_code_title = $classe_code_title;}
+
 public function getRecordClasseCodeTitle(){ return $this->_record_classe_code_title;}
-public function setRecordClasseId(){
-    $classeId = "SELECT classification_id FROM classification WHERE classification_code_title = '".$this->getRecordStatusTitle()."' " ;
+public function setRecordClasseIdByCodeTitle(){
+    $classeId = "SELECT classification_id FROM classification WHERE classification_code_title = '". $this->getRecordClasseCodeTitle()."' " ;
     $classeId=$this->getCnx()->prepare($classeId);
     $classeId->execute();
     foreach($classeId as $id){
         $this->_record_classe_id = $id['classification_id'];
     }
+}
+
+public function getAllrecordsIdByClasseId(){
+    $recordsId = "SELECT id_records as id FROM records WHERE records.classification_id = '". $this->getRecordClasseId()."' " ;
+    $recordsId = $this->getCnx()->prepare($recordsId);
+    $recordsId -> execute();
+    return $recordsId;
+}
+
+public function setClasseIdByCodeTitle(){
+
 }
 public function getRecordClasseId(){return $this->_record_classe_id;}
 // Support
@@ -162,7 +174,7 @@ public function saveRecord(){
         $this->setRecordStatusId();
         $this->setRecordSupportId();
         $this->setRecordContainerId();
-        $this->setRecordClasseId();
+        $this->setRecordClasseIdByCodeTitle();
 
         // J'enregistre les données
         $rqt = " INSERT INTO records (id_records,records_nui, records_title, 

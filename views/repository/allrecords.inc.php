@@ -3,36 +3,26 @@ include_once 'models/repository/keyword.class.php';
 include_once 'models/repository/records.class.php';
 include_once 'models/repository/recordsManager.class.php';
 
-echo "Début de la function ...";
 
 $allrecords = new recordsManager();
 $idrecords = $allrecords -> getAllrecordsId();
-
-echo "<br/>début du foreach ....";
+echo "<div style=\"margin-left:100px;\" >";
 foreach($idrecords as $Idrecord){
-    echo $Idrecord['id_records'];
     $record = new records ;
     $record -> setRecordId($Idrecord['id_records']);
     $record -> getRecordById();
-    echo "<br/> Nui :";
-    echo $record-> getRecordNui(); 
-    echo "<br/> titre :";
-    echo $record-> getRecordTitle(); 
-    echo "<br/> classe :";
-    echo  $record -> getRecordClasseCodeTitle();
-    echo "<br/> boite :";
-    echo $record -> getRecordContainerTitle();
-    echo "<br/> date debut :";
-    echo $record -> getRecordDateStart();
-    echo "<br/> date de fin :";
-    echo $record -> getRecordDateEnd();
-    echo "<br/> Parent :";
-    echo $record -> getRecordLinkId();
-    echo "<br/> observation :";
-    echo $record -> getRecordObservation();
-    echo "<br/> <br/> <br/>";
 
-    
+    // Aficher les enregistremen
+    echo "<table border=0> 
+            <th>". $record-> getRecordTitle() ."</th></tr> 
+            <td>". $record-> getRecordNui() ."</td>  </tr>
+            <td>". $record -> getRecordDateStart() ."". $record -> getRecordDateEnd()  ."</td>  </tr>
+            <td>". $record -> getRecordObservation()  ."</td>  </tr>
+            <td>". $record -> getRecordContainerTitle() ."</td>  </tr>
+            <td>". $record -> getRecordClasseCodeTitle() ."</td>  </tr>
+            <td>". $record -> getRecordLinkId() ."</td>  </tr>
+            <td>";
+
    // Afficher les mots clés associés
     $KeywordsId = $record -> getAllKeywordsIdByRecordId();
     if(isset($KeywordsId)){
@@ -43,9 +33,12 @@ foreach($idrecords as $Idrecord){
             
         }
     } 
+    echo "</td></table>";
+
     echo "<br/><a href=\"index.php?q=repository&categ=create&sub=delete&id=". $record->getRecordId() ." \">Supprimer</a>";
     echo '<hr/>';
 }
+    echo "<div/>";
 ?>
 
 
