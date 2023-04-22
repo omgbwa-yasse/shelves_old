@@ -20,5 +20,12 @@ public function MgGetRecordsByDates($date_start, $date_end){
         $recordsId = 1;
         return $recordsId;
 }
+public function MgGetLastRecords(){
+        $records = "SELECT records.id_records as id FROM records ORDER  BY id DESC LIMIT 5";
+        $ecords = $this->getCnx()->prepare($records);
+        $ecords -> execute();
+        return $ecords;
+}
+
 }
 ?>

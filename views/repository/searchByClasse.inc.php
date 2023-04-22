@@ -1,6 +1,7 @@
 <?php
 require_once "models/repository/records.class.php";
 require_once "models/repository/recordsManager.class.php";
+require_once 'views/repository/display.inc.php';
 
 echo "Afficher par ID...classe à rechercher </br>" ;
 echo $_POST['code_title'];
@@ -21,7 +22,10 @@ var_dump($recordsId);
             $record = new records();
             $record -> setRecordId($recordId['id']);
             $record -> getRecordById();
-            var_dump($record);  }
+            var_dump($record);  
+            displayRecord($record);
+        
+        }
         }else{
             echo "Aucun document associé ...";
         }
