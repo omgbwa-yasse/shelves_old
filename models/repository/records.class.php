@@ -233,7 +233,7 @@ public function getRecordById(){
        $this->setRecordTitle($current['title']);
        $this->setRecordNui($current['nui']);
        $this->setRecordDateStart($current['date_start']);
-       $this->setRecordDateStart($current['date_end']);
+       $this->setRecordDateEnd($current['date_end']);
        $this->setRecordObservation($current['observation']);
        $this->setRecordClasseCodeTitle($current['code_title']);
        $this->setRecordSupportTitle($current['support']);

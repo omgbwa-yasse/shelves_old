@@ -1,20 +1,12 @@
-<?php
+<?php 
+echo "Je teste...";
 
-require_once 'models/repository/keyword.class.php';
-require_once 'models/repository/recordsManager.class.php';
-require_once 'models/repository/record.class.php';
-require_once 'views/repository/display.inc.php';
-
-$records = new recordsManager();
-
-$listRecordsId = $records-> MgGetRecordsByDates($_POST['date_start'],$_POST['date_end']);
-
-
-
-foreach($listRecords as $id){
-    $record = new records();
-    $record->setRecordId($id['records_id']);
-    $record-> getRecordById();
-    displayRecord($record);
-}
 ?>
+Rechercher par date
+
+<form method="POST" action="index.php?q=repository&categ=search&sub=byDatesResult">
+    Date de début : <input type="date" name="date_start"></br>
+    Date de fin : <input type="date" name="date_end"></br>
+    <input type="submit" value ="Rechercher">
+</form>
+<hr>

@@ -8,7 +8,7 @@ function displayRecord($record){
     echo "<table border=0> 
     <tr><th style=\"font-size:20px; color:grey\">". $record-> getRecordTitle() ."</th></tr> 
     <tr><td>". $record-> getRecordNui() ."</td></tr>
-    <tr><td>". $record -> getRecordDateStart() ." ". $record -> getRecordDateEnd()  ."</td></tr>
+    <tr><td>". $record -> getRecordDateStart() ." au ". $record -> getRecordDateEnd()  ."</td></tr>
     <tr><td>". $record -> getRecordObservation()  ."</td></tr>
     <tr><td>". $record -> getRecordContainerTitle() ."</td></tr>
     <tr><td><a href=\"index.php?q=repository&categ=search&sub=byClasseId&id=".$record ->getRecordClasseId()."\">". $record -> getRecordClasseCodeTitle() ."</a></td></tr>

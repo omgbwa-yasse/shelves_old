@@ -15,9 +15,9 @@ public function MgDeleteRecordById($id){
         // à completer
 }
 public function MgGetRecordsByDates($date_start, $date_end){
-
-        // à completer
-        $recordsId = 1;
+        $recordsId = "SELECT records.id_records FROM records WHERE   records.records_date_start < '".$date_start."' OR records.records_date_end > '".$date_start."'";
+        $recordsId = $this->getCnx()->prepare($recordsId);
+        $recordsId -> execute();
         return $recordsId;
 }
 public function MgGetLastRecords(){
