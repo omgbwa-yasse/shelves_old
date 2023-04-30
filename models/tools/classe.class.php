@@ -6,12 +6,31 @@ public function __construct(){
   echo "";
 }
 public function getAllClassTitle(){
-    $allClassTitle = "SELECT classification.classification_id as id,classification.classification_code_title as code_title  FROM classification";
+    $allClassTitle = "SELECT classification_type.classification_type_id as id,classification_type.classification_type_title as code_title  FROM classification_type";
     $allClassTitle = $this->getCnx()->prepare($allClassTitle);
     $allClassTitle->execute();
-    return $allClassTitle;
-    }
+    $result = $allClassTitle->setFetchMode(PDO::FETCH_ASSOC);
 
+    foreach($allClassTitle->fetchAll() as $classe){ 
+      echo "<option value='" . $classe['id'] . "'>";
+      echo $classe['code_title'];
+      echo "</option>";
+   }
+ }
+    
+ public function getAllClassid(){
+  $allclassid = "SELECT classification.classification_id as id,classification.classification_code_title as code_title  FROM classification";
+  $allclassid = $this->getCnx()->prepare($allclassid);
+  $allclassid->execute();
+  $result = $allclassid->setFetchMode(PDO::FETCH_ASSOC);
+
+  foreach($allclassid->fetchAll() as $classe){ 
+    echo "<option value='" . $classe['id'] . "'>";
+    echo $classe['code_title'];
+
+    echo "</option>";
+ }
+}
 
 
 public function getAllrecordsIdClasse($id){
