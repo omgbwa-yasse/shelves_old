@@ -192,7 +192,6 @@ public function saveRecord(){
         };
 }
 public function getAllKeywordsIdByRecordId(){
-    $listwords = NULL;
     $rqt = "SELECT records_keywords.keyword_id FROM records_keywords WHERE records_keywords.records_id = '". $this->getRecordId()."' ";
     $rqt = $this->getCnx()-> prepare($rqt);
     $rqt -> execute();

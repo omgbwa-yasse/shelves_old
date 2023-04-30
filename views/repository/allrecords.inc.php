@@ -14,8 +14,6 @@ foreach($idrecords as $Idrecord){
     $record -> getRecordById();
     
     displayRecord($record);
-
-    echo "<br/><a href=\"index.php?q=repository&categ=create&sub=delete&id=". $record->getRecordId() ." \">Supprimer</a>";
     
 }
     echo '<hr/>';

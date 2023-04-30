@@ -16,13 +16,12 @@ $AllRecord -> setRecordClasseIdByCodeTitle();
 echo "<br/>Dans l'ID de la classe : ". $AllRecord -> getRecordClasseId();
 
 $recordsId = $AllRecord -> getAllrecordsIdByClasseId();
-var_dump($recordsId);
         if(!empty($recordsId)){
             foreach($recordsId as $recordId){
             $record = new records();
             $record -> setRecordId($recordId['id']);
+            echo "id est : " . $recordId['id'];
             $record -> getRecordById();
-            var_dump($record);  
             displayRecord($record);
         
         }
