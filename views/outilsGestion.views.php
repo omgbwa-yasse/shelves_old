@@ -25,8 +25,16 @@ include "template/sous_menu.inc.php";
         <ul> 
                 <li><a href="index.php?q=outilsGestion&categ=organization&sub=allOrganization"> Organigramme </a></li>
                 <li><a href="index.php?q=outilsGestion&categ=organization&sub=addOrganization"> Ajouter un service </a></li>
+        </ul> 
+<p>Thésaurus</p>
+        <ul> 
+                <li><a href="index.php?q=outilsGestion&categ=thesaurus&sub=allIndex"> Voir le thésaurus </a></li>
+                <li><a href="index.php?q=outilsGestion&categ=thesaurus&sub=addIndex"> Ajouter une index </a></li>
+        </ul>
+        </ul>
         </ul>
 
+        </ul>
 
 <?php
         include "template/container.inc.php";
@@ -46,4 +54,11 @@ include "template/sous_menu.inc.php";
                 default : include "views/tools/planClassement/allClasse.inc.php";
                 break;
         }}
+        if($_GET['q'] == "outilsGestion" && $_GET['categ'] == "thesaurus" && !empty($_GET['allIndex'])){
+                switch($_GET['sub']){
+                  case "allIndex" : echo "Index : chronologique, thématique, géographique, typologie, Onosmatique, Action, etc.";
+                  break;
+                  case "addIndex" : echo "Choisit la branche, la classe, clic ajouter ou ajouter et on charte la branche";
+                  break;
+          }}
 ?>

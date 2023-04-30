@@ -8,7 +8,7 @@ require 'models/tools/classe.class.php';
         <select name="code_title">
             <?php
             foreach($allClasses as $classe){
-            echo "<option value=\"".$classe['code_title']."\"> ".$classe['code_title']."</option>";} 
+            echo "<option  value=\"".$classe['code_title']."\"> ".$classe['code_title']."</option>";} 
             ?>
         </select> <br/>
     <input type="submit" name="envoyer">

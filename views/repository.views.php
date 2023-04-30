@@ -70,7 +70,7 @@ if($q == "repository" && $_GET['categ'] == "search" && isset($_GET['sub'])) {
         break ;
         case "searchByKeyword" : include "views/repository/searchByKeyword.inc.php" ;
         break ;
-        case "byDate" : include "views/repository/searchByDate.inc.php";
+        case "byDate" : include "views/repository/searchRecordsByDates.inc.php";
         break ;
         case "byOrganization" : include "views/repository/searchByOrganization.inc.php";
         break ;

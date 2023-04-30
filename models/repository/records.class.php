@@ -43,6 +43,16 @@ public function getRecordId(){ return $this->_id_record;}
 // Numéro d'identifiaction Unique
 public function setRecordNui($nui){ $this->_record_nui = $nui;}
 public function getRecordNui(){ return $this->_record_nui;}
+
+public function setRecordIdByNui(){
+    $idRecords = "SELECT records.id_records FROM records WHERE records_nui = '".$this->getRecordNui()."' " ;
+    $idRecords =$this->getCnx()->prepare($idRecords);
+    $idRecords->execute();
+    foreach($idRecords as $id) {
+            $this->setRecordId($id['id_records']) ;
+            }
+
+}
 public function controlNui(){
     $control = "SELECT records_nui FROM records WHERE records.records_nui = '".$this->getRecordNui()."' " ;
     $control = $this->getCnx()->prepare($control);
@@ -55,13 +65,14 @@ public function controlNui(){
 }
 public function setRecordTempNui(){
     $id = NULL;
-    $lastId = "SELECT id_records FROM records LIMIT 1 ORDER BY id_records DESC";
+    $lastId = "SELECT records.id_records FROM records ORDER BY records.id_records DESC LIMIT 1 ";
     $lastId = $this->getCnx() -> prepare($lastId);
     $lastId -> execute();
     foreach($lastId as $ref){
         $id = $ref['id_records'] + 1 . rand(0,21);
+        $this->_record_nui = "temp_". $id ;
     }
-    $this->_record_nui = "temp_". $id ;
+    
     return  $this->_record_nui;
 }
 
@@ -103,14 +114,26 @@ public function getRecordStatusId(){ return $this->_record_status_id;}
 // Classe de la classification
 
 public function setRecordClasseCodeTitle($classe_code_title){ $this->_record_classe_code_title = $classe_code_title;}
+
 public function getRecordClasseCodeTitle(){ return $this->_record_classe_code_title;}
-public function setRecordClasseId(){
-    $classeId = "SELECT classification_id FROM classification WHERE classification_code_title = '".$this->getRecordStatusTitle()."' " ;
+public function setRecordClasseIdByCodeTitle(){
+    $classeId = "SELECT classification_id FROM classification WHERE classification_code_title = '". $this->getRecordClasseCodeTitle()."' " ;
     $classeId=$this->getCnx()->prepare($classeId);
     $classeId->execute();
     foreach($classeId as $id){
         $this->_record_classe_id = $id['classification_id'];
     }
+}
+
+public function getAllrecordsIdByClasseId(){
+    $recordsId = "SELECT id_records as id FROM records WHERE records.classification_id = '". $this->getRecordClasseId()."' " ;
+    $recordsId = $this->getCnx()->prepare($recordsId);
+    $recordsId -> execute();
+    return $recordsId;
+}
+
+public function setClasseIdByCodeTitle(){
+
 }
 public function getRecordClasseId(){return $this->_record_classe_id;}
 // Support
@@ -151,7 +174,7 @@ public function saveRecord(){
         $this->setRecordStatusId();
         $this->setRecordSupportId();
         $this->setRecordContainerId();
-        $this->setRecordClasseId();
+        $this->setRecordClasseIdByCodeTitle();
 
         // J'enregistre les données
         $rqt = " INSERT INTO records (id_records,records_nui, records_title, 
