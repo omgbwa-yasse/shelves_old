@@ -55,14 +55,16 @@ if($q == "repository" && $_GET['categ'] == "create" && isset($_GET['sub'])){
     }
 }
 
-    /* Case search */
-if($q == "repository" && $_GET['categ'] == "search" && isset($_GET['sub'])) {
+/* Case search */
+if($q == "repository" && $_GET['categ'] == "search" && isset($_GET['sub'])){
     switch($_GET['sub']){
         case "allrecords" : include "views/repository/allrecords.inc.php";
         break ;
         case "selectClasse" : include "views/repository/selecteClasse.inc.php"  ;
         break ;
-        case "byClasse"  : include "views/repository/searchByClasse.inc.php";
+        case "byClasse" : include "views/repository/searchByClasse.inc.php";
+        break ;  
+        case "byClasseId" : include "views/repository/searchByClasseId.inc.php";
         break ;
         case "byKeyword" : include "views/repository/searchAllKeyword.inc.php";
         break ;
@@ -74,11 +76,7 @@ if($q == "repository" && $_GET['categ'] == "search" && isset($_GET['sub'])) {
         break ;
         case "byOrganization" : include "views/repository/searchByOrganization.inc.php";
         break ;
-    }   
-
-}
-
-
+    }}
 ?>
 
 

@@ -12,6 +12,8 @@ public function getAllClassTitle(){
     return $allClassTitle;
     }
 
+
+
 public function getAllrecordsIdClasse($id){
     $idClasse = "SELECT *  FROM records LEFT JOIN records_classification 
     ON records_classification.classification_id = ?";

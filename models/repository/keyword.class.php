@@ -104,7 +104,7 @@ public function saveNewKeyword($_keyword){
         $rqt ->execute();
         foreach($rqt as $delkey){
             if($delkey['0'] == 1 OR $delkey['0'] == 0){
-                $delid = $delkey->getKeywordId();
+                $delid = $this->getKeywordId();
                 echo "Mot de clé à supprimer est : ". $this->getKeywordById();
                 $rqt="DELETE FROM keywords WHERE keywords.keyword_id = '". $delid ."'";
                 $rqt=$this->getCnx()->prepare($rqt);

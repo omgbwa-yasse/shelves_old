@@ -30,6 +30,7 @@ public function __construct(){
     $this->_record_observation;
     $this->_record_status_title;
     $this->_record_classe_code_title;
+    $this->_record_classe_id;
     $this->_record_support_title;
     $this->_record_link_id ;
     $this->_record_container_title ;
@@ -124,6 +125,8 @@ public function setRecordClasseIdByCodeTitle(){
         $this->_record_classe_id = $id['classification_id'];
     }
 }
+public function setRecordClasseId($id){ $this->_record_classe_id = $id;}
+public function getRecordClasseId(){return $this->_record_classe_id;}
 
 public function getAllrecordsIdByClasseId(){
     $recordsId = "SELECT id_records as id FROM records WHERE records.classification_id = '". $this->getRecordClasseId()."' " ;
@@ -135,7 +138,7 @@ public function getAllrecordsIdByClasseId(){
 public function setClasseIdByCodeTitle(){
 
 }
-public function getRecordClasseId(){return $this->_record_classe_id;}
+
 // Support
 
 public function setRecordSupportTitle($support_title){ $this->_record_support_title = $support_title;}
