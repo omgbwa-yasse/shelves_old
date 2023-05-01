@@ -62,7 +62,13 @@ include "template/sous_menu.inc.php";
                   break;
                   case "allOrganization" : include "views/tools/organization/allOrganization.inc.php";
                   break;
-                  default : include "views/tools/planClassement/allClasse.inc.php";
+                  case "unite" : include "views/tools/organization/displayOrganization.inc.php";
+                  break;
+                  case "deleteUnite" : include "views/tools/organization/deleteOrganization.inc.php";
+                  break;
+                  case "updateUnite" : include "views/tools/organization/updateOrganization.inc.php";
+                  break;
+                  default : include "views/tools/organization/allOrganization.inc.php";
                   break;
           }}
         if($_GET['q'] == "outilsGestion" && $_GET['categ'] == "thesaurus" && !empty($_GET['allIndex'])){
