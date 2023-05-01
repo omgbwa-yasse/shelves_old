@@ -45,7 +45,7 @@ if($q == "repository" && $_GET['categ'] == "create" && isset($_GET['sub'])){
         break ;
         case "newSave" : include "views/repository/saveRecords.inc.php";
         break ;
-        case "update" : include "views/repository/updateRecords.inc.php"; // n'existe pas encore
+        case "update" : include "views/repository/updateRecords.inc.php";
         break ;
         case "delete" : include "views/repository/deleteRecord.inc.php"; 
         break ;
@@ -77,6 +77,8 @@ if($q == "repository" && $_GET['categ'] == "search" && isset($_GET['sub'])){
         case "byOrganization" : include "views/repository/searchByOrganization.inc.php";
         break ;
         case "byDatesResult" : include "views/repository/displayRecordsByDates.inc.php";
+        break ;
+        case "default" : include "views/repository/displayQuery.inc.php";
         break ;
     }}
 ?>

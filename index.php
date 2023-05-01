@@ -18,6 +18,8 @@ else if(isset($q)){
         break;
         case "dolly" : include 'views/dolly.views.php';
         break;
+        case "audit" : include 'views/audit.views.php';
+        break;
         case "outilsGestion" : include 'views/outilsGestion.views.php';
         break;
         case "parametre" : include 'views/parametre.views.php';
