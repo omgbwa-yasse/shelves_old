@@ -1,6 +1,11 @@
 <?php 
 include "template/sous_menu.inc.php";
 ?>
+<p>Charte d'archivage</p>
+        <ul>
+                <li><a href="#"> Visualiser</a></li>
+                <li><a href="#"> Exporter </a></li>
+        </ul>
 <p>Plan de classement</p>
         <ul>
                 <li><a href="index.php?q=outilsGestion&categ=planClassement&sub=allClass"> Plan de classement </a></li>
@@ -30,10 +35,6 @@ include "template/sous_menu.inc.php";
         <ul> 
                 <li><a href="index.php?q=outilsGestion&categ=thesaurus&sub=allIndex"> Voir le thésaurus </a></li>
                 <li><a href="index.php?q=outilsGestion&categ=thesaurus&sub=addIndex"> Ajouter une index </a></li>
-        </ul>
-        </ul>
-        </ul>
-
         </ul>
 
 <?php
