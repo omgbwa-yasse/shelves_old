@@ -43,7 +43,7 @@ include "template/sous_menu.inc.php";
                 include "views/tools/allTools.inc.php";
         }
 
-        if($_GET['q'] == "outilsGestion" && $_GET['categ'] == "planClassement" && !empty($_GET['sub'])){
+        if($_GET['q'] == "outilsGestion" && $_GET['categ'] == "planClassement" && isset($_GET['sub'])){
               switch($_GET['sub']){
                 case "addClasse" : include "views/tools/planClassement/addClasse.inc.php";
                 break;
@@ -54,6 +54,17 @@ include "template/sous_menu.inc.php";
                 default : include "views/tools/planClassement/allClasse.inc.php";
                 break;
         }}
+        if($_GET['q'] == "outilsGestion" && $_GET['categ'] == "organization" && isset($_GET['sub'])){
+                switch($_GET['sub']){
+                  case "addOrganization" : include "views/tools/organization/addOrganization.inc.php";
+                  break;
+                  case "saveOrganization" : include "views/tools/organization/saveOrganization.inc.php";
+                  break;
+                  case "allOrganization" : include "views/tools/organization/allOrganization.inc.php";
+                  break;
+                  default : include "views/tools/planClassement/allClasse.inc.php";
+                  break;
+          }}
         if($_GET['q'] == "outilsGestion" && $_GET['categ'] == "thesaurus" && !empty($_GET['allIndex'])){
                 switch($_GET['sub']){
                   case "allIndex" : echo "Index : chronologique, thématique, géographique, typologie, Onosmatique, Action, etc.";

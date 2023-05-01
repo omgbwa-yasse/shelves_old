@@ -6,17 +6,24 @@ $sqlClasse = "SELECT classification.classification_code_title as code_title FROM
 $sqlStatut = "SELECT records_status.records_status_title as statut FROM records_status";
 $sqlSupport = "SELECT records_support.records_support_title as support FROM records_support";
 $sqlContainer = "SELECT container.container_reference as container FROM container";
+$sqlLastNui = "SELECT records.records_nui as nui FROM records ORDER BY records.id_records DESC LIMIT 1";
 
 $allClasse = $cnx->prepare($sqlClasse);
 $allStatut = $cnx->prepare($sqlStatut);
 $allSupport = $cnx->prepare($sqlSupport);
 $allContainer = $cnx->prepare($sqlContainer);
+$sqlLastNui = $cnx->prepare($sqlLastNui);
 
-$allClasse->execute();
-$allStatut->execute();
-$allSupport->execute();
-$allContainer->execute();
-
+$allClasse ->execute();
+$allStatut ->execute();
+$allSupport ->execute();
+$allContainer -> execute();
+$sqlLastNui -> execute();
+?>
+<?php
+    foreach($sqlLastNui as $Nui){
+        echo "Le dernier enregistrement est : ". $Nui['nui'];
+    }
 ?>
 
 <form method="POST" action="index.php?q=repository&categ=create&sub=newSave">

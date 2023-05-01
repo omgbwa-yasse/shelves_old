@@ -26,5 +26,11 @@ public function getRecordId(){ return $this->_idrecords; }
 public function getKeywordRecordId(){ return $this->_idrecords; }        
 public function setKeywordRecordId($records_id){ $this->_idrecords = $records_id ; return $this->_idrecords ; }
 
-   
+public function MgGetRecordsByDatesExt($date_start, $date_end){
+    $rqt ="SELECT id_records FROM records WHERE records.date_start >= '". $date_start ."' AND records.date_start <='". $date_end ."'";
+    $rqt = $this->getCnx()->prepare($rqt);
+    $rqt->execute();
+    return $rqt;
+}
+
 }?>

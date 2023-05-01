@@ -10,7 +10,7 @@
     <a href="index.php?q=repository&categ=search&sub=byOrganization"> Recherche par detenteur </a>
     </li>
     <li>
-    <a href="index.php?q=repository&categ=search&sub=byDate"> Recherche par date </a>
+    <a href="index.php?q=repository&categ=search&sub=byDateForm"> Recherche par date </a>
     </li>
     <li>
     <a href="index.php?q=repository&categ=search&sub=byKeyword"> Recherche par mots-clés </a>
@@ -72,9 +72,11 @@ if($q == "repository" && $_GET['categ'] == "search" && isset($_GET['sub'])){
         break ;
         case "searchByKeyword" : include "views/repository/searchByKeyword.inc.php" ;
         break ;
-        case "byDate" : include "views/repository/searchRecordsByDates.inc.php";
+        case "byDateForm" : include "views/repository/searchRecordsByDates.inc.php";
         break ;
         case "byOrganization" : include "views/repository/searchByOrganization.inc.php";
+        break ;
+        case "byDatesResult" : include "views/repository/displayRecordsByDates.inc.php";
         break ;
     }}
 ?>
