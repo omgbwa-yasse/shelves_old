@@ -10,12 +10,12 @@ public function getAllClassTitle(){
     $allClassTitle = $this->getCnx()->prepare($allClassTitle);
     $allClassTitle->execute();
     $result = $allClassTitle->setFetchMode(PDO::FETCH_ASSOC);
-
-    foreach($allClassTitle->fetchAll() as $classe){ 
-      echo "<option value='" . $classe['id'] . "'>";
-      echo $classe['code_title'];
-      echo "</option>";
-   }
+    return $allClassTitle;
+   // foreach($allClassTitle->fetchAll() as $classe){ 
+     // echo "<option value='" . $classe['id'] . "'>";
+     // echo $classe['code_title'];
+     // echo "</option>";
+  // }
  }
     
  public function getAllClassid(){
