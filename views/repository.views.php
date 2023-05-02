@@ -43,55 +43,60 @@
 
 include "template/container.inc.php";
     /* Case create */
-
-
-
-if($q == "repository" && $_GET['categ'] == "create" && isset($_GET['sub'])){
-    switch($_GET['sub']){
-        case "new" : include "views/repository/createRecords.inc.php";
-        break ;
-        case "newSave" : include "views/repository/saveRecords.inc.php";
-        break ;
-        case "update" : include "views/repository/updateRecords.inc.php";
-        break ;
-        case "delete" : include "views/repository/deleteRecord.inc.php"; 
-        break ;
-        case "last" : include "views/repository/lastRecords.inc.php";
-        break ;
-        case "child" : include "views/repository/createRecordsSub.inc.php";
-        break ;
-        case "display" : include "views/repository/displayRecordsSelf.inc.php";
-        break ;
-
+if($q == "repository"){
+    if($q == "repository" && $_GET['categ'] == "create" && $_GET['sub'] == NULL){
+        switch($_GET['categ']){
+            case "categ" : header('location:../home.php?q=dolly&categ=search&sub=allrecords');
+            break ;
+        }
     }
+    if($q == "repository" && $_GET['categ'] == "create" && isset($_GET['sub'])){
+        switch($_GET['sub']){
+            case "new" : include "views/repository/createRecords.inc.php";
+            break ;
+            case "newSave" : include "views/repository/saveRecords.inc.php";
+            break ;
+            case "update" : include "views/repository/updateRecords.inc.php";
+            break ;
+            case "delete" : include "views/repository/deleteRecord.inc.php"; 
+            break ;
+            case "last" : include "views/repository/lastRecords.inc.php";
+            break ;
+            case "child" : include "views/repository/createRecordsSub.inc.php";
+            break ;
+            case "display" : include "views/repository/displayRecordsSelf.inc.php";
+            break ;
+    
+        }
+    }
+    
+    /* Case search */
+    if($q == "repository" && $_GET['categ'] == "search" && isset($_GET['sub'])){
+        switch($_GET['sub']){
+            case "allrecords" : include "views/repository/allrecords.inc.php";
+            break ;
+            case "selectClasse" : include "views/repository/selecteClasse.inc.php"  ;
+            break ;
+            case "byClasse" : include "views/repository/searchByClasse.inc.php";
+            break ;  
+            case "byClasseId" : include "views/repository/searchByClasseId.inc.php";
+            break ;
+            case "byKeyword" : include "views/repository/searchAllKeyword.inc.php";
+            break ;
+            case "byKeywordId" :  include "views/repository/searchByKeywordId.inc.php";
+            break ;
+            case "searchByKeyword" : include "views/repository/searchByKeyword.inc.php" ;
+            break ;
+            case "byDateForm" : include "views/repository/searchRecordsByDates.inc.php";
+            break ;
+            case "byOrganization" : include "views/repository/searchByOrganization.inc.php";
+            break ;
+            case "byDatesResult" : include "views/repository/displayRecordsByDates.inc.php";
+            break ;
+            case "default" : include "views/repository/displayQuery.inc.php";
+            break ;
+        }}
 }
-
-/* Case search */
-if($q == "repository" && $_GET['categ'] == "search" && isset($_GET['sub'])){
-    switch($_GET['sub']){
-        case "allrecords" : include "views/repository/allrecords.inc.php";
-        break ;
-        case "selectClasse" : include "views/repository/selecteClasse.inc.php"  ;
-        break ;
-        case "byClasse" : include "views/repository/searchByClasse.inc.php";
-        break ;  
-        case "byClasseId" : include "views/repository/searchByClasseId.inc.php";
-        break ;
-        case "byKeyword" : include "views/repository/searchAllKeyword.inc.php";
-        break ;
-        case "byKeywordId" :  include "views/repository/searchByKeywordId.inc.php";
-        break ;
-        case "searchByKeyword" : include "views/repository/searchByKeyword.inc.php" ;
-        break ;
-        case "byDateForm" : include "views/repository/searchRecordsByDates.inc.php";
-        break ;
-        case "byOrganization" : include "views/repository/searchByOrganization.inc.php";
-        break ;
-        case "byDatesResult" : include "views/repository/displayRecordsByDates.inc.php";
-        break ;
-        case "default" : include "views/repository/displayQuery.inc.php";
-        break ;
-    }}
 ?>
 
 

@@ -5,7 +5,6 @@ include 'models/session.class.php';
 session_start();
 $session= new administrator();
 if (isset($_POST['username']) && isset($_POST['password'])) {
-   
    $error=$session->login();
 }
 ?>

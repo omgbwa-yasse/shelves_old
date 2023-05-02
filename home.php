@@ -4,7 +4,7 @@
  include_once 'template/template.php';
 
 if($_GET['categ'] == NULL && $_GET['sub'] == NULL){
-    header ('location:../shelves/home.php?q='.$q.'&categ=search&sub=allrecords') ;
+    header ('location:../home.php?q='.$q.'&categ=search&sub=allrecords') ;
 } 
 else if(isset($q)){
     switch($q){
