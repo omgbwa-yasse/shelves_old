@@ -1,6 +1,11 @@
 <?php 
 include "template/sous_menu.inc.php";
 ?>
+<p>Charte d'archivage</p>
+        <ul>
+                <li><a href="#"> Visualiser</a></li>
+                <li><a href="#"> Exporter </a></li>
+        </ul>
 <p>Plan de classement</p>
         <ul>
                 <li><a href="index.php?q=outilsGestion&categ=planClassement&sub=allClass"> Plan de classement </a></li>
@@ -31,10 +36,6 @@ include "template/sous_menu.inc.php";
                 <li><a href="index.php?q=outilsGestion&categ=thesaurus&sub=allIndex"> Voir le thésaurus </a></li>
                 <li><a href="index.php?q=outilsGestion&categ=thesaurus&sub=addIndex"> Ajouter une index </a></li>
         </ul>
-        </ul>
-        </ul>
-
-        </ul>
 
 <?php
         include "template/container.inc.php";
@@ -62,7 +63,13 @@ include "template/sous_menu.inc.php";
                   break;
                   case "allOrganization" : include "views/tools/organization/allOrganization.inc.php";
                   break;
-                  default : include "views/tools/planClassement/allClasse.inc.php";
+                  case "unite" : include "views/tools/organization/displayOrganization.inc.php";
+                  break;
+                  case "deleteUnite" : include "views/tools/organization/deleteOrganization.inc.php";
+                  break;
+                  case "updateUnite" : include "views/tools/organization/updateOrganization.inc.php";
+                  break;
+                  default : include "views/tools/organization/allOrganization.inc.php";
                   break;
           }}
         if($_GET['q'] == "outilsGestion" && $_GET['categ'] == "thesaurus" && !empty($_GET['allIndex'])){
