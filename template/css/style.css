@@ -1,5 +1,9 @@
+a{
+    text-decoration: none;
+    font-weight: bold;
+}
 *{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family :'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
    
 }
 .main{
@@ -46,6 +50,7 @@ header{
     text-align : center;
 }
 
+
 /*  Sous menu de navigation des onglets*/
 .sous-menu {
    background-color: #ffffff;
@@ -91,6 +96,7 @@ width: 100%;
     cursor: pointer;
 }
 
+
 /* contenu principale pour faire une couleur differente sur le body*/
 .container{
     background-color: #ffffff;
@@ -98,11 +104,39 @@ width: 100%;
     border-radius: 1%;
     width : 100%;
 }
-.records {
-    margin-left : 200px;
+div.records{
+    margin-left : 50px;
     margin-bottom: 20px; 
-    background-color:#dafbff ;
+    padding: 10px 10px 10px 10px;
+    background-color:#ffffff ;
 }
-.records .title {
-  font-weight: bold;
+th.title{
+    font-size: 23px;
+    text-align: left;
+    color: rgb(30, 33, 33);
 }
+.element{
+    font-size: 15px;
+    font-weight: bold;
+}
+th.element{
+    font-size: 14px;
+    text-align: left;
+    color: #2c1818;
+    height: 15px;
+    width:35px;
+}
+div.option{
+    border:solid 1px rgb(85, 84, 84);
+    text-align:left;
+    margin-top:10px; 
+    width:895px;
+    padding:3px 3px 3px 3px;
+}
+
+div .option .element{
+    margin-left: 10px ;
+    margin-right: 10px ;
+}
+
+/*Option de la fiche records */

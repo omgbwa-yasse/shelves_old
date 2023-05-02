@@ -2,18 +2,20 @@
 require_once 'models/repository/keyword.class.php';
 
 function displayRecord($record){
-    echo "<div style=\"margin-left:50px;margin-top:50px; border:solid 1px red;text-align:left;width:900px;\" >";
+    echo "<div class=\"records\" >";
+    
     // Aficher les enregistrement
     $record -> setRecordClasseIdByCodeTitle();
-    echo "<table border=0> 
-    <tr><th style=\"font-size:20px; color:grey\">". $record-> getRecordTitle() ."</th></tr> 
-    <tr><td>". $record-> getRecordNui() ."</td></tr>
-    <tr><td>". $record -> getRecordDateStart() ." au ". $record -> getRecordDateEnd()  ."</td></tr>
-    <tr><td>". $record -> getRecordObservation()  ."</td></tr>
-    <tr><td>". $record -> getRecordContainerTitle() ."</td></tr>
-    <tr><td><a href=\"index.php?q=repository&categ=search&sub=byClasseId&id=".$record ->getRecordClasseId()."\">". $record -> getRecordClasseCodeTitle() ."</a></td></tr>
-    <tr><td>". $record -> getRecordLinkId() ."</td></tr>
-    <tr><td>";
+    $record -> setRecordContainerId();
+    echo "<table border=\"0\"> 
+    <tr><th class=\"title\" colspan=\"2\">". $record-> getRecordTitle() ."</th></tr> 
+    <tr><th class=\"element\"> Nui <td class=\"element\">". $record-> getRecordNui() ."</td></tr>
+    <tr><th class=\"element\"> Dates<td class=\"element\">". $record -> getRecordDateStart() ." au ". $record -> getRecordDateEnd()  ."</td></tr>
+    <tr><th class=\"element\"> Observation <td class=\"element\">". $record -> getRecordObservation()  ."</td></tr>
+    <tr><th class=\"element\"> Contenant <td class=\"element\"><a href=\"home.php?q=repository&categ=search&sub=container&id=".$record -> getRecordContainerId() ."\">". $record -> getRecordContainerTitle() ."</a></td></tr>
+    <tr><th class=\"element\"> Classe <td class=\"element\"><a href=\"index.php?q=repository&categ=search&sub=byClasseId&id=".$record ->getRecordClasseId()."\">". $record -> getRecordClasseCodeTitle() ."</a></td></tr>
+    <tr><th class=\"element\"> Dans <td class=\"element\">". $record -> getRecordLinkId() ."</td></tr>
+    <tr><th class=\"element\"> Mots clés<td class=\"element\">";
 
     // Afficher les mots clés associés
     $KeywordsId = $record -> getAllKeywordsIdByRecordId();
@@ -25,23 +27,27 @@ function displayRecord($record){
                     echo "<a href=\"index.php?q=repository&categ=search&sub=byKeywordId&id=".$KeywordId['keyword_id']."\">";
                     echo $word -> getKeywordById();
                     echo "</a> : " ;
-            }
-            echo "<div style=\"background-color:pink;border:solid 1px black;text-align:left;margin-top:10px; width:895px;\" >";
-            echo "<a href=\"index.php?q=repository&categ=create&sub=delete&id=". $record->getRecordId() ." \">Supprimer</a>";
-            echo "</div>";
-        }
+            }}
+    echo "</td></tr><tr><td colspan=\"2\">";
+    displayOption($record);
     echo "</td></tr></table>";
     echo "</div>";
 
+}
+function displayOption($record){
+    echo "<div class=\"option\" >
+        <a class=\"option element\" href=\"index.php?q=repository&categ=create&sub=update&id=". $record->getRecordId() ." \">Modifier</a>
+        <a class=\"option element\" href=\"index.php?q=repository&categ=create&sub=export&id=". $record->getRecordId() ." \">exporter</a>
+        <a class=\"option element\" href=\"index.php?q=repository&categ=create&sub=print&id=". $record->getRecordId() ." \">Imprimer</a>
+        <a class=\"option element\" href=\"index.php?q=repository&categ=create&sub=addDolly&id=". $record->getRecordId() ." \">Chariot</a>
+        <a class=\"option element\" href=\"index.php?q=repository&categ=create&sub=delete&id=". $record->getRecordId() ." \">Supprimer</a>
+    </div>";
+
+}
 
 
 
 
 
 
-
-
-
-
-
-}?>
+?>

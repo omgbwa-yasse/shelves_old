@@ -3,8 +3,8 @@
 
  class administrator extends connexion{
   public function login(){
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+    $username = htmlspecialchars($_POST['username']);
+    $password = htmlspecialchars($_POST['password']);
     $stmt = $this->getCnx()->prepare('SELECT * FROM user WHERE user_name = :username AND user_password = :password');
     $stmt->execute(array(':username' => $username, ':password' => $password));
     if ($stmt->rowCount() == 1) {
