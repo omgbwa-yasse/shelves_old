@@ -8,7 +8,7 @@ a.hover{
     color:red;
 }
 *{
-    font-family :'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family : sans-serif, Verdana, Geneva, Tahoma
    
 }
 .main{
@@ -110,6 +110,7 @@ width: 100%;
     padding: 2.5em;
     width : 100%;
 }
+
 div.records{
     margin-left : 0px;
     margin-bottom: 20px; 
