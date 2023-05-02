@@ -4,38 +4,38 @@
 <p>Recherche</p>
 <ul>        
     <li>
-    <a href="home.php?q=repository&categ=search&sub=allrecords"> Tous les enregistrements </a>
+    <a href="index.php?q=repository&categ=search&sub=allrecords"> Tous les enregistrements </a>
     </li>
     <li>
-    <a href="home.php?q=repository&categ=search&sub=byOrganization"> Recherche par detenteur </a>
+    <a href="index.php?q=repository&categ=search&sub=byOrganization"> Recherche par detenteur </a>
     </li>
     <li>
-    <a href="home.php?q=repository&categ=search&sub=byDateForm"> Recherche par date </a>
+    <a href="index.php?q=repository&categ=search&sub=byDateForm"> Recherche par date </a>
     </li>
     <li>
-    <a href="home.php?q=repository&categ=search&sub=byKeyword"> Recherche par mots-clés </a>
+    <a href="index.php?q=repository&categ=search&sub=byKeyword"> Recherche par mots-clés </a>
     </li>
     <li>
-    <a href="home.php?q=repository&categ=search&sub=selectClasse"> Recherche par classe </a>
+    <a href="index.php?q=repository&categ=search&sub=selectClasse"> Recherche par classe </a>
     </li>
 </ul>
         
 <p>Enregistrements</p>
 <ul>
-    <li><a href="home.php?q=repository&categ=create&sub=new">Nouvel enregistrement </a></li>
-    <li><a href="home.php?q=repository&categ=create&sub=last">Derniers enregistrements </a></li>
+    <li><a href="index.php?q=repository&categ=create&sub=new">Nouvel enregistrement </a></li>
+    <li><a href="index.php?q=repository&categ=create&sub=last">Derniers enregistrements </a></li>
 </ul>
             
 <p>Chariot</p>
 <ul>
-    <li><a href="home.php?q=dolly&categ=container&sub=alldolly"> Gestion </a></li>
-    <li><a href="home.php?q=dolly&categ=container&sub=create"> Ajouter </a></li>
+    <li><a href="index.php?q=dolly&categ=container&sub=alldolly"> Gestion </a></li>
+    <li><a href="index.php?q=dolly&categ=container&sub=create"> Ajouter </a></li>
 </ul>
 <p>Import</p>
 <ul>
-    <li><a href="home.php?q=dolly&categ=container&sub=#"> Importer Excel </a></li>
-    <li><a href="home.php?q=dolly&categ=container&sub=#"> Import EAD</a></li>
-    <li><a href="home.php?q=dolly&categ=container&sub=#"> Import CVS</a></li>
+    <li><a href="index.php?q=dolly&categ=container&sub=#"> Importer Excel </a></li>
+    <li><a href="index.php?q=dolly&categ=container&sub=#"> Import EAD</a></li>
+    <li><a href="index.php?q=dolly&categ=container&sub=#"> Import CVS</a></li>
 </ul>
 
 
@@ -46,7 +46,7 @@ include "template/container.inc.php";
 if($q == "repository"){
     if($q == "repository" && $_GET['categ'] == "create" && $_GET['sub'] == NULL){
         switch($_GET['categ']){
-            case "categ" : header('location:../home.php?q=dolly&categ=search&sub=allrecords');
+            case "categ" : header('location:../index.php?q=dolly&categ=search&sub=allrecords');
             break ;
         }
     }

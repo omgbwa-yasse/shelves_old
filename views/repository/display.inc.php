@@ -13,7 +13,7 @@ function displayRecord($record){
     <tr><th class=\"element\"> Nui <td class=\"element\">". $record-> getRecordNui() ."</td></tr>
     <tr><th class=\"element\"> Dates<td class=\"element\">". $record -> getRecordDateStart() ." au ". $record -> getRecordDateEnd()  ."</td></tr>
     <tr><th class=\"element\"> Observation <td class=\"element\">". $record -> getRecordObservation()  ."</td></tr>
-    <tr><th class=\"element\"> Contenant <td class=\"element\"><a href=\"home.php?q=repository&categ=search&sub=container&id=".$record -> getRecordContainerId() ."\">". $record -> getRecordContainerTitle() ."</a></td></tr>
+    <tr><th class=\"element\"> Contenant <td class=\"element\"><a href=\"index.php?q=repository&categ=search&sub=container&id=".$record -> getRecordContainerId() ."\">". $record -> getRecordContainerTitle() ."</a></td></tr>
     <tr><th class=\"element\"> Classe <td class=\"element\"><a href=\"index.php?q=repository&categ=search&sub=byClasseId&id=".$record ->getRecordClasseId()."\">". $record -> getRecordClasseCodeTitle() ."</a></td></tr>
     <tr><th class=\"element\"> Dans <td class=\"element\">". $record -> getRecordLinkId() ."</td></tr>
     <tr><th class=\"element\"> Support <td class=\"element\">". $record -> getRecordSupportTitle() ."</td></tr>
@@ -39,12 +39,12 @@ function displayRecord($record){
 }
 function displayOption($record){
     echo "<div class=\"option\" >
-        <a class=\"option element\" href=\"home.php?q=repository&categ=create&sub=child&id=". $record->getRecordId() ." \">Ajouter sous-dossier</a>
-        <a class=\"option element\" href=\"home.php?q=repository&categ=create&sub=update&id=". $record->getRecordId() ." \">Modifier</a>
-        <a class=\"option element\" href=\"home.php?q=repository&categ=create&sub=export&id=". $record->getRecordId() ." \">exporter</a>
-        <a class=\"option element\" href=\"home.php?q=repository&categ=create&sub=print&id=". $record->getRecordId() ." \">Imprimer</a>
-        <a class=\"option element\" href=\"home.php?q=repository&categ=create&sub=addDolly&id=". $record->getRecordId() ." \">Chariot</a>
-        <a class=\"option element\" href=\"home.php?q=repository&categ=create&sub=delete&id=". $record->getRecordId() ." \">Supprimer</a>
+        <a class=\"option element\" href=\"index.php?q=repository&categ=create&sub=child&id=". $record->getRecordId() ." \">Ajouter sous-dossier</a>
+        <a class=\"option element\" href=\"index.php?q=repository&categ=create&sub=update&id=". $record->getRecordId() ." \">Modifier</a>
+        <a class=\"option element\" href=\"index.php?q=repository&categ=create&sub=export&id=". $record->getRecordId() ." \">exporter</a>
+        <a class=\"option element\" href=\"index.php?q=repository&categ=create&sub=print&id=". $record->getRecordId() ." \">Imprimer</a>
+        <a class=\"option element\" href=\"index.php?q=repository&categ=create&sub=addDolly&id=". $record->getRecordId() ." \">Chariot</a>
+        <a class=\"option element\" href=\"index.php?q=repository&categ=create&sub=delete&id=". $record->getRecordId() ." \">Supprimer</a>
         </div>";
 
 }
@@ -58,7 +58,7 @@ function RecordsSubList($records){
         $record -> setRecordId($id['id']);
         $record -> getRecordById();
 
-        echo "<a href=\"home.php?q=repository&categ=create&sub=display&id=\"". $record -> getRecordId() .">";
+        echo "<a href=\"index.php?q=repository&categ=create&sub=display&id=\"". $record -> getRecordId() .">";
         echo $record ->controlNui() . ":" . $record -> getRecordTitle();
         echo "</a>";
     }
