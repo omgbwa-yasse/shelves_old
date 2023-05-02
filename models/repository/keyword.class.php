@@ -20,10 +20,12 @@ public function getKeywordId(){ return $this->_idkeyword; }
 public function setKeyword($_keyword){ $this->_keyword = $_keyword; }
 public function getKeyword(){ return $this->_keyword;}
 public function getKeywordById(){
-    $rqt = "SELECT Keywords.keyword FROM Keywords WHERE Keywords.keyword_id = '".$this->_idkeyword."'";
+    $rqt = "SELECT keywords.keyword FROM keywords WHERE keywords.keyword_id = '".$this->_idkeyword."'";
     $rqt = $this->getCnx()->prepare($rqt);
     $rqt->execute();
-        foreach($rqt as $keyword){
+    $result=$rqt->setFetchMode(PDO::FETCH_ASSOC);
+
+        foreach($rqt->fetchAll() as $keyword){
             $this->_keyword = $keyword['keyword'];
         }   
     return $this->_keyword;
