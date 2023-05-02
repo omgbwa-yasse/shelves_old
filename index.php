@@ -6,11 +6,11 @@ include_once 'template/template.php';
 
 
 
-    if($_GET['categ'] == NULL && $_GET['sub'] == NULL){
-        header ('location:../index.php?q='.$q.'&categ=search&sub=allrecords') ;
-    } 
-    else if(isset($q)){
-        switch($q){
+if($_GET['categ'] == NULL && $_GET['sub'] == NULL){
+        header ('location:index.php?q='.$q.'&categ=search&sub=allrecords') ;
+} 
+else if(isset($q)){
+    switch($q){
             case "repository" : include 'views/repository.views.php';
             break;
             case "versement" : include 'views/versement.views.php';
