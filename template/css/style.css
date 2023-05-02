@@ -70,15 +70,15 @@ width: 100%;
 }
 .sous-menu ul {
    list-style: none;
-   margin-right: 10px;
+   margin-right: 5px;
 }
 .sous-menu ul li{
-    margin-top:5px;
+    margin-top:2px;
     font-weight:600;
 }
 .sous-menu p {
-    margin-left : 25px;
-    margin-top : 40px;
+    margin-left :25px;
+    margin-top : 20px;
 }
 .sous-menu a {
     background-color: rgba(154, 145, 145, 0.315);
@@ -107,10 +107,11 @@ width: 100%;
     background-color: #ffffff;
     grid-area: con;
     border-radius: 1%;
+    padding: 2.5em;
     width : 100%;
 }
 div.records{
-    margin-left : 50px;
+    margin-left : 0px;
     margin-bottom: 20px; 
     padding: 10px 10px 10px 10px;
     background-color:#ffffff ;
@@ -141,6 +142,6 @@ div.option{
 
 div .option .element{
     margin-left: 10px ;
-    margin-right: 10px ;
+    margin-right: 30px ;
 }
 
