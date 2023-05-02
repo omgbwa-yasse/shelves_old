@@ -1,6 +1,7 @@
 <?php
 require_once 'models/repository/keyword.class.php';
 
+
 function displayRecord($record){
     echo "<div class=\"records\" >";
     
@@ -15,6 +16,7 @@ function displayRecord($record){
     <tr><th class=\"element\"> Contenant <td class=\"element\"><a href=\"home.php?q=repository&categ=search&sub=container&id=".$record -> getRecordContainerId() ."\">". $record -> getRecordContainerTitle() ."</a></td></tr>
     <tr><th class=\"element\"> Classe <td class=\"element\"><a href=\"index.php?q=repository&categ=search&sub=byClasseId&id=".$record ->getRecordClasseId()."\">". $record -> getRecordClasseCodeTitle() ."</a></td></tr>
     <tr><th class=\"element\"> Dans <td class=\"element\">". $record -> getRecordLinkId() ."</td></tr>
+    <tr><th class=\"element\"> Support <td class=\"element\">". $record -> getRecordSupportTitle() ."</td></tr>
     <tr><th class=\"element\"> Mots clés<td class=\"element\">";
 
     // Afficher les mots clés associés
@@ -29,6 +31,7 @@ function displayRecord($record){
                     echo "</a> : " ;
             }}
     echo "</td></tr><tr><td colspan=\"2\">";
+    RecordsSubList($record);
     displayOption($record);
     echo "</td></tr></table>";
     echo "</div>";
@@ -36,13 +39,30 @@ function displayRecord($record){
 }
 function displayOption($record){
     echo "<div class=\"option\" >
-        <a class=\"option element\" href=\"index.php?q=repository&categ=create&sub=update&id=". $record->getRecordId() ." \">Modifier</a>
-        <a class=\"option element\" href=\"index.php?q=repository&categ=create&sub=export&id=". $record->getRecordId() ." \">exporter</a>
-        <a class=\"option element\" href=\"index.php?q=repository&categ=create&sub=print&id=". $record->getRecordId() ." \">Imprimer</a>
-        <a class=\"option element\" href=\"index.php?q=repository&categ=create&sub=addDolly&id=". $record->getRecordId() ." \">Chariot</a>
-        <a class=\"option element\" href=\"index.php?q=repository&categ=create&sub=delete&id=". $record->getRecordId() ." \">Supprimer</a>
-    </div>";
+        <a class=\"option element\" href=\"home.php?q=repository&categ=create&sub=child&id=". $record->getRecordId() ." \">Ajouter sous-dossier</a>
+        <a class=\"option element\" href=\"home.php?q=repository&categ=create&sub=update&id=". $record->getRecordId() ." \">Modifier</a>
+        <a class=\"option element\" href=\"home.php?q=repository&categ=create&sub=export&id=". $record->getRecordId() ." \">exporter</a>
+        <a class=\"option element\" href=\"home.php?q=repository&categ=create&sub=print&id=". $record->getRecordId() ." \">Imprimer</a>
+        <a class=\"option element\" href=\"home.php?q=repository&categ=create&sub=addDolly&id=". $record->getRecordId() ." \">Chariot</a>
+        <a class=\"option element\" href=\"home.php?q=repository&categ=create&sub=delete&id=". $record->getRecordId() ." \">Supprimer</a>
+        </div>";
 
+}
+function RecordsSubList($records){
+    echo "<div class=\"option\" >";
+    $id_records = $records-> getRecordId();
+    $listSubRecordsId = new recordsManager();
+    $listSubRecordsId -> getAllSubRecordsIdById($id_records);
+    foreach($listSubRecordsId as $id){
+        $record = new records();
+        $record -> setRecordId($id['id']);
+        $record -> getRecordById();
+
+        echo "<a href=\"home.php?q=repository&categ=create&sub=display&id=\"". $record -> getRecordId() .">";
+        echo $record ->controlNui() . ":" . $record -> getRecordTitle();
+        echo "</a>";
+    }
+    echo "</div>";
 }
 
 

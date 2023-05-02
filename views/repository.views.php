@@ -58,6 +58,10 @@ if($q == "repository" && $_GET['categ'] == "create" && isset($_GET['sub'])){
         break ;
         case "last" : include "views/repository/lastRecords.inc.php";
         break ;
+        case "child" : include "views/repository/createRecordsSub.inc.php";
+        break ;
+        case "display" : include "views/repository/displayRecordsSelf.inc.php";
+        break ;
 
     }
 }

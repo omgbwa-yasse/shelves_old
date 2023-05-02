@@ -26,6 +26,11 @@ public function MgGetLastRecords(){
         $ecords -> execute();
         return $ecords;
 }
-
+public function getAllSubRecordsIdById($id_records){
+        $records = "SELECT records.records_parent_id as parent_id FROM records WHERE records.id_records ='".$id_records."'";
+        $ecords = $this->getCnx()->prepare($records);
+        $ecords -> execute();
+        return $ecords;
+}
 }
 ?>
