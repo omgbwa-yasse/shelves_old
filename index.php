@@ -3,9 +3,6 @@ include_once 'models/session.class.php';
 include_once "template/header.inc.php"; 
 include_once 'template/template.php';
 
-
-
-
 if($_GET['categ'] == NULL && $_GET['sub'] == NULL){
         header ('location:index.php?q='.$q.'&categ=search&sub=allrecords') ;
 } 
