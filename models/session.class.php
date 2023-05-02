@@ -9,7 +9,7 @@
     $stmt->execute(array(':username' => $username, ':password' => $password));
     if ($stmt->rowCount() == 1) {
         $_SESSION['logged_in'] = true;
-        header('Location: home.php');
+        header('Location: menu()');
         exit;
     } else {
         $error = 'Invalid username or password';
