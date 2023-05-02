@@ -28,8 +28,8 @@
             
 <p>Chariot</p>
 <ul>
-    <li><a href="home.php?q=dolly&categ=container&sub=alldolly"> Tous les chariot de description </a></li>
-    <li><a href="home.php?q=dolly&categ=container&sub=create"> Ajouter un chariot de description </a></li>
+    <li><a href="home.php?q=dolly&categ=container&sub=alldolly"> Gestion </a></li>
+    <li><a href="home.php?q=dolly&categ=container&sub=create"> Ajouter </a></li>
 </ul>
 <p>Import</p>
 <ul>
