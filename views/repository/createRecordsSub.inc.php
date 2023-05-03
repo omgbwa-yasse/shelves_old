@@ -33,11 +33,12 @@ $sqlLastNui -> execute();
     $recordsP = new records();
     $recordsP -> setRecordId($_GET['id']);
     $recordsP -> getRecordById();
-    echo "<br> sous dossier de : <a href=\"index.php?q=repository&categ=create&sub=display&id=".
-    $recordsP -> getRecordId()."\">";
+    echo "<br> sous dossier de : <a href=\"index.php?q=repository&categ=create&sub=display&id=". $recordsP -> getRecordId()."\">";
     echo $recordsP->controlNui()." : ".$recordsP -> getRecordTitle();
     echo "</a>";
-echo '<form method="POST" action="index.php?q=repository&categ=create&sub=newSave&id_parent='. $recordsP -> getRecordId() .'>';
+    echo '<form method="POST" action="index.php?q=repository&categ=create&sub=newSave&id_parent=';
+    echo $recordsP -> getRecordId() ;
+    echo ">";
 ?>
 <table>
 
