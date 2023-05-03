@@ -16,7 +16,6 @@ foreach($idrecords as $Idrecord){
     displayRecord($record);
     
 }
-    echo '<hr/>';
 ?>
 
 

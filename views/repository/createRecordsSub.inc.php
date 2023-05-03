@@ -1,4 +1,7 @@
 <?php  
+require_once 'models/repository/records.class.php';
+
+
 $cnx = new PDO("mysql:host=localhost;dbname=dbms", "root", "");
 $cnx->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -22,17 +25,23 @@ $sqlLastNui -> execute();
 ?>
 <?php
     foreach($sqlLastNui as $Nui){
-        echo "Le dernier enregistrement est : ". $Nui['nui'];
+        echo "Le dernier enregistrement : ". $Nui['nui'];
     }
 ?>
 
 <?php
-    echo "id du parent est :". $_GET['parent_id'];
-    echo "<br/>J'affiche les coordonnées du Records parent..ici ";
+    $recordsP = new records();
+    $recordsP -> setRecordId($_GET['id']);
+    $recordsP -> getRecordById();
+    echo "<br> sous dossier de : <a href=\"index.php?q=repository&categ=create&sub=display&id=". $recordsP -> getRecordId()."\">";
+    echo $recordsP->controlNui()." : ".$recordsP -> getRecordTitle();
+    echo "</a>";
+    echo '<form method="POST" action="index.php?q=repository&categ=create&sub=newSave&id_parent=';
+    echo $recordsP -> getRecordId() ;
+    echo ">";
 ?>
-
-<form method="POST" action="index.php?q=repository&categ=create&sub=newSave">
 <table>
+
 <tr> <td> Identifiant unique </td>  <td> <input type="text" name="nui" size="30"></td> </tr>
 <tr> <td> Intitulé </td>  <td> <input type="text" name="title" size="70"></td> </tr>
 <tr> <td> Date de debut</td>  <td><input type="date" name="date_start" size="70"> </td></tr>
