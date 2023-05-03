@@ -108,7 +108,7 @@ width: 100%;
     grid-area: con;
     border-radius: 1%;
     padding: 2.5em;
-    width : 100%;
+    width : 800px;
 }
 
 div.records{
@@ -116,6 +116,15 @@ div.records{
     margin-bottom: 20px; 
     padding: 10px 10px 10px 10px;
     background-color:#ffffff ;
+    border:solid 3px red;
+}
+div.records .navigation{
+    background-color: red;
+    color:yellow;
+    position:relative;
+    width:80%;
+    margin :5px 5px 5px 5px;
+    border: solid 2px white ;
 }
 th.title{
     font-size: 23px;
@@ -137,7 +146,7 @@ div.option{
     border:solid 1px rgb(85, 84, 84);
     text-align:left;
     margin-top:10px; 
-    width:895px;
+    width:100%;
     padding:3px 3px 3px 3px;
 }
 

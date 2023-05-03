@@ -12,7 +12,8 @@ $_POST['support']= htmlspecialchars ($_POST['support']);
 $_POST['container']= htmlspecialchars ($_POST['container']);
 $_POST['statut']= htmlspecialchars ($_POST['statut']);
 $_POST['keywords']= htmlspecialchars ($_POST['keywords']);
-$_GET['id_parent']= htmlspecialchars ($_GET['id_parent']);
+ 
+
 $supportTitle = $_POST['support'] ;
 
 
@@ -28,7 +29,9 @@ $record->setRecordClasseCodeTitle($_POST['code_title']);
 $record->setRecordSupportTitle($_POST['support']);
 $record->setRecordLinkId(NULL); 
 $record->setRecordContainerTitle($_POST['container']);
-$record->setRecordLinkId($_POST['id_parent']);
+if(!empty($_GET['id_parent'])){
+    $record->setRecordLinkId($_POST['id_parent']) ;
+}else{ }
 
 if($record ->controlNui() == TRUE){
         $record->setRecordTempNui();

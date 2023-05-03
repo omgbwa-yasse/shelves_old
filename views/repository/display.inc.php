@@ -4,6 +4,9 @@ require_once 'models/repository/keyword.class.php';
 
 function displayRecord($record){
     echo "<div class=\"records\" >";
+    echo "<div style=\"float:right;width:200px;border:solid 3px red;background-color:red;\">";
+    optionNavigation($record);
+    echo "</div>";
     
     // Aficher les enregistrement
     $record -> setRecordClasseIdByCodeTitle();
@@ -81,8 +84,6 @@ function displayOption($record){
         <a class=\"option element\" href=\"index.php?q=repository&categ=create&sub=child&id=". $record->getRecordId() ." \">Ajouter sous-dossier</a>
         <a class=\"option element\" href=\"index.php?q=repository&categ=create&sub=update&id=". $record->getRecordId() ." \">Modifier</a>
         <a class=\"option element\" href=\"index.php?q=repository&categ=create&sub=export&id=". $record->getRecordId() ." \">exporter</a>
-        <a class=\"option element\" href=\"index.php?q=repository&categ=create&sub=print&id=". $record->getRecordId() ." \">Imprimer</a>
-        <a class=\"option element\" href=\"index.php?q=repository&categ=create&sub=addDolly&id=". $record->getRecordId() ." \">Chariot</a>
         <a class=\"option element\" href=\"index.php?q=repository&categ=create&sub=delete&id=". $record->getRecordId() ." \">Supprimer</a>
         </div>";
 
@@ -103,7 +104,18 @@ function RecordsSubList($records){
     }
     echo "</div>";
 }
-
+function optionNavigation($record){
+    echo "<div class=\"records navigation\">
+            <a href=\"index.php?q=repository&categ=create&sub=print&id=". $record->getRecordId() ." \">Imprimer</a>
+         </div>
+         <div class=\"records navigation\">
+            <a href=\"index.php?q=repository&categ=create&sub=addDolly&id=". $record->getRecordId() ." \">Ajouter dans chariot</a>
+         </div>
+         <div class=\"records navigation\">
+            <a href=\"index.php?q=repository&categ=create&sub=export&id=". $record->getRecordId() ." \">Exporter</a>
+         </div>
+         ";
+}
 
 
 
