@@ -4,7 +4,7 @@ require_once 'models/repository/keyword.class.php';
 
 function displayRecord($record){
     echo "<div class=\"records\" >";
-    echo "<div style=\"float:right;width:200px;border:solid 3px red;background-color:red;\">";
+    echo "<div style=\"float:right;width:200px;\">";
     optionNavigation($record);
     echo "</div>";
     
@@ -105,13 +105,16 @@ function RecordsSubList($records){
     echo "</div>";
 }
 function optionNavigation($record){
-    echo "<div class=\"records navigation\">
+    echo "<div class=\"navigation\">
             <a href=\"index.php?q=repository&categ=create&sub=print&id=". $record->getRecordId() ." \">Imprimer</a>
          </div>
-         <div class=\"records navigation\">
+         <div class=\"navigation\">
             <a href=\"index.php?q=repository&categ=create&sub=addDolly&id=". $record->getRecordId() ." \">Ajouter dans chariot</a>
          </div>
-         <div class=\"records navigation\">
+         <div class=\"navigation\">
+            <a href=\"index.php?q=repository&categ=loan&sub=loan&id=". $record->getRecordId() ." \">Reserver</a>
+         </div>
+         <div class=\"navigation\">
             <a href=\"index.php?q=repository&categ=create&sub=export&id=". $record->getRecordId() ." \">Exporter</a>
          </div>
          ";
