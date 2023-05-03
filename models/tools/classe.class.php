@@ -44,6 +44,15 @@ public function getAllrecordsIdClasse($id){
        echo $classe_id['classification_id'] ;
     }
 }
+
+//selectionner les enfant d'une classe
+public function getchildofclass($id){
+  $sql="SELECT * FROM classification where classification_parent_id = :classification_parent_id";
+  $child_class=$this->getCnx()->prepare($sql);
+  $result=$child_class->execute([':classification_parent_id'=>$id]);
+  $result=$child_class->setFetchMode(PDO::FETCH_ASSOC);
+  return $child_class;
+}
 public function getAllClassification(){
   $sql = "SELECT *
   FROM dbms.classification_type
