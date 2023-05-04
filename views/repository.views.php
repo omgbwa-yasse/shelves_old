@@ -42,8 +42,9 @@
 
 
 <?php
-    require_once "controller/repository/repository.controller.php";
     include "template/container.inc.php";
+    require_once "controller/repository.controller.php";
+    
 ?>
 
 

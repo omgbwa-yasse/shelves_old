@@ -1,14 +1,14 @@
 <?php
 
     /* default  */    
-    if($q == "repository"){
-        if($q == "repository" && $_GET['categ'] == NULL || $_GET['sub'] == NULL){
-             header('location:../index.php?q=dolly&categ=search&sub=allrecords');
+    if($_GET['q'] == "repository"){
+        if($_GET['q'] == "repository" && $_GET['categ'] == NULL || $_GET['sub'] == NULL){
+             header('location:../index.php?q=repository&categ=search&sub=allrecords');
         }
     }
 
     /* Case create */
-    if($q == "repository" && $_GET['categ'] == "create" && isset($_GET['sub'])){
+    if($_GET['q'] == "repository" && $_GET['categ'] == "create"){
         switch($_GET['sub']){
             case "new" : include "views/repository/records/createRecords.inc.php";
             break ;
@@ -22,13 +22,12 @@
             break ;
             case "child" : include "views/repository/records/createRecordsSub.inc.php";
             break ;
-            
-    
+            default : include "views/repository/records/createRecords.inc.php";
         }
     }
     
     /* Case search */
-    if($q == "repository" && $_GET['categ'] == "search" && isset($_GET['sub'])){
+    if($_GET['q'] == "repository" && $_GET['categ'] == "search"){
         switch($_GET['sub']){
             case "display" : include "views/repository/search/displayRecordsSelf.inc.php";
             break ;

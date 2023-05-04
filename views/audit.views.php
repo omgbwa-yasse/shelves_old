@@ -15,7 +15,7 @@ include "template/container.inc.php";
 
 
 
-if($q == "repository" && $_GET['categ'] == "create" && isset($_GET['sub'])){
+if($_GET['q'] == "repository" && $_GET['categ'] == "create" && isset($_GET['sub'])){
     switch($_GET['sub']){
         case "lifecycle" : include "#";
         break ;
