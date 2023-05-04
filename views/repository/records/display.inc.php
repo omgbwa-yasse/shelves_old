@@ -13,7 +13,7 @@ function displayRecord($record){
     $record -> setRecordContainerId();
     echo "<table border=\"0\"> 
     <tr><th class=\"title\" colspan=\"2\">
-    <a href=\"index.php?q=repository&categ=create&sub=display&id=".$record->getRecordId()."\">". $record-> getRecordTitle() ."</a></th></tr> 
+    <a href=\"index.php?q=repository&categ=search&sub=display&id=".$record->getRecordId()."\">". $record-> getRecordTitle() ."</a></th></tr> 
     <tr><th class=\"element\"> Nui <td class=\"element\">". $record-> getRecordNui() ."</td></tr>
     <tr><th class=\"element\"> Dates<td class=\"element\">". $record -> getRecordDateStart() ." au ". $record -> getRecordDateEnd()  ."</td></tr>
     <tr><th class=\"element\"> Observation <td class=\"element\">". $record -> getRecordObservation()  ."</td></tr>

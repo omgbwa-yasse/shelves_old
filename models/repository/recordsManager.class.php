@@ -32,5 +32,67 @@ public function getAllSubRecordsIdById($id_records){
         $ecords -> execute();
         return $ecords;
 }
+public function getAllClasse(){
+        $sqlClasse = "SELECT classification.classification_code_title as code_title FROM classification";
+        $allClasse = $this->getCnx()->prepare($sqlClasse);
+        $allClasse ->execute();
+        return $allClasse;
+}
+public function getAllStatutTitle(){
+        $sqlStatut = "SELECT records_status.records_status_title as statut FROM records_status";
+        $allStatut = $this->getCnx()->prepare($sqlStatut);
+        $allStatut ->execute();
+        return $allStatut;
+}
+public function getAllSupportTitle(){
+        $sqlSupport = "SELECT records_support.records_support_title as support FROM records_support";
+        $allSupport = $this->getCnx()->prepare($sqlSupport);
+        $allSupport ->execute();
+        return $allSupport;
+}
+public function getAllContainer(){
+        $sqlContainer = "SELECT container.container_reference as container FROM container";
+        $allContainer = $this->getCnx()->prepare($sqlContainer);
+        $allContainer -> execute();
+        return $allContainer;
+}
+public function getLastNui(){
+        $sqlLastNui = "SELECT records.records_nui as nui FROM records ORDER BY records.id_records DESC LIMIT 1";
+        $sqlLastNui = $this->getCnx()->prepare($sqlLastNui);
+        $sqlLastNui -> execute();
+        return $sqlLastNui;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 ?>

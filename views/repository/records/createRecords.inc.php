@@ -1,26 +1,15 @@
-<?php  
-$cnx = new PDO("mysql:host=localhost;dbname=dbms", "root", "");
-$cnx->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-$sqlClasse = "SELECT classification.classification_code_title as code_title FROM classification";
-$sqlStatut = "SELECT records_status.records_status_title as statut FROM records_status";
-$sqlSupport = "SELECT records_support.records_support_title as support FROM records_support";
-$sqlContainer = "SELECT container.container_reference as container FROM container";
-$sqlLastNui = "SELECT records.records_nui as nui FROM records ORDER BY records.id_records DESC LIMIT 1";
-
-$allClasse = $cnx->prepare($sqlClasse);
-$allStatut = $cnx->prepare($sqlStatut);
-$allSupport = $cnx->prepare($sqlSupport);
-$allContainer = $cnx->prepare($sqlContainer);
-$sqlLastNui = $cnx->prepare($sqlLastNui);
-
-$allClasse ->execute();
-$allStatut ->execute();
-$allSupport ->execute();
-$allContainer -> execute();
-$sqlLastNui -> execute();
-?>
 <?php
+    require_once 'models/repository/recordsManager.class.php';
+    require_once 'models/repository/records.class.php';
+
+    $records = new recordsManager();
+
+    $allClasse = $records -> getAllClasse();
+    $allStatut = $records -> getAllStatutTitle();
+    $allContainer = $records ->getAllContainer();
+    $allSupport = $records -> getAllSupportTitle();
+    $sqlLastNui = $records -> getLastNui();
+
     foreach($sqlLastNui as $Nui){
         echo "Le dernier enregistrement est : ". $Nui['nui'];
     }
@@ -33,7 +22,6 @@ $sqlLastNui -> execute();
 <tr> <td> Date de debut</td>  <td><input type="date" name="date_start" size="70"> </td></tr>
 <tr> <td> Date de fin</td>  <td> <input type="date" name="date_end" size="70"></td></tr>
 <tr> <td> Observation</td>  <td><input type="text-area" name="observation" width="70"> </td></tr>
-
 <tr><td> Classe</td><td>
 <select name="code_title">
 <?php if(isset($allClasse)){
