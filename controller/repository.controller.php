@@ -49,7 +49,7 @@ if($_GET['q'] == "repository"){
                 break ;
                 case "byDateForm" : include "views/repository/search/searchRecordsByDates.inc.php";
                 break ;
-                case "byOrganization" : include "views/repository/search/searchByOrganization.inc.php";
+                case "organization" : include "views/repository/search/searchByOrganization.inc.php";
                 break ;
                 case "byDatesResult" : include "views/repository/search/displayRecordsByDates.inc.php";
                 break ;

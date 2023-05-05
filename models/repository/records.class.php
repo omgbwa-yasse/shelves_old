@@ -21,6 +21,9 @@ public $_record_container_title;
 public $_record_classe;
 public $_controlStatus;
 
+private $_organization_id;
+private $_organization_title;
+
 public function __construct(){
     $this->_id_record;
     $this->_record_nui;
@@ -34,6 +37,8 @@ public function __construct(){
     $this->_record_support_title;
     $this->_record_link_id ;
     $this->_record_container_title ;
+    $this->_organization_title;
+    $this->_organization_id;
 }
 
 // Les Setters et les Getters
@@ -178,6 +183,38 @@ public function verificationRecordsParent(){
     }
     return $statut; 
 }
+// Organization
+public function setRecordOrganizationIdByTitle(){
+    $rqt= "SELECT organization_id FROM organization WHERE organization_title = '". $this->getRecordOrganizationTitle() ."'" ;
+    $rqt=$this->getCnx()->prepare($rqt);
+    $rqt->execute();
+    foreach($rqt as $id){
+        $this->_organization_id = $id['organization_id'];
+    }
+}
+public function setRecordOrganizationTitleById(){
+    $rqt= "SELECT organization_title FROM organization WHERE organization_id = '". $this->getRecordOrganizationId() ."'" ;
+    $rqt=$this->getCnx()->prepare($rqt);
+    $rqt->execute();
+    foreach($rqt as $title){
+        $this->_organization_title = $title['organization_title'];
+    }
+}
+
+
+public function getRecordOrganizationTitle(){
+   return $this->_organization_title;
+}
+public function getRecordOrganizationId(){
+    return $this->_organization_id;
+ }
+public function setRecordOrganizationId($id){
+    $this->_organization_id = $id;
+}
+public function setRecordOrganizationTitle($title){
+    $this->_organization_title = $title;
+}
+
 
 // Contenant (boite) archives
 public function setRecordContainerTitle($container_title){ $this->_record_container_title = $container_title;}
@@ -199,16 +236,17 @@ public function saveRecord(){
         $this->setRecordSupportId();
         $this->setRecordContainerId();
         $this->setRecordClasseIdByCodeTitle();
+        $this->setRecordOrganizationIdByTitle();
 
         // J'enregistre les données
         $rqt = " INSERT INTO records (id_records,records_nui, records_title, 
         records_date_start,records_date_end, records_observation, 
         records_status_id, records_support_id, records_link_id, 
-        container_id, classification_id ) 
+        container_id, classification_id, organization_id ) 
         values ('".$this->getRecordId()."','".$this->getRecordNui()."','". $this->getRecordTitle()."','".$this->getRecordDateStart()."',
         '". $this->getRecordDateEnd()."', '".$this->getRecordObservation()."','".$this->getRecordStatusId()."',
         '".$this->getRecordSupportId()."', '".$this->getRecordLinkId()."','".$this->getRecordContainerId()."',
-        '".$this->getRecordClasseId()."' )";
+        '".$this->getRecordClasseId()."', '".$this->getRecordOrganizationId()."' )";
 
         $rqt = $this->getCnx()->prepare($rqt);
         if($rqt ->execute()){
@@ -234,7 +272,8 @@ public function getRecordById(){
             classification.classification_code_title as code_title,
             records_support.records_support_title as support,
             records_status.records_status_title as statut,
-            container.container_reference as boite
+            container.container_reference as boite,
+            records.organization_id
             FROM records
             LEFT JOIN records_support 
             ON records_support.records_support_id = records.records_support_id
@@ -261,6 +300,8 @@ public function getRecordById(){
        $this->setRecordSupportTitle($current['support']);
        $this->setRecordLinkId($current['id_parent']);
        $this->setRecordContainerTitle($current['boite']);
+       $this->setRecordOrganizationId($current['organization_id']);
+       $this->setRecordOrganizationTitleById();
     }
 }
 public function deleteRecord($id){

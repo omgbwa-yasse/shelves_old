@@ -1,6 +1,7 @@
 <?php
 require_once 'models/repository/records.class.php';
 require_once 'models/repository/keyword.class.php';
+require_once 'models/tools/organization/organization.class.php';
 
 
 function displayRecord($record){
@@ -12,11 +13,18 @@ function displayRecord($record){
     // Aficher les enregistrement
     $record -> setRecordClasseIdByCodeTitle();
     $record -> setRecordContainerId();
+    $organization = new organization();
+    $organization -> setOrganizationById($record -> getRecordOrganizationId());
+
+
     echo "<table border=\"0\"> 
     <tr><th class=\"title\" colspan=\"2\">
     <a href=\"index.php?q=repository&categ=search&sub=display&id=".$record->getRecordId()."\">". $record-> getRecordTitle() ."</a></th></tr> 
     <tr><th class=\"element\"> Reférence <td class=\"element\">". $record-> getRecordNui() ."</td></tr>
     <tr><th class=\"element\"> Dates <td class=\"element\">". $record -> getRecordDateStart() ." au ". $record -> getRecordDateEnd()  ."</td></tr>
+    <tr><th class=\"element\"> Détenteur <td class=\"element\">
+    <a href=\"index.php?q=repository&categ=search&sub=organization&id=".$organization->getOrganizationId()."\">
+    ". $record -> getRecordOrganizationTitle() ."(". $organization -> getOrganizationCode() .")</a> </td></tr>
     <tr><th class=\"element\"> Observation <td class=\"element\">". $record -> getRecordObservation()  ."</td></tr>
     <tr><th class=\"element\"> Contenant <td class=\"element\"><a href=\"index.php?q=repository&categ=search&sub=container&id=".$record -> getRecordContainerId() ."\">". $record -> getRecordContainerTitle() ."</a></td></tr>
     <tr><th class=\"element\"> Classe <td class=\"element\"><a href=\"index.php?q=repository&categ=search&sub=byClasseId&id=".$record ->getRecordClasseId()."\">". $record -> getRecordClasseCodeTitle() ."</a></td></tr>

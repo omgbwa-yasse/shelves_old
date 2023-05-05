@@ -1,6 +1,8 @@
 <?php
     require_once 'models/repository/recordsManager.class.php';
     require_once 'models/repository/records.class.php';
+    require_once 'models/tools/organization/organizationManager.class.php';
+    require_once 'models/tools/organization/organization.class.php';
 
     $records = new recordsManager();
 
@@ -9,6 +11,9 @@
     $allContainer = $records ->getAllContainer();
     $allSupport = $records -> getAllSupportTitle();
     $sqlLastNui = $records -> getLastNui();
+
+    $organisation = new organizationManager();
+    $allOrganization = $organisation -> getAllOrganization();
 
     foreach($sqlLastNui as $Nui){
         echo "Le dernier enregistrement est : ". $Nui['nui'];
@@ -45,6 +50,21 @@
 ?>
 </select>
 </td></tr>
+
+<tr><td>Détenteur : </td><td>
+<select name="organization_title">
+<?php if(isset($allOrganization)){
+    foreach($allOrganization as $id){
+        $organization = new organization();
+        $organization ->setOrganizationById($id['organization_id']);
+        echo '<option>'.$organization ->getOrganizationTitle() .'</option>'; 
+    }
+} ?>
+</select>
+
+</td></tr>
+
+
 <tr><td>Boite</td><td> 
 <select name="container">
 <?php if(isset($allContainer)){

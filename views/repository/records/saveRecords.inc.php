@@ -11,8 +11,8 @@ $_POST['code_title'] = htmlspecialchars ($_POST['code_title']);
 $_POST['support']= htmlspecialchars ($_POST['support']);
 $_POST['container']= htmlspecialchars ($_POST['container']);
 $_POST['statut']= htmlspecialchars ($_POST['statut']);
-$_GET['id_parent']= htmlspecialchars ($_GET['id_parent']);
 $_POST['keywords']= htmlspecialchars ($_POST['keywords']);
+$_POST['organization_title']= htmlspecialchars ($_POST['organization_title']);
  
 
 $supportTitle = $_POST['support'] ;
@@ -29,11 +29,14 @@ $record->setRecordStatusTitle($_POST['statut']);
 $record->setRecordClasseCodeTitle($_POST['code_title']);
 $record->setRecordSupportTitle($_POST['support']); 
 $record->setRecordContainerTitle($_POST['container']);
+$record->setRecordOrganizationTitle($_POST['organization_title']);
 
-if (isset($_GET['id_parent']) && $_GET['id_parent'] != "") {
-  $record->setRecordLinkId($_GET['id_parent']);
-  echo "Id du parent enregistré est : " . $record->getRecordLinkId();
+if (!empty($_GET['id_parent'])) {
+    $_GET['id_parent']= htmlspecialchars ($_GET['id_parent']);
+    $record->setRecordLinkId($_GET['id_parent']);
+    echo "Id du parent enregistré est : " . $record->getRecordLinkId();
 } else {
+    echo "Premier enregistrement ...";
 }
 
 

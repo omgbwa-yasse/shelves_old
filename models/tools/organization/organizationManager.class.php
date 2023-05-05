@@ -7,6 +7,8 @@ private $title;
 
 private $code;
 
+
+
 // Organisation parent by id
 public function getOrganizationParentByChildId($id){ 
 
@@ -18,9 +20,9 @@ public function getOrganizationChildById($id){
 // Organization All Organization
 }
 public function getAllOrganization(){ 
-    $rqt = "SELECT * FROM organization ORDER BY organization.organization_id ASC";
+    $rqt = "SELECT * FROM organization ORDER BY organization.organization_title ASC";
     $rqt = $this->getCnx()->prepare($rqt);
-    $rqt->execute();
+    $rqt-> execute();
     return $rqt;
 }
 public function DisplayOrganisationByCode($code){
