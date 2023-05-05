@@ -158,6 +158,27 @@ public function getRecordSupportId(){return $this->_record_support_id; }
 public function setRecordLinkId($link_id){ $this->_record_link_id = $link_id;}
 public function getRecordLinkId(){ return $this->_record_link_id;}
 
+public function verificationRecordsChild(){ 
+    $statut = FALSE; 
+    $sql = "SELECT COUNT(*) FROM Records WHERE records.records_link_id = '".$this->getRecordId()."'"; 
+    $rqt = $this->getCnx()->prepare($sql); 
+    $rqt ->execute(); 
+    $occurence = $rqt->fetchColumn(); 
+    if($occurence > 0){ $statut = TRUE; } else{ $statut = FALSE; } 
+return $statut; 
+}
+public function verificationRecordsParent(){ 
+    $statut = NULL; 
+    $sql = "SELECT records.records_link_id as id_parent FROM Records WHERE records.id_records = '".$this->getRecordId()."'"; 
+    $rqt = $this->getCnx()->prepare($sql); 
+    $rqt ->execute(); 
+    $rqt = $rqt->fetchAll(); 
+    foreach($rqt as $value){
+        if($value['id_parent'] == NULL){ $statut = FALSE;} else{ $statut = TRUE; }
+    }
+    return $statut; 
+}
+
 // Contenant (boite) archives
 public function setRecordContainerTitle($container_title){ $this->_record_container_title = $container_title;}
 public function getRecordContainerTitle(){ return $this->_record_container_title;}
@@ -209,6 +230,7 @@ public function getRecordById(){
             records.records_date_start as date_start, 
             records.records_date_end as date_end,
             records.records_observation as observation,
+            records.records_link_id as id_parent,
             classification.classification_code_title as code_title,
             records_support.records_support_title as support,
             records_status.records_status_title as statut,
@@ -237,6 +259,7 @@ public function getRecordById(){
        $this->setRecordObservation($current['observation']);
        $this->setRecordClasseCodeTitle($current['code_title']);
        $this->setRecordSupportTitle($current['support']);
+       $this->setRecordLinkId($current['id_parent']);
        $this->setRecordContainerTitle($current['boite']);
     }
 }

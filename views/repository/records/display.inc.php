@@ -1,4 +1,5 @@
 <?php
+require_once 'models/repository/records.class.php';
 require_once 'models/repository/keyword.class.php';
 
 
@@ -7,21 +8,21 @@ function displayRecord($record){
     echo "<div style=\"float:right;width:200px;\">";
     optionNavigation($record);
     echo "</div>";
-    
+
     // Aficher les enregistrement
     $record -> setRecordClasseIdByCodeTitle();
     $record -> setRecordContainerId();
     echo "<table border=\"0\"> 
     <tr><th class=\"title\" colspan=\"2\">
     <a href=\"index.php?q=repository&categ=search&sub=display&id=".$record->getRecordId()."\">". $record-> getRecordTitle() ."</a></th></tr> 
-    <tr><th class=\"element\"> Nui <td class=\"element\">". $record-> getRecordNui() ."</td></tr>
-    <tr><th class=\"element\"> Dates<td class=\"element\">". $record -> getRecordDateStart() ." au ". $record -> getRecordDateEnd()  ."</td></tr>
+    <tr><th class=\"element\"> Reférence <td class=\"element\">". $record-> getRecordNui() ."</td></tr>
+    <tr><th class=\"element\"> Dates <td class=\"element\">". $record -> getRecordDateStart() ." au ". $record -> getRecordDateEnd()  ."</td></tr>
     <tr><th class=\"element\"> Observation <td class=\"element\">". $record -> getRecordObservation()  ."</td></tr>
     <tr><th class=\"element\"> Contenant <td class=\"element\"><a href=\"index.php?q=repository&categ=search&sub=container&id=".$record -> getRecordContainerId() ."\">". $record -> getRecordContainerTitle() ."</a></td></tr>
     <tr><th class=\"element\"> Classe <td class=\"element\"><a href=\"index.php?q=repository&categ=search&sub=byClasseId&id=".$record ->getRecordClasseId()."\">". $record -> getRecordClasseCodeTitle() ."</a></td></tr>
-    <tr><th class=\"element\"> Dans <td class=\"element\">". $record -> getRecordLinkId() ."</td></tr>
+    ". displayParentTitle($record) ."
     <tr><th class=\"element\"> Support <td class=\"element\">". $record -> getRecordSupportTitle() ."</td></tr>
-    <tr><th class=\"element\"> Mots clés<td class=\"element\">";
+    <tr><th class=\"element\"> Mots clés <td class=\"element\">";
 
     // Afficher les mots clés associés
     $KeywordsId = $record -> getAllKeywordsIdByRecordId();
@@ -44,33 +45,7 @@ function displayRecord($record){
 // Affichage long
 
 function displayRecordLong($record){
-    echo "<div class=\"records\" >";
-    
-    // Aficher les enregistrement
-    $record -> setRecordClasseIdByCodeTitle();
-    $record -> setRecordContainerId();
-    echo "<table border=\"0\"> 
-    <tr><th class=\"title\" colspan=\"2\">". $record-> getRecordTitle() ."</th></tr> 
-    <tr><th class=\"element\"> Nui <td class=\"element\">". $record-> getRecordNui() ."</td></tr>
-    <tr><th class=\"element\"> Dates<td class=\"element\">". $record -> getRecordDateStart() ." au ". $record -> getRecordDateEnd()  ."</td></tr>
-    <tr><th class=\"element\"> Observation <td class=\"element\">". $record -> getRecordObservation()  ."</td></tr>
-    <tr><th class=\"element\"> Contenant <td class=\"element\"><a href=\"index.php?q=repository&categ=search&sub=container&id=".$record -> getRecordContainerId() ."\">". $record -> getRecordContainerTitle() ."</a></td></tr>
-    <tr><th class=\"element\"> Classe <td class=\"element\"><a href=\"index.php?q=repository&categ=search&sub=byClasseId&id=".$record ->getRecordClasseId()."\">". $record -> getRecordClasseCodeTitle() ."</a></td></tr>
-    <tr><th class=\"element\"> Dans <td class=\"element\">". $record -> getRecordLinkId() ."</td></tr>
-    <tr><th class=\"element\"> Support <td class=\"element\">". $record -> getRecordSupportTitle() ."</td></tr>
-    <tr><th class=\"element\"> Mots clés<td class=\"element\">";
-
-    // Afficher les mots clés associés
-    $KeywordsId = $record -> getAllKeywordsIdByRecordId();
-    $KeywordsId = $KeywordsId->fetchAll(PDO::FETCH_ASSOC);
-    if(isset($KeywordsId)){
-            foreach($KeywordsId as $KeywordId){
-                    $word = new keyword();
-                    $word -> setKeywordId($KeywordId['keyword_id']); 
-                    echo "<a href=\"index.php?q=repository&categ=search&sub=byKeywordId&id=".$KeywordId['keyword_id']."\">";
-                    echo $word -> getKeywordById();
-                    echo "</a> : " ;
-            }}
+    displayRecord($record);
     echo "</td></tr><tr><td colspan=\"2\">";
     RecordsSubList($record);
     displayOption($record);
@@ -89,20 +64,12 @@ function displayOption($record){
 
 }
 function RecordsSubList($records){
-    echo "<div class=\"option\" >";
-    $id_records = $records-> getRecordId();
-    $listSubRecordsId = new recordsManager();
-    $listSubRecordsId -> getAllSubRecordsIdById($id_records);
-    foreach($listSubRecordsId as $id){
-        $record = new records();
-        $record -> setRecordId($id['id']);
-        $record -> getRecordById();
-
-        echo "<a href=\"index.php?q=repository&categ=create&sub=display&id=\"". $record -> getRecordId() .">";
-        echo $record ->controlNui() . ":" . $record -> getRecordTitle();
-        echo "</a>";
+    $records->verificationRecordsChild();
+    if($records->verificationRecordsChild()){ 
+        echo "<a href=\"index.php?q=repository&categ=search&sub=recordChild&id=". $records->getRecordId() . "\"> Voir les sous élements</a>";
+    } else{
+        echo "";
     }
-    echo "</div>";
 }
 function optionNavigation($record){
     echo "<div class=\"navigation\">
@@ -120,6 +87,21 @@ function optionNavigation($record){
          ";
 }
 
+function displayParentTitle($record){
+    $parentValue = NULL;
+    
+    if($record->verificationRecordsParent() == TRUE){
+        $id_parent = $record -> getRecordLinkId();
+        $parent = new records();
+        $parent -> setRecordId($id_parent);
+        $parent -> getRecordById();
+        $parentValue = "<tr><th class=\"element\"> In <td class=\"element\"><a href=\"index.php?q=repository&categ=search&sub=display&id=". $parent -> getRecordId()."\">". $parent -> getRecordTitle() ."</a></td></tr>";
+    }else{
+        $parentValue = "";
+    }
+    
+    return $parentValue;
+}
 
 
 

@@ -25,7 +25,7 @@
 <p>Enregistrements</p>
 <ul>
     <li><a href="index.php?q=repository&categ=create&sub=new">Nouvel enregistrement </a></li>
-    <li><a href="index.php?q=repository&categ=create&sub=last">Derniers enregistrements </a></li>
+    <li><a href="index.php?q=repository&categ=search&sub=last">Derniers enregistrements </a></li>
 </ul>
             
 <p>Chariot</p>

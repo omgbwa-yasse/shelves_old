@@ -44,7 +44,7 @@ include "template/sous_menu.inc.php";
 include "template/container.inc.php";
 
 if($_GET['q'] == "loan" && $_GET['categ'] == "search" && $_GET['sub'] == "allloan"){
-    include "views/demande/allloan.inc.php";
+    include "views/loan/allloan.inc.php";
 }
 
 ?>

@@ -11,6 +11,7 @@ $_POST['code_title'] = htmlspecialchars ($_POST['code_title']);
 $_POST['support']= htmlspecialchars ($_POST['support']);
 $_POST['container']= htmlspecialchars ($_POST['container']);
 $_POST['statut']= htmlspecialchars ($_POST['statut']);
+$_GET['id_parent']= htmlspecialchars ($_GET['id_parent']);
 $_POST['keywords']= htmlspecialchars ($_POST['keywords']);
  
 
@@ -26,20 +27,24 @@ $record->setRecordDateEnd($_POST['date_end']);
 $record->setRecordObservation($_POST['observation']);
 $record->setRecordStatusTitle($_POST['statut']);
 $record->setRecordClasseCodeTitle($_POST['code_title']);
-$record->setRecordSupportTitle($_POST['support']);
-$record->setRecordLinkId(NULL); 
+$record->setRecordSupportTitle($_POST['support']); 
 $record->setRecordContainerTitle($_POST['container']);
-if(!empty($_GET['id_parent'])){
-    $record->setRecordLinkId($_POST['id_parent']) ;
-}else{ }
+
+if (isset($_GET['id_parent']) && $_GET['id_parent'] != "") {
+  $record->setRecordLinkId($_GET['id_parent']);
+  echo "Id du parent enregistré est : " . $record->getRecordLinkId();
+} else {
+}
+
+
 
 if($record ->controlNui() == TRUE){
         $record->setRecordTempNui();
         $record->saveRecord();
-        include "views/repository/saveRecordsKeywords.inc.php";
+        include "views/repository/records/saveRecordsKeywords.inc.php";
     } else {
         $record->saveRecord();
-        include "views/repository/saveRecordsKeywords.inc.php";
+        include "views/repository/records/saveRecordsKeywords.inc.php";
     };
 ?>
 
