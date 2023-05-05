@@ -6,10 +6,11 @@ require_once 'models/tools/organization/organization.class.php';
 
 function displayRecordLight($record){
     // Aficher les enregistrement
-    echo "<a href=\"index.php?q=repository&categ=search&sub=display&id=".$record->getRecordId() ."\">";
+    echo "<a style=\"\"
+    href=\"index.php?q=repository&categ=search&sub=display&id=".$record->getRecordId() ."\">";
     $organization = new organization(); 
     $organization ->setOrganizationById($record->getOrganizationId());
-    echo $record-> getRecordTitle() ." ( reférence : ". $record-> getRecordNui() ." ) ". $organization ->getOrganizationTitle() 
+    echo $record-> getRecordTitle() ." (". $record-> getRecordNui() .") ". $organization ->getOrganizationTitle() 
     ." : ". $record->getRecordDateStart()." au ". $record ->getRecordDateEnd() ."</a>";
 
 }
