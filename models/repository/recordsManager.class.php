@@ -1,6 +1,9 @@
 <?php
 require_once 'models/connexion.class.php';
 class recordsManager extends connexion{
+public $_organization_id;
+public $_parent_id;
+public $_organization_title;
 
 public function getAllrecordsId(){
         $allrecords = "SELECT id_records FROM records";
@@ -62,7 +65,42 @@ public function getLastNui(){
         $sqlLastNui -> execute();
         return $sqlLastNui;
 }
+public function getOrganizationId(){
+        return $this->_organization_id; 
+}
+public function setOrganizationId($id){
+        $this->_organization_id = $id; 
+}
+public function getOrganizationTitle(){
+        return $this->_organization_title;
+}
+public function setOrganizationTitle($title){
+        $this->_organization_title = $title;
+}
+public function setOrganizationById(){
+        $rqt = "SELECT organization_id as id,
+        organization_code as code, 
+        organization_title as title,	
+        organization_observation, 
+        organization_parent as parent_id, 
+        user_id as user
+        FROM organization 
+        WHERE organization.organization_id = '". $this->getOrganizationId() ."'";
+        $rqt = $this->getCnx()->prepare($rqt);
+        $rqt->execute();
 
+        foreach($rqt as $organization){
+        $this->setOrganizationId($organization['id']);
+        $this->setOrganizationTitle($organization['title']);
+        }; 
+}
+
+public function getAllRecordsByOrganizationId(){
+        $rqt = "SELECT records.id_records as id FROM records WHERE records.organization_id ='".$this->getOrganizationId()."'";
+        $rqt = $this->getCnx()->prepare($rqt);
+        $rqt -> execute();
+        return $rqt;
+}
 
 
 

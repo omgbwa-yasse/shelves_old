@@ -21,8 +21,8 @@ public $_record_container_title;
 public $_record_classe;
 public $_controlStatus;
 
-private $_organization_id;
-private $_organization_title;
+public $_organization_id;
+public $_organization_title;
 
 public function __construct(){
     $this->_id_record;

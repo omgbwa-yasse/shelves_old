@@ -4,6 +4,16 @@ require_once 'models/repository/keyword.class.php';
 require_once 'models/tools/organization/organization.class.php';
 
 
+function displayRecordLight($record){
+    // Aficher les enregistrement
+    echo "<a href=\"index.php?q=repository&categ=search&sub=display&id=".$record->getRecordId() ."\">";
+    $organization = new organization(); 
+    $organization ->setOrganizationById($record->getOrganizationId());
+    echo $record-> getRecordTitle() ." ( reférence : ". $record-> getRecordNui() ." ) ". $organization ->getOrganizationTitle() 
+    ." : ". $record->getRecordDateStart()." au ". $record ->getRecordDateEnd() ."</a>";
+
+}
+
 function displayRecord($record){
     echo "<div class=\"records\" >";
     echo "<div style=\"float:right;width:200px;\">";
