@@ -46,27 +46,26 @@ function displayRecord($record){
 
 function displayRecordLong($record){
     displayRecord($record);
-    echo "</td></tr><tr><td colspan=\"2\">";
-    RecordsSubList($record);
+    echo "<div class=\"records\">";
     displayOption($record);
-    echo "</td></tr></table>";
     echo "</div>";
 
 }
 
 function displayOption($record){
     echo "<div class=\"option\" >
-        <a class=\"option element\" href=\"index.php?q=repository&categ=create&sub=child&id=". $record->getRecordId() ." \">Ajouter sous-dossier</a>
-        <a class=\"option element\" href=\"index.php?q=repository&categ=create&sub=update&id=". $record->getRecordId() ." \">Modifier</a>
-        <a class=\"option element\" href=\"index.php?q=repository&categ=create&sub=export&id=". $record->getRecordId() ." \">exporter</a>
-        <a class=\"option element\" href=\"index.php?q=repository&categ=create&sub=delete&id=". $record->getRecordId() ." \">Supprimer</a>
+            <a class=\"option element\" href=\"index.php?q=repository&categ=create&sub=child&id=". $record->getRecordId() ." \">Ajouter sous-dossier</a>
+            <a class=\"option element\" href=\"index.php?q=repository&categ=create&sub=update&id=". $record->getRecordId() ." \">Modifier</a>
+            <a class=\"option element\" href=\"index.php?q=repository&categ=create&sub=export&id=". $record->getRecordId() ." \">exporter</a>
+            <a class=\"option element\" href=\"index.php?q=repository&categ=create&sub=delete&id=". $record->getRecordId() ." \">Supprimer</a>
         </div>";
 
 }
 function RecordsSubList($records){
     $records->verificationRecordsChild();
-    if($records->verificationRecordsChild()){ 
-        echo "<a href=\"index.php?q=repository&categ=search&sub=recordChild&id=". $records->getRecordId() . "\"> Voir les sous élements</a>";
+    if($records->verificationRecordsChild()){
+
+        echo "<br/><a href=\"index.php?q=repository&categ=search&sub=recordChild&id=". $records->getRecordId() . "\"> Voir les sous élements</a>";
     } else{
         echo "";
     }
