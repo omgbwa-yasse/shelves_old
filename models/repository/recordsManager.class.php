@@ -22,15 +22,15 @@ public function MgGetRecordsByDates($date_start, $date_end){
 }
 public function MgGetLastRecords(){
         $records = "SELECT records.id_records as id FROM records ORDER  BY id DESC LIMIT 5";
-        $ecords = $this->getCnx()->prepare($records);
-        $ecords -> execute();
-        return $ecords;
+        $records = $this->getCnx()->prepare($records);
+        $records -> execute();
+        return $records;
 }
 public function getAllSubRecordsIdById($id_records){
-        $records = "SELECT records.records_parent_id as parent_id FROM records WHERE records.id_records ='".$id_records."'";
-        $ecords = $this->getCnx()->prepare($records);
-        $ecords -> execute();
-        return $ecords;
+        $records = "SELECT records.id_records as id FROM records WHERE records.records_link_id ='".$id_records."'";
+        $records = $this->getCnx()->prepare($records);
+        $records -> execute();
+        return $records;
 }
 public function getAllClasse(){
         $sqlClasse = "SELECT classification.classification_code_title as code_title FROM classification";
