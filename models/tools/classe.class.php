@@ -62,19 +62,32 @@ public function getAllClassification(){
   $result = $allClasse->setFetchMode(PDO::FETCH_ASSOC);
 
   echo "<table border=0>";
-  echo "<tr><th> type de classification </th><th>code de classification</th><th>Titre de classification</th> <th>observation </th> <th> ID parent </th></tr>";
-  foreach($allClasse->fetchAll() as $row) {
-    echo "<tr>";
-   
-    echo "<td>" . $row["classification_type_title"] . "</td>";
-    echo "<td>" . $row["classification_code"] . "</td>";
-    echo "<td>" . $row["classification_title"] . "</td>";
-    echo "<td>" . $row["classification_observation"] . "</td>";
-    echo "<td>" . $row["classification_parent_id"] . "</td>";
-    echo "</tr>";
-}
-echo "</table>";
+ // echo "<tr><th> type de classification </th><th>code de classification</th><th>Titre de classification</th> <th>observation </th> <th> ID parent </th></tr>";
+ foreach($allClasse->fetchAll() as $row) {
+  echo "<details>";
+  echo "<summary>";
+  echo "Type title: " . $row["classification_type_title"] . " | ";
+  echo "CODE: " . $row["classification_code"] . " | ";
+  echo "Title: " . $row["classification_title"] . " | ";
+  echo "Observation: " . $row["classification_observation"] . " | ";
+  echo "ID: " . $row["classification_parent_id"];
+  echo "</summary>";
 
+  $id = $row["classification_id"];
+  $childofclass = $this->getchildofclass($id);
+  
+  foreach($childofclass->fetchAll() as $childrow) {
+      echo "<div style='margin-left: 20px;'>";
+      //echo "Type title: " . $childrow["classification_type_title"] . " | ";
+      echo "CODE: " . $childrow["classification_code"] . " | ";
+      echo "Title: " . $childrow["classification_title"] . " | ";
+      echo "Observation: " . $childrow["classification_observation"] . " | ";
+      echo "ID: " . $childrow["classification_parent_id"];
+      echo "</div>";
+  }
+
+  echo "</details>";
+}
   }
   public function addClassification(){
     $sql = "INSERT INTO dbms.classification (
