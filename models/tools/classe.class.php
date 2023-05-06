@@ -1,5 +1,5 @@
 <?php
-require 'models/connexion.class.php';
+require_once 'models/connexion.class.php';
 class classification extends connexion{
 public    $AllClassCodeTitle ;
 public function __construct(){
