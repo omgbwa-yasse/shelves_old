@@ -1,8 +1,7 @@
 <?php 
     include "template/sous_menu.inc.php"; 
+    
 ?>
-
-
 <p>Recherche</p>
 <ul>        
     <li>
@@ -42,8 +41,9 @@
 
 
 <?php
-    include "template/container.inc.php";
-    require_once "controller/repository.controller.php";
+    include_once "template/container.inc.php";
+    include_once "controller/repository.controller.php";
+    
     
 ?>
 

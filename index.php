@@ -5,9 +5,10 @@ include_once 'template/template.php';
 include_once 'controller/index.controller.php';
 
 if(empty($_GET['q'])){
-        require "views/repository.views.php";
-        }
-        else{ menu(); }
+        menu();
+        }else{ 
+        menu(); 
+}
          
 include "template/footer.inc.php"; 
 ?>

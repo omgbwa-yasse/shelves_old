@@ -5,12 +5,11 @@ if($_GET['q'] == "repository"){
 
         /* redirige si il y'a pas de categorie */
         if(empty($_GET['categ'])){
-            include "views/repository/search/selecteClasse.inc.php" ;
-        }
-    
-
+            include "views/repository/search/allrecords.inc.php" ;
+        } 
+        else if(!empty($_GET['categ'])){
         /* Case create */
-        if($_GET['q'] == "repository" && $_GET['categ'] == "create"){
+        if($_GET['q'] == "repository" && $_GET['categ'] == "create" && !empty($_GET['sub'])){
             switch($_GET['sub']){
                 case "new" : include "views/repository/records/createRecords.inc.php";
                 break ;
@@ -27,7 +26,7 @@ if($_GET['q'] == "repository"){
         }
         
         /* Case search */
-        if($_GET['q'] == "repository" && $_GET['categ'] == "search"){
+        else if($_GET['q'] == "repository" && $_GET['categ'] == "search" && !empty($_GET['sub'])){
             switch($_GET['sub']){
                 case "last" : include "views/repository/search/lastRecords.inc.php";
                 break ;
@@ -57,5 +56,10 @@ if($_GET['q'] == "repository"){
                 break ;
                 case "default" : include "views/repository/search/displayQuery.inc.php";
                 break ;
-        }}}
+                default : include "views/repository/search/allrecords.inc.php";
+                    }
+                
+                }
+         }
+    } 
 ?>

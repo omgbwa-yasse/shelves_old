@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="template/css/style.css">
-    <title> <?php echo $_GET['q']; ?> </title>
+    <title> <?php if(empty($_GET['q'])){ echo "Home";}else{ echo "Module ".$_GET['q']; } ?> </title>
 </head>
 
    <body>
