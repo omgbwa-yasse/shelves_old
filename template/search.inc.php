@@ -1,7 +1,7 @@
 
 <div>
 <div style="position:absolute;">
-    <b style="display:left; font-size:40px;">My Schelves</b> 
+    <b style="display:left; font-size:40px;">My Shelves</b> 
 </div>
 <div style="position:relative; margin-bottom :10px; margin-left:1000px;">
     
