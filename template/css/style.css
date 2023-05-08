@@ -21,7 +21,8 @@ a.hover{
 
 body{
     margin-top:30px;
-    margin-left: 100px;
+    margin-left: 20px;
+    margin-right: 20px;
     border:10px red sold;
     
 }
@@ -111,9 +112,9 @@ width: 100%;
     background-color: #ffffff;
     grid-area: con;
     border-radius: 1%;
-    padding: 2.5em;
+    padding: 2em;
     width : 900px;
-    margin-left:90px;
+    margin-left:50px;
 }
 
 div.records{
@@ -207,6 +208,9 @@ form{
     -moz-border-radius: 5px;
     -ms-border-radius: 5px;
     -o-border-radius: 5px;
+}
+.formular input[type="text"] .important{
+    background-color: rgb(238, 181, 149);
 }
 .formular input[type="text-area"] {
     padding-right: 10px;

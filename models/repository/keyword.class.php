@@ -49,10 +49,7 @@ public function linkKeywordRecord(){
                     $this->searchKeywordId();
                     $savekeyword = "INSERT INTO records_keywords (keyword_id,records_id) VALUES ('". $this->getKeywordId() ."','". $this->getRecordId()."')";
                     $savekeyword = $this->getCnx() ->prepare($savekeyword);
-                    if($savekeyword->execute()){
-                        echo "<br> mot clé et keyword liés dans records_keywords (Keywords) : ". $this->getKeyword() ;
-                        echo "<br> mot clé et idrecord liés dans records_keywords (id_records) : ". $this->getRecordId();
-                    }
+                    $savekeyword->execute();
                 }
 public function KeywordVerification(){
     $KeywordStatus = NULL;
@@ -72,9 +69,7 @@ public function KeywordVerification(){
 public function saveNewKeyword($_keyword){
         $savekeyword = "INSERT INTO keywords (keyword_id,keyword) VALUES ( NULL,'". $this->_keyword."')";
         $savekeyword = $this->getCnx()->prepare($savekeyword);
-        if($savekeyword -> execute()){
-             echo "</br> mot clé enregistrés est ". $this->_keyword ;
-        };                    
+        $savekeyword -> execute();                    
                     
         // Recupération de l'ID du mot clé enregistré
         $keywordID = "SELECT keyword_id FROM keywords WHERE keywords.keyword = '".$this->_keyword."'" ;
@@ -82,15 +77,14 @@ public function saveNewKeyword($_keyword){
         $keywordID ->execute();
         $keyID = NULL;
         foreach($keywordID as $key){
-        $keyID = $key['keyword_id'] ; }
-        if(isset($keyID)){ echo "<br> Id du clé enregistré est : " .$keyID; }
+        $keyID = $key['keyword_id'] ; 
+        }
+    
 
         // Insertion des données dans la table d'association
         $savekeyword = "INSERT INTO records_keywords (keyword_id,records_id) VALUES ('". $keyID."','". $this->getRecordId()."')";
         $savekeyword = $this->getCnx()->prepare($savekeyword);
-        if($savekeyword->execute()){
-            echo "<br> mot clé et records liés dans records_keywords";
-        };
+        $savekeyword->execute();
 }
  public function deleteKeyword(){
         // On affiche la liste de mots clés associés au document
@@ -107,18 +101,15 @@ public function saveNewKeyword($_keyword){
         foreach($rqt as $delkey){
             if($delkey['0'] == 1 OR $delkey['0'] == 0){
                 $delid = $this->getKeywordId();
-                echo "Mot de clé à supprimer est : ". $this->getKeywordById();
                 $rqt="DELETE FROM keywords WHERE keywords.keyword_id = '". $delid ."'";
                 $rqt=$this->getCnx()->prepare($rqt);
-                if($rqt->execute()){ echo "mot supprimé ...";}
+                $rqt->execute();
                 
                 $rqt="DELETE FROM records_keywords WHERE records_keywords.keyword_id = '". $delid."'";
                 $rqt=$this->getCnx()->prepare($rqt);
-                if($rqt->execute()){ echo "<br>Liaison supprimé avec le records ...";}
+                $rqt->execute();
 
-            } else{
-                echo "Ce mot clé (".$this->getKeywordById() .") est en cours d\'utilisation";
-            }
+            }else{}
             }
         }
     }

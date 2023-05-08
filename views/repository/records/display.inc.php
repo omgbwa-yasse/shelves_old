@@ -76,11 +76,11 @@ function displayOption($record){
         </div>";
 
 }
-function RecordsSubList($records){
-    $records->verificationRecordsChild();
-    if($records->verificationRecordsChild()){
+function RecordsSubList($record){
+    $record->verificationRecordsChild();
+    if($record->verificationRecordsChild()){
 
-        echo "<br/><a href=\"index.php?q=repository&categ=search&sub=recordChild&id=". $records->getRecordId() . "\"> Voir les sous élements</a>";
+        echo "<br/><a href=\"index.php?q=repository&categ=search&sub=recordChild&id=". $record->getRecordId() . "\"> Voir les sous élements</a>";
     } else{
         echo "";
     }

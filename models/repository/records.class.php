@@ -110,7 +110,6 @@ public function setRecordStatusId(){
     $statutId =$this->getCnx()->prepare($statutId);
     $statutId->execute();
     foreach($statutId as $id){
-        echo "<br> id du statut est :".$id['records_status_id'];
     $this->_record_status_id = $id['records_status_id'];
     }
 }
@@ -249,9 +248,7 @@ public function saveRecord(){
         '".$this->getRecordClasseId()."', '".$this->getRecordOrganizationId()."' )";
 
         $rqt = $this->getCnx()->prepare($rqt);
-        if($rqt ->execute()){
-        echo "Enregistrement effectué par la classe records...";
-        };
+        $rqt ->execute();
 }
 public function getAllKeywordsIdByRecordId(){
     $rqt = "SELECT records_keywords.keyword_id FROM records_keywords WHERE records_keywords.records_id = '". $this->getRecordId()."' ";
@@ -307,7 +304,7 @@ public function getRecordById(){
 public function deleteRecord($id){
     $rqt ="DELETE FROM records WHERE records.id_records = '". $id ."'";
     $rqt = $this->getCnx()->prepare($rqt);
-    if($rqt -> execute()){echo " Enregistrement supprimé ... ";};
+    $rqt -> execute();
 }
 
 

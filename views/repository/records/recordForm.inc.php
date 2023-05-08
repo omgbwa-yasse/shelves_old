@@ -1,3 +1,33 @@
+<?php
+require_once 'models/repository/recordsManager.class.php';
+require_once 'models/repository/records.class.php';
+require_once 'models/tools/organization/organizationManager.class.php';
+require_once 'models/tools/organization/organization.class.php';
+    
+
+$records = new recordsManager();
+
+$allClasse = $records -> getAllClasse();
+$allStatut = $records -> getAllStatutTitle();
+$allContainer = $records ->getAllContainer();
+$allSupport = $records -> getAllSupportTitle();
+$sqlLastNui = $records -> getLastNui();
+
+$organisation = new organizationManager();
+$allOrganization = $organisation -> getAllOrganization();
+
+    
+
+foreach($sqlLastNui as $Nui){
+    echo "<div class=\"section\"> <h2>Description archivistique</h2></div>";
+    echo "<div id=\"notice\">Le dernier enregistrement est : ". $Nui['nui'];
+    echo "</div>";
+}
+
+
+?>
+
+
 
 <table class="formular">
 <tr> <td class="titre"> N° inventaire </td>  <td> <input type="text" name="nui" size="30"></td> </tr>
@@ -16,7 +46,7 @@
 </td></tr>
 
 <tr><td class="titre">Détenteur : </td><td>
-<select name="organisation_title">
+<select name="organization_title">
 <?php if(isset($allOrganization)){
     foreach($allOrganization as $id){
         $organization = new organization();
