@@ -6,9 +6,9 @@ require 'models/tools/classification/classesManager.class.php';
     $allClasses = $allClasseCodeTitle->getAllClasses(); ?>
 
     <form method="POST" action="index.php?q=repository&categ=search&sub=byClasse">
-        <select name="classe_id">
+        <select name="classification_id">
             <?php foreach($allClasses as $classe){
-                echo "<option  value=\"".$classe['classification_id']."\"> ".$classe['classification_code'] . " - ".$classe['classification_title']."</option>";} 
+                echo "<option value=\"".$classe['classification_id']."\"> ".$classe['classification_code'] . " - ".$classe['classification_title']."</option>";} 
             ?>
         </select> <br/>
     <input type="submit" name="envoyer">

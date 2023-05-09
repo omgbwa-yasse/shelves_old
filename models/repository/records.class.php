@@ -255,7 +255,7 @@ public function saveRecord(){
         $this->setRecordStatusId();
         $this->setRecordSupportId();
         $this->setRecordContainerId();
-        $this->setRecordClasseByTitle();
+        $this->setRecordClasseById();
         $this->setRecordOrganizationIdByTitle();
 
         // J'enregistre les données

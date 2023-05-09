@@ -29,7 +29,7 @@ public function setClasseParentId($id){ $this->_classe_parent_id = $id;}
 public function setClasseObservation($observation){ $this->_classe_observation = $observation; }
 
 public function setClasseById(){
-  $rqt = "SELECT * FROM classification";
+  $rqt = "SELECT * FROM classification WHERE classification.classification_id='". $this->getClasseId() ."'";
   $rqt = $this->getCnx()->prepare($rqt);
   $rqt -> execute();
   foreach($rqt as $classe){

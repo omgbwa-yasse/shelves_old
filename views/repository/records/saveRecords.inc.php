@@ -3,14 +3,16 @@
 require 'models/repository/records.class.php';
 require_once 'views/repository/records/display.inc.php';
 
-if(isset($_POST['nui']) || isset($_POST['title']) || isset($_POST['date_start']) || isset($_POST['organization_title'])){
+echo " L'ID de la classification : ". $_POST['classification_id'];
+
+if(isset($_POST['nui']) && isset($_POST['title']) && isset($_POST['date_start']) && isset($_POST['organization_title'])){
 
             $_POST['nui']= htmlspecialchars ($_POST['nui']);
             $_POST['title']= htmlspecialchars ($_POST['title']);
             $_POST['date_start'] = htmlspecialchars ($_POST['date_start']);
             $_POST['date_end']= htmlspecialchars ($_POST['date_end']);
             $_POST['observation'] = htmlspecialchars($_POST['observation']) ;
-            $_POST['code_title'] = htmlspecialchars ($_POST['code_title']);
+            $_POST['classification_id'] = htmlspecialchars ($_POST['classification_id']);
             $_POST['support']= htmlspecialchars ($_POST['support']);
             $_POST['container']= htmlspecialchars ($_POST['container']);
             $_POST['statut']= htmlspecialchars ($_POST['statut']);
@@ -29,7 +31,8 @@ if(isset($_POST['nui']) || isset($_POST['title']) || isset($_POST['date_start'])
             $record->setRecordDateEnd($_POST['date_end']);
             $record->setRecordObservation($_POST['observation']);
             $record->setRecordStatusTitle($_POST['statut']);
-            $record->setRecordClasseCodeTitle($_POST['code_title']);
+            $record->setRecordClasseId($_POST['classification_id']);
+            $record->setRecordClasseById();
             $record->setRecordSupportTitle($_POST['support']); 
             $record->setRecordContainerTitle($_POST['container']);
             $record->setRecordOrganizationTitle($_POST['organization_title']);

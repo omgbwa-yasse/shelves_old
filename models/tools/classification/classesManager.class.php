@@ -21,10 +21,9 @@ public function getAllClassesTitle(){
     return $allclasseId;
    }
    public function getAllRecordsIdByClasseId($id){
-    $classes_id = "SELECT *  FROM records LEFT JOIN records_classification 
-    ON records_classification.classification_id = ?";
-    $classes_id = $this->getCnx()->prepare('$id');
-    $classes_id -> execute($id);
+    $classes_id = "SELECT *  FROM records WHERE records_classification.classification_id = '".$id."'";
+    $classes_id = $this->getCnx()->prepare($classes_id);
+    $classes_id -> execute();
    return $classes_id;
 }
 public function getAllClasseChildById($id){

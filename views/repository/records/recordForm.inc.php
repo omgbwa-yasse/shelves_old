@@ -8,6 +8,7 @@ require_once 'models/tools/classification/classesManager.class.php';
 
 $records = new recordsManager();
 $allClasses = new activityClassesManager();
+$allClasses = $allClasses ->getAllClasses();
 $allStatut = $records -> getAllStatutTitle();
 $allContainer = $records ->getAllContainer();
 $allSupport = $records -> getAllSupportTitle();
@@ -36,10 +37,10 @@ foreach($sqlLastNui as $Nui){
 <tr> <td class="titre"> Observation</td>  <td><input type="text-area" name="observation" width="70"> </td></tr>
 
 <tr><td class="titre"> Classe</td><td>
-<select name="classe_id">
+<select name="classification_id">
 <?php if(isset($allClasses)){
     foreach($allClasses as $classe){
-        echo '<option value=\"'.$classe['classe_id'].'\">'.$classe['code'].'-'.$classe['title'] .'</option>'; 
+        echo "<option value=\"".$classe['classification_id']."\">".$classe['classification_code']." - ".$classe['classification_title'] ."</option>"; 
     }
 } ?>
 </select>

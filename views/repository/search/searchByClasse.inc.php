@@ -4,25 +4,22 @@ require_once "models/repository/recordsManager.class.php";
 require_once 'views/repository/records/display.inc.php';
 require_once 'models/tools/classification/classe.class.php';
 
-
+// Display title
 $classeSearch = new activityClasse();
-$classeSearch ->setClasseId($_POST['classe_id']);
+$classeSearch ->setClasseId($_POST['classification_id']);
 $classeSearch ->setClasseById();
+$id = $classeSearch->getClasseId();
+echo "<h1>Liste des documents de la la classse :". $classeSearch->getClasseCode()." - " .$classeSearch->getClasseTitle()."</h1>";
 
-// Afficher les ID
-echo "<h1>Liste des documents de la la classse : ". $classeSearch->getClasseTitle() ."</h1>";
 
-
+// Search Records
 $AllRecord = new recordsManager();
-$recordsId = $AllRecord -> getAllrecordsIdByClasseId($classeSearch->getClasseId());
-    if(!empty($recordsId)){
-            foreach($recordsId as $recordId){
-            $record = new records();
-            $record -> setRecordId($recordId['id']);
-            $record -> getRecordById();
-            displayRecordLight($record); }
-        }else{
-            echo "Aucun document associé ...";
-        }
+$recordsId = $AllRecord -> getAllrecordsIdByClasseId($id);
+foreach($recordsId as $recordId){
+    $record = new records();
+    $record -> setRecordId($recordId['id']);
+    $record -> getRecordById();
+    displayRecordLight($record); 
+    }
 
 ?>
