@@ -35,9 +35,7 @@ public function getAllClasseChildById($id){
     return $child_class;
   }
 public function getAllClasses(){
-    $allClasses = "SELECT * FROM classification_type JOIN classification 
-    ON classification_type.classification_type_id = classification.classification_type_id";
-  
+    $allClasses = "SELECT * FROM classification";
     $allClasses = $this->getCnx()->prepare($allClasses);
     $allClasses ->execute();
     $allClasses = $allClasses ->setFetchMode(PDO::FETCH_ASSOC);

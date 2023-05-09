@@ -10,7 +10,7 @@ public $_record_observation;
 public $_record_status_title;
 public $_record_status_id;
 public $_record_classe_title;
-public $_record_classe_code_title;
+public $_record_classe_code;
 public $_record_classe_id;
 public $_record_support_id;
 public $_record_support_title;
@@ -32,13 +32,14 @@ public function __construct(){
     $this->_record_date_end;
     $this->_record_observation;
     $this->_record_status_title;
-    $this->_record_classe_code_title;
     $this->_record_classe_id;
     $this->_record_support_title;
     $this->_record_link_id ;
     $this->_record_container_title ;
     $this->_organization_title;
     $this->_organization_id;
+    $this->_record_classe_code;
+    $this->_record_classe_title;
 }
 
 // Les Setters et les Getters
@@ -118,17 +119,48 @@ public function getRecordStatusId(){ return $this->_record_status_id;}
 
 // Classe de la classification
 
-public function setRecordClasseCodeTitle($classe_code_title){ $this->_record_classe_code_title = $classe_code_title;}
+public function setRecordClasseCode($classe_code){ $this->_record_classe_code = $classe_code;}
+public function getRecordClasseCode(){ return $this->_record_classe_code;}
 
-public function getRecordClasseCodeTitle(){ return $this->_record_classe_code_title;}
-public function setRecordClasseIdByCodeTitle(){
-    $classeId = "SELECT classification_id FROM classification WHERE classification_code_title = '". $this->getRecordClasseCodeTitle()."' " ;
+public function setRecordClasseTitle($classe_title){ $this->_record_classe_title = $classe_title;}
+public function getRecordClasseTitle(){ return $this->_record_classe_title;}
+
+
+public function setRecordClasseByCode(){
+    $classeId = "SELECT * FROM classification WHERE classification_code = '". $this->getRecordClasseCode()."' " ;
     $classeId=$this->getCnx()->prepare($classeId);
     $classeId->execute();
     foreach($classeId as $id){
         $this->_record_classe_id = $id['classification_id'];
+        $this->_record_classe_code = $id['classification_code'];
+        $this->_record_classe_title = $id['classification_title'];
+
+    }}
+
+public function setRecordClasseByTitle(){
+    $classeId = "SELECT * FROM classification WHERE classification_title = '". $this->getRecordClasseTitle()."' " ;
+    $classeId=$this->getCnx()->prepare($classeId);
+    $classeId->execute();
+    foreach($classeId as $id){
+        $this->_record_classe_id = $id['classification_id'];
+         $this->_record_classe_code = $id['classification_code'];
+        $this->_record_classe_title = $id['classification_title'];
     }
 }
+public function setRecordClasseById(){
+    $classeId = "SELECT * FROM classification WHERE classification_id = '". $this->getRecordClasseId()."' " ;
+    $classeId=$this->getCnx()->prepare($classeId);
+    $classeId->execute();
+    foreach($classeId as $id){
+        $this->_record_classe_id = $id['classification_id'];
+        $this->_record_classe_code = $id['classification_code'];
+        $this->_record_classe_title = $id['classification_title'];
+    }
+}
+
+
+
+
 public function setRecordClasseId($id){ $this->_record_classe_id = $id;}
 public function getRecordClasseId(){return $this->_record_classe_id;}
 
@@ -234,7 +266,7 @@ public function saveRecord(){
         $this->setRecordStatusId();
         $this->setRecordSupportId();
         $this->setRecordContainerId();
-        $this->setRecordClasseIdByCodeTitle();
+        $this->setRecordClasseByTitle();
         $this->setRecordOrganizationIdByTitle();
 
         // J'enregistre les données
@@ -266,7 +298,7 @@ public function getRecordById(){
             records.records_date_end as date_end,
             records.records_observation as observation,
             records.records_link_id as id_parent,
-            classification.classification_code_title as code_title,
+            classification.classification_title as classe_title,
             records_support.records_support_title as support,
             records_status.records_status_title as statut,
             container.container_reference as boite,
@@ -293,7 +325,8 @@ public function getRecordById(){
        $this->setRecordDateStart($current['date_start']);
        $this->setRecordDateEnd($current['date_end']);
        $this->setRecordObservation($current['observation']);
-       $this->setRecordClasseCodeTitle($current['code_title']);
+       $this->setRecordClasseTitle($current['classe_title']);
+       $this->setRecordClasseByTitle();
        $this->setRecordSupportTitle($current['support']);
        $this->setRecordLinkId($current['id_parent']);
        $this->setRecordContainerTitle($current['boite']);

@@ -3,11 +3,11 @@ require_once 'models/repository/recordsManager.class.php';
 require_once 'models/repository/records.class.php';
 require_once 'models/tools/organization/organizationManager.class.php';
 require_once 'models/tools/organization/organization.class.php';
+require_once 'models/tools/classification/classesManager.class.php';
     
 
 $records = new recordsManager();
-
-$allClasse = $records -> getAllClasse();
+$allClasses = new activityClassesManager();
 $allStatut = $records -> getAllStatutTitle();
 $allContainer = $records ->getAllContainer();
 $allSupport = $records -> getAllSupportTitle();
@@ -36,10 +36,10 @@ foreach($sqlLastNui as $Nui){
 <tr> <td class="titre"> Observation</td>  <td><input type="text-area" name="observation" width="70"> </td></tr>
 
 <tr><td class="titre"> Classe</td><td>
-<select name="code_title">
-<?php if(isset($allClasse)){
-    foreach($allClasse as $classe){
-        echo '<option>'. $classe['code_title'].'</option>'; 
+<select name="classe_id">
+<?php if(isset($allClasses)){
+    foreach($allClasses as $classe){
+        echo '<option value=\"'.$classe['classe_id'].'\">'.$classe['code'].'-'.$classe['title'] .'</option>'; 
     }
 } ?>
 </select>

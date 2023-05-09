@@ -18,7 +18,7 @@ function displayRecord($record){
     echo "</div>";
 
     // Aficher les enregistrement
-    $record -> setRecordClasseIdByCodeTitle();
+    $record -> setRecordClasseByTitle();
     $record -> setRecordContainerId();
     $organization = new organization();
     $organization -> setOrganizationById($record -> getRecordOrganizationId());
@@ -34,7 +34,7 @@ function displayRecord($record){
     ". $record -> getRecordOrganizationTitle() ."(". $organization -> getOrganizationCode() .")</a> </td></tr>
     <tr><th class=\"element\"> Observation <td class=\"element\">". $record -> getRecordObservation()  ."</td></tr>
     <tr><th class=\"element\"> Contenant <td class=\"element\"><a href=\"index.php?q=repository&categ=search&sub=container&id=".$record -> getRecordContainerId() ."\">". $record -> getRecordContainerTitle() ."</a></td></tr>
-    <tr><th class=\"element\"> Classe <td class=\"element\"><a href=\"index.php?q=repository&categ=search&sub=byClasseId&id=".$record ->getRecordClasseId()."\">". $record -> getRecordClasseCodeTitle() ."</a></td></tr>
+    <tr><th class=\"element\"> Classe <td class=\"element\"><a href=\"index.php?q=repository&categ=search&sub=byClasseId&id=".$record ->getRecordClasseId()."\">". $record -> getRecordClasseCode() ." - ".$record -> getRecordClasseTitle() ."</a></td></tr>
     ". displayParentTitle($record) ."
     <tr><th class=\"element\"> Support <td class=\"element\">". $record -> getRecordSupportTitle() ."</td></tr>
     <tr><th class=\"element\"> Mots clés <td class=\"element\">";
