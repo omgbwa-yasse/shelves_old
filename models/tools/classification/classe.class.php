@@ -28,7 +28,17 @@ public function setClassetitle($title){ $this->_classe_title = $title;}
 public function setClasseParentId($id){ $this->_classe_parent_id = $id;}
 public function setClasseObservation($observation){ $this->_classe_observation = $observation; }
 
-
+public function setClasseById(){
+  $rqt = "SELECT * FROM classification";
+  $rqt = $this->getCnx()->prepare($rqt);
+  $rqt -> execute();
+  foreach($rqt as $classe){
+      $this-> setClasseId($classe['classification_id']);
+      $this-> setClasseCode($classe['classification_code']);
+      $this-> setClasseTitle($classe['classification_title']);
+      $this-> setClasseObservation($classe['classification_observation']);
+  }
+}
 
 public function addClasse(){
   $sql = "INSERT INTO classification (

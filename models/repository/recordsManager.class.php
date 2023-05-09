@@ -5,6 +5,13 @@ public $_organization_id;
 public $_parent_id;
 public $_organization_title;
 
+public function getAllrecordsIdByClasseId($classe_id){
+        $recordsId = "SELECT id_records as id FROM records WHERE records.classification_id = '". $classe_id ."' " ;
+        $recordsId = $this->getCnx()->prepare($recordsId);
+        $recordsId -> execute();
+        return $recordsId;
+    }
+
 public function getAllrecordsId(){
         $allrecords = "SELECT id_records FROM records";
         $allrecords = $this->getCnx()->prepare($allrecords);

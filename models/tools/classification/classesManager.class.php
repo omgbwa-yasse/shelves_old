@@ -24,21 +24,20 @@ public function getAllClassesTitle(){
     $classes_id = "SELECT *  FROM records LEFT JOIN records_classification 
     ON records_classification.classification_id = ?";
     $classes_id = $this->getCnx()->prepare('$id');
-    $classes_id->execute($id);
+    $classes_id -> execute($id);
    return $classes_id;
 }
 public function getAllClasseChildById($id){
     $child_class = "SELECT * FROM classification where classification_parent_id = :classification_parent_id";
     $child_class = $this->getCnx()->prepare($child_class);
     $child_class ->execute([':classification_parent_id'=>$id]);
-    $child_class = $child_class->setFetchMode(PDO::FETCH_ASSOC);
+    $child_class = $child_class -> setFetchMode(PDO::FETCH_ASSOC);
     return $child_class;
   }
 public function getAllClasses(){
     $allClasses = "SELECT * FROM classification";
     $allClasses = $this->getCnx()->prepare($allClasses);
     $allClasses ->execute();
-    $allClasses = $allClasses ->setFetchMode(PDO::FETCH_ASSOC);
     return $allClasses;
 }
 

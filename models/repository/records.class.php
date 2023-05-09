@@ -164,17 +164,6 @@ public function setRecordClasseById(){
 public function setRecordClasseId($id){ $this->_record_classe_id = $id;}
 public function getRecordClasseId(){return $this->_record_classe_id;}
 
-public function getAllrecordsIdByClasseId(){
-    $recordsId = "SELECT id_records as id FROM records WHERE records.classification_id = '". $this->getRecordClasseId()."' " ;
-    $recordsId = $this->getCnx()->prepare($recordsId);
-    $recordsId -> execute();
-    return $recordsId;
-}
-
-public function setClasseIdByCodeTitle(){
-
-}
-
 // Support
 
 public function setRecordSupportTitle($support_title){ $this->_record_support_title = $support_title;}
