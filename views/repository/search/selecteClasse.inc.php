@@ -1,14 +1,13 @@
 <?php
-require 'models/tools/classe.class.php';
-    $allClasseCodeTitle = new classification();
-    $allClasses = $allClasseCodeTitle->getAllClassTitle(); ?>
-
+require 'models/tools/classification/classe.class.php';
+    $allClasseCodeTitle = new activityClassesManager();
+    $allClasses = $allClasseCodeTitle->getAllClasses(); ?>
 
     <form method="POST" action="index.php?q=repository&categ=search&sub=byClasse">
         <select name="code_title">
             <?php
             foreach($allClasses as $classe){
-            echo "<option  value=\"".$classe['code_title']."\"> ".$classe['code_title']."</option>";} 
+            echo "<option  value=\"".$classe['title']."\"> ".$classe['code'] . "-".$classe['title']."</option>";} 
             ?>
         </select> <br/>
     <input type="submit" name="envoyer">

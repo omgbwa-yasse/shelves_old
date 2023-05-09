@@ -19,9 +19,7 @@ $recordsId = $AllRecord -> getAllrecordsIdByClasseId();
             $record = new records();
             $record -> setRecordId($recordId['id']);
             $record -> getRecordById();
-            displayRecord($record);
-        
-        }
+            displayRecord($record); }
         }else{
             echo "Aucun document associé ...";
         }

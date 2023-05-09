@@ -8,7 +8,7 @@
     <a href="index.php?q=repository&categ=search&sub=allrecords"> Tous les enregistrements </a>
     </li>
     <li>
-    <a href="index.php?q=repository&categ=search&sub=byOrganization"> Recherche par detenteur </a>
+    <a href="index.php?q=repository&categ=search&sub=allOrganization"> Recherche par detenteur </a>
     </li>
     <li>
     <a href="index.php?q=repository&categ=search&sub=byDateForm"> Recherche par date </a>

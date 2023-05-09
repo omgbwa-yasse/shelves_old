@@ -1,21 +1,11 @@
-
 <?php
-require_once 'models/repository/records.class.php';
-require_once 'models/repository/recordsManager.class.php';
-require_once 'views/repository/records/display.inc.php';
-
-$listRecords = new recordsManager();
-$listRecords -> setOrganizationId($_GET['id']);
-$listRecords -> setOrganizationById();
-echo "<h1>Liste des enregistre du :". $listRecords -> getOrganizationTitle() . "</h1>";
-
-
-$listId = $listRecords -> getAllRecordsByOrganizationId();
-
-foreach($listId as $id_record){
-    $record = new records();
-    $record -> setRecordId($id_record['id']);
-    $record -> getRecordById();
-    displayRecordLight($record);
-}
+require_once 'models/tools/organization/organizationManager.class.php';
+$allOrganization = new organizationManager();
+$list = $allOrganization -> getAllOrganization();
+echo "<div style=\"margin:30px 0px 0px 30px;padding:20px 20px 20px 20px;;border:solid 2px red;width:900px\">";
+foreach($list as $organization){
+    echo "<a href=\"index.php?q=repository&categ=search&sub=organization&id="
+    . $organization['organization_id'] ."\">" . $organization['organization_code'] . " - " . $organization['organization_title'] . "</a><br>";
+    }
+echo "</div>";
 ?>
