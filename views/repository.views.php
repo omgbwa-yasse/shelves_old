@@ -29,8 +29,8 @@
             
 <p>Chariot</p>
 <ul>
-    <li><a href="index.php?q=dolly&categ=container&sub=alldolly"> Gestion </a></li>
-    <li><a href="index.php?q=dolly&categ=container&sub=create"> Ajouter </a></li>
+    <li><a href="index.php?q=repository&categ=dolly&sub=all"> Gestion </a></li>
+    <li><a href="index.php?q=repository&categ=dolly&sub=create"> Ajouter </a></li>
 </ul>
 <p>Import</p>
 <ul>

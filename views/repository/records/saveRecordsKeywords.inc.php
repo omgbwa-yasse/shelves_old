@@ -18,7 +18,6 @@ require_once 'models/repository/keyword.class.php';
             $Keyword ->linkKeywordRecord(); 
         } else {
             $Keyword ->saveNewKeyword($tab);
-            $Keyword ->linkKeywordRecord();
         } 
     }
 ?>

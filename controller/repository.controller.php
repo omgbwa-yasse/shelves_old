@@ -62,6 +62,15 @@ if($_GET['q'] == "repository"){
                     }
                 
                 }
+                else if($_GET['q'] == "repository" && $_GET['categ'] == "dolly" && !empty($_GET['sub'])){
+                    switch($_GET['sub']){
+                        case "all" : include "views/repository/dolly/allRecordDolly.inc.php";
+                        break ;
+                        case "create" : include "views/repository/dolly/formRecordDolly.inc.php";
+                        break ;
+                        case "save" : include "views/repository/dolly/saveRecordDolly.inc.php";
+                        break ;
+                }}
          }
     } 
 ?>

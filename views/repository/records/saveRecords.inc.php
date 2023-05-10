@@ -3,7 +3,6 @@
 require 'models/repository/records.class.php';
 require_once 'views/repository/records/display.inc.php';
 
-echo " L'ID de la classification : ". $_POST['classification_id'];
 
 if(isset($_POST['nui']) && isset($_POST['title']) && isset($_POST['date_start']) && isset($_POST['organization_title'])){
 

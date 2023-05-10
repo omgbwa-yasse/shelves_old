@@ -41,14 +41,13 @@ function displayRecord($record){
 
     // Afficher les mots clés associés
     $KeywordsId = $record -> getAllKeywordsIdByRecordId();
-    $KeywordsId = $KeywordsId->fetchAll(PDO::FETCH_ASSOC);
     if(isset($KeywordsId)){
             foreach($KeywordsId as $KeywordId){
                     $word = new keyword();
                     $word -> setKeywordId($KeywordId['keyword_id']); 
                     echo "<a href=\"index.php?q=repository&categ=search&sub=byKeywordId&id=".$KeywordId['keyword_id']."\">";
                     echo $word -> getKeywordById();
-                    echo "</a> : " ;
+                    echo "</a>, " ;
             }}
     echo "</td></tr><tr><td colspan=\"2\">";
     RecordsSubList($record);
