@@ -17,6 +17,8 @@ function menu(){
         break;
         case "parametre" : include 'views/parametre.views.php';
         break;
+        case "connexion" : include 'views/connexion.views.php';
+        break;
 
 }}
 

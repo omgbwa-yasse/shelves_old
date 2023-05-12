@@ -20,14 +20,12 @@ public function getDollyRecordObservation(){ return $this->_dolly_observation; }
 public function setDollyRecordObservation($observation){ $this->_dolly_observation = $observation; }
 
 public function setDollyRecordById(){
-    $rqt = "SELECT * FROM dolly WHERE dolly.dolly_id = '". $this->getDollyRecordId() ."'";
-    $rqt = $this->getCnx() ->prepare($rqt);
-    $rqt -> execute();
-    foreach($rqt as $dolly){
-        $this->setDollyRecordId($dolly['dolly_id']);
-        $this->setDollyRecordTitle($dolly['dolly_title']);
-        $this->setDollyRecordTitle($dolly['dolly_observation']);
-    }
+    $stmt = $this->getCnx()->prepare("SELECT * FROM dolly WHERE dolly.dolly_id = :dolly_id");
+    $stmt->execute([':dolly_id' => $this->getDollyRecordId()]);
+    $dollyRecord = $stmt->fetch(PDO::FETCH_ASSOC);
+    $this->setDollyRecordId($dollyRecord['dolly_id']);
+    $this->setDollyRecordTitle($dollyRecord['dolly_title']);
+    $this->setDollyRecordObservation($dollyRecord['dolly_observation']);
 }
 public function setDollyRecordByTitle(){
     $rqt = "SELECT * FROM dolly WHERE dolly.dolly_title = '". $this->getDollyRecordTitle() ."'";
@@ -54,38 +52,42 @@ public function verificationDollyRecordTitle(){
     return $status;
 }
 public function verificationDollyRecordIsUse(){
-    $status = NULL;
-    $rqt = "SELECT dolly_records.dolly_id FROM dolly_records WHERE dolly_records.dolly_id = '". $this->getDollyRecordTitle() ."'";
-    $rqt = $this->getCnx()->prepare($rqt);
-    $rqt ->execute();
-    foreach($rqt as $dolly){
-     if($dolly['dolly_id'] ==  $this->getDollyRecordId()){ $status = TRUE; }else{ $status = FALSE; }
+    $status = FALSE;
+    $stmt = $this->getCnx()->prepare("SELECT dolly_records.dolly_id FROM dolly_records WHERE dolly_records.dolly_id = :dolly_id");
+    $stmt->execute([':dolly_id' => $this->getDollyRecordId()]);
+    if ($stmt->rowCount() > 0) {
+        $status = TRUE;
     }
     return $status;
 }
 
 
 public function deleteDollyRecord(){
-    $rqt = "DELETE FROM dolly WHERE dolly.dolly_id = '". $this->getDollyRecordId() ."'";
-    $rqt = $this->getCnx()->prepare($rqt);
-    $rqt ->execute();
+    $stmt = $this->getCnx()->prepare("DELETE FROM dolly WHERE dolly.dolly_id = :dolly_id");
+    $stmt->execute([':dolly_id' => $this->getDollyRecordId()]);
     if($this->verificationDollyRecordIsUse()){
-        $rqt = "DELETE FROM dolly_records WHERE dolly-records.dolly_id = '". $this->getDollyRecordId() ."'";
-        $rqt = $this->getCnx()->prepare($rqt);
-        $rqt ->execute();
+        $stmt = $this->getCnx()->prepare("DELETE FROM dolly_records WHERE dolly_records.dolly_id = :dolly_id");
+        $stmt->execute([':dolly_id' => $this->getDollyRecordId()]);
     }
 }
+
 public function saveDollyRecord(){ 
-    $rqt="INSERT INTO dolly(dolly_title, dolly_observation) VALUES ('". $this->getDollyRecordTitle()."','". $this->getDollyRecordObservation() ."')";
-    $rqt = $this->getCnx()->prepare($rqt);
-    $rqt ->execute();
+    $stmt = $this->getCnx()->prepare("INSERT INTO dolly(dolly_title, dolly_observation) VALUES (:title, :observation)");
+    $stmt->execute([':title' => $this->getDollyRecordTitle(), ':observation' => $this->getDollyRecordObservation()]);
 }
+
 
 public function linkDollyRecordToRecord($recordId, $dollyRecordId){
-    $rqt="INSERT INTO dolly_records(dolly_id, id_records, user_id) VALUES ('". $recordId ."';'". $dollyRecordId."', 1 )";
-    $rqt = $this->getCnx()->prepare($rqt);
-    $rqt ->execute();
+    $stmt = $this->getCnx()->prepare("INSERT INTO dolly_records(dolly_id, id_records, user_id) VALUES (:recordId, :dollyRecordId, :userId)");
+    $stmt->execute([':recordId' => $recordId, ':dollyRecordId' => $dollyRecordId, ':userId' => 1]);
 }
 
+public function countRecords(){
+    $recordCount = NULL;
+    $stmt = $this->getCnx()->prepare("SELECT COUNT(*) FROM dolly_records WHERE dolly_records.dolly_id = :dolly_id");
+    $stmt->execute([':dolly_id' => $this->getDollyRecordId()]);
+    $recordCount = $stmt->fetchColumn();
+    return $recordCount;
+}
 
 }?>
