@@ -1,11 +1,11 @@
 <?php
-require_once 'models/dolly/dollyManager.class.php';
-class dollyRecord extends dollyManager{
+require_once 'models/dolly/dollyRecordManager.class.php';
+class dollyRecord extends dollyRecordManager{
 private $_dolly_id;
 private $_dolly_title;
 private $_dolly_observation;
 
-private function __construct(){
+public function __construct(){
     $this->_dolly_id;
     $this->_dolly_title;
     $this->_dolly_observation;
@@ -14,7 +14,7 @@ public function getDollyRecordId(){  return $this->_dolly_id; }
 public function setDollyRecordId($id){  $this->_dolly_id = $id; }
 
 public function getDollyRecordTitle(){  return $this->_dolly_title; }
-public function setDollyRecordTitle($title){  $this->_dolly_id = $title; }
+public function setDollyRecordTitle($title){  $this->_dolly_title = $title; }
 
 public function getDollyRecordObservation(){ return $this->_dolly_observation; }
 public function setDollyRecordObservation($observation){ $this->_dolly_observation = $observation; }
@@ -76,7 +76,7 @@ public function deleteDollyRecord(){
     }
 }
 public function saveDollyRecord(){ 
-    $rqt="INSERT INTO dolly(dolly_id, dolly_title, dolly_observation) VALUES (NULL,'". $this->getDollyRecordTitle()."';'". $this->getDollyRecordObservation() ."')";
+    $rqt="INSERT INTO dolly(dolly_title, dolly_observation) VALUES ('". $this->getDollyRecordTitle()."','". $this->getDollyRecordObservation() ."')";
     $rqt = $this->getCnx()->prepare($rqt);
     $rqt ->execute();
 }

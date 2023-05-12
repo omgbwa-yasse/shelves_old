@@ -70,6 +70,8 @@ if($_GET['q'] == "repository"){
                         break ;
                         case "save" : include "views/repository/dolly/saveRecordDolly.inc.php";
                         break ;
+                        case "allrecords" : include "views/repository/dolly/dollyRecords.views.php";
+                        break ;
                 }}
          }
     } 
