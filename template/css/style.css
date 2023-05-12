@@ -270,3 +270,6 @@ div .section h2{
     -ms-border-radius: 10px;
     -o-border-radius: 10px;
 }
+ul#navigationOption li{
+    display : inline;
+}
