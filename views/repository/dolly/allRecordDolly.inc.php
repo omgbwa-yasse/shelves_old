@@ -19,7 +19,7 @@ echo "<tr>
         $dolly -> getDollyRecordId() ."\">"
         . $dolly -> getDollyRecordTitle() ."</a></td><td>".
         $dolly -> getDollyRecordObservation() ."</td><td> 
-        <a herf=\"index.php?q=repository&categ=dolly&sub=allrecords&id=\">". 
+        <a href=\"index.php?q=repository&categ=dolly&sub=allrecords&id=\">". 
         $dolly -> countRecords()
         ."</td>
         <td><a href=\"#\">Option</a></td></tr>";
