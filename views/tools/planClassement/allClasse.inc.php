@@ -21,8 +21,8 @@ summary:hover {
 </style>
 <?php
 
-require_once  'models/tools/classe.class.php';
-    $allclassification = new classification() ;
-    $allclassification -> getAllClassification();
+require_once  'models/tools/classification/classe.class.php';
+    $allclassification = new activityClassesManager() ;
+    $allclassification -> displayClassificationHierarchy();
 
 ?>

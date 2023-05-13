@@ -1,17 +1,16 @@
 <?php
-
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
-    header ('Location:index.php?q=connexion&categ=user&sub=form');
+    include 'views/session.views.php';
 } else {
-    if (isset($_SESSION['pseudo']) && !empty($_SESSION['pseudo'])) {
+    if (isset($_SESSION['login']) && !empty($_SESSION['login'])) {
         include_once 'models/session.class.php';
         include_once 'template/header.inc.php';
         include_once 'template/template.php';
         include_once 'controller/index.controller.php';
-        menu ();
+        menu();
         include "template/footer.inc.php";
         echo "</body></html>";
     }
-}
+
 ?>

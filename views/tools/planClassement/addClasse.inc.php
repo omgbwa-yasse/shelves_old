@@ -1,6 +1,7 @@
 <?php
-require_once  'models/tools/classe.class.php';
-$title = new classification() ;
+require_once  'models/tools/classification/classe.class.php';
+
+$title = new activityClassesManager() ;
 
 ?>
 <?php 
@@ -21,7 +22,7 @@ $title = new classification() ;
             <td><select name="classification_type" id="">
                  <?php
                
-                $title->getAllClassTitle();
+                $title->getAllClassesTitle();
  
                 ?>
                   
@@ -32,7 +33,7 @@ $title = new classification() ;
             <td> <select name="classification_parent_id">
             <?php
                
-               $title->getAllClassid();
+               $title->getAllClasses();
 
                ?>
                 
