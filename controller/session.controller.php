@@ -1,14 +1,18 @@
 <?php
 if($_GET['q'] == "session" && $_GET['categ'] == "user"){
     switch($_GET['sub']){
-        case 'addUser' : include('views/connexion/addUser.views.php');
+        case 'accessControl' : include 'views/connexion/userAccessControl.views.php';
         break;
-        case 'verifyUser' : include('views/connexion/verifyUser.views.php');
+        case 'form' : include 'views/connexion/connexionForm.views.php';
         break;
-        case 'access' : include('views/connexion/accessUser.views.php');
+        case 'add' : include 'views/connexion/addUser.views.php';
         break;
-        case 'form' : include('views/connexion/connexionForm.views.php');
+        case 'deconnexion' : include 'views/connexion/userDeconnect.views.php';
         break;
-        default : include('views/connexion/session.views.php');
+        case 'welcome' : include 'views/connexion/userWelcomeMessage.views.php';
+        break;
+        case 'addControl' : include 'views/connexion/addUserControl.views.php';
+        break;
+        default : include 'views/error.views.php';
     }}
 ?>
