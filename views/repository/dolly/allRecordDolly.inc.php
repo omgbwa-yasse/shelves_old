@@ -13,18 +13,14 @@ foreach($dollies as $id){
         $dolly -> setDollyRecordId($id['dolly_id']);
         $dolly -> setDollyRecordById();
 
-
-echo "<tr>
-        <td><a href=\"index.php?q=repository&categ=dolly&sub=allrecords&id=".
-        $dolly -> getDollyRecordId() ."\">"
-        . $dolly -> getDollyRecordTitle() ."</a></td><td>".
-        $dolly -> getDollyRecordObservation() ."</td><td> 
-        <a href=\"index.php?q=repository&categ=dolly&sub=allrecords&id=\">". 
-        $dolly -> countRecords()
-        ."</td>
-        <td><a href=\"#\">Option</a></td></tr>";
+        echo "<tr>
+        <td><a href='index.php?q=repository&categ=dolly&sub=allrecords&id=" . $dolly->getDollyRecordId() . "'>" . $dolly->getDollyRecordTitle() . "</a></td>
+        <td>" . $dolly->getDollyRecordObservation() . "</td>
+        <td><a href='index.php?q=repository&categ=dolly&sub=allrecords&id=" . $dolly->getDollyRecordId() . "'>" . $dolly->countRecords() . "</a></td>
+        <td><a href='#'>Option</a></td>
+       </tr>";
+       
 }
-
 
 
 ?>
