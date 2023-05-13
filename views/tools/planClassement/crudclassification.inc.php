@@ -1,5 +1,5 @@
 <?php
-require_once  '../../../../models/tools/classification/classe.class.php';
+require_once  '../../../models/tools/classification/classesManager.class.php';
 
 $classification = new activityClassesManager() ;
 
