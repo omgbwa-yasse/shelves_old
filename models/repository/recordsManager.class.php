@@ -12,6 +12,13 @@ public function getAllrecordsIdByClasseId($classe_id){
         return $recordsId;
     }
 
+public function getAllrecordsLevel(){
+        $recordsId = "SELECT level.level_id, level.level_title FROM level";
+        $recordsId = $this->getCnx()->prepare($recordsId);
+        $recordsId -> execute();
+        return $recordsId;
+    }
+
 public function getAllrecordsId(){
         $allrecords = "SELECT id_records FROM records";
         $allrecords = $this->getCnx()->prepare($allrecords);

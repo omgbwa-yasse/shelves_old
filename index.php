@@ -6,7 +6,8 @@
     header('Location:index.php?q=session&categ=user&sub=form');
 }else{
     include_once 'controller/session.controller.php';
-    if(isset($_SESSION['pseudo']) && !empty($_SESSION['pseudo']) && $_SESSION['identify'] == 1){
+    /* if(isset($_SESSION['pseudo']) && !empty($_SESSION['pseudo']) && $_SESSION['identify'] == 1){ */
+
         include_once 'models/session.class.php';
         include_once 'template/header.inc.php';
         include_once 'template/template.php';
@@ -14,10 +15,12 @@
         menu();
         include "template/footer.inc.php";
         echo "</body></html>";
-    }else{
+
+
+    /* }else{
         header('Location:index.php?q=session&categ=user&sub=form');
-    }}*/
-if($_GET['q']=='session'){ 
+    }}
+ if($_GET['q']=='session'){ 
     include_once 'controller/session.controller.php'; 
 }
-?>
+?> */

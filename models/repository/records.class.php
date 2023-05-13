@@ -18,11 +18,13 @@ public $_record_keyword_id;
 public $_record_link_id ;
 public $_record_container_id;
 public $_record_container_title;
+public $_record_volume;
+public $_record_level;
 public $_record_classe;
 public $_controlStatus;
-
 public $_organization_id;
 public $_organization_title;
+
 
 public function __construct(){
     $this->_id_record;
@@ -40,9 +42,16 @@ public function __construct(){
     $this->_organization_id;
     $this->_record_classe_code;
     $this->_record_classe_title;
+    $this->_record_volume;
+    $this->_record_level = 1;
 }
 
 // Les Setters et les Getters
+
+// niveau de description
+public function setRecordLevel($level){ $this->_record_level = $level; }
+public function getRecordLevel(){ return $this->_record_level;}
+
 // Les Identifiants de la notices
 public function setRecordId($id){ $this->_id_record = $id;}
 public function getRecordId(){ return $this->_id_record;}
