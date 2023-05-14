@@ -1,20 +1,28 @@
 <?php
 require_once 'models/user/user.class.php';
-echo "Bonjour ....". $_POST['pseudo'];
 
-if(isset($_POST['pseudo']) != NULL && isset($_POST['password']) != NULL){
-        $user = new user();
-        $user->setUserPseudo($_POST['pseudo']);
-        $user->setUserPassword($_POST['password']);
-        
-        if ($user-> connect()){
-            $_SESSION['pseudo'] = $user->getUserPseudo();
-            $_SESSION['password'] = $user->getUserPassword();
-            header('index.php?q=repertory&categ=search&sub=allrecords');
-        }
-
-} else{
-    header('index.php?q=connexion&categ=user&sub=form');
-}
-    
+if (isset($_POST['pseudo']) && isset($_POST['password'])) {
+    echo "Donnée arrivées";
+    $user = new user();
+    $user->setUserPseudo($_POST['pseudo']);
+    $user->setUserSandByPseudo();
+    $user->setPasswordByCrypt($_POST['password']);
+    $user->setUserSandByPseudo();
+    echo "<br/>";
+    echo $user->getUserPseudo();
+    echo "<br/>";
+    echo $user->getUserPassword();
+    echo "<br/>";
+    echo $user->getUserSand();
+    echo "<br/>";
+    if ($user->connect()) {
+        var_dump($user);
+        echo "<hr>";
+        echo $user->getUserPseudo();
+        echo $user->getUserPassword();
+        echo "Bonjour ...." . $_POST['pseudo'];
+    }
+} else {
+    header('Location: index.php?q=connexion&categ=user&sub=form');
+}  
 ?>

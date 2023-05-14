@@ -23,6 +23,7 @@ class user extends connexion{
     public function createUserSand(){
         $this->_user_sand = sha1(rand(1,1000)."G2D".time().rand(1,1000));
     }
+
     public function setUserSand($sand){ $this->_user_sand = $sand; }
     
     public function setUserName($name){ $this->_user_name = $name;}
@@ -59,16 +60,23 @@ class user extends connexion{
 
     public function setUserPassword($password) { $this->_user_password = $password; }
 
-    public function passwordVerification(){
-        $stmt = $this->getCnx()->prepare('SELECT user_password FROM user WHERE user_pseudo = :user_pseudo');
-        $stmt->execute([':user_pseudo' => $this->getUserPseudo()]);
-        if ($stmt->rowCount() > 0) {
-            $row = $stmt->fetch();
-            return password_verify($this->getUserPassword(), $row['user_password']);
-        } else {
-            return false;
+   function password_compare($pass1,$pass2){
+        if($pass1 == $pass2){
+            return TRUE;
+        }else{ 
+            return FALSE;
         }
+   }
+   public function passwordVerification() {
+    $stmt = $this->getCnx()->prepare('SELECT user_password FROM user WHERE user_pseudo = :user_pseudo');
+    $stmt->execute([':user_pseudo' => $this->getUserPseudo()]);
+    if ($stmt->rowCount() > 0) {
+        $row = $stmt->fetch();
+        return password_verify($this->getUserPassword(), $row['user_password']);
+    } else {
+        return false;
     }
+}
     
     public function userExists() {
         $stmt = $this->getCnx()->prepare('SELECT * FROM user WHERE user_pseudo = :user_pseudo');
