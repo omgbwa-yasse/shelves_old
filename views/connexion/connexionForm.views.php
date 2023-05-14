@@ -1,7 +1,5 @@
 <?php
-        session_start();
-        $_SESSION['pseudo'] = '';
-        $_SESSION['authentification'] = 0;
+
 
         echo "Formulaire de connxion";
 ?>
