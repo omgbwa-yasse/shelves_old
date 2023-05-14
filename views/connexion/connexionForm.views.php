@@ -1,4 +1,8 @@
 <?php
+        session_start();
+        $_SESSION['pseudo'] = '';
+        $_SESSION['authentification'] = 0;
+
         echo "Formulaire de connxion";
 ?>
 <form action='index.php?q=session&categ=user&sub=accessControl' method='post'>
