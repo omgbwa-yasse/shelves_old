@@ -11,8 +11,8 @@ $allRecordsId = $Keywords-> getAllRecordsIdByKeywordId();
 echo "<hr/>";
 if(!empty($allRecordsId)){
     foreach($allRecordsId as $id){
-        $record = new records ;
-        $record -> setRecordId($id['records_id']);
+        $record = new record ;
+        $record -> setRecordId($id['record_id']);
         $record -> getRecordById();
         displayRecord($record);
         break;

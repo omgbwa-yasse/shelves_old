@@ -43,8 +43,8 @@ public function MgGetLastRecords(){
         $records -> execute();
         return $records;
 }
-public function getAllSubRecordsIdById($id_records){
-        $records = "SELECT records.id_records as id FROM records WHERE records.records_link_id ='".$id_records."'";
+public function getAllSubRecordsIdById($record_id){
+        $records = "SELECT records.id_records as id FROM records WHERE records.records_link_id ='".$record_id."'";
         $records = $this->getCnx()->prepare($records);
         $records -> execute();
         return $records;

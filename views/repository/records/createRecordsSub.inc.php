@@ -1,6 +1,6 @@
 <?php 
 require_once 'models/repository/records.class.php';
-$recordsP = new records();
+$recordsP = new record();
 $recordsP -> setRecordId($_GET['id']);
 $recordsP -> getRecordById();
 

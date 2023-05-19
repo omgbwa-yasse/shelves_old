@@ -12,7 +12,7 @@ require_once 'views/repository/records/display.inc.php';
 $lastRecords = new recordsManager();
 $list = $lastRecords->MgGetLastRecords();
 foreach($list as $id){
-    $record = new records();
+    $record = new record();
     $record -> setRecordId($id['id']);
     $record -> getRecordById();
     

@@ -16,7 +16,7 @@ echo "<h1>Liste des documents de la la classse :". $classeSearch->getClasseCode(
 $AllRecord = new recordsManager();
 $recordsId = $AllRecord -> getAllrecordsIdByClasseId($id);
 foreach($recordsId as $recordId){
-    $record = new records();
+    $record = new record();
     $record -> setRecordId($recordId['id']);
     $record -> getRecordById();
     displayRecordLight($record); 

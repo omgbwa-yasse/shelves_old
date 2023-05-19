@@ -13,7 +13,7 @@ echo "<h1>Liste des enregistre du :". $listRecords -> getOrganizationTitle() . "
 $listId = $listRecords -> getAllRecordsByOrganizationId();
 
 foreach($listId as $id_record){
-    $record = new records();
+    $record = new record();
     $record -> setRecordId($id_record['id']);
     $record -> getRecordById();
     displayRecordLight($record);
