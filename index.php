@@ -8,7 +8,7 @@ if (isset($_GET['q'])) {
     if ($_GET['q'] == 'session') {
         include_once 'models/session.class.php';
         require_once 'controller/session.controller.php';
-    } elseif ($_GET['q'] == 'repository') { 
+    }elseif (isset($_GET['q']) && $_GET['q'] != NULL){ 
         include_once 'template/header.inc.php';
         include_once 'template/template.php';
         include_once 'controller/index.controller.php';
