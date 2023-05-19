@@ -20,7 +20,7 @@ $classe->setClasseById();
 // Explorer le contenu
 if(!empty($recordsId)){
     foreach($recordsId as $recordId){
-        $record = new records();
+        $record = new record();
         $record -> setRecordId($recordId['id']);
         $record -> getRecordById();
         displayRecord($record); }

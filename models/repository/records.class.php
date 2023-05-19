@@ -1,7 +1,7 @@
 <?php
 require_once 'models/repository/recordsManager.class.php';
-class records extends recordsManager{
-public $_id_record = NULL;
+class record extends recordsManager{
+public $_record_id = NULL;
 public $_record_nui;
 public $_record_title;
 public $_record_date_start;
@@ -27,7 +27,7 @@ public $_organization_title;
 
 
 public function __construct(){
-    $this->_id_record;
+    $this->_record_id;
     $this->_record_nui;
     $this->_record_title;
     $this->_record_date_start;
@@ -53,39 +53,39 @@ public function setRecordLevel($level){ $this->_record_level = $level; }
 public function getRecordLevel(){ return $this->_record_level;}
 
 // Les Identifiants de la notices
-public function setRecordId($id){ $this->_id_record = $id;}
-public function getRecordId(){ return $this->_id_record;}
+public function setRecordId($id){ $this->_record_id = $id;}
+public function getRecordId(){ return $this->_record_id;}
 
 // Numéro d'identifiaction Unique
 public function setRecordNui($nui){ $this->_record_nui = $nui;}
 public function getRecordNui(){ return $this->_record_nui;}
 
 public function setRecordIdByNui(){
-    $idRecords = "SELECT records.id_records FROM records WHERE records_nui = '".$this->getRecordNui()."' " ;
+    $idRecords = "SELECT records.record_id FROM records WHERE record_nui = '".$this->getRecordNui()."' " ;
     $idRecords =$this->getCnx()->prepare($idRecords);
     $idRecords->execute();
     foreach($idRecords as $id) {
-            $this->setRecordId($id['id_records']) ;
+            $this->setRecordId($id['record_id']) ;
             }
 
 }
 public function controlNui(){
-    $control = "SELECT records_nui FROM records WHERE records.records_nui = '".$this->getRecordNui()."' " ;
+    $control = "SELECT record_nui FROM records WHERE records.record_nui = '".$this->getRecordNui()."' " ;
     $control = $this->getCnx()->prepare($control);
     $control ->execute();
     foreach($control as $crtl){
-        if($crtl['records_nui'] == $this->_record_nui)
+        if($crtl['record_nui'] == $this->_record_nui)
         { $this->_controlStatus = TRUE; } else{ $this->_controlStatus = FALSE;}
         }
         return $this->_controlStatus ;
 }
 public function setRecordTempNui(){
     $id = NULL;
-    $lastId = "SELECT records.id_records FROM records ORDER BY records.id_records DESC LIMIT 1 ";
+    $lastId = "SELECT records.record_id FROM records ORDER BY records.record_id DESC LIMIT 1 ";
     $lastId = $this->getCnx() -> prepare($lastId);
     $lastId -> execute();
     foreach($lastId as $ref){
-        $id = $ref['id_records'] + 1 . rand(0,21);
+        $id = $ref['record_id'] + 1 . rand(0,21);
         $this->_record_nui = "temp_". $id ;
     }
     
@@ -116,11 +116,11 @@ public function getRecordObservation(){ return $this->_record_observation;}
 public function setRecordStatusTitle($tatus_title){ $this->_record_status_title = $tatus_title ;}
 public function getRecordStatusTitle(){ return $this->_record_status_title;}
 public function setRecordStatusId(){
-    $statutId = "SELECT records_status_id FROM records_status WHERE records_status_title = '".$this->getRecordStatusTitle()."' " ;
+    $statutId = "SELECT record_status_id FROM record_status WHERE record_status_title = '".$this->getRecordStatusTitle()."' " ;
     $statutId =$this->getCnx()->prepare($statutId);
     $statutId->execute();
     foreach($statutId as $id){
-    $this->_record_status_id = $id['records_status_id'];
+    $this->_record_status_id = $id['record_status_id'];
     }
 }
 
@@ -179,11 +179,11 @@ public function setRecordSupportTitle($support_title){ $this->_record_support_ti
 public function getRecordSupportTitle(){ return $this->_record_support_title;}
 
 public function setRecordSupportId(){
-    $supportId = "SELECT records_support_id FROM records_support WHERE records_support_title = '".$this->getRecordSupportTitle()."' " ;
+    $supportId = "SELECT record_support_id FROM record_support WHERE record_support_title = '".$this->getRecordSupportTitle()."' " ;
     $supportId = $this->getCnx()->prepare($supportId);
     $supportId ->execute();
     foreach($supportId as $id){
-        $this->_record_support_id = $id['records_support_id'];
+        $this->_record_support_id = $id['record_support_id'];
     }
 }
 public function getRecordSupportId(){return $this->_record_support_id; }
@@ -194,7 +194,7 @@ public function getRecordLinkId(){ return $this->_record_link_id;}
 
 public function verificationRecordsChild(){ 
     $statut = FALSE; 
-    $sql = "SELECT COUNT(*) FROM Records WHERE records.records_link_id = '".$this->getRecordId()."'"; 
+    $sql = "SELECT COUNT(*) FROM Records WHERE records.record_link_id = '".$this->getRecordId()."'"; 
     $rqt = $this->getCnx()->prepare($sql); 
     $rqt ->execute(); 
     $occurence = $rqt->fetchColumn(); 
@@ -203,7 +203,7 @@ return $statut;
 }
 public function verificationRecordsParent(){ 
     $statut = NULL; 
-    $sql = "SELECT records.records_link_id as id_parent FROM Records WHERE records.id_records = '".$this->getRecordId()."'"; 
+    $sql = "SELECT records.record_link_id as id_parent FROM Records WHERE records.record_id = '".$this->getRecordId()."'"; 
     $rqt = $this->getCnx()->prepare($sql); 
     $rqt ->execute(); 
     $rqt = $rqt->fetchAll(); 
@@ -268,9 +268,9 @@ public function saveRecord(){
         $this->setRecordOrganizationIdByTitle();
 
         // J'enregistre les données
-        $rqt = " INSERT INTO records (id_records,records_nui, records_title, 
-        records_date_start,records_date_end, records_observation, 
-        records_status_id, records_support_id, records_link_id, 
+        $rqt = " INSERT INTO records (record_id,record_nui, record_title, 
+        record_date_start,record_date_end, record_observation, 
+        record_status_id, record_support_id, record_link_id, 
         container_id, classification_id, organization_id ) 
         values ('".$this->getRecordId()."','".$this->getRecordNui()."','". $this->getRecordTitle()."','".$this->getRecordDateStart()."',
         '". $this->getRecordDateEnd()."', '".$this->getRecordObservation()."','".$this->getRecordStatusId()."',
@@ -281,7 +281,7 @@ public function saveRecord(){
         $rqt ->execute();
 }
 public function getAllKeywordsIdByRecordId(){
-    $rqt = "SELECT records_keywords.keyword_id FROM records_keywords WHERE records_keywords.records_id = '". $this->getRecordId()."' ";
+    $rqt = "SELECT record_keywords.keyword_id FROM record_keywords WHERE record_keywords.record_id = '". $this->getRecordId()."' ";
     $rqt = $this->getCnx()-> prepare($rqt);
     $rqt -> execute();
     return $rqt;
@@ -289,28 +289,28 @@ public function getAllKeywordsIdByRecordId(){
 
 public function getRecordById(){
     // Je recupère les donnée avec condition sur ID
-    $record = "SELECT records.id_records as id, 
-            records.records_title as title, 
-            records.records_nui as nui, 
-            records.records_date_start as date_start, 
-            records.records_date_end as date_end,
-            records.records_observation as observation,
-            records.records_link_id as id_parent,
+    $record = "SELECT records.record_id as id, 
+            records.record_title as title, 
+            records.record_nui as nui, 
+            records.record_date_start as date_start, 
+            records.record_date_end as date_end,
+            records.record_observation as observation,
+            records.record_link_id as id_parent,
             classification.classification_title as classe_title,
-            records_support.records_support_title as support,
-            records_status.records_status_title as statut,
+            record_support.record_support_title as support,
+            record_status.record_status_title as statut,
             container.container_reference as boite,
             records.organization_id
             FROM records
-            LEFT JOIN records_support 
-            ON records_support.records_support_id = records.records_support_id
+            LEFT JOIN record_support 
+            ON record_support.record_support_id = records.record_support_id
             LEFT JOIN classification 
             ON classification.classification_id = records.classification_id
-            LEFT JOIN records_status 
-            ON records_status.records_status_id = records.records_status_id
+            LEFT JOIN record_status 
+            ON record_status.record_status_id = records.record_status_id
             LEFT JOIN container 
             ON container.container_id = records.container_id
-            WHERE records.id_records = '".$this->getRecordId()."'";
+            WHERE records.record_id = '".$this->getRecordId()."'";
 
     $record = $this->getCnx() -> prepare($record);
     $record ->execute();
@@ -333,7 +333,7 @@ public function getRecordById(){
     }
 }
 public function deleteRecord($id){
-    $rqt ="DELETE FROM records WHERE records.id_records = '". $id ."'";
+    $rqt ="DELETE FROM records WHERE records.record_id = '". $id ."'";
     $rqt = $this->getCnx()->prepare($rqt);
     $rqt -> execute();
 }

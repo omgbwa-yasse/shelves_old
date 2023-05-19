@@ -9,8 +9,8 @@ $allrecords = new recordsManager();
 $idrecords = $allrecords -> getAllrecordsId();
 
 foreach($idrecords as $Idrecord){
-    $record = new records ;
-    $record -> setRecordId($Idrecord['id_records']);
+    $record = new record;
+    $record -> setRecordId($Idrecord['record_id']);
     $record -> getRecordById();
     
     displayRecord($record);
