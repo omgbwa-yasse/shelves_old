@@ -7,7 +7,15 @@
 <center>
 <div class="connexion">
 <?php
-
+        if(isset($_GET['error']) ){
+                switch($_GET['error']){
+                        case "1" : echo "Mot de passe erronée";
+                        break;
+                        case "2" : echo "Compte non existant";
+                        break;
+                        default : echo "Veuiller contacter l'administrateur ...";
+                }
+        }
         echo "<h1>My Shelves</h1>";
 ?>
 <div>

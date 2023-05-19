@@ -21,7 +21,8 @@ class user extends connexion{
     }
     public function getUserSand(){ return $this->_user_sand;}
     public function createUserSand(){
-        $this->_user_sand = sha1(rand(1,1000)."G2D".time().rand(1,1000));
+        $fullSand = sha1(rand(1,1000)."G2D".time().rand(1,1000));
+        $this->_user_sand = substr($fullSand,0,5);
     }
 
     public function setUserSand($sand){ $this->_user_sand = $sand; }
@@ -60,24 +61,18 @@ class user extends connexion{
 
     public function setUserPassword($password) { $this->_user_password = $password; }
 
-   function password_compare($pass1,$pass2){
-        if($pass1 == $pass2){
-            return TRUE;
-        }else{ 
-            return FALSE;
-        }
-   }
-   public function passwordVerification() {
+public function passwordVerification() {
     $stmt = $this->getCnx()->prepare('SELECT user_password FROM user WHERE user_pseudo = :user_pseudo');
     $stmt->execute([':user_pseudo' => $this->getUserPseudo()]);
     if ($stmt->rowCount() > 0) {
         $row = $stmt->fetch();
-        return password_verify($this->getUserPassword(), $row['user_password']);
+        if($this->getUserPassword() == $row['user_password']){ return true; } else { return false; };
     } else {
         return false;
     }
 }
-    
+
+
     public function userExists() {
         $stmt = $this->getCnx()->prepare('SELECT * FROM user WHERE user_pseudo = :user_pseudo');
         $stmt->execute([':user_pseudo' => $this->getUserPseudo()]);
@@ -95,6 +90,8 @@ class user extends connexion{
             if ($stmt->rowCount() > 0) {
                 foreach ($stmt as $user) {
                     $this->setUserId($user['user_id']);
+                    $this->setUserName($user['user_name']);
+                    $this->setUserSurname($user['user_surname']);
                     $this->setUserPseudo($user['user_pseudo']);
                     $this->setUserPassword($user['user_password']);
                     $this->setUserSand($user['user_sand']);
