@@ -1,6 +1,6 @@
 <?php
 
-require 'models/repository/records.class.php';
+require 'models/repository/record.class.php';
 require_once 'views/repository/records/display.inc.php';
 
 

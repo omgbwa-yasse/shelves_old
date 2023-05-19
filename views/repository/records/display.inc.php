@@ -1,5 +1,5 @@
 <?php
-require_once 'models/repository/records.class.php';
+require_once 'models/repository/record.class.php';
 require_once 'models/repository/keyword.class.php';
 require_once 'models/tools/organization/organization.class.php';
 
@@ -105,7 +105,7 @@ function displayParentTitle($record){
     
     if($record->verificationRecordsParent() == TRUE){
         $id_parent = $record -> getRecordLinkId();
-        $parent = new records();
+        $parent = new record();
         $parent -> setRecordId($id_parent);
         $parent -> getRecordById();
         $parentValue = "<tr><th class=\"element\"> In <td class=\"element\"><a href=\"index.php?q=repository&categ=search&sub=display&id=". $parent -> getRecordId()."\">". $parent -> getRecordTitle() ."</a></td></tr>";

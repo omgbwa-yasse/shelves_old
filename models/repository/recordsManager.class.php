@@ -6,7 +6,7 @@ public $_parent_id;
 public $_organization_title;
 
 public function getAllrecordsIdByClasseId($classe_id){
-        $recordsId = "SELECT id_records as id FROM records WHERE records.classification_id = '". $classe_id ."' " ;
+        $recordsId = "SELECT record_id as id FROM record WHERE record.classification_id = '". $classe_id ."' " ;
         $recordsId = $this->getCnx()->prepare($recordsId);
         $recordsId -> execute();
         return $recordsId;
@@ -20,7 +20,7 @@ public function getAllrecordsLevel(){
     }
 
 public function getAllrecordsId(){
-        $allrecords = "SELECT id_records FROM records";
+        $allrecords = "SELECT record_id FROM record";
         $allrecords = $this->getCnx()->prepare($allrecords);
         $allrecords -> execute();
         return $allrecords;
@@ -32,19 +32,19 @@ public function MgDeleteRecordById($id){
         // à completer
 }
 public function MgGetRecordsByDates($date_start, $date_end){
-        $recordsId = "SELECT records.id_records FROM records WHERE   records.records_date_start < '".$date_start."' OR records.records_date_end > '".$date_start."'";
+        $recordsId = "SELECT record.record_id FROM record WHERE   record.record_date_start < '".$date_start."' OR record.record_date_end > '".$date_start."'";
         $recordsId = $this->getCnx()->prepare($recordsId);
         $recordsId -> execute();
         return $recordsId;
 }
 public function MgGetLastRecords(){
-        $records = "SELECT records.id_records as id FROM records ORDER  BY id DESC LIMIT 5";
+        $records = "SELECT record.record_id as id FROM record ORDER  BY id DESC LIMIT 5";
         $records = $this->getCnx()->prepare($records);
         $records -> execute();
         return $records;
 }
 public function getAllSubRecordsIdById($record_id){
-        $records = "SELECT records.id_records as id FROM records WHERE records.records_link_id ='".$record_id."'";
+        $records = "SELECT record.record_id as id FROM record WHERE record.record_link_id ='".$record_id."'";
         $records = $this->getCnx()->prepare($records);
         $records -> execute();
         return $records;
@@ -56,13 +56,13 @@ public function getAllClasse(){
         return $allClasse;
 }
 public function getAllStatutTitle(){
-        $sqlStatut = "SELECT records_status.records_status_title as statut FROM records_status";
+        $sqlStatut = "SELECT record_status.record_status_title as statut FROM record_status";
         $allStatut = $this->getCnx()->prepare($sqlStatut);
         $allStatut ->execute();
         return $allStatut;
 }
 public function getAllSupportTitle(){
-        $sqlSupport = "SELECT records_support.records_support_title as support FROM records_support";
+        $sqlSupport = "SELECT record_support.record_support_title as support FROM record_support";
         $allSupport = $this->getCnx()->prepare($sqlSupport);
         $allSupport ->execute();
         return $allSupport;
@@ -74,7 +74,7 @@ public function getAllContainer(){
         return $allContainer;
 }
 public function getLastNui(){
-        $sqlLastNui = "SELECT records.records_nui as nui FROM records ORDER BY records.id_records DESC LIMIT 1";
+        $sqlLastNui = "SELECT record.record_nui as nui FROM record ORDER BY record.record_id DESC LIMIT 1";
         $sqlLastNui = $this->getCnx()->prepare($sqlLastNui);
         $sqlLastNui -> execute();
         return $sqlLastNui;
@@ -110,7 +110,7 @@ public function setOrganizationById(){
 }
 
 public function getAllRecordsByOrganizationId(){
-        $rqt = "SELECT records.id_records as id FROM records WHERE records.organization_id ='".$this->getOrganizationId()."'";
+        $rqt = "SELECT record.record_id as id FROM record WHERE record.organization_id ='".$this->getOrganizationId()."'";
         $rqt = $this->getCnx()->prepare($rqt);
         $rqt -> execute();
         return $rqt;

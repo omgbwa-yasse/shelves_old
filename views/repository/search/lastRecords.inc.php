@@ -1,6 +1,6 @@
 <?php 
 include_once 'models/repository/keyword.class.php';
-include_once 'models/repository/records.class.php';
+include_once 'models/repository/record.class.php';
 include_once 'models/repository/recordsManager.class.php';
 require_once 'views/repository/records/display.inc.php';
 ?>

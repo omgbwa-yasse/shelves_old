@@ -2,17 +2,17 @@
 require_once 'models/repository/record.class.php';
 class keywordsManager extends record{
 
-    private $_record_id;
+    public $_record_id;
     public $_record_nui;
 
 public function getAllKeywords(){
         $addr ="../shelves/index.php?q=repository&categ=search&sub=byKeywordId&id=";
-        $allKeywords = "SELECT keyword FROM keywords";
+        $allKeywords = "SELECT keyword FROM keyword";
         $allKeywords = $this->getCnx()-> prepare($allKeywords);
         $allKeywords->execute();
         foreach($allKeywords as $keyword)
         { 
-            $idKeyword = "SELECT keyword_id FROM keywords WHERE  keywords.keyword = '".$keyword['keyword']."'";
+            $idKeyword = "SELECT keyword_id FROM keyword WHERE  keyword.keyword = '".$keyword['keyword']."'";
             $idKeyword = connexion::getCnx()->prepare($idKeyword);
             $idKeyword->execute();
             foreach($idKeyword as $kId){
@@ -27,7 +27,7 @@ public function getKeywordRecordId(){ return $this->_record_id; }
 public function setKeywordRecordId($record_id){ $this->_record_id = $record_id ; return $this->_record_id ; }
 
 public function MgGetrecordByDatesExt($date_start, $date_end){
-    $rqt ="SELECT id_record FROM record WHERE record.date_start >= '". $date_start ."' AND record.date_start <='". $date_end ."'";
+    $rqt ="SELECT record_id FROM record WHERE record.date_start >= '". $date_start ."' AND record.date_start <='". $date_end ."'";
     $rqt = $this->getCnx()->prepare($rqt);
     $rqt->execute();
     return $rqt;
