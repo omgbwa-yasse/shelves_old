@@ -13,7 +13,7 @@ if(isset($_GET['id'])){
 ?>
 <?php
 echo " <a href=\"index.php?q=setting&categ=recordSupport&sub=delete&id=". $support ->getRecordSupportId() ."\">supprimer</a>";
-echo " <a href=\"index.php?q=setting&categ=recordSupport&sub=udapte&id=". $support ->getRecordSupportId()."\">modifier</a>";
+echo " <a href=\"index.php?q=setting&categ=recordSupport&sub=update&id=". $support ->getRecordSupportId()."\">modifier</a>";
 echo " <a href=\"index.php?q=setting&categ=recordSupport&sub=all\">Tout voir ...</a>";
 }
 ?>

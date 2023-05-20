@@ -1,5 +1,6 @@
 <?php
 require_once 'models/tools/organization/organizationManager.class.php';
+
 $allOrganization = new organizationManager();
 $list = $allOrganization -> getAllOrganization();
 echo "<div style=\"margin:30px 0px 0px 30px;padding:20px 20px 20px 20px;;border:solid 2px red;width:900px\">";
