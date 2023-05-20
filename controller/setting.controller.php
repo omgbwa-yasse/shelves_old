@@ -1,7 +1,7 @@
 <?php
 if($_GET['q'] == "setting"){
     if(empty($_GET['categ'])){
-        include 'views/setting/allRecordSupport.views.php';
+        include "views/setting/homeSetting.views.php";
     }else{
         if ($_GET['q'] == "setting" && $_GET['categ'] == "recordSupport" && !empty($_GET['sub'])) {
             switch($_GET['sub']){
