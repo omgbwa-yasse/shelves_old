@@ -1,6 +1,6 @@
 <?php
 require_once 'models/repository/recordsManager.class.php';
-require_once 'models/repository/records.class.php';
+require_once 'models/repository/record.class.php';
 require_once 'models/tools/organization/organizationManager.class.php';
 require_once 'models/tools/organization/organization.class.php';
 require_once 'models/tools/classification/classesManager.class.php';

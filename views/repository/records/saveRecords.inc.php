@@ -1,6 +1,6 @@
 <?php
 
-require 'models/repository/records.class.php';
+require 'models/repository/record.class.php';
 require_once 'views/repository/records/display.inc.php';
 
 
@@ -22,7 +22,7 @@ if(isset($_POST['nui']) && isset($_POST['title']) && isset($_POST['date_start'])
             $supportTitle = $_POST['support'] ;
 
 
-            $record = new records();
+            $record = new record();
             $record->setRecordId(NULL);
             $record->setRecordNui($_POST['nui']);
             $record->setRecordTitle($_POST['title']); 
@@ -37,9 +37,9 @@ if(isset($_POST['nui']) && isset($_POST['title']) && isset($_POST['date_start'])
             $record->setRecordOrganizationTitle($_POST['organization_title']);
             $record->setRecordIdByNui();
 
-            if (!empty($_GET['id_parent'])) {
-                $_GET['id_parent']= htmlspecialchars ($_GET['id_parent']);
-                $record->setRecordLinkId($_GET['id_parent']);
+            if (!empty($_GET['parent_id'])) {
+                $_GET['id_parent']= htmlspecialchars ($_GET['parent_id']);
+                $record->setRecordLinkId($_GET['parent_id']);
             } else {}
 
 

@@ -1,5 +1,5 @@
 <?php
-require_once "models/repository/records.class.php";
+require_once "models/repository/record.class.php";
 require_once "models/repository/recordsManager.class.php";
 require_once 'views/repository/records/display.inc.php';
 require_once 'models/tools/classification/classe.class.php';
@@ -16,7 +16,7 @@ echo "<h1>Liste des documents de la la classse :". $classeSearch->getClasseCode(
 $AllRecord = new recordsManager();
 $recordsId = $AllRecord -> getAllrecordsIdByClasseId($id);
 foreach($recordsId as $recordId){
-    $record = new records();
+    $record = new record();
     $record -> setRecordId($recordId['id']);
     $record -> getRecordById();
     displayRecordLight($record); 

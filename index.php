@@ -1,16 +1,27 @@
+
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-    include 'views/session.views.php';
-} else {
-    if (isset($_SESSION['login']) && !empty($_SESSION['login'])) {
+session_start();
+if(empty($_GET['q'])){
+    header('Location: index.php?q=session&categ=user&sub=form');
+}
+if (isset($_GET['q'])) {
+    if ($_GET['q'] == 'session') {
         include_once 'models/session.class.php';
+        require_once 'controller/session.controller.php';
+    }elseif (isset($_GET['q']) && $_GET['q'] != NULL){ 
         include_once 'template/header.inc.php';
         include_once 'template/template.php';
         include_once 'controller/index.controller.php';
-        menu();
+        menu(); 
         include "template/footer.inc.php";
-        echo "</body></html>";
-    }
+        echo "</body></html>"; 
+    }}
 
 ?>
+
+
+
+
+
+
+

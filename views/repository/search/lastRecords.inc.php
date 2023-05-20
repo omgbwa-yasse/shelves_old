@@ -1,6 +1,6 @@
 <?php 
 include_once 'models/repository/keyword.class.php';
-include_once 'models/repository/records.class.php';
+include_once 'models/repository/record.class.php';
 include_once 'models/repository/recordsManager.class.php';
 require_once 'views/repository/records/display.inc.php';
 ?>
@@ -12,7 +12,7 @@ require_once 'views/repository/records/display.inc.php';
 $lastRecords = new recordsManager();
 $list = $lastRecords->MgGetLastRecords();
 foreach($list as $id){
-    $record = new records();
+    $record = new record();
     $record -> setRecordId($id['id']);
     $record -> getRecordById();
     

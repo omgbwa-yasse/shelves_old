@@ -4,7 +4,7 @@ class keyword extends keywordsManager{
 
    
     private $_keyword;
-    private $_idkeyword ;
+    private $_keyword_id ;
 
 public function setKeywordIdByKeyword($keyword){
     $idkeyword = "SELECT keyword_id FROM keywords WHERE keywords.keyword = '".$keyword ."'";
@@ -13,14 +13,14 @@ public function setKeywordIdByKeyword($keyword){
     foreach($idkeyword as $id){
         $this->setKeywordId($id['keyword_id']);
     }
-    return $this->_idkeyword ;
+    return $this->_keyword_id ;
 }
-public function getKeywordId(){ return $this->_idkeyword; }
+public function getKeywordId(){ return $this->_keyword_id; }
 
 public function setKeyword($_keyword){ $this->_keyword = $_keyword; }
 public function getKeyword(){ return $this->_keyword;}
 public function getKeywordById(){
-    $rqt = "SELECT keywords.keyword FROM keywords WHERE keywords.keyword_id = '".$this->_idkeyword."'";
+    $rqt = "SELECT keywords.keyword FROM keywords WHERE keywords.keyword_id = '".$this->_keyword_id."'";
     $rqt = $this->getCnx()->prepare($rqt);
     $rqt->execute();
     $result=$rqt->setFetchMode(PDO::FETCH_ASSOC);
@@ -32,8 +32,8 @@ public function getKeywordById(){
 }
 
 
-public function setKeywordId($id){ $this->_idkeyword = $id ; }
-public function getClassKeywordId(){ return $this->_idkeyword;}
+public function setKeywordId($id){ $this->_keyword_id = $id ; }
+public function getClassKeywordId(){ return $this->_keyword_id;}
 
 
 public function searchKeywordId(){
@@ -41,7 +41,7 @@ public function searchKeywordId(){
     $rqt = $this->getCnx()->prepare($rqt);
     $rqt -> execute();
     foreach($rqt as $keywordsID){
-        $this->_idkeyword = $keywordsID['keyword_id'];
+        $this->_keyword_id = $keywordsID['keyword_id'];
     }
 }
 public function linkKeywordRecord(){             
@@ -92,7 +92,7 @@ public function saveNewKeyword($_keyword){
         $rqt = $this->getCnx()->prepare($rqt);
         $rqt -> execute();
         foreach($rqt as $keyId){
-           $this->_idkeyword = $keyId['keyword_id'];
+           $this->_keyword_id = $keyId['keyword_id'];
         
         // On compte le nombre de fois qu'un mot clé de la liste précédente est utilisé, si c'est moins ou égal à de 1 fois on supprime
         $rqt = "SELECT count(*) FROM records_keywords WHERE records_keywords.records_id = '". $this->getKeywordId() ."'";

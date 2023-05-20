@@ -6,8 +6,7 @@ if($_GET['q'] == "repository"){
         /* redirige si il y'a pas de categorie */
         if(empty($_GET['categ'])){
             include "views/repository/search/allrecords.inc.php" ;
-        } 
-        else if(!empty($_GET['categ'])){
+        }else{
         /* Case create */
         if($_GET['q'] == "repository" && $_GET['categ'] == "create" && !empty($_GET['sub'])){
             switch($_GET['sub']){
@@ -72,6 +71,7 @@ if($_GET['q'] == "repository"){
                         break ;
                         case "allrecords" : include "views/repository/dolly/dollyRecords.views.php";
                         break ;
+                        default : include "views/repository/dolly/allRecordDolly.inc.php";
                 }}
          }
     } 

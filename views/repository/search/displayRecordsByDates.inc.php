@@ -19,8 +19,8 @@ if(isset($_POST['date_start']) AND isset($_POST['date_end'])){
     $listId;
     $listId = $records-> MgGetRecordsByDates($date_start, $date_end);  
     foreach($listId as $id){
-        $record = new records();
-        $record->setRecordId($id['id_records']);
+        $record = new record();
+        $record->setRecordId($id['record_id']);
         $record-> getRecordById();
         displayRecord($record);
     } 

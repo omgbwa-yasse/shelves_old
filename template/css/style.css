@@ -273,3 +273,34 @@ div .section h2{
 ul#navigationOption li{
     display : inline;
 }
+.connexion{
+    margin-top: 300px;
+    padding: 1.5em;
+    width: 500px;
+    height: 250px;
+    border: 2px solid rgb(116, 114, 114);
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    box-shadow: 5px 5px 5px rgb(192, 192, 192);
+}
+.connexion input[type='password'], input[type='text']{
+    padding: 5px 10px 5px 10px;
+    width:320px;
+    height: 40px;
+    padding: auto;
+    border: solid 1px rgb(176, 176, 176);
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    
+}
+.connexion button{
+    width:120px;
+    height:25px;
+    margin: 10px 15px 0px 45px;
+}
