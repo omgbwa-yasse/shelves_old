@@ -13,9 +13,9 @@ function menu(){
             break;
             case "audit" : include 'views/audit.views.php';
             break;
-            case "outilsGestion" : include 'views/outilsGestion.views.php';
+            case "tools" : include 'views/tools.views.php';
             break;
-            case "parametre" : include 'views/parametre.views.php';
+            case "setting" : include 'views/setting.views.php';
             break;
             case "connexion" : include 'views/connexion/connexionForm.views.php';
             break;

@@ -13,8 +13,8 @@ include_once "template/header.inc.php"
         <li class="<?php if ($_GET['q']=="audit") {echo "active"; } else  {echo "";}?>"><a href ="index.php?q=audit&categ=default&sub=default">Audit</a></li>
         <li class="<?php if ($_GET['q']=="deposit") {echo "active"; } else  {echo "";}?>"><a href ="index.php?q=deposit&categ=search&sub=all">Dépôt</a></li>
         <li class="<?php if ($_GET['q']=="dolly") {echo "active"; } else  {echo "";}?>"><a href ="index.php?q=dolly&categ=records&sub=allDolly">Chariot</a></li>
-        <li class="<?php if ($_GET['q']=="outilsGestion") {echo "active"; } else  {echo "";}?>"><a href ="index.php?q=outilsGestion&categ=all&sub=all">Outils de gestion</a></li>
-        <li class="<?php if ($_GET['q']=="parametre") {echo "active"; } else  {echo "";}?>"><a href ="index.php?q=parametre"> Parametre</a></li>
+        <li class="<?php if ($_GET['q']=="tools") {echo "active"; } else  {echo "";}?>"><a href ="index.php?q=tools&categ=all&sub=all">Outils de gestion</a></li>
+        <li class="<?php if ($_GET['q']=="setting") {echo "active"; } else  {echo "";}?>"><a href ="index.php?q=setting"> Parametre</a></li>
     </ul>
 </nav>
 </header>
