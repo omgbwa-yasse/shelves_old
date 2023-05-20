@@ -48,6 +48,21 @@ public function deleteRecordSupport(){
     }
 
 }
+
+public function setRecordSupportByTitle($title){
+    $stmt = $this->getCnx() ->prepare("SELECT * FROM record_support WHERE record_support_title = :title");
+    $stmt -> execute([':title' => $title]);
+    $status = $stmt -> fetch();
+    if($status){
+        $this->setRecordSupportId($status['record_support_id']);
+        $this->setRecordSupportTitle($status['record_support_title']);
+        $this->setRecordSupportObservation($status['record_support_observation']);
+    }
+}
+
+
+
+
 public function updateRecordSupport(){
     // vérifier si l'id existe dans la table
     $stmt = $this->getCnx() ->prepare("SELECT * FROM record_support WHERE record_support_id = :id");

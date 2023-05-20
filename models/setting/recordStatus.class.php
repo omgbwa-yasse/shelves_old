@@ -1,7 +1,7 @@
 <?php
 require_once 'models/setting/recordStatusManager.class.php';
 
-class recordStatus extends recordSatusManager{
+class recordStatus extends recordStatusManager{
 private $_record_status_id;
 private $_record_status_title;
 private $_record_status_observation;
@@ -48,6 +48,19 @@ public function deleteRecordStatus(){
     }
 
 }
+public function setRecordStatusByTitle($title){
+    $stmt = $this->getCnx() ->prepare("SELECT * FROM record_status WHERE record_status_title = :title");
+    $stmt -> execute([':title' => $title]);
+    $status = $stmt -> fetch();
+    if($status){
+        $this->setRecordStatusId($status['record_status_id']);
+        $this->setRecordStatusTitle($status['record_status_title']);
+        $this->setRecordStatusObservation($status['record_status_observation']);
+    }
+}
+
+
+
 public function updateRecordStatus(){
     // vérifier si l'id existe dans la table
     $stmt = $this->getCnx() ->prepare("SELECT * FROM record_status WHERE record_status_id = :id");
