@@ -39,15 +39,27 @@ public function saveRecordStatus(){
 }
 
 public function deleteRecordStatus(){
-    $stmt = $this-> getCnx() ->prepare("DELETE FROM record_status WHERE record_status_id = :id");
-    $stmt ->execute([':id' => $this->getRecordStatusId()]);
-    if($stmt->rowCount()>0){
+   if( $this->recordStatusUsed($this->getRecordStatusId()) == false){
+        $stmt = $this-> getCnx() ->prepare("DELETE FROM record_status WHERE record_status_id = :id");
+        $stmt ->execute([':id' => $this->getRecordStatusId()]);
+        if($stmt->rowCount()>0){
         return true;
-    } else {
+         } else {
+        return false;
+        }
+    } else{
         return false;
     }
 
 }
+public function usedNumber(){
+    $stmt = $this->getCnx() ->prepare("SELECT COUNT(*) FROM record WHERE record_status_id = :id");
+    $stmt -> execute([':id' => $this->getRecordStatusId()]);
+    $stmt = $stmt -> fetch();
+    return $stmt;
+}
+
+
 public function setRecordStatusByTitle($title){
     $stmt = $this->getCnx() ->prepare("SELECT * FROM record_status WHERE record_status_title = :title");
     $stmt -> execute([':title' => $title]);
@@ -61,17 +73,17 @@ public function setRecordStatusByTitle($title){
 
 
 
-public function updateRecordStatus(){
+public function updateRecordStatus($id, $title, $observation){
     // vérifier si l'id existe dans la table
     $stmt = $this->getCnx() ->prepare("SELECT * FROM record_status WHERE record_status_id = :id");
-    $stmt -> execute([':id' => $this->getRecordStatusId()]);
+    $stmt -> execute([':id' => $id]);
     $status = $stmt -> fetch();
     if($status){
         // vérifier si le titre est différent de celui existant
-        if($this->getRecordStatusTitle() != $status['record_status_title']){
+        if($title != $status['record_status_title']){
             // mettre à jour le titre et l'observation
             $stmt = $this->getCnx() ->prepare("UPDATE record_status SET record_status_title = :title, record_status_observation = :observation WHERE record_status_id = :id");
-            $stmt -> execute([':title' => $this->getRecordStatusTitle(), ':observation' => $this->getRecordStatusObservation(), ':id' => $this->getRecordStatusId()]);
+            $stmt -> execute([':title' => $title, ':observation' => $observation, ':id' => $id]);
             if($stmt->rowCount()>0){
                 return true;
             } else {

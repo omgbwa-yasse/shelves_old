@@ -6,5 +6,18 @@ class recordStatusManager extends connexion{
         $stmt ->execute();
         return $stmt ->fetchAll();;
     }
+    public function recordStatusUsed($id){
+        $stmt = $this->getCnx() -> prepare("SELECT COUNT(*) FROM record WHERE record_status_id =:id");
+        $stmt -> execute([':id' => $id]);
+        $stmt = $stmt ->fetch();
+        foreach($stmt as $value){
+            if($value > 0){
+                return true;
+            } else{
+                return false;
+            }
+        }
+    }
+
 }
 ?>

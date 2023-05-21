@@ -9,6 +9,19 @@ public function allRecordSupport(){
     return $stmt->fetchAll();
 }
 
+public function recordSupportUsed($id){
+    $stmt = $this->getCnx() -> prepare("SELECT COUNT(*) FROM record WHERE record_support_id =:id");
+    $stmt -> execute([':id' => $id]);
+    $stmt = $stmt ->fetch();
+    foreach($stmt as $value){
+        if($value > 0){
+            return true;
+        } else{
+            return false;
+        }
+    }
+    
+}
 
 }
 ?>
