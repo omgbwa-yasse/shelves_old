@@ -57,7 +57,7 @@ public function setShelveById($id){
     $stmt ->execute([':id' => $id]);
     $stmt = $stmt -> fetchALL();
     foreach($stmt as $shelve){
-        $this->setShelveId($shelve['sheve_id']);
+        $this->setShelveId($shelve['shelve_id']);
         $this->setShelveReference($shelve['shelve_reference']);
         $this->setShelveObservation($shelve['shelve_observation']);
         $this->setShelveEar($shelve['shelve_ear']);

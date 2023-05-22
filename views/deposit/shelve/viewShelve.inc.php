@@ -1,16 +1,18 @@
 <?php
-require_once 'models/deposit/room.class.php';
-$room = new room();
-$room -> setRoomById($_GET['id']);
+require_once 'models/deposit/shelve.class.php';
+$shelve = new shelve();
+$shelve -> setShelveById($_GET['id']);
 ?>
-<h1>Affichage : <?= $room->getRoomTitle()?></h1>
+<h1>Affichage : <?= $shelve->getShelveReference()?></h1>
 <?php
-   echo " <br>" . $room->getRoomId();
-   echo " <br>" . $room->getRoomReference();
-   echo " <br>" . $room->getRoomTitle();
-   echo " <br>" . $room->getRoomObservation();
+   echo " <br>" . $shelve->getShelveId();
+   echo " <br>" . $shelve->getShelveReference();
+   echo " <br>" . $shelve->getShelveEar();
+   echo " <br>" . $shelve->getShelveColonne();
+   echo " <br>" . $shelve->getShelveTable();
+   echo " <br>" . $shelve->getShelveObservation();
 ?>
 <br>
-<a href="index.php?q=deposit&categ=room&sub=delete&id=<?= $room->getRoomId()?>">Supprimer</a>  
-<a href="index.php?q=deposit&categ=room&sub=update&id=<?= $room->getRoomId()?>">Modifier</a>  
-<a href="index.php?q=deposit&categ=room&sub=all">Toutes les salles</a>
+<a href="index.php?q=deposit&categ=shelve&sub=delete&id=<?= $shelve->getShelveId()?>">Supprimer</a>  
+<a href="index.php?q=deposit&categ=shelve&sub=update&id=<?= $shelve->getShelveId()?>">Modifier</a>  
+<a href="index.php?q=deposit&categ=shelve&sub=all">Toutes les salles</a>

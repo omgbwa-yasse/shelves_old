@@ -31,9 +31,9 @@ if($_GET['q'] == "deposit"){
             switch($_GET['sub']){
                 case "add" : include "views/deposit/shelve/addShelve.inc.php";
                 break ;
-                case "view" : include "";
+                case "view" : include "views/deposit/shelve/viewShelve.inc.php";
                 break ;
-                case "update" : include "";
+                case "update" : include "views/deposit/shelve/updateShelve.inc.php";
                 break ;
                 case "save" : include "views/deposit/shelve/saveShelve.inc.php";
                 break ;
