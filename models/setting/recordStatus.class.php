@@ -79,8 +79,6 @@ public function updateRecordStatus($id, $title, $observation){
     $stmt -> execute([':id' => $id]);
     $status = $stmt -> fetch();
     if($status){
-        // vérifier si le titre est différent de celui existant
-        if($title != $status['record_status_title']){
             // mettre à jour le titre et l'observation
             $stmt = $this->getCnx() ->prepare("UPDATE record_status SET record_status_title = :title, record_status_observation = :observation WHERE record_status_id = :id");
             $stmt -> execute([':title' => $title, ':observation' => $observation, ':id' => $id]);
@@ -89,10 +87,6 @@ public function updateRecordStatus($id, $title, $observation){
             } else {
                 return false;
             }
-        } else {
-            // le titre est le même, pas besoin de modifier
-            return false;
-        }
     } else {
         // l'id n'existe pas, pas possible de modifier
         return false;

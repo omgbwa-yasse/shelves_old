@@ -12,7 +12,7 @@
   </div>
   <div>
     <label for="observation" >Observation :</label>
-    <textarea id="observation" name="observation" rows="4" cols="50" value="<?= $status->getRecordStatusObservation();?>" ></textarea>
+    <textarea id="observation" name="observation" rows="4" cols="50"> <?= $status->getRecordStatusObservation();?></textarea>
   </div>
   <div>
     <input type="submit" value="Sauvegarder la modification">

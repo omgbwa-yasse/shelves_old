@@ -4,7 +4,7 @@ include "template/sous_menu.inc.php";
 <p>Recherche </p>
 <ul>
         <li><a href="index.php?q=deposit&categ=room&sub=all"> Tous les salles </a></li>
-        <li><a href="index.php?q=deposit&categ=search&sub=all"> Mes Etagières </a></li>
+        <li><a href="index.php?q=deposit&categ=shelve&sub=all"> Toutes les Etagières </a></li>
         <li><a href="index.php?q=deposit&categ=search&sub=all"> Toutes les contenants </a></li>
 
 </ul>

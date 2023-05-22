@@ -3,9 +3,9 @@ require_once "models/setting/recordStatus.class.php";
 if(isset($_GET['id'])){
     // Je vérifie si il y'a Un ID (donnée existe), je modifie dans la base avec les données envoyés
     $statusUpdate = new recordStatus();
-    if($statusUpdate -> updateRecordStatus($_GET['id'], $_POST['title'],$_POST['observation'])){
-        header('Location: index.php?q=setting&categ=recordStatus&sub=all');
-    }
+    if($statusUpdate -> updateRecordStatus($_GET['id'], $_POST['title'], $_POST['observation'])){
+       header('Location: index.php?q=setting&categ=recordStatus&sub=all');
+    } else { echo "Echec de mise à jour."; }
 }else{
     // J'enregistre les données titre et observation envoyée en post
     if(isset($_POST['title'])){

@@ -80,8 +80,6 @@ public function updateRecordSupport($id, $title, $observation){
     $stmt -> execute([':id' => $id]);
     $support = $stmt -> fetch();
     if($support){
-        // vérifier si le titre est différent de celui existant
-        if($title != $support['record_support_title']){
             // mettre à jour le titre et l'observation
             $stmt = $this->getCnx() ->prepare("UPDATE record_support SET record_support_title = :title, record_support_observation = :observation WHERE record_support_id = :id");
             $stmt -> execute([':title' => $title, ':observation' => $observation, ':id' => $id]);
@@ -90,10 +88,6 @@ public function updateRecordSupport($id, $title, $observation){
             } else {
                 return false;
             }
-        } else {
-            // le titre est le même, pas besoin de modifier
-            return false;
-        }
     } else {
         // l'id n'existe pas, pas possible de modifier
         return false;

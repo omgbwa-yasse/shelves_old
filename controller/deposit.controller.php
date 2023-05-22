@@ -29,17 +29,17 @@ if($_GET['q'] == "deposit"){
             /* Case create */
             else if($_GET['q'] == "deposit" && $_GET['categ'] == "shelve" && !empty($_GET['sub'])){
             switch($_GET['sub']){
-                case "new" : include "";
+                case "add" : include "views/deposit/shelve/addShelve.inc.php";
                 break ;
                 case "view" : include "";
                 break ;
                 case "update" : include "";
                 break ;
-                case "save" : include "";
+                case "save" : include "views/deposit/shelve/saveShelve.inc.php";
                 break ;
                 case "delete" : include "";
                 break ;
-                case "all" : include "";
+                case "all" : include "views/deposit/shelve/allShelve.inc.php";
                 break ;
             }}
 
@@ -48,7 +48,7 @@ if($_GET['q'] == "deposit"){
         /* Case create */
         else if($_GET['q'] == "deposit" && $_GET['categ'] == "container" && !empty($_GET['sub'])){
             switch($_GET['sub']){
-                case "new" : include "";
+                case "add" : include "";
                 break ;
                 case "view" : include "";
                 break ;
