@@ -12,29 +12,19 @@ public function allRoom(){
     return $room;
 }
 
-public function roomUsed($id){
-    $stmt = $this->getCnx() -> prepare("SELECT COUNT(*) FROM shelve WHERE room_id =:id");
-    $stmt -> execute([':id' => $id]);
-    $stmt = $stmt ->fetch();
-    foreach($stmt as $value){
-        if($value > 0){
-            return true;
-        } else{
-            return false;
-        }
-    }
-    
+public function roomUsed($id){ 
+    $stmt = $this->getCnx() -> prepare("SELECT COUNT(*) FROM shelve WHERE room_id = :id"); 
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT); 
+    $stmt->execute(); 
+    $count = $stmt->fetchColumn(); 
+    return $count > 0; 
 }
 
 
-
-
-
-
-
-
-
-
-
-
+public function roomShelvesId($room_id){ 
+    $stmt = $this->getCnx()->prepare("SELECT shelve_id FROM shelve WHERE room_id = :id"); 
+    $stmt->bindParam(':id', $room_id, PDO::PARAM_INT); 
+    $stmt->execute(); 
+    $result = $stmt->fetchAll(PDO::FETCH_COLUMN); 
+    return $result; }
 }?>

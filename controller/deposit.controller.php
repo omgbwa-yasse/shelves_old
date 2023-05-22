@@ -37,7 +37,7 @@ if($_GET['q'] == "deposit"){
                 break ;
                 case "save" : include "views/deposit/shelve/saveShelve.inc.php";
                 break ;
-                case "delete" : include "";
+                case "delete" : include "views/deposit/shelve/deleteShelve.inc.php";
                 break ;
                 case "all" : include "views/deposit/shelve/allShelve.inc.php";
                 break ;
