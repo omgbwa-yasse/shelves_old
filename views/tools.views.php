@@ -8,8 +8,8 @@ include "template/sous_menu.inc.php";
         </ul>
 <p>Plan de classement</p>
         <ul>
-                <li><a href="index.php?q=tools&categ=classificationScheme&sub=allClass"> Plan de classement </a></li>
-                <li><a href="index.php?q=tools&categ=classificationScheme&sub=addClasse"> Ajouter une classe </a></li>
+                <li><a href="index.php?q=tools&categ=classificationScheme&sub=mainClasses"> Plan de classement </a></li>
+                <li><a href="index.php?q=tools&categ=classificationScheme&sub=addClass"> Ajouter une classe </a></li>
         </ul>
 <p>Reférentiel de conservation</p> 
         <ul>       
