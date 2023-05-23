@@ -87,11 +87,11 @@ public function updateShelve($id, $reference, $observation, $ear, $colonne, $tab
 }
 
 public function setShelveByReference($reference){
-    $stmt = $this->getCnx() ->prepare("SELECT * FROM shelve WHERE shelve_reference = : reference");
+    $stmt = $this->getCnx() ->prepare("SELECT * FROM shelve WHERE shelve_reference = :reference");
     $stmt ->execute([':reference' => $reference]);
     $stmt = $stmt -> fetchALL();
     foreach($stmt as $shelve){
-        $this->setShelveId($shelve['sheve_id']);
+        $this->setShelveId($shelve['shelve_id']);
         $this->setShelveReference($shelve['shelve_reference']);
         $this->setShelveObservation($shelve['shelve_observation']);
         $this->setShelveEar($shelve['shelve_ear']);

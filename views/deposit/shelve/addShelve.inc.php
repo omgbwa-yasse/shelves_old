@@ -12,10 +12,6 @@ require_once 'models/deposit/room.class.php';
   <td><input type="text" id="titre" name="reference" required>
 </tr>
 <tr>
-  <th><label for="observation" >Observation </label>
-  <td><textarea id="observation" name="observation" rows="4" cols="50"></textarea>
-</tr>
-<tr>
   <th><label for="face"> Face </label>
   <td> <input type="text" id="face" name="ear" required>
 </tr>
@@ -40,6 +36,10 @@ require_once 'models/deposit/room.class.php';
     }
   ?>
 </select>
+</tr>
+<tr>
+  <th><label for="observation" >Observation </label>
+  <td><textarea id="observation" name="observation" rows="4" cols="50"></textarea>
 </tr>
 <tr>
   <td><input type="submit" value="Sauvegarder">
