@@ -8,9 +8,7 @@ include_once "template/header.inc.php"
 <nav>
     <ul>
         <li class="<?php if ($_GET['q'] =="repository") {echo "active"; } else  {echo "";}?>"><a href ="index.php?q=repository&categ=search&sub=allrecords">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-            <path d="M22 6H12l-2-2H4c-1.11 0-1.99.9-1.99 2L2 20c0 1.1.89 2 1.99 2h18a2 2 0 0 0 2-2V8c0-1.1-.9-2-2-2zm0 14H4V8h16v12z"/>
-            <path d="M0 0h24v24H0z" fill="none"/></svg>
+        <img src="template/css/svg/repertory.svg" alt="">    
         Repertoire</a></li>
         <li class="<?php if ($_GET['q']=="versement") {echo "active"; } else  {echo "";}?>"><a href ="index.php?q=versement&categ=search&sub=allversement">
         <img src="template/css/svg/documents-svgrepo-com.svg" alt="">  

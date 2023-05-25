@@ -69,7 +69,9 @@ nav li:hover {
     background-color: rgb(82, 77, 35);
     transform: translateY(-5px);
 }
-
+nav li:hover img{
+    filter: invert(100%) brightness(1000%);
+  }
 nav li:hover a {
     color: rgb(255, 255, 255);
    
@@ -80,7 +82,9 @@ nav li.active {
     color : rgb(255, 255, 255);
     background-color: rgb(158, 151, 95);
 }
-
+nav li.active img{
+    filter: invert(100%) brightness(1000%);
+  }
 nav li.active a{
      color : rgb(255, 255, 255);
 }
