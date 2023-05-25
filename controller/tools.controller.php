@@ -1,26 +1,15 @@
 <?php
-
-if($_GET['q'] = "tools" && $_GET['categ'] = 'charte' && isset($_GET['sub'])){
+// Charte d'archivage
+if($_GET['q'] = "tools" && $_GET['categ'] = 'chart' && isset($_GET['sub'])){
     switch($_GET['sub']){
-        case 'views' : include 'views/tools/charte.views.php';
+        case 'views' : include 'views/tools/viewsChart.views.php';
         break;
-        case 'export' : include 'views/tools/exportCharte.views.php';
+        case 'export' : include 'views/tools/exportChart.views.php';
         break;
     }
 }
 
-if($_GET['q'] = "tools" && $_GET['categ'] = 'classification' && isset($_GET['sub'])){
-    switch($_GET['sub']){
-        case 'addClasse' : include 'views/tools/classification/addClasse.views.php';
-        break;
-        case 'UpdateClasse' : include 'views/tools/classification/updateClasse.views.php';
-        break;
-        case 'DeleteClasse' : include 'views/tools/classification/deleteClasse.views.php';
-        break;
-        case 'viewsClasse' : include 'views/tools/classification/viewsClasse.views.php';
-        break;
-    }
-}
+//Calendrier de conservation
 if($_GET['q'] = "tools" && $_GET['categ'] = 'retention' && isset($_GET['sub'])){
     switch($_GET['sub']){ 
         case 'addrule' : include 'views/tools/retention/addRule.views.php';
@@ -33,6 +22,8 @@ if($_GET['q'] = "tools" && $_GET['categ'] = 'retention' && isset($_GET['sub'])){
         break;
     }
 }
+
+// Communicabilité
 if($_GET['q'] = "tools" && $_GET['categ'] = 'communicability' && isset($_GET['sub'])){
     switch($_GET['sub']){ 
         case 'addrule' : include 'views/tools/retention/addCommunicability.views.php';
@@ -45,6 +36,8 @@ if($_GET['q'] = "tools" && $_GET['categ'] = 'communicability' && isset($_GET['su
         break;
     }
 }
+
+// Classe d'accès
 if($_GET['q'] = "tools" && $_GET['categ'] = 'accessRule' && isset($_GET['sub'])){
     switch($_GET['sub']){ 
         case 'addAccessRule' : include 'views/tools/accessRule/addAccessRule.views.php';
@@ -57,19 +50,55 @@ if($_GET['q'] = "tools" && $_GET['categ'] = 'accessRule' && isset($_GET['sub']))
         break;
     }
 }
-if($_GET['q'] = "tools" && $_GET['categ'] = 'organization' && isset($_GET['sub'])){
-    switch($_GET['sub']){ 
-        case 'addOrganization' : include 'views/tools/organization/addOrganization.views.php';
+
+// plan de classement
+if($_GET['q'] == "tools" && $_GET['categ'] == "classificationScheme" && isset($_GET['sub'])){
+      switch($_GET['sub']){
+        case "addClass" : include "views/tools/classificationScheme/addClass.inc.php";
         break;
-        case 'UpdateOrganization' : include 'views/tools/organization/updateOrganization.views.php';
+        case "savedClass" : include "views/tools/classificationScheme/saveClass.inc.php";
         break;
-        case 'DeleteOrganization' : include 'views/tools/organization/deleteOrganization.views.php';
+        case "mainClasses" : include "views/tools/classificationScheme/allMainClasses.inc.php";
         break;
-        case 'viewsOrganization' : include 'views/tools/organization/viewsOrganization.views.php';
+        case "viewClass" : include "views/tools/classificationScheme/viewClass.inc.php";
         break;
-    }
-}
-if($_GET['q'] = "tools" && $_GET['categ'] = 'thesaurus' && isset($_GET['sub'])){
+        case "parentClass" : include "views/tools/classificationScheme/parentClass.inc.php";
+        break;
+        case "childClass" : include "views/tools/classificationScheme/childClasses.inc.php";
+        break;
+}}
+
+
+// Organization
+
+if($_GET['q'] == "tools" && $_GET['categ'] == "organization" && isset($_GET['sub'])){
+        switch($_GET['sub']){
+         case "addOrganization" : include "views/tools/organization/addOrganization.inc.php";
+          break;
+        case "saveOrganization" : include "views/tools/organization/saveOrganization.inc.php";
+          break;
+          case "allOrganization" : include "views/tools/organization/allOrganization.inc.php";
+          break;
+          case "deleteUnite" : include "views/tools/organization/deleteOrganization.inc.php";
+          break;
+          case "updateUnite" : include "views/tools/organization/updateOrganization.inc.php";
+          break;
+        case "unite" : include "views/tools/organization/displayOrganization.inc.php";
+          break;
+
+  }}
+
+
+// thesaurus
+if($_GET['q'] == "tools" && $_GET['categ'] == "thesaurus" && !empty($_GET['allIndex'])){
+        switch($_GET['sub']){
+          case "allIndex" : echo "Index : chronologique, thématique, géographique, typologie, Onosmatique, Action, etc.";
+          break;
+          case "addIndex" : echo "Choisit la branche, la classe, clic ajouter ou ajouter et on charte la branche";
+          break;
+  }
+
+  if($_GET['q'] = "tools" && $_GET['categ'] = 'thesaurus' && isset($_GET['sub'])){
     switch($_GET['sub']){ 
         case 'addTerm' : include 'views/tools/thesaurus/addTerm.views.php';
         break;
@@ -84,32 +113,5 @@ if($_GET['q'] = "tools" && $_GET['categ'] = 'thesaurus' && isset($_GET['sub'])){
         case 'viewsBranch' : include 'views/tools/thesaurus/viewsBranch.views.php';
         break;
     }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}}
 ?>

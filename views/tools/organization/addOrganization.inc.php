@@ -7,7 +7,7 @@ $list = $allOrganization -> getAllOrganization();
 <div style="border:solid 2px red; width:900px;height:200px;margin-left:50px;margin-top:100px;padding:20px 20px 20px 20px;">
 
 <table border="0">
-<form method="POST" action="index.php?q=outilsGestion&categ=organization&sub=saveOrganization">
+<form method="POST" action="index.php?q=tools&categ=organization&sub=saveOrganization">
     <tr><td>code :</td><td><input type="text" name="code" style="width:400px;"></td></tr> 
 
     <tr><td>Unite :</td><td><input type="text" name="title" style="width:400px;"></td></tr>

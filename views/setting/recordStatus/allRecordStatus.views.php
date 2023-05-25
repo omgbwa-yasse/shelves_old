@@ -7,7 +7,6 @@ require_once "models/setting/recordStatusManager.class.php";
 
 <table border="2" width="700px"> 
     <tr>
-        <th>reference
         <th>Titre
         <th>Observation
     </tr>
@@ -16,8 +15,7 @@ require_once "models/setting/recordStatusManager.class.php";
 $allStatut = new recordStatusManager();
 $allStatut = $allStatut ->allRecordStatus();
 foreach($allStatut as $statut){
-    echo "<tr><td>".$statut['record_status_id'];
-    echo "<td>". $statut['record_status_title'];
+    echo "<tr><td><a href=\"index.php?q=setting&categ=recordStatus&sub=views&id=".$statut['record_status_id']."\">". $statut['record_status_title'];
     echo "<td>". $statut['record_status_observation'] ."</tr>";
 }
 ?>

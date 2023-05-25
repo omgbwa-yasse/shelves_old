@@ -1,6 +1,6 @@
 <?php
 require_once 'models/tools/organization/organization.class.php';
-echo "<a href=\"index.php?q=outilsGestion&categ=organization&sub=allOrganization\">Voir Tout l'organigramme</a><br>";
+echo "<a href=\"index.php?q=tools&categ=organization&sub=allOrganization\">Voir Tout l'organigramme</a><br>";
 
 $organization = new organization();
 echo "L'unite à supprimer est :" . $_GET['id'];

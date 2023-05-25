@@ -12,7 +12,7 @@ echo $parent_id;
 
 $organization = new organization();
 $organization -> setOrganizationCode($code);
-$organization -> setOrganizationTitle($$title);
+$organization -> setOrganizationTitle($title);
 $organization -> setOrganizationObservation($observation);
 $organization -> setOrganizationObservation($parent_id);
 

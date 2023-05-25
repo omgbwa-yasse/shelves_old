@@ -39,15 +39,26 @@ public function saveRecordSupport(){
 }
 
 public function deleteRecordSupport(){
-    $stmt = $this-> getCnx() ->prepare("DELETE FROM record_support WHERE record_support_id = :id");
-    $stmt ->execute([':id' => $this->getRecordSupportId()]);
-    if($stmt->rowCount()>0){
-        return true;
-    } else {
+    if($this->recordSupportUsed($this->getRecordSupportId()) == false){
+        $stmt = $this-> getCnx() ->prepare("DELETE FROM record_support WHERE record_support_id = :id");
+        $stmt ->execute([':id' => $this->getRecordSupportId()]);
+        if($stmt->rowCount()>0){
+            return true;
+        } else {
+            return false;
+        }
+    } else{
         return false;
     }
-
 }
+
+public function usedNumber(){
+    $stmt = $this->getCnx() ->prepare("SELECT COUNT(*) FROM record WHERE record_support_id = :id");
+    $stmt -> execute([':id' => $this->getRecordSupportId()]);
+    $stmt = $stmt -> fetch();
+    return $stmt;
+}
+
 
 public function setRecordSupportByTitle($title){
     $stmt = $this->getCnx() ->prepare("SELECT * FROM record_support WHERE record_support_title = :title");
@@ -63,26 +74,20 @@ public function setRecordSupportByTitle($title){
 
 
 
-public function updateRecordSupport(){
+public function updateRecordSupport($id, $title, $observation){
     // vérifier si l'id existe dans la table
     $stmt = $this->getCnx() ->prepare("SELECT * FROM record_support WHERE record_support_id = :id");
-    $stmt -> execute([':id' => $this->getRecordSupportId()]);
+    $stmt -> execute([':id' => $id]);
     $support = $stmt -> fetch();
     if($support){
-        // vérifier si le titre est différent de celui existant
-        if($this->getRecordSupportTitle() != $support['record_support_title']){
             // mettre à jour le titre et l'observation
             $stmt = $this->getCnx() ->prepare("UPDATE record_support SET record_support_title = :title, record_support_observation = :observation WHERE record_support_id = :id");
-            $stmt -> execute([':title' => $this->getRecordSupportTitle(), ':observation' => $this->getRecordSupportObservation(), ':id' => $this->getRecordSupportId()]);
+            $stmt -> execute([':title' => $title, ':observation' => $observation, ':id' => $id]);
             if($stmt->rowCount()>0){
                 return true;
             } else {
                 return false;
             }
-        } else {
-            // le titre est le même, pas besoin de modifier
-            return false;
-        }
     } else {
         // l'id n'existe pas, pas possible de modifier
         return false;

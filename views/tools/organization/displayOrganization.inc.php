@@ -10,8 +10,8 @@ echo " <tr><td style=\"text-align:right\"> Titre : <td>". $organization -> getOr
 echo " <tr><td style=\"text-align:right\"> Observation : <td>". $organization -> getOrganizationObservation();
 echo " <tr><td style=\"text-align:right\"> Parent : <td>". $organization -> getOrganizationParentId();
 echo "</table>";
-echo "<a href=\"index.php?q=outilsGestion&categ=organization&sub=deleteUnite&id=".$organization-> getOrganizationId(). "\">Supprimer</a> 
-    <a href=\"index.php?q=outilsGestion&categ=organization&sub=updateUnite&id=".$organization-> getOrganizationId(). "\">Modifier</a>";
+echo "<a href=\"index.php?q=tools&categ=organization&sub=deleteUnite&id=".$organization-> getOrganizationId(). "\">Supprimer</a> 
+    <a href=\"index.php?q=tools&categ=organization&sub=updateUnite&id=".$organization-> getOrganizationId(). "\">Modifier</a>";
 echo "</div>";
 
 ?>
