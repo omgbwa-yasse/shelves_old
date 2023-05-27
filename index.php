@@ -1,3 +1,8 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="template/css/style.css"> 
+</head>
 
 <?php
 session_start();

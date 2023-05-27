@@ -5,9 +5,9 @@ require_once 'models/tools/classification/class.class.php';
 require_once 'models/tools/classification/classesManager.class.php';
 $class = new activityClasse();
 $class ->setClassById($_GET['id']);
-echo $class ->getClassId();
-echo $class ->getClassCode();
-echo $class ->getClassTitle();
+echo $class->getClassId() . "  ";
+echo $class->getClassCode() . "  ";
+echo $class->getClassTitle() . "  ";
 echo $class ->getClassObservation();
 echo "<hr/>";
 
@@ -16,16 +16,20 @@ $classes_id = $classChild->ClassesChildById($class ->getClassId());
 if(empty($classes_id)){
     echo "Aucune sous-classe disponible";
 }else{
+    echo "<table>";
     foreach($classes_id as $class_id){
         $class = new activityClasse();
         $class ->setClassById($class_id['id']);
         echo "<tr>";
-        echo "<td>". $class ->getClassCode();
-        echo "<td>".$class ->getClassTitle();
-        echo "<td>".$class ->getClassObservation();
-        echo "<td>".$class ->numberChildUsed()." sous-classes";
+        echo "<td>". $class ->getClassCode(). "  ";
+        echo "<td>".$class ->getClassTitle(). "  ";
+        echo "<td>".$class ->getClassObservation(). "  ";
+        echo "<td>".$class ->numberChildUsed()." sous-classes". "  ";
         echo "<td><a href=\"index.php?q=tools&categ=classificationScheme&sub=viewClass&id=".$class ->getClassId()."\">Afficher</a>";
+        echo "<td><a href=\"index.php?q=tools&categ=classificationScheme&sub=deleteClass&id=".$class ->getClassId()."\">Supprimmer</a>";
+        echo "<td><a href=\"index.php?q=tools&categ=classificationScheme&sub=modifyClass&id=".$class ->getClassId()."\">Modifier</a>";
         
     }
+    echo "</table>";
 }
 

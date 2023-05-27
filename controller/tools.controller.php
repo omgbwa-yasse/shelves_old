@@ -66,6 +66,10 @@ if($_GET['q'] == "tools" && $_GET['categ'] == "classificationScheme" && isset($_
         break;
         case "childClass" : include "views/tools/classificationScheme/childClasses.inc.php";
         break;
+        case "deleteClass" : include "views/tools/classificationScheme/deleteclass.inc.php";
+        break;
+        case "modifyClass" : include "views/tools/classificationScheme/modifyclass.inc.php";
+        break;
 }}
 
 

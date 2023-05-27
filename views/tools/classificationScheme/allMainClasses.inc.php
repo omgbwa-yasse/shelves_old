@@ -1,3 +1,4 @@
+
 <h1>Classes principales du plan de classement</h1>
 <a href="index.php?q=tools&categ=classificationScheme&sub=addClass">Ajouter une classe</a>
 <?php
@@ -14,7 +15,7 @@ $classes_id = $classes -> allMainClasses();
         <th>Titre</th>
         <th>Description</th>
         <th>Sous-classes</th>
-        <th>Afficher</th>
+        <th colspan =3>action</th>
     </tr>
 <?php
 foreach($classes_id as $class_id){
@@ -26,6 +27,9 @@ foreach($classes_id as $class_id){
     echo "<td>".$class ->getClassObservation();
     echo "<td>".$class ->numberChildUsed()." sous-classes";
     echo "<td><a href=\"index.php?q=tools&categ=classificationScheme&sub=viewClass&id=".$class ->getClassId()."\">Afficher</a>";
+    echo "<td><a href=\"index.php?q=tools&categ=classificationScheme&sub=deleteClass&id=".$class ->getClassId()."\">Supprimmer</a>";
+    echo "<td><a href=\"index.php?q=tools&categ=classificationScheme&sub=modifyClass&id=".$class ->getClassId()."\">Modifier</a>";
+    
     
 
 }?>
