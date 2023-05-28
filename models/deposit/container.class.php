@@ -43,7 +43,7 @@ public function getContainerPropertyId(){ return $this->_container_property_id;}
 
 
 // Container shelve
-public function setContainerShelveId($shelve_id){ $this->_shelve_id =  $$shelve_id;}
+public function setContainerShelveId($shelve_id){ $this->_shelve_id =  $shelve_id;}
 public function getContainerShelveId(){return $this->_shelve_id;}
 
 
@@ -102,10 +102,9 @@ public function setContainerByReference($reference){
 }
 
 public function saveContainer(){
-    $stmt = $this->getCnx() ->prepare("INSERT INTO container(container_id, container_reference, shelve_id, container_state_id, container_property_id) 
-    VALUES ( :id, :reference, :shelve_id, :state_id, :property_id)");
-    $stmt -> execute([
-        ':id' => $this-> getContainerId(), 
+    $stmt = $this->getCnx() ->prepare("INSERT INTO container(container_reference, shelve_id, container_state_id, container_property_id) 
+    VALUES ( :reference, :shelve_id, :state_id, :property_id)");
+    $stmt -> execute([ 
         ':reference' => $this->getContainerReference(),  
         ':shelve_id' => $this-> getContainerShelveId(), 
         ':state_id' => $this-> getContainerStateId(), 
@@ -116,6 +115,8 @@ public function saveContainer(){
         return false;
     }
 }
+
+
 public function containerUsedNumber(){
     $stmt = $this->getCnx() ->prepare("SELECT COUNT(*) FROM container WHERE container_id = :id");
     $stmt -> execute([':id' => $this->getContainerId()]);

@@ -5,7 +5,10 @@ include "template/sous_menu.inc.php";
 <ul>
         <li><a href="index.php?q=setting&categ=recordSupport&sub=all"> Support </a></li>
         <li><a href="index.php?q=setting&categ=recordStatus&sub=all"> Statut </a></li>
-        <li><a href="index.php?q=setting&categ=record&sub=all"> Enregistrement </a></li>
+</ul>
+<p> Contenant </p>
+<ul>  
+        <li><a href="index.php?q=setting&categ=containerStatus&sub=all"> Statut </a></li>
 </ul>
 <p>Utilisateur</p>
 <ul>
