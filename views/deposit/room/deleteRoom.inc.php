@@ -12,7 +12,7 @@ if($room -> deleteRoom()){
     foreach($number as $value){
         echo $value;
     }
-    echo " étagière(s). <br> Si les étagiaires sont vides, effacez les d'abord.";
+    echo " épis. <br> Si les épis sont vides, effacez les d'abord.";
 }
     
 

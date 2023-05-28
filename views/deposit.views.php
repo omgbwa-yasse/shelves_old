@@ -7,9 +7,9 @@ include "template/sous_menu.inc.php";
         <li><a href="index.php?q=deposit&categ=container&sub=all"> Toutes les contenants </a></li>
         <li><a href="index.php?q=deposit&categ=container&sub=add"> Nouveau Contenant </a></li>
 </ul>
-<p>Etagiaire </p>
+<p>Epis </p>
 <ul>
-        <li><a href="index.php?q=deposit&categ=shelve&sub=all"> Toutes les Etagières </a></li>
+        <li><a href="index.php?q=deposit&categ=shelve&sub=all"> Toutes les Epis </a></li>
         <li><a href="index.php?q=deposit&categ=shelve&sub=add"> Nouvel étagière </a></li>
 </ul>
 <p>Salle </p>

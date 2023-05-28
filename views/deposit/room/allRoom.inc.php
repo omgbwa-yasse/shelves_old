@@ -1,7 +1,7 @@
 
 <h1>Toutes les salles</h1>
 <a href="index.php?q=deposit&categ=room&sub=add">Ajouter une salle</a>
-<table border="2" width="700px">
+<table class="table-view">
 <tr>
     <th>Référence </th>
     <th>Nom de la salle</th>

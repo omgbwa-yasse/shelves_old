@@ -4,9 +4,9 @@ require_once 'models/deposit/roomManager.class.php';
 require_once 'models/deposit/room.class.php';
 ?>
 
-<h1>Nouvelle étagière</h1>
+<h1>Nouvelle un épis</h1>
 <form action="index.php?q=deposit&categ=shelve&sub=save" method="POST">
-<table>
+<table class="table-input">
 <tr>    
   <th><label for="titre"> Référence </label>
   <td><input type="text" id="titre" name="reference" required>
