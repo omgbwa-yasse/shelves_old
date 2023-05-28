@@ -4,24 +4,15 @@ class container extends containerManager{
 private $_container_id;
 private $_container_reference;	
 private $_shelve_id;
-private $_container_state_id;
-private $_container_state_title;	
+private $_container_state_id;	
 private $_container_property_id;
-private $_container_property_title;
-private $_container_property_width;
-private $_container_property_lengh;
-private $_container_property_thinkness;
+
 public function __construct(){
     $this->_container_id = NULL;
     $this->_container_reference = NULL;	
     $this->_shelve_id = NULL ;
-    $this->_container_state_id = NULL;
-    $this->_container_state_title = NULL;	
+    $this->_container_state_id = NULL;	
     $this->_container_property_id = NULL;
-    $this->_container_property_title = NULL;
-    $this->_container_property_width = NULL;
-    $this->_container_property_lengh = NULL;
-    $this->_container_property_thinkness = NULL;
 }
 
 // Container id
@@ -44,78 +35,51 @@ public function setContainerStateId($container_state){ $this->_container_state_i
 
 public function getContainerStateId(){ return $this->_container_state_id;}
 
-// Container title
-public function setContainerTitle($container_title){ $this->_container_state_title = $container_title;}
-
-public function getContainerState(){ return $this->_container_state_title;}
 
 // Container property id
 public function setContainerPropertyId($property_id){ $this->_container_property_id = $property_id;}
 
 public function getContainerPropertyId(){ return $this->_container_property_id;}
-    
-// Container property title
-public function setContainerPropertyTitle($property_title){ $this->_container_property_title = $property_title;}
-
-public function getContainerPropertyTitle(){ return $this->_container_property_title;}
-    
-// Container property width
-public function setContainerPropertyWidth($property_width){ $this->_container_property_width = $property_width;}
-
-public function getContainerPropertyWith(){ return $this->_container_property_width;}
-
-// Container property lengh
-public function setContainerPropertyLengh($property_lengh){ $this->_container_property_lengh = $property_lengh;}
-
-public function getContainerPropertyLengh(){ return $this->_container_property_lengh;}
-
-// Container property thinkness
-public function setContainerPropertyThinkness($property_thinkness){ $this->_container_property_thinkness = $property_thinkness;}
-
-public function getContainerPropertyThinkness(){ return $this->_container_property_thinkness;}
 
 
-
-
-
-
-
-
-// Container room
+// Container shelve
 public function setContainerShelveId($shelve_id){ $this->_shelve_id =  $$shelve_id;}
 public function getContainerShelveId(){return $this->_shelve_id;}
 
 
 
-// Recupérer toute une étagière à travers id
+// Recupérer une boite à travers son id
+
 public function setContainerById($id){
-    $stmt = $this->getCnx() ->prepare("SELECT * FROM container WHERE container_id = :id");
+    $stmt = $this->getCnx() ->prepare("SELECT * FROM container 
+            LEFT JOIN container_property 
+            ON container.container_id = container_property.container_id
+            LEFT JOIN container_state 
+            ON container.container_id = container_state.container_id
+            WHERE container_id = :id");
     $stmt ->execute([':id' => $id]);
     $stmt = $stmt -> fetchALL();
     foreach($stmt as $container){
         $this->setContainerId($container['container_id']);
-        $this->setContainerReference($container['container_reference']);
-    
-        
-
-
-
-
-        
+        $this->setContainerReference($container['container_reference']); 
+        $this->setContainerShelveId($container['shelve_id']);
+        $this->setContainerStateId($container['container_state_id']);
+        $this->setContainerPropertyId($container['container_property_id']);
     }
 }
 
-public function updateContainer($id, $reference, $observation, $ear, $colonne, $tablette, $roomId){
+public function updateContainer($id, $reference, $shelve_id, $state_id, $property_id){
     // vérifier si l'id existe dans la table
     $stmt = $this->getCnx() ->prepare("SELECT * FROM container WHERE container_id = :id");
     $stmt -> execute([':id' => $id]);
     $container = $stmt -> fetch();
     if(isset($container)){
         $stmt = $this->getCnx() ->prepare("UPDATE container 
-        SET container_reference = :reference, container_observation = :observation,  container_ear = :ear,
-        container_colonne = :colonne, container_table = :tablette, room_id = :roomId WHERE container_id = :id");
-        $stmt -> execute([':id' => $id, ':reference' => $reference, ':observation' => $observation, ':ear' => $ear, 
-        ':colonne' => $colonne, ':tablette' => $tablette, ':roomId' => $roomId]);
+        SET container_id = :id, container_reference = :reference, shelve_id = :shelve_id,
+        container_state_id = :state_id, container_property_id = :property_id WHERE container_id = :id");
+        $stmt -> execute([
+            ':id' => $id , ':reference' => $reference, 'shelve_id' => $shelve_id, 
+            'state_id' => $state_id, 'property_id' => $property_id ]);
         if($stmt->rowCount()>0)
         { return true; } 
         else {  return false; }
@@ -127,29 +91,25 @@ public function updateContainer($id, $reference, $observation, $ear, $colonne, $
 public function setContainerByReference($reference){
     $stmt = $this->getCnx() ->prepare("SELECT * FROM container WHERE container_reference = :reference");
     $stmt ->execute([':reference' => $reference]);
-    $stmt = $stmt -> fetchALL();
+    $stmt = $stmt -> fetch();
     foreach($stmt as $container){
         $this->setContainerId($container['container_id']);
-        $this->setContainerReference($container['container_reference']);
-        $this->setContainerObservation($container['container_observation']);
-        $this->setContainerEar($container['container_ear']);
-        $this->setContainerColonne($container['container_colonne']);
-        $this->setContainerTable($container['container_table']);
-        $this->setContainerRoomId($container['room_id']);
+        $this->setContainerReference($container['container_reference']); 
+        $this->setContainerShelveId($container['shelve_id']);
+        $this->setContainerStateId($container['container_state_id']);
+        $this->setContainerPropertyId($container['container_property_id']);
     }
 }
 
 public function saveContainer(){
-    $stmt = $this->getCnx() ->prepare("INSERT INTO container ( container_reference, container_observation, container_ear, container_colonne, container_table, room_id) 
-    VALUES ( :reference, :observation, :ear, :colonne, :tablette, :roomId)");
+    $stmt = $this->getCnx() ->prepare("INSERT INTO container(container_id, container_reference, shelve_id, container_state_id, container_property_id) 
+    VALUES ( :id, :reference, :shelve_id, :state_id, :property_id)");
     $stmt -> execute([
-        ':reference' => $this->getContainerReference(), 
-        ':observation' => $this->getContainerObservation(), 
-        ':ear' => $this->getContainerEar(), 
-        ':colonne' => $this->getContainerColonne(), 
-        ':tablette' => $this->getContainerTable(), 
-        ':roomId' => $this->getContainerRoomId()
-    ]);
+        ':id' => $this-> getContainerId(), 
+        ':reference' => $this->getContainerReference(),  
+        ':shelve_id' => $this-> getContainerShelveId(), 
+        ':state_id' => $this-> getContainerStateId(), 
+        ':property_id' => $this->getContainerPropertyId()]);
     if($stmt->rowCount()>0){
         return true;
     } else {
