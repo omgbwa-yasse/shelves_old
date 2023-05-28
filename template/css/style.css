@@ -368,15 +368,17 @@ th, td {
 }
 .container a{
     background-color: rgba(214, 210, 210, 0.794);
-    font-size: 12px;
+    font-size: 13px;
     color: #2c1818;
     text-decoration: none;
     padding: 10px;
     text-align: left;
     display: block;
+    width : 120px;
 }
 .container a:hover{
     display: block;
+    font-size: 14px;
     transition: 0.5s all;
     font-weight: 400;
     color: white;
