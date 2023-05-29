@@ -1,7 +1,7 @@
 <?php
-require_once 'models/setting/containerPropertyManager.class.php';
+require_once 'models/deposit/containerPropertyManager.class.php';
 
-class getContainerProperty extends ContainerPropertyManager{
+class containerProperty extends containerPropertyManager{
     
     private $_container_property_id;
     private $_container_property_title;
@@ -77,11 +77,14 @@ public function setContainerPropertyByTitle($title){
 }
 
 public function setContainerPropertyById($id){
-    $stmt = $this->getCnx() ->prepare("SELECT container_property_id as id, container_property_title as title,
-            container_property_lengh as lengh, container_property_width as width, _container_property_thinkness as thinkness
-    FROM container_property WHERE container_property_id = :$id");
-    $stmt ->execute([':title' => $id]);
-    $stmt = $stmt -> fetch();
+    $stmt = $this->getCnx() ->prepare("SELECT container_property_id as id, 
+            container_property_title as title,
+            container_property_lengh as lengh, 
+            container_property_width as width, 
+            container_property_thinkness as thinkness
+    FROM container_property WHERE container_property_id = :id");
+    $stmt ->execute([':id' => $id]);
+    $stmt = $stmt -> fetchAll();
     foreach($stmt as $container){
         $this->setContainerPropertyId($container['id']);
         $this->setContainerPropertyTitle($container['title']); 

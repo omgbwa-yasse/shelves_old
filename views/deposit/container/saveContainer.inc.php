@@ -9,13 +9,13 @@ if(isset($_GET['id'])){
         if(isset($_POST['reference']) && isset($_POST['state_id']) && isset($_POST['shelve_id']) && isset($_POST['property_id'])){
             $container = new container();
             $container ->setContainerReference($_POST['reference']);
-            $container ->setContainerStateId($_POST['state_id']);
+            $container ->setContainerStatusId($_POST['state_id']);
             $container ->setContainerShelveId($_POST['shelve_id']);
             $container ->setContainerPropertyId($_POST['property_id']);
             
             if($container->saveContainer()){
                 $container ->setContainerByReference($_POST['reference']);
-                header('Location: index.php?q=deposit&categ=room&sub=view&id='. $container->getContainerId());
+                header('Location: index.php?q=deposit&categ=container&sub=view&id='. $container->getContainerId());
             }else{
                 echo "Echec enregistrement...<br>";
             }

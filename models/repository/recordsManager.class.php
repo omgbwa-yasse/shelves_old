@@ -116,7 +116,14 @@ public function getAllRecordsByOrganizationId(){
         return $rqt;
 }
 
-
+public function countContainerUsed($container_id){
+        $stmt = $this->getCnx()->prepare("SELECT COUNT(*) FROM record WHERE record.container_id = :container_id");
+        $stmt-> execute(['container_id' => $container_id]);
+        $stmt = $stmt ->fetch();
+        foreach($stmt as $number){
+                return $number;
+        }   
+}
 
 
 

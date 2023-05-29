@@ -31,9 +31,9 @@ public function setShelveId($shelve_id){  $this->_shelve_id = $shelve_id; }
 public function getShelveId(){ return $this->_shelve_id; }
 
 // Container state
-public function setContainerStateId($container_state){ $this->_container_state_id = $container_state;}
+public function setContainerStatusId($container_state){ $this->_container_state_id = $container_state;}
 
-public function getContainerStateId(){ return $this->_container_state_id;}
+public function getContainerStatusId(){ return $this->_container_state_id;}
 
 
 // Container property id
@@ -51,19 +51,14 @@ public function getContainerShelveId(){return $this->_shelve_id;}
 // Recupérer une boite à travers son id
 
 public function setContainerById($id){
-    $stmt = $this->getCnx() ->prepare("SELECT * FROM container 
-            LEFT JOIN container_property 
-            ON container.container_id = container_property.container_id
-            LEFT JOIN container_state 
-            ON container.container_id = container_state.container_id
-            WHERE container_id = :id");
+    $stmt = $this->getCnx() ->prepare("SELECT * FROM container WHERE container.container_id = :id");
     $stmt ->execute([':id' => $id]);
     $stmt = $stmt -> fetchALL();
     foreach($stmt as $container){
         $this->setContainerId($container['container_id']);
         $this->setContainerReference($container['container_reference']); 
         $this->setContainerShelveId($container['container_shelve_id']);
-        $this->setContainerStateId($container['container_state_id']);
+        $this->setContainerStatusId($container['container_status_id']);
         $this->setContainerPropertyId($container['container_property_id']);
     }
 }
@@ -91,22 +86,22 @@ public function updateContainer($id, $reference, $shelve_id, $state_id, $propert
 public function setContainerByReference($reference){
     $stmt = $this->getCnx() ->prepare("SELECT * FROM container WHERE container_reference = :reference");
     $stmt ->execute([':reference' => $reference]);
-    $stmt = $stmt -> fetch();
+    $stmt = $stmt -> fetchALL();
     foreach($stmt as $container){
         $this->setContainerId($container['container_id']);
         $this->setContainerReference($container['container_reference']); 
         $this->setContainerShelveId($container['container_shelve_id']);
-        $this->setContainerStateId($container['container_state_id']);
+        $this->setContainerStatusId($container['container_status_id']);
         $this->setContainerPropertyId($container['container_property_id']);
     }
 }
 
 public function saveContainer(){
-    $stmt = $this->getCnx() ->prepare("INSERT INTO container(container_reference, container_state_id, container_property_id,container_shelve_id) 
+    $stmt = $this->getCnx() ->prepare("INSERT INTO container(container_reference, container_status_id, container_property_id,container_shelve_id) 
     VALUES (:reference, :state_id, :property_id, :shelve_id)");
     $stmt -> execute([ 
         ':reference' => $this->getContainerReference(),
-        ':state_id' => $this->getContainerStateId(), 
+        ':state_id' => $this->getContainerStatusId(), 
         ':property_id' => $this->getContainerPropertyId(), 
         ':shelve_id' => $this->getContainerShelveId()
     ]);

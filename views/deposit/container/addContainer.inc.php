@@ -1,7 +1,7 @@
 <?php
   require_once 'models/deposit/shelveManager.class.php';
   require_once 'models/deposit/containerPropertyManager.class.php';
-  require_once 'models/setting/containerStateManager.class.php';
+  require_once 'models/setting/containerStatusManager.class.php';
 ?>
 <h1>Ajouter une boite </h1>
 <form action="index.php?q=deposit&categ=container&sub=save" method="POST">
@@ -27,10 +27,10 @@
     <td>
     <select name="state_id">
     <?php 
-        $containerid = new containerStateManager();
-        $containerid = $containerid ->allContainerState();
+        $containerid = new containerStatusManager();
+        $containerid = $containerid ->allContainerStatus();
         foreach($containerid as $id){
-          echo "<option value=\"". $id['container_state_id']."\">". $id['container_state_type']  ." </option>";
+          echo "<option value=\"". $id['container_status_id']."\">". $id['container_status_title']  ." </option>";
         } ?>
       </select>
   </tr>
