@@ -62,7 +62,7 @@ public function setContainerById($id){
     foreach($stmt as $container){
         $this->setContainerId($container['container_id']);
         $this->setContainerReference($container['container_reference']); 
-        $this->setContainerShelveId($container['shelve_id']);
+        $this->setContainerShelveId($container['container_shelve_id']);
         $this->setContainerStateId($container['container_state_id']);
         $this->setContainerPropertyId($container['container_property_id']);
     }
@@ -75,7 +75,7 @@ public function updateContainer($id, $reference, $shelve_id, $state_id, $propert
     $container = $stmt -> fetch();
     if(isset($container)){
         $stmt = $this->getCnx() ->prepare("UPDATE container 
-        SET container_id = :id, container_reference = :reference, shelve_id = :shelve_id,
+        SET container_id = :id, container_reference = :reference,container_shelve_id = :shelve_id,
         container_state_id = :state_id, container_property_id = :property_id WHERE container_id = :id");
         $stmt -> execute([
             ':id' => $id , ':reference' => $reference, 'shelve_id' => $shelve_id, 
@@ -95,20 +95,20 @@ public function setContainerByReference($reference){
     foreach($stmt as $container){
         $this->setContainerId($container['container_id']);
         $this->setContainerReference($container['container_reference']); 
-        $this->setContainerShelveId($container['shelve_id']);
+        $this->setContainerShelveId($container['container_shelve_id']);
         $this->setContainerStateId($container['container_state_id']);
         $this->setContainerPropertyId($container['container_property_id']);
     }
 }
 
 public function saveContainer(){
-    $stmt = $this->getCnx() ->prepare("INSERT INTO container(container_reference, state_id, property_id, shelve_id) 
-    VALUES (:reference, :stateId, :propertyId, :shelveId)");
+    $stmt = $this->getCnx() ->prepare("INSERT INTO container(container_reference, container_state_id, container_property_id,container_shelve_id) 
+    VALUES (:reference, :state_id, :property_id, :shelve_id)");
     $stmt -> execute([ 
         ':reference' => $this->getContainerReference(),
-        ':shelveId' => $this->getContainerShelveId(), 
-        ':stateId' => $this->getContainerStateId(), 
-        ':propertyId' => $this->getContainerPropertyId(), 
+        ':state_id' => $this->getContainerStateId(), 
+        ':property_id' => $this->getContainerPropertyId(), 
+        ':shelve_id' => $this->getContainerShelveId()
     ]);
     if($stmt->rowCount()>0){
         return true;
