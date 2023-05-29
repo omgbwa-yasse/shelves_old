@@ -102,13 +102,14 @@ public function setContainerByReference($reference){
 }
 
 public function saveContainer(){
-    $stmt = $this->getCnx() ->prepare("INSERT INTO container(container_reference, shelve_id, container_state_id, container_property_id) 
-    VALUES ( :reference, :shelve_id, :state_id, :property_id)");
+    $stmt = $this->getCnx() ->prepare("INSERT INTO container(container_reference, state_id, property_id, shelve_id) 
+    VALUES (:reference, :stateId, :propertyId, :shelveId)");
     $stmt -> execute([ 
-        ':reference' => $this->getContainerReference(),  
-        ':shelve_id' => $this-> getContainerShelveId(), 
-        ':state_id' => $this-> getContainerStateId(), 
-        ':property_id' => $this->getContainerPropertyId()]);
+        ':reference' => $this->getContainerReference(),
+        ':shelveId' => $this->getContainerShelveId(), 
+        ':stateId' => $this->getContainerStateId(), 
+        ':propertyId' => $this->getContainerPropertyId(), 
+    ]);
     if($stmt->rowCount()>0){
         return true;
     } else {
