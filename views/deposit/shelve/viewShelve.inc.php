@@ -22,6 +22,8 @@ $shelve -> setShelveById($_GET['id']);
 ?>
 </table>
 <br>
-<a href="index.php?q=deposit&categ=shelve&sub=delete&id=<?= $shelve->getShelveId()?>">Supprimer</a>  
-<a href="index.php?q=deposit&categ=shelve&sub=update&id=<?= $shelve->getShelveId()?>">Modifier</a>  
-<a href="index.php?q=deposit&categ=shelve&sub=all">Toutes les étagières</a>
+<div class="nav-botton">
+   <div><a href="index.php?q=deposit&categ=shelve&sub=delete&id=<?= $shelve->getShelveId()?>">Supprimer</a></div>  
+   <div><a href="index.php?q=deposit&categ=shelve&sub=update&id=<?= $shelve->getShelveId()?>">Modifier</a></div>  
+   <div><a href="index.php?q=deposit&categ=shelve&sub=all">Toutes les épis</a></div>
+</div>

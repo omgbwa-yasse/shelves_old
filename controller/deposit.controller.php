@@ -48,6 +48,23 @@ if($_GET['q'] == "deposit"){
         /* Case create */
         else if($_GET['q'] == "deposit" && $_GET['categ'] == "container" && !empty($_GET['sub'])){
             switch($_GET['sub']){
+                case "add" : include "views/deposit/container/addContainer.inc.php";
+                break ;
+                case "view" : include "views/deposit/container/viewContainer.inc.php";
+                break ;
+                case "update" : include "views/deposit/container/updateContainer.inc.php";
+                break ;
+                case "save" : include "views/deposit/container/saveContainer.inc.php";
+                break ;
+                case "delete" : include "views/deposit/container/deleteContainer.inc.php";
+                break ;
+                case "all" : include "views/deposit/container/allContainer.inc.php";
+                break ;
+            }}
+        
+          /* Case create */
+          else if($_GET['q'] == "deposit" && $_GET['categ'] == "containerProperty" && !empty($_GET['sub'])){
+            switch($_GET['sub']){
                 case "add" : include "";
                 break ;
                 case "view" : include "";
@@ -61,8 +78,6 @@ if($_GET['q'] == "deposit"){
                 case "all" : include "";
                 break ;
             }}
-
-
 
         /* Case dolly */
         else if($_GET['q'] == "deposit" && $_GET['categ'] == "dolly" && !empty($_GET['sub'])){

@@ -1,19 +1,22 @@
 <?php 
 include "template/sous_menu.inc.php";
 ?>
-<p>Recherche </p>
+
+<p>Contenant </p>
+<ul>
+        <li><a href="index.php?q=deposit&categ=container&sub=all"> Toutes les contenants </a></li>
+        <li><a href="index.php?q=deposit&categ=container&sub=add"> Nouveau Contenant </a></li>
+        <li><a href="index.php?q=deposit&categ=containerProperty&sub=all">  Nouveau format </a></li>
+</ul>
+<p>Epis </p>
+<ul>
+        <li><a href="index.php?q=deposit&categ=shelve&sub=all"> Toutes les Epis </a></li>
+        <li><a href="index.php?q=deposit&categ=shelve&sub=add"> Nouvel étagière </a></li>
+</ul>
+<p>Salle </p>
 <ul>
         <li><a href="index.php?q=deposit&categ=room&sub=all"> Tous les salles </a></li>
-        <li><a href="index.php?q=deposit&categ=shelve&sub=all"> Toutes les Etagières </a></li>
-        <li><a href="index.php?q=deposit&categ=search&sub=all"> Toutes les contenants </a></li>
-
-</ul>
-        
-<p> Ajouter un espace </p>
-<ul>
         <li><a href="index.php?q=deposit&categ=room&sub=add"> Nouvelle salle </a></li>
-        <li><a href="index.php?q=deposit&categ=shelve&sub=add"> Nouvel étagière </a></li>
-        <li><a href="index.php?q=deposit&categ=container&sub=add"> Nouveau Contenant </a></li>
 </ul>
 <p> Chariots </p>
 <ul>

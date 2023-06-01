@@ -18,11 +18,11 @@ include_once "template/header.inc.php"
         <img src="template/css/svg/communication-conversation-help-svgrepo-com.svg" alt=""> 
         
         Communication</a></li>
-        <li class="<?php if ($_GET['q']=="deposit") {echo "active"; } else  {echo "";}?>"><a href ="index.php?q=audit&categ=default&sub=default">
+        <li class="<?php if ($_GET['q']=="audit") {echo "active"; } else  {echo "";}?>"><a href ="index.php?q=audit&categ=default&sub=default">
         <img src="template/css/svg/audit-report-svgrepo-com.svg" alt="">    
         
         Audit</a></li>
-        <li class="<?php if ($_GET['q']=="audit") {echo "active"; } else  {echo "";}?>"><a href ="index.php?q=deposit&categ=search&sub=all">
+        <li class="<?php if ($_GET['q']=="deposit") {echo "active"; } else  {echo "";}?>"><a href ="index.php?q=deposit&categ=search&sub=all">
          <img src="template/css/svg/deposit-svgrepo-com.svg" alt="">   
         
         Dépôt</a></li>

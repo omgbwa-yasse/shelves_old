@@ -37,6 +37,28 @@ if($_GET['q'] == "setting"){
                 default : include 'views/error.views.php';
             }
         }
+
+        if ($_GET['q'] == "setting" && $_GET['categ'] == "containerStatus" && !empty($_GET['sub'])) {
+            switch($_GET['sub']){
+                case 'add' : include 'views/setting/containerStatus/addContainerStatus.views.php';
+                break;
+                case 'update' : include 'views/setting/containerStatus/updateContainerStatus.views.php';
+                break;
+                case 'delete' : include 'views/setting/containerStatus/deleteContainerStatus.views.php';
+                break;
+                case 'views' : include 'views/setting/containerStatus/viewsContainerStatus.views.php';
+                break;
+                case 'all' : include 'views/setting/containerStatus/allContainerStatus.views.php';
+                break;
+                case 'save' : include 'views/setting/containerStatus/saveContainerStatus.views.php';
+                break;
+                default : include '';
+            }
+        }
+
+
+
+
         if ($_GET['q'] == "setting" && $_GET['categ'] == "user" && !empty($_GET['sub'])) {
             switch($_GET['sub']){
                 case 'add' : include 'views/setting/user/addUser.views.php';

@@ -1,11 +1,11 @@
-<h1>Modifier une étagière</h1>
+<h1>Modifier un épis</h1>
 <?php
 require_once 'models/deposit/shelve.class.php';
 $shelve = new shelve();
 $shelve -> setShelveById($_GET['id']);
 ?>
 <form action="index.php?q=deposit&categ=shelve&sub=save&id=<?= $shelve->getShelveId();?>" method="POST">
-<table>
+<table class="table-input">
 <tr>
       <td><label for="titre">Référence  </label>
       <td><input type="text" id="titre" name="reference" value="<?= $shelve->getShelveReference();?>" required>
@@ -16,11 +16,11 @@ $shelve -> setShelveById($_GET['id']);
 </tr>
 <tr>
     <td><label for="colonne"> Travée  </label>
-    <td><input type="text" id="colonne" name="title" value="<?= $shelve->getShelveColonne();?>" required>
+    <td><input type="text" id="colonne" name="colonne" value="<?= $shelve->getShelveColonne();?>" required>
 </tr>
 <tr>
     <td><label for="tablette">Tablette (cm) </label>
-    <td><input type="text" id="tablette" name="title" value="<?= $shelve->getShelveTable()*100;?>" required>
+    <td><input type="text" id="tablette" name="table" value="<?= $shelve->getShelveTable()*100;?>" required>
 </tr>
 <tr>
     <td><label for="observation" > Observation  </label>
@@ -28,7 +28,7 @@ $shelve -> setShelveById($_GET['id']);
 </tr> 
 <tr>
    <td> <label for="observation" > Observation  </label>
-   <td> <select>
+   <td> <select name="room_id">
         <?php 
           require_once 'models/deposit/roomManager.class.php';
           require_once 'models/deposit/room.class.php';
@@ -45,12 +45,8 @@ $shelve -> setShelveById($_GET['id']);
           ?>
     </select>
 </tr>
-<tr>
-   <td><input type="submit" value="Sauvegarder la modification">
-   <td><input type="reset" value="Annuler">
-</tr>
 </table>
-   
+<input type="submit" value="Sauvegarder la modification"> <input type="reset" value="Annuler">  
 </form>
 
 
