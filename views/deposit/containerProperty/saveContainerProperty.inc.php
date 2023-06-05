@@ -2,7 +2,7 @@
 require_once "models/deposit/containerProperty.class.php";
 if(isset($_GET['id'])){
      $containerPropertyUpdate = new containerProperty();
-    if($containerPropertyUpdate -> updateContainerProperty($_GET['id'],$_POST['title'], $_POST['with'],$_POST['lengh'],$_POST['thinkness'])){
+    if($containerPropertyUpdate -> updateContainerProperty($_GET['id'],$_POST['title'], $_POST['width'],$_POST['lengh'],$_POST['thinkness'])){
         header('Location: index.php?q=deposit&categ=containerProperty&sub=all'); }
 }else{
     if(isset($_POST['title']) && isset($_POST['width']) && isset($_POST['lengh'])&& isset($_POST['thinkness']) ){

@@ -8,20 +8,18 @@ $containerProperty -> setContainerPropertyById($_GET['id']);
 <h1>Affichage : <?= $containerProperty->getContainerPropertyTitle()?></h1>
 <table class="table-view">
    <tr>
-      <th>n°</th>
       <th>Référence</th>
-      <th>Nom de la salle</th>
-      <th>Description </th>
-      <th>Description </th>
-      <th>Description </th>
-      <th>Description </th>
+      <th>Intitulé</th>
+      <th>Longueur </th>
+      <th>Largeur </th>
+      <th>Epaisseur </th>
    </tr>
    <tr>
       <?php
          echo " <td>" . $containerProperty->getContainerPropertyId();
          echo " <td>" . $containerProperty->getContainerPropertyTitle();
          echo " <td>" . $containerProperty->getContainerPropertyLengh();
-         echo " <td>" . $containerProperty->getContainerPropertyWith();
+         echo " <td>" . $containerProperty->getContainerPropertyWidth();
          echo " <td>" . $containerProperty->getContainerPropertyThinkness();
       ?>
    </tr>

@@ -10,12 +10,12 @@ require_once 'models/deposit/containerProperty.class.php';
   </tr>
   
   <tr>
-    <td><label for="width">Longueur (en cm) </label>
+    <td><label for="width">Largeur (en cm) </label>
     <td><input type="text" id="width" name="width" required>
   </tr>
 
   <tr>
-    <td><label for="lengh">Largeur (en cm) </label>
+    <td><label for="lengh">Longueur (en cm) </label>
     <td><input type="text" id="lengh" name="lengh" required>
   </tr>
 

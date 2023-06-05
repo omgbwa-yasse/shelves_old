@@ -63,10 +63,10 @@ public function updateContainerProperty($id, $title, $width, $lengh, $thinkness)
 
 public function setContainerPropertyByTitle($title){
     $stmt = $this->getCnx() ->prepare("SELECT container_property_id as id, container_property_title as title,
-            container_property_lengh as lengh, container_property_width as width, _container_property_thinkness as thinkness
+            container_property_lengh as lengh, container_property_width as width, container_property_thinkness as thinkness
     FROM container_property WHERE container_property_title = :title");
     $stmt ->execute([':title' => $title]);
-    $stmt = $stmt -> fetch();
+    $stmt = $stmt -> fetchAll();
     foreach($stmt as $container){
         $this->setContainerPropertyId($container['id']);
         $this->setContainerPropertyTitle($container['title']); 

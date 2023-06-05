@@ -69,11 +69,11 @@ if($_GET['q'] == "deposit"){
                 break ;
                 case "view" : include "views/deposit/containerProperty/viewContainerProperty.inc.php";
                 break ;
-                case "update" : include "";
+                case "update" : include "views/deposit/containerProperty/updateContainerProperty.inc.php";
                 break ;
                 case "save" : include "views/deposit/containerProperty/saveContainerProperty.inc.php";
                 break ;
-                case "delete" : include "";
+                case "delete" : include "views/deposit/containerProperty/deleteContainerProperty.inc.php";
                 break ;
                 case "all" : include "views/deposit/containerProperty/allContainerProperty.inc.php";
                 break ;

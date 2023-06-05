@@ -1,4 +1,4 @@
-<h1>Rapport de suppression : Salle</h1>
+<h1>Rapport de suppression : Format de contenant</h1>
 <?php
 include_once 'models/deposit/containerProperty.class.php';
 
@@ -7,12 +7,12 @@ $containerProperty -> setContainerPropertyById($_GET['id']);
 if($containerProperty -> deleteContainerProperty()){
     header('Location: index.php?q=deposit&categ=containerProperty&sub=all');
 } else{
-    echo "la salle que vous voulez supprimer contient : ";
+    echo "Ce format contient : ";
     $number = $containerProperty ->containerPropertyUsedNumber();
     foreach($number as $value){
-        echo $value;
+        echo $value['occurence'];
     }
-    echo " épis. <br> Si les épis sont vides, effacez les d'abord.";
+    echo " contenants. <br> si les contenants ne sont pas vides.";
 }
     
 
