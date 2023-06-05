@@ -3,6 +3,7 @@ require_once 'models/repository/recordsManager.class.php';
 require_once 'models/deposit/container.class.php';
 require_once 'models/deposit/containerProperty.class.php';
 require_once 'models/setting/containerStatus.class.php';
+require_once 'models/deposit/shelve.class.php';
 
 $property = new containerProperty();
 $status = new containerStatus();
@@ -16,6 +17,7 @@ $container -> setContainerById($_GET['id']);
       <th>Référence</th>
       <th>propriété</th>
       <th>status</th>
+      <th>Etagière</th>
    </tr>
    <tr>
       <?php
@@ -24,6 +26,9 @@ $container -> setContainerById($_GET['id']);
          $property -> setContainerPropertyById($container->getContainerPropertyId());
          echo "<td>". $property ->getContainerPropertyTitle();
          echo "<td>". $status ->getContainerStatusTitle();
+         $shelve = new shelve();
+         $shelve -> setShelveById($container ->getShelveId());
+         echo "<td>". $shelve ->getShelveReference();
       ?>
    </tr>
 </table>
@@ -40,7 +45,7 @@ $container -> setContainerById($_GET['id']);
       $number = new recordsManager();
       $number = $number ->countContainerUsed($container->getContainerId());
       if($number > 0){
-         echo "ce contenant est utilisé par ".$number ;
+         echo "ce contenant est utilisé par ". $number ;
       } else{
          echo "Ce contenant est vide...";
       }

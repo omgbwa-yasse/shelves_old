@@ -29,7 +29,7 @@ public function getContainerPropertyTitle(){ return $this->_container_property_t
 // Container property width
 public function setContainerPropertyWidth($property_width){ $this->_container_property_width = $property_width;}
 
-public function getContainerPropertyWith(){ return $this->_container_property_width;}
+public function getContainerPropertyWidth(){ return $this->_container_property_width;}
 
 // Container property lengh
 public function setContainerPropertyLengh($property_lengh){ $this->_container_property_lengh = $property_lengh;}
@@ -64,7 +64,7 @@ public function updateContainerProperty($id, $title, $width, $lengh, $thinkness)
 public function setContainerPropertyByTitle($title){
     $stmt = $this->getCnx() ->prepare("SELECT container_property_id as id, container_property_title as title,
             container_property_lengh as lengh, container_property_width as width, _container_property_thinkness as thinkness
-    FROM container_property WHERE container_property_title = :$title");
+    FROM container_property WHERE container_property_title = :title");
     $stmt ->execute([':title' => $title]);
     $stmt = $stmt -> fetch();
     foreach($stmt as $container){
@@ -103,7 +103,7 @@ public function saveContainerProperty(){
     $stmt -> execute([
         ':id' => $this-> getContainerPropertyId(), 
         ':title' => $this->getContainerPropertyTitle(),  
-        ':width' => $this-> getContainerPropertyWith(), 
+        ':width' => $this-> getContainerPropertyWidth(), 
         ':lengh' => $this-> getContainerPropertyLengh(), 
         ':thinkness' => $this->getContainerPropertyThinkness()]);
     if($stmt->rowCount()>0){
@@ -113,9 +113,8 @@ public function saveContainerProperty(){
     }
 }
 public function containerPropertyUsedNumber(){
-    $stmt = $this->getCnx() ->prepare("SELECT COUNT(*) FROM container WHERE container_property_id = :id");
+    $stmt = $this->getCnx() ->prepare("SELECT COUNT(*) as occurence FROM container WHERE container_property_id = :id");
     $stmt -> execute([':id' => $this->getContainerPropertyId()]);
-    $stmt = $stmt -> fetch();
     return $stmt;
 }
 

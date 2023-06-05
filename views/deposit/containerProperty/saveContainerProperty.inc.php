@@ -1,25 +1,22 @@
 <?php
-require_once "models/deposit/room.class.php";
-
+require_once "models/deposit/containerProperty.class.php";
 if(isset($_GET['id'])){
-    // Je vérifie si il y'a Un ID (donnée existe), je modifie dans la base avec les données envoyés
-    $roomUpdate = new room();
-    if($roomUpdate -> updateRoom($_GET['id'],$_POST['reference'], $_POST['title'],$_POST['observation'])){
-        header('Location: index.php?q=deposit&categ=room&sub=all');
-    }
-    
+     $containerPropertyUpdate = new containerProperty();
+    if($containerPropertyUpdate -> updateContainerProperty($_GET['id'],$_POST['title'], $_POST['with'],$_POST['lengh'],$_POST['thinkness'])){
+        header('Location: index.php?q=deposit&categ=containerProperty&sub=all'); }
 }else{
-            if(isset($_POST['reference']) && isset($_POST['title'])){
-            $room = new room();
-            $room ->setRoomReference($_POST['reference']);
-            $room ->setRoomTitle($_POST['title']);
-            $room ->setRoomObservation($_POST['observation']);
-            if($room->saveRoom()){
-                $room ->setRoomByTitle($_POST['title']);
-                header('Location: index.php?q=deposit&categ=room&sub=view&id='. $room->getRoomId());
+    if(isset($_POST['title']) && isset($_POST['width']) && isset($_POST['lengh'])&& isset($_POST['thinkness']) ){
+        $containerProperty = new containerProperty();
+        $containerProperty ->setContainerPropertyTitle($_POST['title']);
+        $containerProperty ->setContainerPropertyWidth($_POST['width']);
+        $containerProperty ->setContainerPropertyLengh($_POST['lengh']);
+        $containerProperty ->setContainerPropertyThinkness($_POST['thinkness']);
+        if($containerProperty->saveContainerProperty()){
+            $containerProperty ->setContainerPropertyByTitle($_POST['title']);
+            header('Location: index.php?q=deposit&categ=containerProperty&sub=view&id='. $containerProperty->getContainerPropertyId());
             }else{
                 echo "Echec enregistrement...<br>";
             }
         }
-}
+    }
 ?>

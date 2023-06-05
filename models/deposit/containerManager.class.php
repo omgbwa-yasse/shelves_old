@@ -4,7 +4,7 @@ class containerManager extends connexion{
 
 
 public function allContainer(){
-    $stmt = $this->getCnx() ->prepare("SELECT * FROM container ORDER BY container_reference ASC");
+    $stmt = $this->getCnx() ->prepare("SELECT * FROM container ORDER BY container_reference DESC");
     $stmt ->execute();
     $container = $stmt -> fetchAll();
     return $container;

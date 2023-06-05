@@ -65,17 +65,17 @@ if($_GET['q'] == "deposit"){
           /* Case create */
           else if($_GET['q'] == "deposit" && $_GET['categ'] == "containerProperty" && !empty($_GET['sub'])){
             switch($_GET['sub']){
-                case "add" : include "";
+                case "add" : include "views/deposit/containerProperty/addContainerProperty.inc.php";
                 break ;
-                case "view" : include "";
+                case "view" : include "views/deposit/containerProperty/viewContainerProperty.inc.php";
                 break ;
                 case "update" : include "";
                 break ;
-                case "save" : include "";
+                case "save" : include "views/deposit/containerProperty/saveContainerProperty.inc.php";
                 break ;
                 case "delete" : include "";
                 break ;
-                case "all" : include "";
+                case "all" : include "views/deposit/containerProperty/allContainerProperty.inc.php";
                 break ;
             }}
 

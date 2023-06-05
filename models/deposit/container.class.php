@@ -4,14 +4,14 @@ class container extends containerManager{
 private $_container_id;
 private $_container_reference;	
 private $_shelve_id;
-private $_container_state_id;	
+private $_container_status_id;	
 private $_container_property_id;
 
 public function __construct(){
     $this->_container_id = NULL;
     $this->_container_reference = NULL;	
     $this->_shelve_id = NULL ;
-    $this->_container_state_id = NULL;	
+    $this->_container_status_id = NULL;	
     $this->_container_property_id = NULL;
 }
 
@@ -30,10 +30,10 @@ public function setShelveId($shelve_id){  $this->_shelve_id = $shelve_id; }
 
 public function getShelveId(){ return $this->_shelve_id; }
 
-// Container state
-public function setContainerStatusId($container_state){ $this->_container_state_id = $container_state;}
+// Container status
+public function setContainerStatusId($container_status){ $this->_container_status_id = $container_status;}
 
-public function getContainerStatusId(){ return $this->_container_state_id;}
+public function getContainerStatusId(){ return $this->_container_status_id;}
 
 
 // Container property id
@@ -63,18 +63,18 @@ public function setContainerById($id){
     }
 }
 
-public function updateContainer($id, $reference, $shelve_id, $state_id, $property_id){
+public function updateContainer($id, $reference, $shelve_id, $status_id, $property_id){
     // vérifier si l'id existe dans la table
     $stmt = $this->getCnx() ->prepare("SELECT * FROM container WHERE container_id = :id");
     $stmt -> execute([':id' => $id]);
     $container = $stmt -> fetch();
     if(isset($container)){
         $stmt = $this->getCnx() ->prepare("UPDATE container 
-        SET container_id = :id, container_reference = :reference,container_shelve_id = :shelve_id,
-        container_state_id = :state_id, container_property_id = :property_id WHERE container_id = :id");
+        SET container_id = :id, container_reference = :reference, container_shelve_id = :shelve_id,
+        container_status_id = :status_id, container_property_id = :property_id WHERE container_id = :id");
         $stmt -> execute([
             ':id' => $id , ':reference' => $reference, 'shelve_id' => $shelve_id, 
-            'state_id' => $state_id, 'property_id' => $property_id ]);
+            'status_id' => $status_id, 'property_id' => $property_id ]);
         if($stmt->rowCount()>0)
         { return true; } 
         else {  return false; }
@@ -98,10 +98,10 @@ public function setContainerByReference($reference){
 
 public function saveContainer(){
     $stmt = $this->getCnx() ->prepare("INSERT INTO container(container_reference, container_status_id, container_property_id,container_shelve_id) 
-    VALUES (:reference, :state_id, :property_id, :shelve_id)");
+    VALUES (:reference, :status_id, :property_id, :shelve_id)");
     $stmt -> execute([ 
         ':reference' => $this->getContainerReference(),
-        ':state_id' => $this->getContainerStatusId(), 
+        ':status_id' => $this->getContainerStatusId(), 
         ':property_id' => $this->getContainerPropertyId(), 
         ':shelve_id' => $this->getContainerShelveId()
     ]);
@@ -116,7 +116,6 @@ public function saveContainer(){
 public function containerUsedNumber(){
     $stmt = $this->getCnx() ->prepare("SELECT COUNT(*) FROM container WHERE container_id = :id");
     $stmt -> execute([':id' => $this->getContainerId()]);
-    $stmt = $stmt -> fetch();
     return $stmt;
 }
 

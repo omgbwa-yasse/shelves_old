@@ -3,6 +3,7 @@ require_once 'models/deposit/container.class.php';
 require_once 'models/setting/containerStatus.class.php';
 require_once 'models/deposit/containerManager.class.php';
 require_once 'models/deposit/containerProperty.class.php';
+require_once 'models/deposit/shelve.class.php';
 
 $containers = new containerManager();
 $property = new containerProperty();
@@ -18,6 +19,7 @@ $status = new containerStatus();
     <th>Référence du contenant</th>
     <th>Proprieté</th>
     <th>Etat</th>
+    <th>Etagière</th>
 </tr>
 <?php
 
@@ -32,6 +34,9 @@ $status = new containerStatus();
             echo "<td>". $property ->getContainerPropertyTitle();
             $status -> setContainerStatusById($container->getContainerStatusId());
             echo "<td>". $status ->getContainerStatusTitle();
+            $shelve = new shelve();
+            $shelve -> setShelveById($container ->getShelveId());
+            echo "<td>". $shelve ->getShelveReference();
             echo "</tr>";
     }
 ?>
