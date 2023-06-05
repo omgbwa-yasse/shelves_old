@@ -21,19 +21,7 @@ body{
     
 }
 
-@keyframes bounce {
-    100%, 80%, 50%, 20%,  0% {
-        transform: translateY(0);
-    }
-    40% {
-        transform: translateY(-5px);
-    }
-    60% {
-        transform: translateY(-2px);
-    }
-    
- 
-}
+
 
 nav {
     background-color: rgb(213, 205, 205);
@@ -67,7 +55,7 @@ nav a {
 nav li:hover {
     color: rgb(247, 247, 247);
     background-color: rgb(82, 77, 35);
-    /* transform: translateY(-5px); */
+    
 }
 nav li:hover img{
     filter: invert(100%) brightness(1000%);
@@ -347,8 +335,16 @@ table {
 
 th, td {
     text-align: left;
-    padding: 5px;
+    padding: 8px;
 }
+
+
+
+th {
+  
+}
+
+
 .container a{
     font-size: 13px;
     color: #2c1818;
