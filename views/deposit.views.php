@@ -6,7 +6,7 @@ include "template/sous_menu.inc.php";
 <ul>
         <li><a href="index.php?q=deposit&categ=container&sub=all"> Toutes les contenants </a></li>
         <li><a href="index.php?q=deposit&categ=container&sub=add"> Nouveau Contenant </a></li>
-        <li><a href="index.php?q=deposit&categ=containerProperty&sub=all">  Nouveau format </a></li>
+        <li><a href="index.php?q=deposit&categ=containerProperty&sub=all">  Tous les  formats </a></li>
 </ul>
 <p>Epis </p>
 <ul>
