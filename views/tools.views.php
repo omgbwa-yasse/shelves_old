@@ -30,7 +30,8 @@ include "template/sous_menu.inc.php";
 <p>Organigramme</p>
         <ul> 
                 <li><a href="index.php?q=tools&categ=organization&sub=allOrganization"> Organigramme </a></li>
-                <li><a href="index.php?q=tools&categ=organization&sub=addOrganization"> Ajouter un service </a></li>
+                <li><a href="index.php?q=tools&categ=organization&sub=addOrganization"> Nouvelle organisation </a></li>
+                <li><a href="index.php?q=tools&categ=organization&sub=addOrganizationUnit"> Nouveau service </a></li>
         </ul> 
 <p>Thésaurus</p>
         <ul> 

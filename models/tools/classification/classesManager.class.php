@@ -16,7 +16,8 @@ public function __construct(){
 
 
    public function allClasses(){
-    $stmt = $this->getCnx()->prepare("SELECT classification_id as id FROM classification ORDER BY classification_code ASC");
+    $stmt = $this->getCnx()->prepare("SELECT classification_id as id, classification_code as code, classification_title as title
+    FROM classification ORDER BY classification.classification_code ASC");
     $stmt ->execute();
     $stmt = $stmt->fetchAll();
     return $stmt;

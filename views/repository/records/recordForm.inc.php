@@ -39,8 +39,8 @@ foreach($sqlLastNui as $Nui){
 <tr><td class="titre"> Classe</td><td>
 <select name="classification_id">
 <?php if(isset($allClasses)){
-    foreach($allClasses as $classe){
-        echo "<option value=\"".$classe['classification_id']."\">".$classe['classification_code']." - ".$classe['classification_title'] ."</option>"; 
+    foreach($allClasses as $class){
+        echo "<option value=\"".$class['id']."\">".$class['code']." - ".$class['title'] ."</option>"; 
     }
 } ?>
 </select>
