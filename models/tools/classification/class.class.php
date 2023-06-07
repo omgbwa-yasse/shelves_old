@@ -1,6 +1,6 @@
 <?php
 require_once 'models/tools/classification/classesManager.class.php';
-class activityClasse extends activityClassesManager{
+class activityClass extends activityClassesManager{
 
   private $_classe_id;
   private $_classe_code;
@@ -49,32 +49,59 @@ public function numberChildUsed(){
 
 
 
-public function addClass(){
-  $sql = "INSERT INTO classification (
-      classification_id,
-      classification_code,
-      classification_title,
-      classification_code_title,
-      classification_type,
-      classification_parent_id,
-      classification_type_id,
-      classification_observation) 
-      VALUES ( NULL, :classification_code, :classification_title, NULL, NULL, :classification_parent_id,
-      3,:classification_observation )";
-  
-      $allClasse = $this->getCnx()->prepare($sql);
-      $allClasse->execute([
-      ':classification_code' => $_POST['classification_code'],
-      ':classification_title' => $_POST['classification_title'],
-      ':classification_parent_id' => $_POST['classification_parent_id'],
-      ':classification_observation' => $_POST['classification_observation'] ]);
+public function saveClass($code,$title,$parent_id,$observation){
+  if($parent_id == NULL){
+      $class  = $this->getCnx()->prepare("INSERT INTO classification ( classification_code, classification_title, classification_observation) 
+      VALUES (:code, :title,:observation )");
+      $class  ->execute([':code' => $code, ':title' => $title,':observation' => $observation ]);
+    } else{
+      $mainClass  = $this->getCnx()->prepare("INSERT INTO classification ( classification_code, classification_title,classification_parent_id,classification_observation) 
+      VALUES (:code, :title,:parent_id,:observation )");
+      $mainClass  ->execute([':code' => $code, ':title' => $title,':parent_id' => $parent_id,':observation' => $observation ]);
+    }
   }
   
 
+  public function updateClass($id, $code, $title, $parent_id,$observation){
+    // vérifier si l'id existe dans la table
+    $stmt = $this->getCnx() ->prepare("SELECT * FROM classification WHERE classification_id = :id");
+    $stmt -> execute([':id' => $id]);
+    $classification = $stmt -> fetch();
+    if($classification){
+            // mettre à jour 
+            $stmt = $this->getCnx() ->prepare("UPDATE classification 
+            SET classification_id = :id, 
+                classification_code = :code, 
+                classification_title = :title,
+                classification_parent_id = :parent_id,
+                classification_observation = :observation 
+            WHERE classification_id = :id");
+            $stmt -> execute([':id' => $id,
+                              ':code' => $code,
+                              ':title' => $title,
+                              ':parent_id' => $parent_id, 
+                              ':observation' => $observation, 
+                              ]);
+            if($stmt->rowCount()>0){
+                return true;
+            } else {
+                return false;
+            }
+    } else {
+        // l'id n'existe pas, pas possible de modifier
+        return false;
+    }
 }
 
 
+public function deleteClass($id){ 
+    $stmt = $this->getCnx()->prepare("DELETE FROM classification WHERE classification.classification_id = :id");
+    if($stmt -> execute(['id' => $id])){
+        return true;
+    }else{
+        return false;
+    };
+}
 
 
-
-?>
+}?>

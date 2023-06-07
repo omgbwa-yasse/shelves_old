@@ -3,7 +3,7 @@
 <?php
 require_once 'models/tools/classification/class.class.php';
 require_once 'models/tools/classification/classesManager.class.php';
-$class = new activityClasse();
+$class = new activityClass();
 $class ->setClassById($_GET['id']);
 $classmanager = new activityClassesManager();
 if ($class->numberChildUsed() > 0) {
@@ -22,7 +22,7 @@ else{
 
 
 echo "<hr/>";
-deleteClassificationById
+
 
 
 ?>

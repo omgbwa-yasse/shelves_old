@@ -19,7 +19,7 @@ $classes_id = $classes -> allMainClasses();
     </tr>
 <?php
 foreach($classes_id as $class_id){
-    $class = new activityClasse();
+    $class = new activityClass();
     $class ->setClassById($class_id['id']);
     echo "<tr>";
     echo "<td>". $class ->getClassCode();

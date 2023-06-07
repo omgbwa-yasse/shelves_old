@@ -56,7 +56,9 @@ if($_GET['q'] == "tools" && $_GET['categ'] == "classificationScheme" && isset($_
       switch($_GET['sub']){
         case "addClass" : include "views/tools/classificationScheme/addClass.inc.php";
         break;
-        case "savedClass" : include "views/tools/classificationScheme/saveClass.inc.php";
+        case "addMainClass" : include "views/tools/classificationScheme/addMainClass.inc.php";
+        break;
+        case "saveClass" : include "views/tools/classificationScheme/saveClass.inc.php";
         break;
         case "mainClasses" : include "views/tools/classificationScheme/allMainClasses.inc.php";
         break;

@@ -5,8 +5,6 @@ $id = new activityClassesManager();
 $ids = $id ->allClasses();
 ?>
 <h1>Ajouter une classe</h1>
-
-
 <form method="POST" action="index.php?q=tools&categ=classificationScheme&sub=saveClass">
     <table style="margin:5px;">
         <tr>
@@ -16,19 +14,6 @@ $ids = $id ->allClasses();
         <tr>
             <td>Titre de classe :</td>
             <td><input type="text" name="title"></td>
-        </tr>
-        <tr>
-            <td> Classe parent :</td>
-            <td> <select name="parent_id">
-<?php
-    foreach($ids as $id){
-        $class = new activityClass();
-        $class -> setClassById($id['id']);
-        echo "<option value=\"".$class ->getClassId()."\">";
-        echo $class->getClassCode() ." - ". $class->getClassTitle() ."</option>";
-    }
- ?>
-                </select></td>
         </tr>
         <tr>
             <td>Observation : </td>
