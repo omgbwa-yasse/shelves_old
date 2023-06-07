@@ -8,7 +8,7 @@ require_once 'models/tools/classification/classesManager.class.php';
 
 $records = new recordsManager();
 $allClasses = new activityClassesManager();
-$allClasses = $allClasses ->getAllClasses();
+$allClasses = $allClasses ->allClasses();
 $allStatut = $records -> getAllStatutTitle();
 $allContainer = $records ->getAllContainer();
 $allSupport = $records -> getAllSupportTitle();

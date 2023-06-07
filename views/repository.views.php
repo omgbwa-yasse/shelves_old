@@ -19,6 +19,9 @@
     <li>
     <a href="index.php?q=repository&categ=search&sub=selectClasse"> Recherche par classe </a>
     </li>
+    <li>
+    <a href="index.php?q=repository&categ=search&sub=AllDeposit"> Recherche par dépôt </a>
+    </li>
 </ul>
         
 <p>Enregistrements</p>
