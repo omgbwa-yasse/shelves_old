@@ -12,10 +12,15 @@ public function allShelve(){
 
 public function shelveUsed($id){
     $stmt = $this->getCnx() -> prepare("SELECT COUNT(*) FROM container WHERE shelve_id = :id");
-    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-    $stmt->execute();
-    $count = $stmt->fetchColumn();
-    return $count > 0;
+    $stmt->execute([':id' => $id]);
+    $count = $stmt->fetch();
+    foreach($count as $value){
+        if($value > 0){
+            return true ;
+        } else {
+            return false;
+        }
+    }
 }
 
 

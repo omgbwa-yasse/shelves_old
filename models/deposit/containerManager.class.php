@@ -12,22 +12,13 @@ public function allContainer(){
 
 public function containerUsed($id){
     $stmt = $this->getCnx() -> prepare("SELECT COUNT(*) FROM record WHERE container_id = :id");
-    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-    $stmt->execute();
-    $count = $stmt->fetchColumn();
-    return $count > 0;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
+    $stmt->execute([':id' => $id]);
+    $count = $stmt->fetch();
+    foreach($count as $value){
+        if($value > 0){
+            return true ;
+        } else {
+            return false;
+        }
+    }}
 }?>
