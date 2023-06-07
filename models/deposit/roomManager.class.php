@@ -17,7 +17,7 @@ public function roomUsed($id){
     $stmt->bindParam(':id', $id, PDO::PARAM_INT); 
     $stmt->execute(); 
     $count = $stmt->fetchColumn(); 
-    return $count > 0; 
+    return $count; 
 }
 
 

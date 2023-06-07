@@ -120,7 +120,7 @@ public function containerPropertyUsedNumber(){
 
 
 public function deleteContainerProperty(){
-    if($this->containerPropertyUsed($this->getContainerPropertyId()) == false){
+    //if($this->containerPropertyUsed($this->getContainerPropertyId()) == false){}
         $stmt = $this-> getCnx() ->prepare("DELETE FROM container_property WHERE container_property_id = :id");
         $stmt ->execute([':id' => $this->getContainerPropertyId()]);
         if($stmt->rowCount()>0){
@@ -128,9 +128,9 @@ public function deleteContainerProperty(){
         } else {
             return false;
         }
-    } else{
-        return false;
-    }
+    // } else{
+    //     return false;
+    // }
 }
 
     

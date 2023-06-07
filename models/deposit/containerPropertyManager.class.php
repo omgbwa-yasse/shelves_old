@@ -10,13 +10,17 @@ class containerPropertyManager extends connexion{
     }
     
     public function containerPropertyUsed($id){
-        $stmt = $this->getCnx() -> prepare("SELECT COUNT(*) FROM container_property WHERE container_property_id = :id");
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-        $stmt->execute();
-        $count = $stmt->fetchColumn();
-        return $count > 0;
-
-    } 
+        $stmt = $this->getCnx() -> prepare("SELECT COUNT(*) FROM container WHERE container_property_id = :id");
+        $stmt->execute([':id' => $id]);
+        $count = $stmt->fetch(); 
+        foreach($count as $value){
+            if($value > 0){
+                return true ;
+            } else {
+                return false;
+            };
+        }
+    }
     
 }
 ?>
