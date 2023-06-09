@@ -1,20 +1,22 @@
 <?php
 require_once 'models/tools/organization/organization.class.php';
 
-$code = $_POST['code'];
-echo $code;
-$title = $_POST['title'];
-echo $title;
-$observation = $_POST['observation'];
-echo $observation;
-$parent_id = $_POST['parent_id'];
-echo $parent_id;
+$code = htmlspecialchars($_POST['code']);
+$title = htmlspecialchars($_POST['title']) ;
+$observation = htmlspecialchars($_POST['observation']);
+
+
 
 $organization = new organization();
 $organization -> setOrganizationCode($code);
 $organization -> setOrganizationTitle($title);
 $organization -> setOrganizationObservation($observation);
-$organization -> setOrganizationObservation($parent_id);
+if(isset($_POST['parent_id'])){
+    $parent_id = htmlspecialchars($_POST['parent_id']);
+    echo $parent_id;
+    $organization -> setOrganizationParentId($parent_id);
+}
+
 
 echo "<hr/> dans l'objet :";
 echo $organization->getOrganizationCode();

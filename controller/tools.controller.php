@@ -79,7 +79,7 @@ if($_GET['q'] == "tools" && $_GET['categ'] == "classificationScheme" && isset($_
 
 if($_GET['q'] == "tools" && $_GET['categ'] == "organization" && isset($_GET['sub'])){
         switch($_GET['sub']){
-         case "addOrganizationUnit" : include "views/tools/organization/addOrganization.inc.php";
+         case "addOrganizationUnit" : include "views/tools/organization/addOrganizationUnit.inc.php";
           break;
           case "addOrganization" : include "views/tools/organization/addOrganization.inc.php";
           break;

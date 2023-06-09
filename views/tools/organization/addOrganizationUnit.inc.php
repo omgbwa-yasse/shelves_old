@@ -12,6 +12,13 @@ $list = $allOrganization -> getAllOrganization();
 
     <tr><td>Unite :</td><td><input type="text" name="title" style="width:400px;"></td></tr>
 
+    <tr><td>Parent :</td><td><select name="parent_id" style="width:400px;"> 
+    <?php foreach($list as $organization){
+            echo "<option value=\"". $organization['organization_id'] ."\">";
+            echo $organization['organization_code'] . " - " . $organization['organization_title'];
+            echo "<option/>";
+    }?></select></td></tr>
+
     <tr><td>Observation :</td><td><input type="text" name="observation" style="width:400px;"></td></tr>
 
     <tr><td><input type="submit" name="enregister"></td><td><input type="reset" name="annuler"></td></tr>

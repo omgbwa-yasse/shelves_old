@@ -7,13 +7,13 @@ require_once 'views/repository/records/display.inc.php';
 // Afficher les ID
 $AllRecord = new recordsManager();
 $recordsId = $AllRecord -> getAllrecordsIdByClasseId($_GET['id']);
-$classe = new activityClasse();
-$classe->setClasseId($_GET['id']);
-$classe->setClasseById();
+$classe = new activityClass();
+$classe->setClassId($_GET['id']);
+$classe->setClassById();
 ?>
 
 <div style="border-radius:5px;margin-bottom:30px;padding:0.5em;border:solid 2px red;font-size:20px;font-weight:bold; width:900px;">
-<?= $classe->getClasseCode(). " - ".$classe->getClasseTitle();  ?>
+<?= $classe->getClassCode(). " - ".$classe->getClassTitle();  ?>
 <a href ="../shelves/index.php?q=repository&categ=search&sub=allrecords"> | Voir tous les enregistrements </a></div>
 
 <?php
