@@ -181,7 +181,7 @@ th.title{
     font-size: 15px;
     font-weight: bold;
 }
-th.element{
+th .element{
     font-size: 14px;
     text-align: left;
     color: #2c1818;
@@ -190,7 +190,7 @@ th.element{
     font-weight: 100;
     background-color: rgb(214, 214, 214);
 }
-div.option{
+div .option{
     text-align:left;
     margin-top:2px; 
     width:100%;
@@ -352,13 +352,6 @@ th {
     padding: 10px;
     text-align: left;
     display: block;
-}
-.container a:hover{
-    display: block;
-    font-size: 14px;
-    font-weight: 400;
-    color: #1a1919;
-    cursor: pointer;
 }
 
 /* Boutton de navigation en-bas des enregistrement à afficher */
