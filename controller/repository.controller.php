@@ -19,6 +19,8 @@ if($_GET['q'] == "repository"){
                 case "delete" : include "views/repository/records/deleteRecord.inc.php"; 
                 break ;
                 case "child" : include "views/repository/records/createRecordsSub.inc.php";
+                break;
+                case "addRecordInContainer" : include "views/repository/records/addRecordInContainer.inc.php";
                 break ;
                 default : include "views/repository/records/createRecords.inc.php";
             }
