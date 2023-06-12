@@ -82,11 +82,11 @@ if($_GET['q'] == "deposit"){
         /* Case dolly */
         else if($_GET['q'] == "deposit" && $_GET['categ'] == "dolly" && !empty($_GET['sub'])){
             switch($_GET['sub']){
-                case "new" : include "";
+                case "new deposit" : include "";
                 break ;
-                case "view" : include "";
+                case "view deposit" : include "";
                 break ;
-                case "update" : include "";
+                case "update " : include "";
                 break ;
                 case "save" : include "";
                 break ;
