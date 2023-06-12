@@ -3,7 +3,7 @@
 <a href="index.php?q=tools&categ=classificationScheme&sub=addClass">Ajouter une classe</a>
 <?php
 require_once 'models/tools/classification/classesManager.class.php';
-require_once 'models/tools/classification/classe.class.php';
+require_once 'models/tools/classification/class.class.php';
 
 $classes = new activityClassesManager();
 $classes_id = $classes -> allMainClasses();
