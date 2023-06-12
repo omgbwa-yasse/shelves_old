@@ -51,12 +51,4 @@ public function updateClassById($id, $code, $title, $observation, $parent_id) {
       ':classification_parent_id' => $parent_id,
       ':classification_observation' => $observation]); 
     }
-
-
-
-
-
-
-
-
 }?>
