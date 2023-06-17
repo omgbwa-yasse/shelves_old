@@ -1,9 +1,9 @@
 <?php
-require 'models/tools/classification/classe.class.php';
-require 'models/tools/classification/classesManager.class.php';
+require_once 'models/tools/classification/class.class.php';
+require_once 'models/tools/classification/classesManager.class.php';
 
     $allClasseCodeTitle = new activityClassesManager();
-    $allClasses = $allClasseCodeTitle->getAllClasses(); ?>
+    $allClasses = $allClasseCodeTitle->AllClasses(); ?>
 
     <form method="POST" action="index.php?q=repository&categ=search&sub=byClasse">
         <select name="classification_id">

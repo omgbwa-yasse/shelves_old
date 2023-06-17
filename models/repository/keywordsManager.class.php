@@ -23,7 +23,7 @@ public function getAllKeywords(){
 public function setRecordId($id){ $this->_record_id = $id ; }
 
 public function getRecordId(){ return $this->_record_id; }
-public function getKeywordRecordId(){ return $this->_record_id; }        
+public function getKeywordRecordId(){ return $this->_record_id; }
 public function setKeywordRecordId($record_id){ $this->_record_id = $record_id ; return $this->_record_id ; }
 
 public function MgGetrecordByDatesExt($date_start, $date_end){
