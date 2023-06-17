@@ -152,6 +152,7 @@ div.records{
     -o-border-radius:5px ;
     box-shadow: 0px 2px 3px grey;
 }
+
 div .navigation{
     background-color: rgb(163, 67, 67);
     color:yellow;
@@ -210,66 +211,71 @@ h1 .subRecords .title {
 }
 
 
-/* Formulaire d'enregistrement */
-form {
-    margin-top: 10px;
+
+/* Formulaire d'enregistrement*/
+form{
+    margin-top:10px;
 }
 
-.formular table {
-    margin-top: 50px;
-}
+.formular table{
+    margin-top:50px;
 
-.formular input[type="text"] {
+}
+.formular input[type="text"]{
     padding-right: 10px;
     padding-left: 10px;
-    width: 500px;
+    width:500px;
     height: 30px;
     border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
 }
-
-.formular input[type="text"].important {
+.formular input[type="text"] .important{
     background-color: rgb(238, 181, 149);
 }
-
-.formular textarea {
+.formular input[type="text-area"] {
     padding-right: 10px;
     padding-left: 10px;
-    width: 500px;
+    width:500px;
     height: 100px;
+    columns: 10;
 }
-
-.formular select {
+.formular select{
     background-color: rgb(237, 241, 239);
     padding-right: 10px;
     padding-left: 10px;
-    width: 525px;
+    width:525px;
     height: 30px;
+    columns: 10;
     border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
 }
-
-.formular input[type="date"] {
-    width: 243px;
+.formular input[type="date"]{
+    width:243px;
     height: 30px;
+    columns: 10;
     text-align: center;
 }
-
-.formular .titre {
-    width: 150px;
+.formular .titre{
+    width:150px;
 }
-
-.formular input[type="reset"] {
-    width: 150px;
+.formular input[type="reset"]{
+    width:150px;
+    height: 20px;
+}
+.formular .sendData{
+    width:150px;
     height: 20px;
 }
 
-.formular .sendData {
-    width: 150px;
-    height: 20px;
-}
-
-div.section {
+div .section{
     margin-top:20px;
-    color: rgb(58, 34, 6);
+    Color: rgb(58, 34, 6);
     border-bottom: 2px red solid;
     margin-bottom: 30px;
 }
@@ -348,39 +354,57 @@ th {
     text-align: left;
     display: block;
 }
-/* Boutton de navigation en-bas des enregistrement à afficher */
-.container .nav-botton {
-    display: flex;
+.container a:hover{
+    display: block;
+    font-size: 14px;
+    font-weight: 400;
+    color: #1a1919;
+    cursor: pointer;
 }
 
-.container .nav-botton div {
+/* Boutton de navigation en-bas des enregistrement à afficher */
+.container .nav-botton{
+    display: flex;
+}
+.container .nav-botton div{
     margin: 0px 10px 0px 10px;
-    width: 150px;
+    width: 150px ;
     border: #2c1818 solid 3px;
     background-color: #877f77;
     transition: 0.5s all;
     border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
 }
-
-.container .nav-botton div:hover {
+.container .nav-botton div:hover{
     color: #ffffff;
-    width: 150px;
+    width: 150px ;
     transition: 0.5s all;
-    background-color: #877f77;
+    background-color:  #877f77;
     border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
 }
-
 /* Tableau affichage des données */
-.container .table-view {
-    border: #2c1818 solid 2px;
-    width: 750px;
+.container .table-view{
+    border:#2c1818 solid 2px;
+    width: 750 px;
     margin-top: 20px;
     margin-bottom: 20px;
-    border-radius: 2px;
+    border-radius:2px ;
+    -webkit-border-radius:2px ;
+    -moz-border-radius:2px ;
+    -ms-border-radius:2px ;
+    -o-border-radius:2px ;
 }
-
 .container .table-view th{
     border: solid 1px;
+    width:300px;
+
 }
 .container .table-view td{
     border: solid 1px;
@@ -395,7 +419,7 @@ th {
 }
 .container .table-input th{
     border: none;
-}
+}  
 .container .table-input td{
     border: none;
 }

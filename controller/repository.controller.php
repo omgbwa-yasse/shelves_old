@@ -22,9 +22,26 @@ if($_GET['q'] == "repository"){
                 break;
                 case "addRecordInContainer" : include "views/repository/records/addRecordInContainer.inc.php";
                 break ;
+                case "saveRecordInContainer" : include "views/repository/records/saveRecordInContainer.inc.php";
+                break ;
                 default : include "views/repository/records/createRecords.inc.php";
             }
         }
+
+              /* Case create */
+              if($_GET['q'] == "repository" && $_GET['categ'] == "recordInContainer" && !empty($_GET['sub'])){
+                switch($_GET['sub']){
+                    case "addInContainer" : include "";
+                    break ;
+                    case "InsertRecord" : include "views/repository/records/updateRecords.inc.php";
+                    break ;
+                    case "link" : include "views/repository/records/addRecordInContainer.inc.php"; 
+                    break ;
+                    case "save" : include "views/repository/records/saveRecordInContainer.inc.php";
+                    break ;
+                    default : include "views/repository/records/saveRecords.inc.php";
+                }
+            }
         
         /* Case search */
         else if($_GET['q'] == "repository" && $_GET['categ'] == "search" && !empty($_GET['sub'])){

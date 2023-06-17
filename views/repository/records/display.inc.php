@@ -13,8 +13,10 @@ function displayRecordLight($record){
 
 function displayRecord($record){
     echo "<div class=\"records\" >";
-    echo "<div style=\"float:right;width:200px;\">";
-    optionNavigation($record);
+   
+    // Options sur la fiche
+    echo "<div style=\"float:right; width:200px;\">";
+        optionNavigation($record);
     echo "</div>";
 
     // Aficher les enregistrement

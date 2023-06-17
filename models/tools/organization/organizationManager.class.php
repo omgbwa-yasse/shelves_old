@@ -10,35 +10,50 @@ private $code;
 
 
 // Organisation parent by id
-public function getOrganizationParentByChildId($id){ 
+public function OrganizationParentByChildId($id){ 
 
 // Organization child
 }
-public function getOrganizationChildById($id){ 
-
+public function organizationChildsByIds($id){ 
+    $stmt = $this->getCnx()->prepare("SELECT * FROM organization WHERE organization_parent = :id ORDER BY organization_code ASC");
+    $stmt-> execute(['id' => $id]);
+    $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $data;
+  }
 
 // Organization All Organization
-}
 public function getAllOrganization(){ 
-    $rqt = "SELECT * FROM organization ORDER BY organization.organization_title ASC";
-    $rqt = $this->getCnx()->prepare($rqt);
-    $rqt-> execute();
-    return $rqt;
+    $stmt = "SELECT * FROM organization ORDER BY organization.organization_title ASC";
+    $stmt = $this->getCnx()->prepare($stmt);
+    $stmt-> execute();
+    return $stmt;
 }
+
+
+public function getAllMainOrganization(){ 
+    $stmt = "SELECT * FROM organization WHERE organization_parent = 0 ORDER BY organization.organization_title ASC";
+    $stmt = $this->getCnx()->prepare($stmt);
+    $stmt-> execute();
+    return $stmt;
+}
+
+
+
+
 public function DisplayOrganisationByCode($code){
-    $rqt = "SELECT organization_id as id FROM organization 
+    $stmt = "SELECT organization_id as id FROM organization 
     WHERE organization.organization_code = '". $code ."'";
-    $rqt = $this->getCnx()->prepare($rqt);
-    $rqt->execute();
-    return $rqt;    
+    $stmt = $this->getCnx()->prepare($stmt);
+    $stmt->execute();
+    return $stmt;    
 }
 
 public function DisplayOrganisationById($id){
-    $rqt = "SELECT organization_id as id FROM organization 
+    $stmt = "SELECT organization_id as id FROM organization 
     WHERE organization.organization_id = '".$id."'";
-    $rqt = $this->getCnx()->prepare($rqt);
-    $rqt->execute();
-    return $rqt;    
+    $stmt = $this->getCnx()->prepare($stmt);
+    $stmt->execute();
+    return $stmt;    
 }
 
 

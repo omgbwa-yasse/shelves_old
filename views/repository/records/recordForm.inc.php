@@ -10,7 +10,6 @@ $records = new recordsManager();
 $allClasses = new activityClassesManager();
 $allClasses = $allClasses ->allClasses();
 $allStatut = $records -> getAllStatutTitle();
-$allContainer = $records ->getAllContainer();
 $allSupport = $records -> getAllSupportTitle();
 $sqlLastNui = $records -> getLastNui();
 
@@ -67,15 +66,6 @@ foreach($sqlLastNui as $Nui){
             echo '<option>'. $statut['statut'].'</option>';
         }  }} 
 ?>
-</select>
-</td></tr>
-<tr><td class="titre">Contenant</td><td> 
-<select name="container">
-<?php if(isset($allContainer)){
-    foreach($allContainer as $container){
-        echo '<option>'. $container['container'].'</option>'; 
-    }
-} ?>
 </select>
 </td></tr>
 <tr> <td class="titre"> Support</td><td> 

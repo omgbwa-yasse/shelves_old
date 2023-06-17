@@ -7,7 +7,7 @@ class keyword extends keywordsManager{
     private $_keyword_id ;
 
 public function setKeywordIdByKeyword($keyword){
-    $idkeyword = "SELECT keyword_id FROM keywords WHERE keywords.keyword = '".$keyword ."'";
+    $idkeyword = "SELECT keyword_id FROM keyword WHERE keyword.keyword = '".$keyword ."'";
     $idkeyword = $this->getCnx()-> prepare($idkeyword);
     $idkeyword->execute();
     foreach($idkeyword as $id){
@@ -20,7 +20,7 @@ public function getKeywordId(){ return $this->_keyword_id; }
 public function setKeyword($_keyword){ $this->_keyword = $_keyword; }
 public function getKeyword(){ return $this->_keyword;}
 public function getKeywordById(){
-    $rqt = "SELECT keywords.keyword FROM keywords WHERE keywords.keyword_id = '".$this->_keyword_id."'";
+    $rqt = "SELECT keyword.keyword FROM keyword WHERE keyword.keyword_id = '".$this->_keyword_id."'";
     $rqt = $this->getCnx()->prepare($rqt);
     $rqt->execute();
     $result=$rqt->setFetchMode(PDO::FETCH_ASSOC);
@@ -37,42 +37,42 @@ public function getClassKeywordId(){ return $this->_keyword_id;}
 
 
 public function searchKeywordId(){
-    $rqt ="SELECT keywords.keyword_id FROM keywords WHERE keywords.keyword = '".$this->getKeyword() ."'";
+    $rqt ="SELECT keyword.keyword_id FROM keyword WHERE keyword.keyword = '".$this->getKeyword() ."'";
     $rqt = $this->getCnx()->prepare($rqt);
     $rqt -> execute();
-    foreach($rqt as $keywordsID){
-        $this->_keyword_id = $keywordsID['keyword_id'];
+    foreach($rqt as $keywordID){
+        $this->_keyword_id = $keywordID['keyword_id'];
     }
 }
 public function linkKeywordRecord(){             
                     // introduit les ID dans la table Keyword_ID directement
                     $this->searchKeywordId();
-                    $savekeyword = "INSERT INTO records_keywords (keyword_id,records_id) VALUES ('". $this->getKeywordId() ."','". $this->getRecordId()."')";
+                    $savekeyword = "INSERT INTO record_keyword (keyword_id,record_id) VALUES ('". $this->getKeywordId() ."','". $this->getRecordId()."')";
                     $savekeyword = $this->getCnx() ->prepare($savekeyword);
                     $savekeyword->execute();
                 }
 public function KeywordVerification(){
-    $KeywordStatus = NULL;
-    $verificationKeyword = "SELECT keyword_id, keyword FROM keywords WHERE keywords.keyword = '".$this->_keyword."'";
+    $keywordtatus = NULL;
+    $verificationKeyword = "SELECT keyword_id, keyword FROM keyword WHERE keyword.keyword = '".$this->_keyword."'";
     $verificationKeyword = $this->getCnx() -> prepare($verificationKeyword);
     $verificationKeyword -> execute();
     foreach($verificationKeyword as $mot){
         if(isset($mot['keyword']) == $this->_keyword)
         {
-            $KeywordStatus = TRUE ;
+            $keywordtatus = TRUE ;
         } else{
-            $KeywordStatus = FALSE ;
+            $keywordtatus = FALSE ;
         }
-        return $KeywordStatus;
+        return $keywordtatus;
     }
 }
 public function saveNewKeyword($_keyword){
-        $savekeyword = "INSERT INTO keywords (keyword_id,keyword) VALUES ( NULL,'". $this->_keyword."')";
+        $savekeyword = "INSERT INTO keyword (keyword_id,keyword) VALUES ( NULL,'". $this->_keyword."')";
         $savekeyword = $this->getCnx()->prepare($savekeyword);
         $savekeyword -> execute();                    
                     
         // Recupération de l'ID du mot clé enregistré
-        $keywordID = "SELECT keyword_id FROM keywords WHERE keywords.keyword = '".$this->_keyword."'" ;
+        $keywordID = "SELECT keyword_id FROM keyword WHERE keyword.keyword = '".$this->_keyword."'" ;
         $keywordID = $this->getCnx()-> prepare($keywordID);
         $keywordID ->execute();
         $keyID = NULL;
@@ -82,30 +82,30 @@ public function saveNewKeyword($_keyword){
     
 
         // Insertion des données dans la table d'association
-        $savekeyword = "INSERT INTO records_keywords (keyword_id,records_id) VALUES ('". $keyID."','". $this->getRecordId()."')";
+        $savekeyword = "INSERT INTO record_keyword (keyword_id,record_id) VALUES ('". $keyID."','". $this->getRecordId()."')";
         $savekeyword = $this->getCnx()->prepare($savekeyword);
         $savekeyword->execute();
 }
  public function deleteKeyword(){
         // On affiche la liste de mots clés associés au document
-        $rqt = "SELECT records_keywords.keyword_id FROM records_keywords WHERE records_keywords.records_id = '". $this->getRecordId()."'";    
+        $rqt = "SELECT record_keyword.keyword_id FROM record_keyword WHERE record_keyword.record_id = '". $this->getRecordId()."'";    
         $rqt = $this->getCnx()->prepare($rqt);
         $rqt -> execute();
         foreach($rqt as $keyId){
            $this->_keyword_id = $keyId['keyword_id'];
         
         // On compte le nombre de fois qu'un mot clé de la liste précédente est utilisé, si c'est moins ou égal à de 1 fois on supprime
-        $rqt = "SELECT count(*) FROM records_keywords WHERE records_keywords.records_id = '". $this->getKeywordId() ."'";
+        $rqt = "SELECT count(*) FROM record_keyword WHERE record_keyword.record_id = '". $this->getKeywordId() ."'";
         $rqt = $this->getCnx()->prepare($rqt);
         $rqt ->execute();
         foreach($rqt as $delkey){
             if($delkey['0'] == 1 OR $delkey['0'] == 0){
                 $delid = $this->getKeywordId();
-                $rqt="DELETE FROM keywords WHERE keywords.keyword_id = '". $delid ."'";
+                $rqt="DELETE FROM keyword WHERE keyword.keyword_id = '". $delid ."'";
                 $rqt=$this->getCnx()->prepare($rqt);
                 $rqt->execute();
                 
-                $rqt="DELETE FROM records_keywords WHERE records_keywords.keyword_id = '". $delid."'";
+                $rqt="DELETE FROM record_keyword WHERE record_keyword.keyword_id = '". $delid."'";
                 $rqt=$this->getCnx()->prepare($rqt);
                 $rqt->execute();
 
@@ -113,12 +113,12 @@ public function saveNewKeyword($_keyword){
             }
         }
     }
-    public function getAllRecordsIdByKeywordId(){
-        // Je recupère d'abord les Id_records des enregistrements situés dans la table records_keyword
-        $RecordsId = "SELECT records_keywords.records_id as records_id FROM records_keywords WHERE keyword_id = '". $this->getKeywordId()."'";
-        $RecordsId = $this->getCnx()->prepare($RecordsId);
-        $RecordsId ->execute();
-        return $RecordsId;   
+    public function getAllrecordIdByKeywordId(){
+        // Je recupère d'abord les Id_record des enregistrements situés dans la table record_keyword
+        $recordId = "SELECT record_keyword.record_id as record_id FROM record_keyword WHERE keyword_id = '". $this->getKeywordId()."'";
+        $recordId = $this->getCnx()->prepare($recordId);
+        $recordId ->execute();
+        return $recordId;   
     }
 
 }?>
