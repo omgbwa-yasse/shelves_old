@@ -13,7 +13,6 @@ if(isset($_POST['nui']) && isset($_POST['title']) && isset($_POST['date_start'])
             $_POST['observation'] = htmlspecialchars($_POST['observation']) ;
             $_POST['classification_id'] = htmlspecialchars ($_POST['classification_id']);
             $_POST['support']= htmlspecialchars ($_POST['support']);
-            $_POST['container']= htmlspecialchars ($_POST['container']);
             $_POST['statut']= htmlspecialchars ($_POST['statut']);
             $_POST['keywords']= htmlspecialchars ($_POST['keywords']);
             $_POST['organization_title']= htmlspecialchars ($_POST['organization_title']);
@@ -33,7 +32,6 @@ if(isset($_POST['nui']) && isset($_POST['title']) && isset($_POST['date_start'])
             $record->setRecordClasseId($_POST['classification_id']);
             $record->setRecordClasseById();
             $record->setRecordSupportTitle($_POST['support']); 
-            $record->setRecordContainerTitle($_POST['container']);
             $record->setRecordOrganizationTitle($_POST['organization_title']);
             $record->setRecordIdByNui();
 

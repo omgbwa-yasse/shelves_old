@@ -152,6 +152,7 @@ div.records{
     -o-border-radius:5px ;
     box-shadow: 0px 2px 3px grey;
 }
+
 div .navigation{
     background-color: rgb(163, 67, 67);
     color:yellow;
@@ -353,13 +354,7 @@ th {
     text-align: left;
     display: block;
 }
-.container a:hover{
-    display: block;
-    font-size: 14px;
-    font-weight: 400;
-    color: #1a1919;
-    cursor: pointer;
-}
+
 
 /* Boutton de navigation en-bas des enregistrement à afficher */
 .container .nav-botton{
@@ -402,6 +397,8 @@ th {
 }
 .container .table-view th{
     border: solid 1px;
+    width:300px;
+
 }
 .container .table-view td{
     border: solid 1px;
@@ -416,7 +413,7 @@ th {
 }
 .container .table-input th{
     border: none;
-}
+}  
 .container .table-input td{
     border: none;
 }

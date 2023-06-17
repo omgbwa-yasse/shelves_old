@@ -263,19 +263,16 @@ public function saveRecord(){
         // je recupère les ID des container, support, status, classe
         $this->setRecordStatusId();
         $this->setRecordSupportId();
-        $this->setRecordContainerId();
         $this->setRecordClasseById();
         $this->setRecordOrganizationIdByTitle();
 
         // J'enregistre les données
         $rqt = " INSERT INTO record (record_id,record_nui, record_title, 
         record_date_start,record_date_end, record_observation, 
-        record_status_id, record_support_id, record_link_id, 
-        container_id, classification_id, organization_id ) 
+        record_status_id, record_support_id, record_link_id, classification_id, organization_id ) 
         values ('".$this->getRecordId()."','".$this->getRecordNui()."','". $this->getRecordTitle()."','".$this->getRecordDateStart()."',
         '". $this->getRecordDateEnd()."', '".$this->getRecordObservation()."','".$this->getRecordStatusId()."',
-        '".$this->getRecordSupportId()."', '".$this->getRecordLinkId()."','".$this->getRecordContainerId()."',
-        '".$this->getRecordClasseId()."', '".$this->getRecordOrganizationId()."' )";
+        '".$this->getRecordSupportId()."', '".$this->getRecordLinkId()."','".$this->getRecordClasseId()."', '".$this->getRecordOrganizationId()."' )";
 
         $rqt = $this->getCnx()->prepare($rqt);
         $rqt ->execute();
@@ -335,9 +332,18 @@ public function getRecordById(){
 public function deleteRecord($id){
     $rqt ="DELETE FROM record WHERE record.record_id = '". $id ."'";
     $rqt = $this->getCnx()->prepare($rqt);
-    $rqt -> execute();
-}
+    $rqt -> execute();}
 
+
+
+public function insertInContainer($recordId, $containerId){
+        $stmt = $this->getCnx()->prepare("UPDATE record SET container_id = :containerId WHERE record_id = :recordId");
+        if ($stmt -> execute([':containerId' => $containerId, ':recordId' => $recordId])){
+            echo "\nVous venez d'inserer enregistrement n°". $recordId ." Dans le contenant n° " .$containerId ;
+        } else {
+            echo "Insertion de l\'enregistrement dans le contenant a échoué...";
+        }
+    }
 
 
 }?>

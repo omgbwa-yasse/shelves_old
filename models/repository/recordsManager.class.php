@@ -20,9 +20,16 @@ public function getAllrecordsLevel(){
     }
 
 public function getAllrecordsId(){
-        $allrecords = "SELECT record_id FROM record";
-        $allrecords = $this->getCnx()->prepare($allrecords);
+        $allrecords = $this->getCnx()->prepare("SELECT * FROM record");
         $allrecords -> execute();
+        $allrecords = $allrecords-> fetchAll();
+        return $allrecords;
+}
+
+public function getAllrecordsIdWithoutContainer(){
+        $allrecords = $this->getCnx()->prepare("SELECT * FROM record WHERE record.container_id = 0 ");
+        $allrecords -> execute();
+        $allrecords = $allrecords-> fetchAll();
         return $allrecords;
 }
 public function MggetRecordById($id){
