@@ -56,6 +56,8 @@ public function DisplayOrganisationById($id){
     return $stmt;    
 }
 
-
+public function displayorganigram($id){
+    
+}
 
 }?>
