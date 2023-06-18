@@ -14,4 +14,7 @@ echo "<a href=\"index.php?q=tools&categ=organization&sub=deleteUnite&id=".$organ
     <a href=\"index.php?q=tools&categ=organization&sub=updateUnite&id=".$organization-> getOrganizationId(). "\">Modifier</a>";
 echo "</div>";
 
+
+
+include 'displayorganigram.inc.php';
 ?>

@@ -9,14 +9,14 @@
     </head>
     <body>
         
-
-    <div style="width: 100%; height: 100%; overflow: auto;  position: absolute; top: 0px; left: 70px;">
+ <h1> hello </h1>
+    <div >
 			<canvas id="diagramCanvas" width="2100" height="2100">
 				
 			</canvas>
 		</div>
 		
-		<div style="width: 50px; height: 300px; position: absolute; top: 80px; left: 20px;">
+		<div >
 			<canvas id="zoomer" width="50" height="300">
 			</canvas>
 	</div>
