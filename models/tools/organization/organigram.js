@@ -81,3 +81,111 @@ var DeanNode = CompositeNode.classFromTemplate("DeanNode",
 });
 
 
+
+document.addEventListener("DOMContentLoaded", function ()
+{
+	//some random names for the people
+	names = ["Nicole Montgomery", "Loren Alvarado", "Vicki Fisher", "Edith Fernandez", "Lynette Sullivan", "Amy Rhodes", "Teresa Marsh", "Ginger Larson", "Bob Lawrence", "Arthur Ball", "Ramiro Mitchell", "Mitchell Barker", "Jane Silva", "Diana Curry", "Jay Smith", "Caroline Garcia", "Paulette Wells", "Alexander Chapman", "Emanuel Glover", "Shannon Daniel", "Jesus Townsend", "Lowell Gibbs", "Ruben Figueroa", "Estelle Henderson", "Sonja French", "Ken Underwood", "Joe Hines", "Eric Rogers", "Lindsay Manning", "Jorge Shelton", "Bobby Sanders", "Mamie Pratt", "Rudolph Armstrong", "Wayne Mcguire", "Jessica Peters", "Clinton Maxwell", "Lillian Carroll", "Felipe Craig", "Marion Holt", "Willard Reynolds", "Anita Adkins", "Ramona Hanson", "Zachary Rodriguez", "Boyd Todd", "Michelle Ford", "Orlando Jenkins", "Nelson Benson", "Shirley Farmer", "Eddie Curtis", "Phil Taylor", "Yolanda Strickland", "Simon Abbott", "Jesus Neal", "Roman Owens", "Heather Hogan", "Andrew Jennings", "Lucille Kelly", "Glenda Lee", "Kathryn Boone", "Craig Summers", "Michele Fernandez", "Tonya Parsons", "Bennie Freeman", "Stewart Austin", "Johanna Barber", "Julia Dean", "Jeanette Hernandez", "Nicholas Hawkins", "Miriam Lindsey", "Chester Waters", "Marta Jackson", "Jake Brown", "Rufus Turner", "Melvin Nunez", "Luther Collier", "Geraldine Barton", "Wesley Lamb", "Wilbur Frazier", "Wendell Saunders", "Brittany Corte"];
+	
+	// create a Diagram component that wraps the "diagram" canvas
+	diagram = Diagram.create(document.getElementById("diagramCanvas"));
+	
+		// enable drawing of custom nodes interactively
+	diagram.setCustomNodeType(DeanNode);
+	diagram.setBehavior(Behavior.Custom);
+	
+	var theme = new Theme();
+	var linkStyle = new Style();
+	linkStyle.setStroke("#CECECE");
+	theme.styles["std:DiagramLink"] = linkStyle;
+	diagram.setTheme(theme);	
+	diagram.setShadowsStyle(MindFusion.Diagramming.ShadowsStyle.None);
+	
+	createNodes();
+	
+	var links = diagram.getLinks();
+	
+	//set all links to light gray and with pointers at the bottom, 
+	//rather than the head in order to appear inverted
+	for(var i = 0; i < links.length; i++)
+	{
+		var link = links[i];
+		
+	link.setBaseShape("Triangle");
+	link.setHeadShape(null);
+	link.setBaseShapeSize(3.0);
+	link.setBaseBrush({ type: 'SolidBrush', color: "#CECECE" });
+	link.setZIndex(0);
+	}
+	
+	//create an instance of the Tree Layout and apply it
+	var layout = new TreeLayout();
+	layout.direction = MindFusion.Graphs.LayoutDirection.TopToBottom;
+	layout.linkType = MindFusion.Graphs.TreeLayoutLinkType.Cascading;
+	//enabling assistants tells the layout to order the nodes with Assistant traits in a special way
+	layout.enableAssistants = true;
+    diagram.arrange(layout);
+	
+	diagram.resizeToFitItems(5);
+	
+		// create an ZoomControl component that wraps the "zoomer" canvas
+	var zoomer = MindFusion.Controls.ZoomControl.create(document.getElementById("zoomer"));
+	zoomer.setTarget(diagram);
+	zoomer.setZoomFactor(55);	
+	
+	
+});
+
+document.addEventListener("DOMContentLoaded", function ()
+{
+	//some random names for the people
+	names = ["Nicole Montgomery", "Loren Alvarado", "Vicki Fisher", "Edith Fernandez", "Lynette Sullivan", "Amy Rhodes", "Teresa Marsh", "Ginger Larson", "Bob Lawrence", "Arthur Ball", "Ramiro Mitchell", "Mitchell Barker", "Jane Silva", "Diana Curry", "Jay Smith", "Caroline Garcia", "Paulette Wells", "Alexander Chapman", "Emanuel Glover", "Shannon Daniel", "Jesus Townsend", "Lowell Gibbs", "Ruben Figueroa", "Estelle Henderson", "Sonja French", "Ken Underwood", "Joe Hines", "Eric Rogers", "Lindsay Manning", "Jorge Shelton", "Bobby Sanders", "Mamie Pratt", "Rudolph Armstrong", "Wayne Mcguire", "Jessica Peters", "Clinton Maxwell", "Lillian Carroll", "Felipe Craig", "Marion Holt", "Willard Reynolds", "Anita Adkins", "Ramona Hanson", "Zachary Rodriguez", "Boyd Todd", "Michelle Ford", "Orlando Jenkins", "Nelson Benson", "Shirley Farmer", "Eddie Curtis", "Phil Taylor", "Yolanda Strickland", "Simon Abbott", "Jesus Neal", "Roman Owens", "Heather Hogan", "Andrew Jennings", "Lucille Kelly", "Glenda Lee", "Kathryn Boone", "Craig Summers", "Michele Fernandez", "Tonya Parsons", "Bennie Freeman", "Stewart Austin", "Johanna Barber", "Julia Dean", "Jeanette Hernandez", "Nicholas Hawkins", "Miriam Lindsey", "Chester Waters", "Marta Jackson", "Jake Brown", "Rufus Turner", "Melvin Nunez", "Luther Collier", "Geraldine Barton", "Wesley Lamb", "Wilbur Frazier", "Wendell Saunders", "Brittany Corte"];
+	
+	// create a Diagram component that wraps the "diagram" canvas
+	diagram = Diagram.create(document.getElementById("diagramCanvas"));
+	
+		// enable drawing of custom nodes interactively
+	diagram.setCustomNodeType(DeanNode);
+	diagram.setBehavior(Behavior.Custom);
+	
+	var theme = new Theme();
+	var linkStyle = new Style();
+	linkStyle.setStroke("#CECECE");
+	theme.styles["std:DiagramLink"] = linkStyle;
+	diagram.setTheme(theme);	
+	diagram.setShadowsStyle(MindFusion.Diagramming.ShadowsStyle.None);
+	
+	createNodes();
+	
+	var links = diagram.getLinks();
+	
+	//set all links to light gray and with pointers at the bottom, 
+	//rather than the head in order to appear inverted
+	for(var i = 0; i < links.length; i++)
+	{
+		var link = links[i];
+		
+	link.setBaseShape("Triangle");
+	link.setHeadShape(null);
+	link.setBaseShapeSize(3.0);
+	link.setBaseBrush({ type: 'SolidBrush', color: "#CECECE" });
+	link.setZIndex(0);
+	}
+	
+	//create an instance of the Tree Layout and apply it
+	var layout = new TreeLayout();
+	layout.direction = MindFusion.Graphs.LayoutDirection.TopToBottom;
+	layout.linkType = MindFusion.Graphs.TreeLayoutLinkType.Cascading;
+	//enabling assistants tells the layout to order the nodes with Assistant traits in a special way
+	layout.enableAssistants = true;
+    diagram.arrange(layout);
+	
+	diagram.resizeToFitItems(5);
+	
+		// create an ZoomControl component that wraps the "zoomer" canvas
+	var zoomer = MindFusion.Controls.ZoomControl.create(document.getElementById("zoomer"));
+	zoomer.setTarget(diagram);
+	zoomer.setZoomFactor(55);	
+	
+	
+});
