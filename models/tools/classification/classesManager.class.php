@@ -17,7 +17,7 @@ public function __construct(){
 
    public function allClasses(){
     $stmt = $this->getCnx()->prepare("SELECT classification_id as id, classification_code as code, classification_title as title
-    FROM classification ORDER BY classification.classification_code ASC");
+    FROM classification ORDER BY id ASC");
     $stmt ->execute();
     $stmt = $stmt->fetchAll();
     return $stmt;
@@ -41,6 +41,15 @@ public function deleteClassificationById($id) {
   $query = "DELETE FROM classification WHERE classification_id = :classification_id";
   $stmt = $this->getCnx()->prepare($query);
   $stmt->execute([':classification_id' => $id]);
+}
+
+
+public function deleteClassificationBycode($code) {
+  $query = "DELETE FROM classification WHERE classification_code = :classification_code";
+  $stmt = $this->getCnx()->prepare($query);
+  $stmt->execute([':classification_code' => $code]);
+  echo " <br>";
+   echo $code; 
 }
 
 public function updateClassById($id, $code, $title, $observation, $parent_id) {

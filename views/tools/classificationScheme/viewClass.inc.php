@@ -19,6 +19,7 @@ if(empty($classes_id)){
     echo "<table>";
 
     foreach($classes_id as $class_id){
+    
         $class2 = new activityClass();
         $class2 ->setClassByCode($class_id['id']);
         echo "<tr>";
