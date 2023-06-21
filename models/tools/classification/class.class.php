@@ -38,9 +38,21 @@ public function setClassById($id){
       $this-> setClassObservation($class['classification_observation']);
   }
 }
+
+public function setClassByCode($code){
+  $stmt = $this->getCnx()->prepare("SELECT * FROM classification WHERE classification_code = :class_code");
+  $stmt -> execute([':class_code' => $code]);
+  foreach($stmt as $class){
+      $this-> setClassId($class['classification_id']);
+      $this-> setClassCode($class['classification_code']);
+      $this-> setClassTitle($class['classification_title']);
+      $this-> setClassObservation($class['classification_observation']);
+  }
+}
+
 public function numberChildUsed(){
   $stmt = $this->getCnx() ->prepare("SELECT COUNT(*) FROM classification WHERE classification_parent_id = :id");
-    $stmt -> execute([':id' => $this->getClassId()]);
+    $stmt -> execute([':id' => $this->getClassCode()]);
     $stmt = $stmt -> fetch();
     foreach($stmt as $number){
       return $number;

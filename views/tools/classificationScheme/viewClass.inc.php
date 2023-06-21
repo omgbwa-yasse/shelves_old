@@ -3,7 +3,7 @@
 <?php
 require_once 'models/tools/classification/class.class.php';
 require_once 'models/tools/classification/classesManager.class.php';
-$class = new activityClasse();
+$class = new activityClass();
 $class ->setClassById($_GET['id']);
 echo $class->getClassId() . "  ";
 echo $class->getClassCode() . "  ";
@@ -12,24 +12,26 @@ echo $class ->getClassObservation();
 echo "<hr/>";
 
 $classChild = new activityClassesManager();
-$classes_id = $classChild->ClassesChildById($class ->getClassId());
+$classes_id = $classChild->ClassesChildBycode($class ->getClassCode());
 if(empty($classes_id)){
     echo "Aucune sous-classe disponible";
 }else{
     echo "<table>";
+
     foreach($classes_id as $class_id){
-        $class = new activityClasse();
-        $class ->setClassById($class_id['id']);
+        $class2 = new activityClass();
+        $class2 ->setClassByCode($class_id['id']);
         echo "<tr>";
-        echo "<td>". $class ->getClassCode(). "  ";
-        echo "<td>".$class ->getClassTitle(). "  ";
-        echo "<td>".$class ->getClassObservation(). "  ";
-        echo "<td>".$class ->numberChildUsed()." sous-classes". "  ";
-        echo "<td><a href=\"index.php?q=tools&categ=classificationScheme&sub=viewClass&id=".$class ->getClassId()."\">Afficher</a>";
-        echo "<td><a href=\"index.php?q=tools&categ=classificationScheme&sub=deleteClass&id=".$class ->getClassId()."\">Supprimmer</a>";
-        echo "<td><a href=\"index.php?q=tools&categ=classificationScheme&sub=modifyClass&id=".$class ->getClassId()."\">Modifier</a>";
-        
+        echo "<td>".$class2 ->getClassCode(). " </td> ";
+        echo "<td>".$class2 ->getClassTitle(). "  </td>  ";
+        echo "<td>".$class2 ->getClassObservation(). "  </td> ";
+        echo "<td>".$class2 ->numberChildUsed()." sous-classes". "  </td> ";
+        echo "<td><a href=\"index.php?q=tools&categ=classificationScheme&sub=viewClass&id=".$class2 ->getClassCode()."\">Afficher</a></td> ";
+        echo "<td><a href=\"index.php?q=tools&categ=classificationScheme&sub=deleteClass&id=".$class2 ->getClassCode()."\">Supprimmer</a></td> ";
+        echo "<td><a href=\"index.php?q=tools&categ=classificationScheme&sub=modifyClass&id=".$class ->getClassCode()."\">Modifier</a></td> ";
+        echo "</tr>";
     }
+   
     echo "</table>";
 }
 
