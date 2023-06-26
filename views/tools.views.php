@@ -19,8 +19,9 @@ include "template/sous_menu.inc.php";
         </ul>
 <p>Règles de communicabilité</p>
         <ul>    
-                <li><a href="index.php?q=tools&categ=communicability&sub=allCommunicability"> Règle communicabilité </a></li>
-                <li><a href="index.php?q=tools&categ=communicability&sub=addCommunicabilityRule"> Ajouter une règle </a></li>
+                <li><a href="index.php?q=tools&categ=communicability&sub=allrule">toute les  Règle de  communicabilité </a></li>
+                
+                <li><a href="index.php?q=tools&categ=communicability&sub=addrule"> Ajouter une règle </a></li>
         </ul>
 <p>Classe d'accès</p>  
         <ul>      

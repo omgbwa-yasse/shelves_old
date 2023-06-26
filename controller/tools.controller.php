@@ -12,13 +12,13 @@ if($_GET['q'] = "tools" && $_GET['categ'] = 'chart' && isset($_GET['sub'])){
 //Calendrier de conservation
 if($_GET['q'] = "tools" && $_GET['categ'] = 'retention' && isset($_GET['sub'])){
     switch($_GET['sub']){ 
-        case 'addrule' : include 'views/tools/retention/addRule.views.php';
+        case 'addretentionrule' : include 'views/tools/retention/addRule.views.php';
         break;
-        case 'UpdateRule' : include 'views/tools/retention/updateRule.views.php';
+        case 'UpdateretentionRule' : include 'views/tools/retention/updateRule.views.php';
         break;
-        case 'DeleteRule' : include 'views/tools/retention/deleteRule.views.php';
+        case 'DeleteretentionRule' : include 'views/tools/retention/deleteRule.views.php';
         break;
-        case 'viewsRule' : include 'views/tools/retention/viewsRule.views.php';
+        case 'viewsretentionRule' : include 'views/tools/retention/viewsRule.views.php';
         break;
     }
 }
@@ -26,13 +26,15 @@ if($_GET['q'] = "tools" && $_GET['categ'] = 'retention' && isset($_GET['sub'])){
 // Communicabilité
 if($_GET['q'] = "tools" && $_GET['categ'] = 'communicability' && isset($_GET['sub'])){
     switch($_GET['sub']){ 
-        case 'addrule' : include 'views/tools/retention/addCommunicability.views.php';
+        case 'addrule' : include 'views/tools/communicability/addrule.inc.php';
         break;
-        case 'UpdateRule' : include 'views/tools/retention/updateCommunicability.views.php';
+        case 'updaterule' : include 'views/tools/communicability/updaterule.inc.php';
         break;
-        case 'DeleteRule' : include 'views/tools/retention/deleteCommunicability.views.php';
+        case 'deleterule' : include 'views/tools/communicability/delrule.inc.php';
         break;
-        case 'viewsRule' : include 'views/tools/retention/viewsCommunicability.views.php';
+        case 'allrule' : include 'views/tools/communicability/allrule.inc.php';
+        break;
+        case 'viewrule' : include 'views/tools/communicability/viewrule.inc.php';
         break;
     }
 }
