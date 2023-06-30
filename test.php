@@ -1,31 +1,28 @@
 <?php
-// Connexion à la base de données
-$db = new mysqli('localhost', 'root', '', 'dbms');
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "dbms";
 
-// Vérification de la connexion
-if ($db->connect_error) {
-    die("Erreur de connexion: " . $db->connect_error);
+// Créer une connexion
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Vérifier la connexion
+if ($conn->connect_error) {
+    die("La connexion a échoué: " . $conn->connect_error);
 }
 
-// Fonction récursive pour afficher les classifications et leurs enfants
-function displayClassification($db, $parent_code = '0', $level = 0) {
-    // Requête pour sélectionner les classifications avec le parent spécifié
-    $query = "SELECT c1.* FROM classification c1 LEFT JOIN classification c2 ON c1.classification_parent_id = c2.classification_code WHERE c2.classification_code = '$parent_code' OR (c2.classification_code IS NULL AND c1.classification_parent_id = '0')";
-    $result = $db->query($query);
+$sql = "SELECT term_id, term_cote, term_title, term_reference, microthesaurus_id, term_broader_id, term_scope_note FROM thesaurus";
+$result = $conn->query($sql);
 
-    // Affichage des classifications
-    while ($row = $result->fetch_assoc()) {
-        // Indentation pour montrer la hiérarchie
-        echo str_repeat(' ', $level * 4) . $row['classification_title'] . "<br>";
-
-        // Appel récursif pour afficher les enfants
-        displayClassification($db, $row['classification_code'], $level + 1);
+if ($result->num_rows > 0) {
+    echo "<table><tr><th>ID du terme</th><th>Cote du terme</th><th>Titre du terme</th><th>Référence du terme</th><th>ID du micro-thésaurus</th><th>ID du terme plus large</th><th>Note d'application du terme</th></tr>";
+    // Afficher les données de chaque ligne
+    while($row = $result->fetch_assoc()) {
+        echo "<tr><td>".$row["term_id"]."</td><td>".$row["term_cote"]."</td><td>".$row["term_title"]."</td><td>".$row["term_reference"]."</td><td>".$row["microthesaurus_id"]."</td><td>".$row["term_broader_id"]."</td><td>".$row["term_scope_note"]."</td></tr>";
     }
+    echo "</table>";
+} else {
+    echo "0 résultats";
 }
-
-// Affichage des classifications principales et de leurs enfants
-displayClassification($db);
-
-// Fermeture de la connexion à la base de données
-$db->close();
+$conn->close();
 ?>

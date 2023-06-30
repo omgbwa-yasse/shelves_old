@@ -36,7 +36,7 @@ include "template/sous_menu.inc.php";
         </ul> 
 <p>Thésaurus</p>
         <ul> 
-                <li><a href="index.php?q=tools&categ=thesaurus&sub=allhome"> Voir le thésaurus </a></li>
+                <li><a href="index.php?q=tools&categ=thesaurus&sub=allIndex"> Voir le thésaurus </a></li>
                 <li><a href="index.php?q=tools&categ=thesaurus&sub=addIndex"> Ajouter une index </a></li>
         </ul>
 

@@ -100,11 +100,13 @@ if($_GET['q'] == "tools" && $_GET['categ'] == "organization" && isset($_GET['sub
 
 
 // thesaurus
-if($_GET['q'] == "tools" && $_GET['categ'] == "thesaurus" && !empty($_GET['allIndex'])){
+if($_GET['q'] == "tools" && $_GET['categ'] == "thesaurus" && !empty($_GET['sub'])){
         switch($_GET['sub']){
           case "allIndex" : echo "Index : chronologique, thématique, géographique, typologie, Onosmatique, Action, etc.";
+          include "views/tools/thesaurus/viewthesaurus.inc.php";
           break;
           case "addIndex" : echo "Choisit la branche, la classe, clic ajouter ou ajouter et on charte la branche";
+          include "views/tools/thesaurus/addindex.inc.php";
           break;
   }
 

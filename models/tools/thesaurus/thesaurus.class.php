@@ -64,7 +64,7 @@ class Thesaurus extends Connexion {
     ]);
   }
 
-  public function addThesaurus() {
+  public function addindex() {
     $stmt = $this->getCnx()->prepare("INSERT INTO thesaurus (term_cote, term_title, term_reference, microthesaurus_id, term_broader_id, term_scope_note) VALUES (:cote, :title, :reference, :micro_id, :broader_id, :note)");
     $stmt->execute([
       ":cote" => $_POST['term_cote'],
@@ -76,15 +76,34 @@ class Thesaurus extends Connexion {
     ]);
   }
 
-  public function delThesaurus($id) {
+  public function delindex($id) {
     $stmt = $this->getCnx()->prepare("DELETE FROM thesaurus WHERE term_id = :id");
     $stmt->execute([":id" => $id]);
   }
 
-  public function allThesauruses() {
+  public function Thesaurus() {
     $stmt = $this->getCnx()->prepare("SELECT * FROM thesaurus");
     $allThesauruses = $stmt->execute();
     $allThesauruses = $stmt->fetchAll();
     return $allThesauruses;
   }
+  public function allmainterm(){
+    $stmt = $this->getCnx()->prepare("SELECT * FROM thesaurus WHERE term_broader_id is null");
+    $allmainterm = $stmt->execute();
+    $allmainterm = $stmt->fetchAll();
+    return $allmainterm;
+  }
+  public function childterm($id) {
+    $stmt = $this->getCnx()->prepare("SELECT * FROM thesaurus WHERE term_broader_id=?");
+    $stmt->execute(array($id));
+    $allchild = $stmt->fetchAll();
+    return $allchild;
+}
+  public function numberofchildterm($id){
+    $stmt = $this->getCnx()->prepare("SELECT COUNT(*) FROM thesaurus WHERE term_broader_id=?");
+    $allThesauruses = $stmt->execute($id);
+    $allThesauruses = $stmt->fetchAll();
+    return $allchild;
+  }
+
 }?>
