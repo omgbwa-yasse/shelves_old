@@ -27,7 +27,7 @@ public $_organization_title;
 
 public $_record_level_id;
 public $_record_level_title;
-public $_record_level_status;
+public $_record_level_child;
 
 public function __construct(){
     $this->_record_id;
@@ -49,7 +49,7 @@ public function __construct(){
     $this->_record_level = 1;
     $this->_record_level_id;
     $this->_record_level_title;
-    $this->_record_level_status;
+    $this->_record_level_child;
 }
 
 // Les Setters et les Getters
@@ -58,18 +58,26 @@ public function __construct(){
 public function setRecordLevelTitle($level){ $this->_record_level_title = $level; }
 public function getRecordLevelTitle(){ return $this->_record_level_title;}
 
-public function setRecordLevelChildStatus($levelChildStatus){ $this->_record_level_status = $levelChildStatus; }
-public function getRecordLevelChildStatus(){ return $this->_record_level_status;}
+public function setRecordLevelChild($levelChild){ $this->_record_level_child = $levelChild; }
+public function getRecordLevelChild(){ return $this->_record_level_child;}
 
 public function setRecordLevelId($levelId){ $this->_record_level_id = $levelId; }
 public function getRecordLevelId(){ return $this->_record_level_id ; }
 
 
-public function setRecordLevelTitleById(){
+public function setRecordLevelTitleByLevelId(){
     $stmt =$this->getCnx()->prepare("SELECT record_level_title as title FROM record_level WHERE record_level_id = :id");
     $stmt ->execute([':id' => $this->_record_level_id]);
     foreach($stmt as $level_title){
     $this->_record_level_title = $level_title['title'];
+    }
+}
+
+public function setRecordLevelChildByLevelId(){
+    $stmt =$this->getCnx()->prepare("SELECT record_level_child as level_child FROM record_level WHERE record_level_id = :id");
+    $stmt ->execute([':id' => $this->getRecordLevelId()]);
+    foreach($stmt as $level){
+    $this->_record_level_child = $level['level_child'];
     }
 }
 
