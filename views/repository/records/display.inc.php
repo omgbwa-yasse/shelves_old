@@ -13,7 +13,7 @@ function displayRecordLight($record){
 }
 
 function displayRecord($record){
-    $record-> setRecordLevelTitleById();
+    $record-> setRecordLevelTitleByLevelId();
     echo "<div class=\"records\" >";
    
     // Options sur la fiche
