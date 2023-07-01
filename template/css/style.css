@@ -187,14 +187,14 @@ th .element{
     text-align: left;
     color: #2c1818;
     height: 20px;
-    width:50px;
+    width:40px;
     font-weight: 100;
     background-color: rgb(214, 214, 214);
 }
 div .option{
     text-align:left;
     margin-top:2px; 
-    width:100%;
+    width:60%;
     padding:3px 3px 3px 3px;
 }
 

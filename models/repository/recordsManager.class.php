@@ -5,32 +5,50 @@ public $_organization_id;
 public $_parent_id;
 public $_organization_title;
 
-public function getAllrecordsIdByClasseId($classe_id){
+public function getstmtIdByClasseId($classe_id){
         $recordsId = "SELECT record_id as id FROM record WHERE record.classification_id = '". $classe_id ."' " ;
         $recordsId = $this->getCnx()->prepare($recordsId);
         $recordsId -> execute();
         return $recordsId;
     }
 
-public function getAllrecordsLevel(){
+public function getstmtLevel(){
         $recordsId = "SELECT level.level_id, level.level_title FROM level";
         $recordsId = $this->getCnx()->prepare($recordsId);
         $recordsId -> execute();
         return $recordsId;
     }
 
-public function getAllrecordsId(){
-        $allrecords = $this->getCnx()->prepare("SELECT * FROM record");
-        $allrecords -> execute();
-        $allrecords = $allrecords-> fetchAll();
-        return $allrecords;
+public function getstmtId(){
+        $stmt = $this->getCnx()->prepare("SELECT * FROM record");
+        $stmt -> execute();
+        $stmt = $stmt-> fetchAll();
+        return $stmt;
 }
 
+public function getAllrecordsId(){
+        $stmt = $this->getCnx()->prepare("SELECT record.record_id FROM record");
+        $stmt -> execute();
+        $stmt = $stmt-> fetchAll();
+        return $stmt;
+}
 public function getAllrecordsIdWithoutContainer(){
-        $allrecords = $this->getCnx()->prepare("SELECT * FROM record WHERE record.container_id = 0 ");
-        $allrecords -> execute();
-        $allrecords = $allrecords-> fetchAll();
-        return $allrecords;
+        $stmt = $this->getCnx()->prepare("SELECT record_id FROM record WHERE container_id = 0");
+        $stmt -> execute();
+        $stmt = $stmt-> fetchAll();
+        return $stmt;
+}
+public function getAllDesciptionLevels(){
+        $stmt = $this->getCnx()->prepare("SELECT record_level_id as id, record_level_title as title FROM record_level");
+        $stmt -> execute();
+        $stmt = $stmt-> fetchAll();
+        return $stmt;
+}
+public function getstmtIdWithoutContainer(){
+        $stmt = $this->getCnx()->prepare("SELECT * FROM record WHERE record.container_id = 0 ");
+        $stmt -> execute();
+        $stmt = $stmt-> fetchAll();
+        return $stmt;
 }
 public function MggetRecordById($id){
         // à completer
@@ -45,16 +63,16 @@ public function MgGetRecordsByDates($date_start, $date_end){
         return $recordsId;
 }
 public function MgGetLastRecords(){
-        $records = "SELECT record.record_id as id FROM record ORDER  BY id DESC LIMIT 5";
-        $records = $this->getCnx()->prepare($records);
-        $records -> execute();
-        return $records;
+        $stmt =  "SELECT record.record_id as id FROM record ORDER  BY id DESC LIMIT 5";
+        $stmt =  $this->getCnx()->prepare($stmt);
+        $stmt ->  execute();
+        return $stmt; 
 }
 public function getAllSubRecordsIdById($record_id){
-        $records = "SELECT record.record_id as id FROM record WHERE record.record_link_id ='".$record_id."'";
-        $records = $this->getCnx()->prepare($records);
-        $records -> execute();
-        return $records;
+        $stmt =  "SELECT record.record_id as id FROM record WHERE record.record_link_id ='".$record_id."'";
+        $stmt =  $this->getCnx()->prepare($stmt);
+        $stmt ->  execute();
+        return $stmt; 
 }
 public function getAllClasse(){
         $sqlClasse = "SELECT classification.classification_code_title as code_title FROM classification";
@@ -116,7 +134,7 @@ public function setOrganizationById(){
         }; 
 }
 
-public function getAllRecordsByOrganizationId(){
+public function getstmtByOrganizationId(){
         $rqt = "SELECT record.record_id as id FROM record WHERE record.organization_id ='".$this->getOrganizationId()."'";
         $rqt = $this->getCnx()->prepare($rqt);
         $rqt -> execute();
