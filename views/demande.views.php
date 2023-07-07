@@ -3,8 +3,8 @@
 include "template/sous_menu.inc.php";
 ?>
 
-<p>Recherche </p>
-            <ul>        
+<p class="btnSousMenu">Recherche </p>
+            <ul class="optionSousMenu">        
             <li>
                 <a href="index.php?q=loan&categ=search&sub=allloan"> Toutes les demandes </a>
             </li>       
@@ -23,20 +23,20 @@ include "template/sous_menu.inc.php";
         </ul>
         
         
-        <p>Demandes</p>
-        <ul>
+        <p class="btnSousMenu">Demandes</p>
+        <ul class="optionSousMenu">
             <li><a href="index.php?q=demande&categ=create&sub=new">Nouvelle demande </a></li>
             <li><a href="index.php?q=demande&categ=create&sub=last">Dernières demandes </a></li>
         </ul>
-        <p>Status</p>
-        <ul>
+        <p class="btnSousMenu">Status</p>
+        <ul class="optionSousMenu">
             <li><a href="index.php?q=dolly&categ=demande&sub=current"> En cours (15) </a></li>
             <li><a href="index.php?q=dolly&categ=demande&sub=cancel"> Annulée </a></li>
             <li><a href="index.php?q=dolly&categ=demande&sub="> A traiter (10) </a></li>
         </ul>
         
-        <p>Chariot</p>
-        <ul>
+        <p class="btnSousMenu">Chariot</p>
+        <ul class="optionSousMenu">
             <li><a href="index.php?q=dolly&categ=loan&sub=alldolly"> Tous les chariot de demande </a></li>
             <li><a href="index.php?q=dolly&categ=loan&sub=create"> Ajouter un chariot de demande </a></li>
         </ul>

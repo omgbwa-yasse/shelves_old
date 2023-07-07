@@ -1,4 +1,6 @@
 
 </div>
 </section>
-</body></html>
+<script src="template\js\shelveEffet_defaut.js"></script>
+</body>
+</html>

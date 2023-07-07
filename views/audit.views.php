@@ -1,7 +1,7 @@
 <?php include "template/sous_menu.inc.php"; ?>
 
-<p>Etats</p>
-<ul>        
+<p class="btnSousMenu">Etats</p>
+<ul class="optionSousMenu">        
     <li><a href="#">Cycle de vie</a></li>
     <li><a href="#">Dépôt (volumétrie)</a></li>
     <li><a href="#">Versement</a></li>

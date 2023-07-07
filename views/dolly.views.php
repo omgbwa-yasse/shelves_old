@@ -2,8 +2,8 @@
 include "template/sous_menu.inc.php";
 ?>
 
-    <p>Rechercher</p>
-    <ul>
+    <p class="btnSousMenu">Rechercher</p>
+    <ul class="optionSousMenu">
     <li><a href="index.php?q=dolly&categ=records&sub=allTypeDolly"> Tous les types de chariots </a></li>
     <li><a href="index.php?q=dolly&categ=search&sub=allRecords"> Chariots des enregistrements </a></li>
     <li><a href="index.php?q=dolly&categ=transfert"> Chariots de transferts </a></li>
@@ -13,8 +13,8 @@ include "template/sous_menu.inc.php";
     <li><a href="index.php?q=dolly&categ=loan"> Chariots de demandes </a></li>
     </ul>
 
-    <p>Ajouter un chariot</p>
-    <ul>
+    <p class="btnSousMenu">Ajouter un chariot</p>
+    <ul class="optionSousMenu">
     <li><a href="index.php?q=dolly&categ=create&sub=addRecords"> Enregistrement </a></li>
     <li><a href="index.php?q=dolly&categ=transfert"> Transfert </a></li>
     <li><a href="index.php?q=dolly&categ=container"> Contenant </a></li>

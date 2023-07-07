@@ -140,6 +140,7 @@ width: 100%;
 }
 
 div.records{
+    display: none;
     margin-left: 0px;
     margin-bottom: 25px;
     padding: 10px 10px 10px 10px;
@@ -441,4 +442,32 @@ header img{
 svg {
     height: 40px;
     width: 40px;
+}
+/* Record à déplacer */
+
+div.recordTitle a{
+    font-size: 15px;
+    font-weight: 600;
+}
+div.recordTitle img{
+    float:left;
+    margin-left: 10px;
+    margin-right: 15px;
+    margin-top: 10px;
+    width: 20px;
+    height: 20px;
+}
+
+
+/* Bouton de navigation */
+p.btnSousMenu{
+    color: rgb(22, 22, 22);
+    font: 14px;
+    padding: 0.5em;
+    background-color: #f5d7b9;
+    border-radius: 5px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
 }

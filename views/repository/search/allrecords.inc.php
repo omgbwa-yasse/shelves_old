@@ -13,7 +13,7 @@ foreach($idrecords as $Idrecord){
     $record -> setRecordId($Idrecord['record_id']);
     $record -> getRecordById();
     
-    displayRecord($record);
+    displayRecordDefault($record);
     
 }
 ?>
