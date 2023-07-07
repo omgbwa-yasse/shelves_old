@@ -25,6 +25,9 @@ public $_controlStatus;
 public $_organization_id;
 public $_organization_title;
 
+public $_record_level_id;
+public $_record_level_title;
+public $_record_level_child;
 
 public function __construct(){
     $this->_record_id;
@@ -44,13 +47,40 @@ public function __construct(){
     $this->_record_classe_title;
     $this->_record_volume;
     $this->_record_level = 1;
+    $this->_record_level_id;
+    $this->_record_level_title;
+    $this->_record_level_child;
 }
 
 // Les Setters et les Getters
 
 // niveau de description
-public function setRecordLevel($level){ $this->_record_level = $level; }
-public function getRecordLevel(){ return $this->_record_level;}
+public function setRecordLevelTitle($level){ $this->_record_level_title = $level; }
+public function getRecordLevelTitle(){ return $this->_record_level_title;}
+
+public function setRecordLevelChild($levelChild){ $this->_record_level_child = $levelChild; }
+public function getRecordLevelChild(){ return $this->_record_level_child;}
+
+public function setRecordLevelId($levelId){ $this->_record_level_id = $levelId; }
+public function getRecordLevelId(){ return $this->_record_level_id ; }
+
+
+public function setRecordLevelTitleByLevelId(){
+    $stmt =$this->getCnx()->prepare("SELECT record_level_title as title FROM record_level WHERE record_level_id = :id");
+    $stmt ->execute([':id' => $this->_record_level_id]);
+    foreach($stmt as $level_title){
+    $this->_record_level_title = $level_title['title'];
+    }
+}
+
+public function setRecordLevelChildByLevelId(){
+    $stmt =$this->getCnx()->prepare("SELECT record_level_child as level_child FROM record_level WHERE record_level_id = :id");
+    $stmt ->execute([':id' => $this->getRecordLevelId()]);
+    foreach($stmt as $level){
+    $this->_record_level_child = $level['level_child'];
+    }
+}
+
 
 // Les Identifiants de la notices
 public function setRecordId($id){ $this->_record_id = $id;}
@@ -267,10 +297,10 @@ public function saveRecord(){
         $this->setRecordOrganizationIdByTitle();
 
         // J'enregistre les données
-        $rqt = " INSERT INTO record (record_id,record_nui, record_title, 
+        $rqt = " INSERT INTO record (record_level_id, record_id,record_nui, record_title, 
         record_date_start,record_date_end, record_observation, 
         record_status_id, record_support_id, record_link_id, classification_id, organization_id ) 
-        values ('".$this->getRecordId()."','".$this->getRecordNui()."','". $this->getRecordTitle()."','".$this->getRecordDateStart()."',
+        values ('".$this->getRecordLevelId()."','".$this->getRecordId()."','".$this->getRecordNui()."','". $this->getRecordTitle()."','".$this->getRecordDateStart()."',
         '". $this->getRecordDateEnd()."', '".$this->getRecordObservation()."','".$this->getRecordStatusId()."',
         '".$this->getRecordSupportId()."', '".$this->getRecordLinkId()."','".$this->getRecordClasseId()."', '".$this->getRecordOrganizationId()."' )";
 
@@ -286,9 +316,11 @@ public function getAllKeywordsIdByRecordId(){
 
 public function getRecordById(){
     // Je recupère les donnée avec condition sur ID
-    $record = "SELECT record.record_id as id, 
+    $record = "SELECT record.record_id as id,
+            record.record_level_id as level_id, 
             record.record_title as title, 
             record.record_nui as nui, 
+            record.record_level_id as level_id, 
             record.record_date_start as date_start, 
             record.record_date_end as date_end,
             record.record_observation as observation,
@@ -316,6 +348,7 @@ public function getRecordById(){
     foreach ($record as $current) {
        $this->setRecordId($current['id']);
        $this->setRecordTitle($current['title']);
+       $this->setRecordLevelId($current['level_id']);
        $this->setRecordNui($current['nui']);
        $this->setRecordDateStart($current['date_start']);
        $this->setRecordDateEnd($current['date_end']);

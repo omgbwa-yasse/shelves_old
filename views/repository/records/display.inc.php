@@ -6,19 +6,22 @@ require_once 'models/tools/organization/organization.class.php';
 
 function displayRecordLight($record){
     // Aficher les enregistrement
+    $record-> setRecordLevelTitleById();
     echo "<p style=\"margin-bottom:20px;font-size:16px;\"><a href=\"index.php?q=repository&categ=search&sub=display&id=".$record->getRecordId() ."\">";
-    echo $record-> getRecordTitle() ." (". $record-> getRecordNui() .") : ". $record->getRecordDateStart()." au ". $record ->getRecordDateEnd() ."</a><p/>";
+    echo  $record-> getRecordTitle() ."  (". $record-> getRecordLevelTitle().")". $record->getRecordDateStart()." au ". $record ->getRecordDateEnd() ."; Ref n° ". $record-> getRecordNui()." : "."</a><p/>";
 
 }
 
 function displayRecord($record){
+    $record-> setRecordLevelTitleByLevelId();
     echo "<div class=\"records\" >";
    
     // Options sur la fiche
-    echo "<div style=\"float:right; width:200px;\">";
+    echo "<div style=\"float:right; width:200px;border:solid 2px yellow;\">";
         optionNavigation($record);
     echo "</div>";
 
+    echo "<div style=\"border:solid 2px red;width:650px;\">";
     // Aficher les enregistrement
     $record -> setRecordClasseByTitle();
     $record -> setRecordContainerId();
@@ -26,9 +29,9 @@ function displayRecord($record){
     $organization -> setOrganizationById($record -> getRecordOrganizationId());
 
 
-    echo "<table border=\"0\"> 
+    echo "<table border=\"1\"> 
     <tr><th class=\"title\" colspan=\"2\">
-    <a href=\"index.php?q=repository&categ=search&sub=display&id=".$record->getRecordId()."\">". $record-> getRecordTitle() ."</a></th></tr> 
+    <a href=\"index.php?q=repository&categ=search&sub=display&id=".$record->getRecordId()."\">". $record-> getRecordTitle() ."  (". $record-> getRecordLevelTitle().")"."</a></th></tr> 
     <tr><th class=\"element\"> Reférence <td class=\"element\">". $record-> getRecordNui() ."</td></tr>
     <tr><th class=\"element\"> Dates <td class=\"element\">". $record -> getRecordDateStart() ." au ". $record -> getRecordDateEnd()  ."</td></tr>
     <tr><th class=\"element\"> Détenteur <td class=\"element\">
@@ -54,6 +57,7 @@ function displayRecord($record){
     echo "</td></tr><tr><td colspan=\"2\">";
     RecordsSubList($record);
     echo "</td></tr></table>";
+    echo "</div>";
     echo "</div>";
 
 }

@@ -12,6 +12,7 @@ $allClasses = $allClasses ->allClasses();
 $allStatut = $records -> getAllStatutTitle();
 $allSupport = $records -> getAllSupportTitle();
 $sqlLastNui = $records -> getLastNui();
+$descriptionLevels = $records -> getAllDesciptionLevels();
 
 $organisation = new organizationManager();
 $allOrganization = $organisation -> getAllOrganization();
@@ -30,6 +31,20 @@ foreach($sqlLastNui as $Nui){
 
 
 <table class="formular">
+<tr>
+<td class="titre"> Niveau description </td><td>
+<select name="level_id">
+<?php if(isset($descriptionLevels)){
+    foreach($descriptionLevels as $descriptionLevel){
+        echo "<option value=\"".$descriptionLevel['id'] ."\"";
+        if($descriptionLevel['title'] == "Dossier"){ echo "selected"; }
+        echo ">". $descriptionLevel['title'] ."</option>"; 
+    }
+} ?>
+    
+
+
+</td> </tr>
 <tr> <td class="titre"> N° inventaire </td>  <td> <input type="text" name="nui" size="30"></td> </tr>
 <tr> <td class="titre"> Intitulé / analyse </td>  <td> <input type="text" name="title" size="70"></td> </tr>
 <tr> <td class="titre"> Dates extrêmes</td>  <td><input type="date" name="date_start" size="70"> au <input type="date" name="date_end" size="70"> </td></tr>

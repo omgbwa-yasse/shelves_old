@@ -4,8 +4,9 @@ require 'models/repository/record.class.php';
 require_once 'views/repository/records/display.inc.php';
 
 
-if(isset($_POST['nui']) && isset($_POST['title']) && isset($_POST['date_start']) && isset($_POST['organization_title'])){
+if(isset($_POST['level_id']) && isset($_POST['nui']) && isset($_POST['title']) && isset($_POST['date_start']) && isset($_POST['organization_title'])){
 
+            $_POST['level_id']= htmlspecialchars ($_POST['level_id']);
             $_POST['nui']= htmlspecialchars ($_POST['nui']);
             $_POST['title']= htmlspecialchars ($_POST['title']);
             $_POST['date_start'] = htmlspecialchars ($_POST['date_start']);
@@ -23,6 +24,7 @@ if(isset($_POST['nui']) && isset($_POST['title']) && isset($_POST['date_start'])
 
             $record = new record();
             $record->setRecordId(NULL);
+            $record->setRecordLevelId($_POST['level_id']);
             $record->setRecordNui($_POST['nui']);
             $record->setRecordTitle($_POST['title']); 
             $record->setRecordDateStart($_POST['date_start']);               
