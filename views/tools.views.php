@@ -14,8 +14,8 @@ include "template/sous_menu.inc.php";
         </ul>
 <p>Reférentiel de conservation</p> 
         <ul>       
-                <li><a href="index.php?q=tools&categ=retention&sub=allDua"> Référentiel de conservation</a></li>     
-                <li><a href="index.php?q=tools&categ=retention&sub=addDuaRule"> Ajouter une règles </a></li>
+                <li><a href="index.php?q=tools&categ=retention&sub=allretention"> Référentiel de conservation</a></li>     
+                <li><a href="index.php?q=tools&categ=retention&sub=addretention"> Ajouter une règles </a></li>
         </ul>
 <p>Règles de communicabilité</p>
         <ul>    
@@ -26,7 +26,8 @@ include "template/sous_menu.inc.php";
 <p>Classe d'accès</p>  
         <ul>      
                 <li><a href="index.php?q=tools&categ=accessRule&sub=allAccess"> Classification pour l'accès </a></li>      
-                <li><a href="index.php?q=tools&categ=accessRule&sub=addAccessRule"> Ajouter une règle d'accès </a></li>
+                <li><a href="index.php?q=tools&categ=accessRule&sub=addAccessclass"> Ajouter une règle d'accès </a></li>
+                
         </ul>
 <p>Organigramme</p>
         <ul> 

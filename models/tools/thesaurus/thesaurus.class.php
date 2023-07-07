@@ -101,9 +101,16 @@ class Thesaurus extends Connexion {
 }
   public function numberofchildterm($id){
     $stmt = $this->getCnx()->prepare("SELECT COUNT(*) FROM thesaurus WHERE term_broader_id=?");
-    $allThesauruses = $stmt->execute($id);
-    $allThesauruses = $stmt->fetchAll();
+    $allchild = $stmt->execute($id);
+    $allchild = $stmt->fetchAll();
     return $allchild;
   }
+  
+  public function SelectRecordIdAssociated($id){
+    $stmt = $this->getCnx()->prepare("SELECT * FROM thesaurus_records LEFT JOIN record ON thesaurus_records.record_id=record.record_id WHERE thesaurus_records.term_id= ? ");
+    $recordassociated = $stmt->execute(array($id));
+    $recordassociated = $stmt->fetchAll();
+    return $recordassociated;
 
+  }
 }?>

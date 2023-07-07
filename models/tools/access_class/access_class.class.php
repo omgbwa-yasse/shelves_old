@@ -27,6 +27,7 @@ class AccessClasse extends Connexion {
   public function setAccessClasseById($id) {
     $stmt = $this->getCnx()->prepare("SELECT * FROM access_classe WHERE access_classe_id = :id");
     $stmt->execute([':id' => $id]);
+    $stmt->fetchAll();
     foreach ($stmt as $accessClasse) {
       $this->setAccessClasseId($accessClasse['access_classe_id']);
       $this->setAccessClasseCode($accessClasse['access_classe_code']);
@@ -63,7 +64,7 @@ class AccessClasse extends Connexion {
   public function allAccessClasses() {
     $stmt = $this->getCnx()->prepare("SELECT * FROM access_classe");
     $allClasses = $stmt->execute();
-    $allClasses = $stmt->fetchAll();
+    $allClasses = $stmt->fetchAll();$stmt->fetchAll();
     return $allClasses;
   }
 }

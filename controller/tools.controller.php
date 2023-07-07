@@ -42,14 +42,17 @@ if($_GET['q'] = "tools" && $_GET['categ'] = 'communicability' && isset($_GET['su
 // Classe d'accès
 if($_GET['q'] = "tools" && $_GET['categ'] = 'accessRule' && isset($_GET['sub'])){
     switch($_GET['sub']){ 
-        case 'addAccessRule' : include 'views/tools/accessRule/addAccessRule.views.php';
+        case 'allAccess' : include 'views/tools/access_class/allaccessclass.inc.php';
         break;
-        case 'UpdateAccessRule' : include 'views/tools/accessRule/updateAccessRule.views.php';
+        case 'UpdateAccessclass' : include 'views/tools/access_class/updateAccessclass.inc.php';
         break;
-        case 'DeleteAccessRule' : include 'views/tools/accessRule/deleteAccessRule.views.php';
+        case 'DeleteAccessclass' : include 'views/tools/access_class/deleteAccess_class.inc.php';
         break;
-        case 'viewsAccessRule' : include 'views/tools/accessRule/viewsAccessRule.views.php';
+        case 'viewsAccessclass' : include 'views/tools/access_class/viewaccessclass.inc.php';
         break;
+        case 'addAccessclass' :  include 'views/tools/access_class/addaccesclass.inc.php';
+        break;    
+        
     }
 }
 
