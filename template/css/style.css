@@ -471,3 +471,13 @@ p.btnSousMenu{
     -ms-border-radius: 8px;
     -o-border-radius: 8px;
 }
+
+
+/* Bouton de navigation organization */
+img.service{
+    margin-right: 18px;
+    border: solid 2px red;
+}
+ol.subService{
+    display: none;
+}
