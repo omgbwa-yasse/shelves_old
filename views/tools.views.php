@@ -12,8 +12,8 @@ include "template/sous_menu.inc.php";
                 <li><a href="index.php?q=tools&categ=classificationScheme&sub=addMainClass"> Ajouter une branche </a></li>
                 <li><a href="index.php?q=tools&categ=classificationScheme&sub=addClass"> Ajouter une classe </a></li>
         </ul>
-<p class="btnSousMenu">Reférentiel de conservation</p> 
-        <ul class="optionSousMenu">       
+<p>Reférentiel de conservation</p> 
+        <ul>       
                 <li><a href="index.php?q=tools&categ=retention&sub=allDua"> Référentiel de conservation</a></li>     
                 <li><a href="index.php?q=tools&categ=retention&sub=addDuaRule"> Ajouter une règles </a></li>
         </ul>
@@ -26,7 +26,8 @@ include "template/sous_menu.inc.php";
 <p class="btnSousMenu">Classe d'accès</p>  
         <ul class="optionSousMenu">      
                 <li><a href="index.php?q=tools&categ=accessRule&sub=allAccess"> Classification pour l'accès </a></li>      
-                <li><a href="index.php?q=tools&categ=accessRule&sub=addAccessRule"> Ajouter une règle d'accès </a></li>
+                <li><a href="index.php?q=tools&categ=accessRule&sub=addAccessclass"> Ajouter une règle d'accès </a></li>
+                
         </ul>
 <p class="btnSousMenu">Organigramme</p>
         <ul class="optionSousMenu"> 
@@ -34,8 +35,8 @@ include "template/sous_menu.inc.php";
                 <li><a href="index.php?q=tools&categ=organization&sub=addOrganization"> Nouvelle organisation </a></li>
                 <li><a href="index.php?q=tools&categ=organization&sub=addOrganizationUnit"> Nouveau service </a></li>
         </ul> 
-<p class="btnSousMenu">Thésaurus</p>
-        <ul class="optionSousMenu"> 
+<p>Thésaurus</p>
+        <ul> 
                 <li><a href="index.php?q=tools&categ=thesaurus&sub=allhome"> Voir le thésaurus </a></li>
                 <li><a href="index.php?q=tools&categ=thesaurus&sub=addIndex"> Ajouter une index </a></li>
         </ul>
