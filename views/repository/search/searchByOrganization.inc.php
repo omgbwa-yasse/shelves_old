@@ -18,7 +18,7 @@ echo "<ol/>";
 function displayOrganization($id){
     $organization = new organization();
     $organization -> setOrganizationById($id);
-    echo "<li><img class=\"service\" src=\"\" width=\"20px\" height=\"20px\">";
+    echo "<li><img  class=\"service\" src=\"template/images/moins.png\" width=\"20px\" height=\"20px\">";
     echo $organization ->getOrganizationCode(). " - " .$organization ->getOrganizationTitle();
     if($organization->checkOrganizationChildById($id)){
         searchOrganizationChild($id);

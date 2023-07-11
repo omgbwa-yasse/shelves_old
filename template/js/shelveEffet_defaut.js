@@ -1,3 +1,17 @@
+var services = document.querySelectorAll('.service');
+var subService = document.querySelectorAll('.subService');
+var serviceStatus = true;
+for (let index = 0; index < services.length; index++) {
+    services[index].addEventListener('click', function(){
+      if(serviceStatus){
+        subService[index].style.display = "none";
+        serviceStatus = false;
+      }else{
+        subService[index].style.display = "block";
+        serviceStatus = true;
+      }
+    });
+};
 
 /* Navigation des bouton des sous menus */ 
 var tab = document.querySelectorAll(".btnSousMenu");
@@ -38,5 +52,7 @@ for (let i=0; i <= icone.length; i++){
     });
 };
 
+/* Navigation */
 
 
+  

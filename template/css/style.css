@@ -475,9 +475,11 @@ p.btnSousMenu{
 
 /* Bouton de navigation organization */
 img.service{
+    list-style-type: none;
     margin-right: 18px;
     border: solid 2px red;
 }
 ol.subService{
-    display: none;
+    display: block;
+    list-style-type: none;
 }
