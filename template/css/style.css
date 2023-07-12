@@ -483,3 +483,7 @@ ol.subService{
     display: block;
     list-style-type: none;
 }
+ol.organization{
+    display: block;
+    list-style-type: none;
+}

@@ -8,7 +8,7 @@ $list = $allOrganization -> AllMainOrganization();
 echo "<div style=\"margin:30px 0px 0px 30px;padding:20px 20px 20px 20px;;border:solid 2px red;width:900px\">";
 
 
-echo "<ol>";
+echo "<ol class=\"organization\">";
 foreach ($list as $id) {
     displayOrganization($id[0]);
 }
@@ -19,7 +19,7 @@ function displayOrganization($id){
     $organization = new organization();
     $organization -> setOrganizationById($id);
     echo "<li><img  class=\"service\" src=\"template/images/moins.png\" width=\"20px\" height=\"20px\">";
-    echo $organization ->getOrganizationCode(). " - " .$organization ->getOrganizationTitle();
+    echo $organization ->getOrganizationTitle() ." (". $organization ->getOrganizationCode().")";
     if($organization->checkOrganizationChildById($id)){
         searchOrganizationChild($id);
     }
