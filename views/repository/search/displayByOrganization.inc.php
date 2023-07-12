@@ -1,6 +1,6 @@
 
 <?php
-require_once 'models/repository/records.class.php';
+require_once 'models/repository/record.class.php';
 require_once 'models/repository/recordsManager.class.php';
 require_once 'views/repository/records/display.inc.php';
 
@@ -10,8 +10,8 @@ $listRecords -> setOrganizationById();
 echo "<h1>Liste des enregistre du :". $listRecords -> getOrganizationTitle() . "</h1>";
 
 
-$listId = $listRecords -> getAllRecordsByOrganizationId();
-
+$listId = $listRecords -> recordsByOrganizationId($_GET['id']);
+echo var_dump($listId);
 foreach($listId as $id_record){
     $record = new record();
     $record -> setRecordId($id_record['id']);

@@ -19,7 +19,9 @@ function displayOrganization($id){
     $organization = new organization();
     $organization -> setOrganizationById($id);
     echo "<li><img  class=\"service\" src=\"template/images/moins.png\" width=\"20px\" height=\"20px\">";
+    echo "<a href=\"index.php?q=repository&categ=search&sub=organization&id=". $organization ->getOrganizationId()."\" >";
     echo $organization ->getOrganizationTitle() ." (". $organization ->getOrganizationCode().")";
+    echo "</a>";
     if($organization->checkOrganizationChildById($id)){
         searchOrganizationChild($id);
     }

@@ -134,15 +134,15 @@ public function setOrganizationById(){
         }; 
 }
 
-public function getstmtByOrganizationId(){
-        $rqt = "SELECT record.record_id as id FROM record WHERE record.organization_id ='".$this->getOrganizationId()."'";
-        $rqt = $this->getCnx()->prepare($rqt);
-        $rqt -> execute();
-        return $rqt;
+public function recordsByOrganizationId($id_organization){
+        $stmt = $this->getCnx()->prepare("SELECT record.record_id as id FROM record WHERE record.organization_id =:id");
+        $stmt -> execute(['id' => $id_organization]);
+        $stmt -> fetchAll();
+        return $stmt;
 }
 
 public function countContainerUsed($container_id){
-        $stmt = $this->getCnx()->prepare("SELECT COUNT(*) FROM record WHERE record.container_id = :container_id");
+        $stmt = $this->getCnx()->prepare("SELECT COUNT(*) FROM record WHERE record.container_id =:container_id");
         $stmt-> execute(['container_id' => $container_id]);
         $stmt = $stmt ->fetch();
         foreach($stmt as $number){
