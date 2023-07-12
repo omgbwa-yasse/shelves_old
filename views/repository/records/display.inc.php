@@ -57,7 +57,7 @@ function displayRecordDefault($record){
 
 function displayRecordLight($record){
     // Aficher les enregistrement
-    $record-> setRecordLevelTitleById();
+    $record-> setRecordLevelTitleByLevelId();
     echo "<p style=\"margin-bottom:20px;font-size:16px;\"><a href=\"index.php?q=repository&categ=search&sub=display&id=".$record->getRecordId() ."\">";
     echo  $record-> getRecordTitle() ."  (". $record-> getRecordLevelTitle().")". $record->getRecordDateStart()." au ". $record ->getRecordDateEnd() ."; Ref n° ". $record-> getRecordNui()." : "."</a><p/>";
 

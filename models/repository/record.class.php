@@ -67,9 +67,9 @@ public function getRecordLevelId(){ return $this->_record_level_id ; }
 
 public function setRecordLevelTitleByLevelId(){
     $stmt =$this->getCnx()->prepare("SELECT record_level_title as title FROM record_level WHERE record_level_id = :id");
-    $stmt ->execute([':id' => $this->_record_level_id]);
+    $stmt ->execute([':id' => $this->getRecordLevelId()]);
     foreach($stmt as $level_title){
-    $this->_record_level_title = $level_title['title'];
+        $this->_record_level_title = $level_title['title'];
     }
 }
 
@@ -339,10 +339,10 @@ public function getRecordById(){
             ON record_status.record_status_id = record.record_status_id
             LEFT JOIN container 
             ON container.container_id = record.container_id
-            WHERE record.record_id = '".$this->getRecordId()."'";
+            WHERE record.record_id = :record_id";
 
     $record = $this->getCnx() -> prepare($record);
-    $record ->execute();
+    $record ->execute([':record_id' => $this->getRecordId()]);
 
     // Je set toute les propriétés de la classe courante
     foreach ($record as $current) {

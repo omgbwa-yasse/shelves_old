@@ -11,11 +11,10 @@ echo "<h1>Liste des enregistre du :". $listRecords -> getOrganizationTitle() . "
 
 
 $listId = $listRecords -> recordsByOrganizationId($_GET['id']);
-echo var_dump($listId);
 foreach($listId as $id_record){
     $record = new record();
     $record -> setRecordId($id_record['id']);
     $record -> getRecordById();
-    displayRecordLight($record);
+    displayRecordDefault($record);
 }
 ?>

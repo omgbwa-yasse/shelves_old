@@ -57,10 +57,17 @@ public function MgDeleteRecordById($id){
         // à completer
 }
 public function MgGetRecordsByDates($date_start, $date_end){
-        $recordsId = "SELECT record.record_id FROM record WHERE   record.record_date_start < '".$date_start."' OR record.record_date_end > '".$date_start."'";
-        $recordsId = $this->getCnx()->prepare($recordsId);
-        $recordsId -> execute();
-        return $recordsId;
+        if($date_end == null || $date_end == 0){
+                $stmt = $this->getCnx()->prepare("SELECT record.record_id FROM record WHERE   record.record_date_start <= :date_start");
+                $stmt -> execute([':date_start' => $date_start]);
+                $stmt = $stmt ->fetchAll();
+                return $stmt;
+        } else{
+                $stmt = $this->getCnx()->prepare("SELECT record.record_id FROM record WHERE   record.record_date_start <= :date_start OR record.record_date_end >= :date_end");
+                $stmt -> execute([':date_start' => $date_start, ':date_end' => $date_end]);
+                $stmt = $stmt ->fetchAll();
+                return $stmt;
+        }
 }
 public function MgGetLastRecords(){
         $stmt =  "SELECT record.record_id as id FROM record ORDER  BY id DESC LIMIT 5";
@@ -135,15 +142,15 @@ public function setOrganizationById(){
 }
 
 public function recordsByOrganizationId($id_organization){
-        $stmt = $this->getCnx()->prepare("SELECT record.record_id as id FROM record WHERE record.organization_id =:id");
-        $stmt -> execute(['id' => $id_organization]);
-        $stmt -> fetchAll();
+        $stmt = $this->getCnx()->prepare("SELECT record.record_id as id FROM record WHERE record.organization_id = :id");
+        $stmt -> execute([':id' => $id_organization]);
+        $stmt =  $stmt -> fetchAll();
         return $stmt;
 }
 
 public function countContainerUsed($container_id){
-        $stmt = $this->getCnx()->prepare("SELECT COUNT(*) FROM record WHERE record.container_id =:container_id");
-        $stmt-> execute(['container_id' => $container_id]);
+        $stmt = $this->getCnx()->prepare("SELECT COUNT(*) FROM record WHERE record.container_id = :container_id");
+        $stmt-> execute([':container_id' => $container_id]);
         $stmt = $stmt ->fetch();
         foreach($stmt as $number){
                 return $number;
