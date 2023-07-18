@@ -1,49 +1,36 @@
 <?php
+require_once 'models/tools/classification/classesManager.class.php';
+require_once 'models/tools/classification/class.class.php';
+$id = new activityClassesManager();
+$ids = $id->allClasses();
 require_once 'models/tools/retention/retention.class.php';
-require_once 'models/tools/retention/retention_sort.class.php';
-$id = new retention_sort();
-$ids = $id ->allretention_sorts();
-
-$retention = new retention();
-if (isset($_POST['retention_sort_code']) && isset($_POST['retention_sort_title']) && isset($_POST['retention_sort_comment']) ) {
- 
-$comrule->addcomrule();
-
+$retention = new Retention();
+if (isset($_POST['retention_duration']) && isset($_POST['retention_sort']) && isset($_POST['retention_reference']) && isset($_POST['retention_sort_id'])) {
+  $retention->addRetention();
 }
 ?>
-<h1>Ajouter une regle de communicabilite</h1>
-
-<form  method="POST" action="index.php?q=tools&categ=communicability&sub=addrule">
-<table>
-  <tr>
-    <td><label for="communicability_id">Communicability ID:</label></td>
-    <td><input type="number" id="communicability_id" name="communicability_id"></td>
-  </tr>
-  <tr>
-    <td><label for="communicability_time">Communicability Time:</label></td>
-    <td><input type="number" id="communicability_time" name="communicability_time"></td>
-  </tr>
-  <tr>
-    <td><label for="communicability_title">Communicability Title:</label></td>
-    <td><input type="text" id="communicability_title" name="communicability_title"></td>
-  </tr>
-  <tr>
-    <td><label for="communicability_reference">Communicability Reference:</label></td>
-    <td><textarea id="communicability_reference" name="communicability_reference"></textarea></td>
-  </tr>
-  <tr>
-    <td><label for="classification_id">Classification ID:</label></td>
-    <td> <select name="classification_id">
-<?php
-    foreach($ids as $id){
-        $class = new activityClass();
-        $class -> setClassById($id['id']);
-        echo "<option value=\"".$class ->getClassId()."\">";
-        echo $class->getClassCode() ." - ". $class->getClassTitle() ."</option>";
-    }
- ?>
-                </select></td>
-  </tr>
-
- <tr><td><input type="submit" value="Submit"></td>   <td><input type="reset" value="Annuler"></td></tr> </table>
+<h1>Add Retention</h1>
+<form method="POST" action="index.php?q=tools&categ=retention&sub=add">
+  <table>
+    <tr>
+      <td><label for="retention_duration">Retention Duration:</label></td>
+      <td><input type="number" id="retention_duration" name="retention_duration"></td>
+    </tr>
+    <tr>
+      <td><label for="retention_sort">Retention Sort:</label></td>
+      <td><input type="text" id="retention_sort" name="retention_sort"></td>
+    </tr>
+    <tr>
+      <td><label for="retention_reference">Retention Reference:</label></td>
+      <td><textarea id="retention_reference" name="retention_reference"></textarea></td>
+    </tr>
+    <tr>
+      <td><label for="retention_sort_id">Retention Sort ID:</label></td>
+      <td><input type="number" id="retention_sort_id" name="retention_sort_id"></td>
+    </tr>
+    <tr>
+      <td><input type="submit" value="Submit"></td>   
+      <td><input type="reset" value="Cancel"></td>
+    </tr> 
+  </table>
 </form>
