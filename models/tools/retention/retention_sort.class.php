@@ -1,7 +1,7 @@
 <?php
 require_once 'models/connexion.class.php';
 
-class retention_sort_sort extends Connexion {
+class retention_sort extends Connexion {
   private $_retention_sort_id;
   private $_retention_sort_code;
   private $_retention_sort_title;
@@ -22,7 +22,7 @@ class retention_sort_sort extends Connexion {
   
   public function setretention_sortId($id) { $this->_retention_sort_id = $id; }
   public function setretention_sortcode($code) { $this->_retention_sort_code = $code; }
-  public function setretention_sortSort($title) { $this->_retention_sort_sort = $title; }
+  public function setretention_sortSort($title) { $this->_retention_sort = $title; }
   public function setretention_sortcomment($comment) { $this->_retention_sort_comment = $comment; }
  
 
@@ -38,7 +38,7 @@ class retention_sort_sort extends Connexion {
     }
   }
   public function addretention_sort() {
-    $stmt = $this->getCnx()->prepare("INSERT INTO retention_sort (retention_sort_code, retention_sort_sort, retention_sort_comment, retention_sort_sort_id) VALUES (:code, :title, :comment, :sort_id)");
+    $stmt = $this->getCnx()->prepare("INSERT INTO retention_sort (retention_sort_code, retention_sort, retention_sort_comment, retention_sort_id) VALUES (:code, :title, :comment, :sort_id)");
     $stmt->execute([
       ":code" => $_POST['retention_sort_code'],
       ":title" => $_POST['retention_sort_title'],
