@@ -10,11 +10,15 @@ $retention->setRetentionById($_GET['id']);
 <form method="POST" action="index.php?q=tools&categ=retention&sub=update&id=<?= $retention->getRetentionId(); ?>">
   <table>
     <tr>
+     <td><label for="retention_id">Retention ID:</label></td>
+     <td><input type="number" id="retention_id" name="retention_id"  value= <?=$retention ->getRetentionId();?>  readonly></td>
+    </tr>
+    <tr>
       <td><label for="retention_duration">Retention Duration:</label></td>
       <td><input type="number" id="retention_duration" name="retention_duration" value=<?= $retention->getRetentionDuration(); ?>></td>
     </tr>
     <tr>
-      <td><label for="retention_sort">Retention Sort:</label></td>
+      <td><label for="retention_sort">Retention retentonsort:</label></td>
       <td><input type="text" id="retention_sort" name="retention_sort" value=<?= $retention->getRetentionSort(); ?>></td>
     </tr>
     <tr>
@@ -22,7 +26,7 @@ $retention->setRetentionById($_GET['id']);
       <td><textarea id="retention_reference" name="retention_reference"><?= $retention->getRetentionReference(); ?></textarea></td>
     </tr>
     <tr>
-      <td><label for="retention_sort_id">Retention Sort ID:</label></td>
+      <td><label for="retention_sort_id">Retention retentonsort ID:</label></td>
       <td><input type="number" id="retention_sort_id" name="retention_sort_id" value=<?= $retention->getRetentionSortId(); ?>></td>
     </tr>
     <tr>

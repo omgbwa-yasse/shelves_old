@@ -19,8 +19,8 @@ $allRetentionSorts = $retention_sorts->allretention_sorts();
     echo "<td>" . $retention_sort->getretention_sortcode();
     echo "<td>" . $retention_sort->getretention_sortSort();
     echo "<td>" . $retention_sort->getretention_sortcomment();
-    echo "<td><a href=\"index.php?q=tools&categ=retentionsort&sub=view&id=" . $retention_sort->getretention_sortId() . "\">View</a>";
-    echo "<td><a href=\"index.php?q=tools&categ=retentionsort&sub=delete&id=" . $retention_sort->getretention_sortId() . "\">Delete</a>";
-    echo "<td><a href=\"index.php?q=tools&categ=retentionsort&sub=update&id=" . $retention_sort->getretention_sortId() . "\">Update</a>";
+    echo "<td><a href=\"index.php?q=tools&categ=retentonsort&sub=viewretentionsort&id=" . $retention_sort->getretention_sortId() . "\">viewretentionsort</a>";
+    echo "<td><a href=\"index.php?q=tools&categ=retentonsort&sub=deleteretentionsort&id=" . $retention_sort->getretention_sortId() . "\">deleteretentionsort</a>";
+    echo "<td><a href=\"index.php?q=tools&categ=retentonsort&sub=updaterententionsort&id=" . $retention_sort->getretention_sortId() . "\">updaterententionsort</a>";
   } ?>
 </table>

@@ -24,7 +24,7 @@ class Retention extends Connexion {
 
   public function setRetentionId($id) { $this->_retention_id = $id; }
   public function setRetentionDuration($duration) { $this->_retention_duration = $duration; }
-  public function setRetentionSort($sort) { $this->_retention_sort = $sort; }
+  public function setRetentionSort($retentonsort) { $this->_retention_sort = $retentonsort; }
   public function setRetentionReference($reference) { $this->_retention_reference = $reference; }
   public function setRetentionSortId($id) { $this->_retention_sort_id = $id; }
 
@@ -40,10 +40,10 @@ class Retention extends Connexion {
     }
   }
   public function addRetention() {
-    $stmt = $this->getCnx()->prepare("INSERT INTO retention (retention_duration, retention_sort, retention_reference, retention_sort_id) VALUES (:duration, :sort, :reference, :sort_id)");
+    $stmt = $this->getCnx()->prepare("INSERT INTO retention (retention_duration, retention_sort, retention_reference, retention_sort_id) VALUES (:duration, :retentonsort, :reference, :sort_id)");
     $stmt->execute([
       ":duration" => $_POST['retention_duration'],
-      ":sort" => $_POST['retention_sort'],
+      ":retentonsort" => $_POST['retention_sort'],
       ":reference" => $_POST['retention_reference'],
       ":sort_id" => $_POST['retention_sort_id']
     ]);
@@ -61,11 +61,11 @@ class Retention extends Connexion {
     return $allRetentions;
   }
   public function updateRetention() {
-    $stmt = $this->getCnx()->prepare("UPDATE retention SET retention_duration=:duration, retention_sort=:sort, retention_reference=:reference, retention_sort_id=:sort_id WHERE retention_id=:id");
+    $stmt = $this->getCnx()->prepare("UPDATE retention SET retention_duration=:duration, retention_sort=:retentonsort, retention_reference=:reference, retention_sort_id=:sort_id WHERE retention_id=:id");
    
     $stmt->execute([
       ":duration" => $_POST['retention_duration'],
-      ":sort" => $_POST['retention_sort'],
+      ":retentonsort" => $_POST['retention_sort'],
       ":reference" => $_POST['retention_reference'],
       ":sort_id" => $_POST['retention_sort_id'],
       ":id" => $_POST['retention_id']

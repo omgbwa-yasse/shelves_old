@@ -9,16 +9,33 @@ if($_GET['q'] = "tools" && $_GET['categ'] = 'chart' && isset($_GET['sub'])){
     }
 }
 
-//Calendrier de conservation
+//Regle de conservation
 if($_GET['q'] = "tools" && $_GET['categ'] = 'retention' && isset($_GET['sub'])){
     switch($_GET['sub']){ 
-        case 'addretentionrule' : include 'views/tools/retention/addRule.views.php';
+        case 'add' : include 'views/tools/retention/addretentionRule.inc.php';
         break;
-        case 'UpdateretentionRule' : include 'views/tools/retention/updateRule.views.php';
+        case 'update' : include 'views/tools/retention/UpdateRetentionRule.inc.php';
         break;
-        case 'DeleteretentionRule' : include 'views/tools/retention/deleteRule.views.php';
+        case 'delete' : include 'views/tools/retention/DeleteRetentionRule.inc.php';
         break;
-        case 'viewsretentionRule' : include 'views/tools/retention/viewsRule.views.php';
+        case 'view' : include 'views/tools/retention/viewretentionRule.inc.php';
+        break;
+        case 'all' : include 'views/tools/retention/DisplayAllRetentionRule.inc.php';
+        break;
+    }
+}
+//Retention retentonsort
+if($_GET['q'] = "tools" && $_GET['categ'] = 'retentonsort' && isset($_GET['sub'])){
+    switch($_GET['sub']){ 
+        case 'addretentionsort' : include 'views/tools/retention/AddRetentionSort.inc.php';
+        break;
+        case 'updaterententionsort' : include 'views/tools/retention/UpdateRetentionSort.inc.php';
+        break;
+        case 'deleteretentionsort' : include 'views/tools/retention/DeleteRetentionSort.inc.php';
+        break;
+        case 'viewretentionsort' : include 'views/tools/retention/ViewRetentionSort.inc.php';
+        break;
+        case 'allretentionsort' : include 'views/tools/retention/DisplayAllRetentionSort.inc.php';
         break;
     }
 }

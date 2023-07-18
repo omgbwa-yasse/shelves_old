@@ -5,19 +5,19 @@ if (isset($_POST['retention_sort_code']) && isset($_POST['retention_sort_title']
   $retention_sort->addretention_sort();
 }
 ?>
-<h1>Add Retention Sort</h1>
-<form method="POST" action="index.php?q=tools&categ=retentionsort&sub=add">
+<h1>Ajouter un tri de conservation</h1>
+<form method="POST" action="index.php?q=tools&categ=retentonsort&sub=addretentionsort">
   <table>
     <tr>
-      <td><label for="retention_sort_code">Retention Sort Code:</label></td>
+      <td><label for="retention_sort_code">Code du tri:</label></td>
       <td><input type="text" id="retention_sort_code" name="retention_sort_code"></td>
     </tr>
     <tr>
-      <td><label for="retention_sort_title">Retention Sort Title:</label></td>
+      <td><label for="retention_sort_title">titre du tri de conservation:</label></td>
       <td><input type="text" id="retention_sort_title" name="retention_sort_title"></td>
     </tr>
     <tr>
-      <td><label for="retention_sort_comment">Retention Sort Comment:</label></td>
+      <td><label for="retention_sort_comment">Commentaire du tri de conservation:</label></td>
       <td><textarea id="retention_sort_comment" name="retention_sort_comment"></textarea></td>
     </tr>
     <tr>

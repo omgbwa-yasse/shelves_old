@@ -14,8 +14,10 @@ include "template/sous_menu.inc.php";
         </ul>
 <p class="btnSousMenu">Reférentiel de conservation</p> 
         <ul class="optionSousMenu">       
-                <li><a href="index.php?q=tools&categ=retention&sub=allDua"> Référentiel de conservation</a></li>     
-                <li><a href="index.php?q=tools&categ=retention&sub=addDuaRule"> Ajouter une règles </a></li>
+                <li><a href="index.php?q=tools&categ=retention&sub=all"> Référentiel de conservation</a></li>     
+                <li><a href="index.php?q=tools&categ=retention&sub=add"> Ajouter une règles </a></li>
+                <li><a href="index.php?q=tools&categ=retentionsort&sub=allretentionsort"> Tri de conservation</a></li>     
+                <li><a href="index.php?q=tools&categ=retentionsort&sub=addretentionsort"> Ajouter un tri de conservation </a></li>
         </ul>
 <p class="btnSousMenu">Règles de communicabilité</p>
         <ul class="optionSousMenu">    

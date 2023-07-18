@@ -17,7 +17,7 @@ if (isset($_POST['retention_duration']) && isset($_POST['retention_sort']) && is
       <td><input type="number" id="retention_duration" name="retention_duration"></td>
     </tr>
     <tr>
-      <td><label for="retention_sort">Retention Sort:</label></td>
+      <td><label for="retention_sort">Retention retentonsort:</label></td>
       <td><input type="text" id="retention_sort" name="retention_sort"></td>
     </tr>
     <tr>
@@ -25,7 +25,7 @@ if (isset($_POST['retention_duration']) && isset($_POST['retention_sort']) && is
       <td><textarea id="retention_reference" name="retention_reference"></textarea></td>
     </tr>
     <tr>
-      <td><label for="retention_sort_id">Retention Sort ID:</label></td>
+      <td><label for="retention_sort_id">Retention retentonsort ID:</label></td>
       <td><input type="number" id="retention_sort_id" name="retention_sort_id"></td>
     </tr>
     <tr>

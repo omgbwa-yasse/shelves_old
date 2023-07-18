@@ -7,9 +7,9 @@ $allRetentions = $retentions->allRetentions();
 <table border="2" width="800px">
   <tr>
     <th>Duration</th>
-    <th>Sort</th>
+    <th>retentonsort</th>
     <th>Reference</th>
-    <th>Sort ID</th>
+    <th>retentonsort ID</th>
     <th colspan=3>Action</th>
   </tr>
   <?php
@@ -21,7 +21,7 @@ $allRetentions = $retentions->allRetentions();
     echo "<td>" . $retention->getRetentionSort();
     echo "<td>" . $retention->getRetentionReference();
     echo "<td>" . $retention->getRetentionSortId();
-    echo "<td><a href=\"index.php?q=tools&categ=retention&sub=view&id=" . $retention->getRetentionId() . "\">View</a>";
+    echo "<td><a href=\"index.php?q=tools&categ=retention&sub=view&id=" . $retention->getRetentionId() . "\">viewretentionsort</a>";
     echo "<td><a href=\"index.php?q=tools&categ=retention&sub=delete&id=" . $retention->getRetentionId() . "\">Delete</a>";
     echo "<td><a href=\"index.php?q=tools&categ=retention&sub=update&id=" . $retention->getRetentionId() . "\">Update</a>";
   } ?>
