@@ -1,16 +1,17 @@
-<h1>Affichage de classe</h1>
-<a href="index.php?q=tools&categ=classificationScheme&sub=mainClasses">Classes principales</a><br/>
+<h1>Affichage de classe  <a href="index.php?q=tools&categ=classificationScheme&sub=mainClasses">Classes principales</a></h1>
+<hr>
 <?php
 require_once 'models/tools/classification/class.class.php';
 require_once 'models/tools/classification/classesManager.class.php';
 $class = new activityClass();
 $class ->setClassById($_GET['id']);
-echo $class->getClassId() . "  ";
-echo $class->getClassCode() . "  ";
-echo $class->getClassTitle() . "  ";
-echo $class ->getClassObservation();
+echo 'ID :'.$class->getClassId() . " <br> ";
+echo 'Code :'.$class->getClassCode() . " <br>  ";
+echo 'Titre :'.$class->getClassTitle() . " <br>  ";
+echo 'Observation :'.$class ->getClassObservation();
 echo "<hr/>";
-
+echo "<h2>Liste des sous classe</h2>";
+echo "<hr/>";
 $classChild = new activityClassesManager();
 $classes_id = $classChild->ClassesChildBycode($class ->getClassCode());
 if(empty($classes_id)){

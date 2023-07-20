@@ -3,8 +3,8 @@ include "template/sous_menu.inc.php";
 ?>
 <p class="btnSousMenu">Charte d'archivage</p>
         <ul class="optionSousMenu">
-                <li><a href="#"> Visualiser</a></li>
-                <li><a href="#"> Exporter </a></li>
+                <li><a href="index.php?q=tools&categ=chart&sub=viewCharter"> Visualiser</a></li>
+                <li><a href="export"> Exporter </a></li>
         </ul>
 <p class="btnSousMenu">Plan de classement</p>
         <ul class="optionSousMenu">

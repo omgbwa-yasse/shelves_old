@@ -2,9 +2,9 @@
 // Charte d'archivage
 if($_GET['q'] = "tools" && $_GET['categ'] = 'chart' && isset($_GET['sub'])){
     switch($_GET['sub']){
-        case 'views' : include 'views/tools/viewsChart.views.php';
+        case 'viewCharter' : include 'views/tools/ArchivingCharter/viewCharter.inc.php';
         break;
-        case 'export' : include 'views/tools/exportChart.views.php';
+        case 'export' : include 'views/tools/ArchivingCharter/exportCharter.inc.php';
         break;
     }
 }
