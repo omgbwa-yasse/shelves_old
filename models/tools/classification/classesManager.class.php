@@ -7,7 +7,7 @@ public function __construct(){
 
 }
  public function allMainClasses(){
-    $allclasseId = "SELECT classification_id as id FROM classification WHERE classification_parent_id = 0 ";
+    $allclasseId = "SELECT * FROM classification WHERE classification_parent_id ='0' ";
     $allclasseId = $this->getCnx()->prepare($allclasseId);
     $allclasseId->execute();
     $allclasseId = $allclasseId->fetchAll();

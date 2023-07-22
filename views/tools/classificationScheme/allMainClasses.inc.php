@@ -20,7 +20,7 @@ $classes_id = $classes -> allMainClasses();
 <?php
 foreach($classes_id as $class_id){
     $class = new activityClass();
-    $class ->setClassById($class_id['id']);
+    $class ->setClassById($class_id['classification_id']);
     echo "<tr>";
     echo "<td>". $class ->getClassCode();
     echo "<td>".$class ->getClassTitle();
