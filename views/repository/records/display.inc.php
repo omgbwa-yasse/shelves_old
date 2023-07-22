@@ -65,8 +65,7 @@ function displayRecordLight($record){
 
 function displayRecord($record){
     $record-> setRecordLevelTitleByLevelId();
-    echo "<div class=\"records\" >";
-   
+    
     // Options sur la fiche
     echo "<div style=\"float:right; width:200px;border:solid 2px yellow;\">";
         optionNavigation($record);
@@ -78,7 +77,6 @@ function displayRecord($record){
     $record -> setRecordContainerId();
     $organization = new organization();
     $organization -> setOrganizationById($record -> getRecordOrganizationId());
-
 
     echo "<table border=\"1\"> 
     <tr><th class=\"title\" colspan=\"2\">
@@ -116,7 +114,7 @@ function displayRecord($record){
 // Affichage long
 
 function displayRecordLong($record){
-    displayRecord($record);
+    displayRecordDefault($record);
     echo "<div class=\"records\">";
     displayOption($record);
     echo "</div>";

@@ -33,4 +33,10 @@ public function MgGetrecordByDatesExt($date_start, $date_end){
     return $rqt;
 }
 
+public function recordsIdsByKeywordId($keywordId){
+    // Je recupère d'abord les Id_record des enregistrements situés dans la table record_keyword
+    $stmt = $this->getCnx()->prepare("SELECT record_keyword.record_id as record_id FROM record_keyword WHERE keyword_id = :keywordId");
+    $stmt ->execute([':keywordId' => $keywordId]);
+    return $stmt;   
+}
 }?>

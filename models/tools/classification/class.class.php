@@ -116,4 +116,22 @@ public function deleteClass($id){
 }
 
 
+public function checkClassChildById($id){ 
+  $stmt = $this->getCnx()->prepare("SELECT COUNT(*) FROM classification WHERE classification_parent_id = :id ORDER BY classification_code ASC");
+  $stmt-> execute(['id' => $id]);
+  foreach($stmt as $value){
+          if($value>0){
+              return true;
+          }else{
+              return false;
+          }
+  }
+}
+
+
+
+
+
+
+
 }?>

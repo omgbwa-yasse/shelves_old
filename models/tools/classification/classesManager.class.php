@@ -23,12 +23,14 @@ public function __construct(){
     return $stmt;
    }
 
-  public function ClassesChildById($id){
+  public function classesChildById($id){
     $child_class = $this->getCnx()->prepare("SELECT classification_id as id FROM classification WHERE classification_parent_id = :parent_id");
     $child_class ->execute([':parent_id' => (int) $id]);
     $child_class = $child_class -> fetchAll();
     return $child_class;
   }
+
+
   public function ClassesChildBycode($id){
     $child_class = $this->getCnx()->prepare("SELECT classification_code as id FROM classification WHERE classification_parent_id = :parent_id");
     $child_class ->execute([':parent_id' => $id]);
@@ -66,4 +68,7 @@ public function updateClassById($id, $code, $title, $observation, $parent_id) {
       ':classification_parent_id' => $parent_id,
       ':classification_observation' => $observation]); 
     }
+
+
+
 }?>

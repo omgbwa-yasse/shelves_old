@@ -24,6 +24,4 @@ if(isset($_POST['date_start']) AND isset($_POST['date_end'])){
         $record-> getRecordById();
         displayRecordDefault($record);
     } 
-} else{
-    echo "Date incorrecte ...";
 }?>

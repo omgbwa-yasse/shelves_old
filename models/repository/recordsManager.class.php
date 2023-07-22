@@ -5,11 +5,11 @@ public $_organization_id;
 public $_parent_id;
 public $_organization_title;
 
-public function getstmtIdByClasseId($classe_id){
-        $recordsId = "SELECT record_id as id FROM record WHERE record.classification_id = '". $classe_id ."' " ;
-        $recordsId = $this->getCnx()->prepare($recordsId);
-        $recordsId -> execute();
-        return $recordsId;
+public function recordsIdsByClassId($classe_id){
+        $stmt = $this->getCnx()->prepare("SELECT record_id as id FROM record WHERE record.classification_id = :id");
+        $stmt -> execute([':id' => $classe_id]);
+        $stmt -> fetchColumn();
+        return $stmt;
     }
 
 public function getstmtLevel(){
@@ -58,12 +58,18 @@ public function MgDeleteRecordById($id){
 }
 public function MgGetRecordsByDates($date_start, $date_end){
         if($date_end == null || $date_end == 0){
-                $stmt = $this->getCnx()->prepare("SELECT record.record_id FROM record WHERE   record.record_date_start <= :date_start");
+                $stmt = $this->getCnx()->prepare("SELECT record.record_id FROM record WHERE   record.record_date_start = :date_start");
                 $stmt -> execute([':date_start' => $date_start]);
                 $stmt = $stmt ->fetchAll();
                 return $stmt;
-        } else{
-                $stmt = $this->getCnx()->prepare("SELECT record.record_id FROM record WHERE   record.record_date_start <= :date_start OR record.record_date_end >= :date_end");
+        } else if($date_start > $date_end){
+                $stmt = $this->getCnx()->prepare("SELECT record.record_id FROM record WHERE   record.record_date_start >= :date_start OR record.record_date_end <= :date_end");
+                $stmt -> execute([':date_start' => $date_end, ':date_end' => $date_start]);
+                $stmt = $stmt ->fetchAll();
+                return $stmt;
+        }
+        else{
+                $stmt = $this->getCnx()->prepare("SELECT record.record_id FROM record WHERE   record.record_date_start >= :date_start OR record.record_date_end <= :date_end");
                 $stmt -> execute([':date_start' => $date_start, ':date_end' => $date_end]);
                 $stmt = $stmt ->fetchAll();
                 return $stmt;

@@ -15,24 +15,27 @@ public function setKeywordIdByKeyword($keyword){
     }
     return $this->_keyword_id ;
 }
+
+
+
 public function getKeywordId(){ return $this->_keyword_id; }
+public function setKeywordId($id){ $this->_keyword_id = $id ; }
+
+
+
 
 public function setKeyword($_keyword){ $this->_keyword = $_keyword; }
 public function getKeyword(){ return $this->_keyword;}
 public function getKeywordById(){
-    $rqt = "SELECT keyword.keyword FROM keyword WHERE keyword.keyword_id = '".$this->_keyword_id."'";
-    $rqt = $this->getCnx()->prepare($rqt);
-    $rqt->execute();
-    $result=$rqt->setFetchMode(PDO::FETCH_ASSOC);
-
-        foreach($rqt->fetchAll() as $keyword){
+    $stmt = $this->getCnx()->prepare("SELECT keyword.keyword FROM keyword WHERE keyword.keyword_id = :id");
+    $stmt ->execute(['id' => $this->getKeywordId()]);
+    $stmt = $stmt -> fetch();
+        foreach($stmt as $keyword){
             $this->_keyword = $keyword['keyword'];
         }   
     return $this->_keyword;
 }
 
-
-public function setKeywordId($id){ $this->_keyword_id = $id ; }
 public function getClassKeywordId(){ return $this->_keyword_id;}
 
 
@@ -113,12 +116,6 @@ public function saveNewKeyword($_keyword){
             }
         }
     }
-    public function getAllrecordIdByKeywordId(){
-        // Je recupère d'abord les Id_record des enregistrements situés dans la table record_keyword
-        $recordId = "SELECT record_keyword.record_id as record_id FROM record_keyword WHERE keyword_id = '". $this->getKeywordId()."'";
-        $recordId = $this->getCnx()->prepare($recordId);
-        $recordId ->execute();
-        return $recordId;   
-    }
+    
 
 }?>

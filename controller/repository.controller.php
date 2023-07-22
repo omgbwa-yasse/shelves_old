@@ -52,12 +52,10 @@ if($_GET['q'] == "repository"){
                 break ;
                 case "allrecords" : include "views/repository/search/allrecords.inc.php";
                 break ;
-                case "selectClasse" : include "views/repository/search/selecteClasse.inc.php"  ;
+                case "classification" : include "views/repository/search/searchByClassification.inc.php"  ;
                 break ;
-                case "byClasse" : include "views/repository/search/searchByClasse.inc.php";
+                case "class" : include "views/repository/search/searchByClass.inc.php";
                 break ;  
-                case "byClasseId" : include "views/repository/search/searchByClasseId.inc.php";
-                break ;
                 case "byKeyword" : include "views/repository/search/searchAllKeyword.inc.php";
                 break ;
                 case "byKeywordId" :  include "views/repository/search/searchByKeywordId.inc.php";
@@ -76,7 +74,7 @@ if($_GET['q'] == "repository"){
                 break ;
                 case "words" : include "views/repository/search/displayQuery.inc.php";
                 break ;
-                default : include "views/repository/search/allrecords.inc.php";
+                // default : include "views/repository/search/allrecords.inc.php";
                     }
                 
                 }

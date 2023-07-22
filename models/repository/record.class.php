@@ -64,12 +64,20 @@ public function getRecordLevelChild(){ return $this->_record_level_child;}
 public function setRecordLevelId($levelId){ $this->_record_level_id = $levelId; }
 public function getRecordLevelId(){ return $this->_record_level_id ; }
 
-
+public function setRecordLevelTitleByLevelId2(){
+    $stmt = $this->getCnx()->prepare("SELECT record_level_title as level_title FROM record_level WHERE record_level_id = :id");
+    $stmt ->execute([':id' => $this->getRecordLevelId()]);
+    foreach($stmt as $level_title){
+        $this->_record_level_title = $level_title['level_title'];
+        return true;
+    }
+}
 public function setRecordLevelTitleByLevelId(){
-    $stmt =$this->getCnx()->prepare("SELECT record_level_title as title FROM record_level WHERE record_level_id = :id");
+    $stmt = $this->getCnx()->prepare("SELECT record_level_title as title FROM record_level WHERE record_level_id = :id");
     $stmt ->execute([':id' => $this->getRecordLevelId()]);
     foreach($stmt as $level_title){
         $this->_record_level_title = $level_title['title'];
+        return true;
     }
 }
 
