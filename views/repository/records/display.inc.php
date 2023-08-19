@@ -12,9 +12,9 @@ function displayRecordDefault($record){
     echo "<div class=\"records\" >";
     // Options sur la fiche
     echo "<div style=\"float:right; width:200px;border:solid 2px yellow;\">";
-        optionNavigation($record);
+        optionNavigationAdvanced($record);
     echo "</div>";
-
+    
     echo "<div style=\"border:solid 2px red;width:650px;\">";
     // Aficher les enregistrement
     $record -> setRecordClasseByTitle();
@@ -114,11 +114,9 @@ function displayRecord($record){
 // Affichage long
 
 function displayRecordLong($record){
-    displayRecordDefault($record);
-    echo "<div class=\"records\">";
+    displayRecord($record);
+    echo "<hr/>";
     displayOption($record);
-    echo "</div>";
-
 }
 
 function displayOption($record){
@@ -128,8 +126,8 @@ function displayOption($record){
             <a class=\"option element\" href=\"index.php?q=repository&categ=create&sub=export&id=". $record->getRecordId() ." \">exporter</a>
             <a class=\"option element\" href=\"index.php?q=repository&categ=create&sub=delete&id=". $record->getRecordId() ." \">Supprimer</a>
         </div>";
-
 }
+
 function RecordsSubList($record){
     $record->verificationRecordsChild();
     if($record->verificationRecordsChild()){
@@ -140,17 +138,46 @@ function RecordsSubList($record){
     }
 }
 function optionNavigation($record){
-    echo "<div class=\"navigation\">
+    echo "
+        <div class=\"navigation\">
+            <a href=\"index.php?q=repository&categ=loan&sub=loan&id=". $record->getRecordId() ." \">Reserver</a>
+            </div>
+        <div class=\"navigation\">
             <a href=\"index.php?q=repository&categ=create&sub=print&id=". $record->getRecordId() ." \">Imprimer</a>
          </div>
          <div class=\"navigation\">
             <a href=\"index.php?q=repository&categ=create&sub=addDolly&id=". $record->getRecordId() ." \">Ajouter dans chariot</a>
          </div>
-         <div class=\"navigation\">
-            <a href=\"index.php?q=repository&categ=loan&sub=loan&id=". $record->getRecordId() ." \">Reserver</a>
-         </div>
+         
          <div class=\"navigation\">
             <a href=\"index.php?q=repository&categ=create&sub=export&id=". $record->getRecordId() ." \">Exporter</a>
+         </div>
+         ";
+}
+function optionNavigationAdvanced($record){
+    echo "
+        <div class=\"navigation\">
+            <a href=\"index.php?q=repository&categ=loan&sub=loan&id=". $record->getRecordId() ." \">Reserver</a>
+            </div>
+        <div class=\"navigation\">
+            <a href=\"index.php?q=repository&categ=create&sub=print&id=". $record->getRecordId() ." \">Imprimer</a>
+         </div>
+         <div class=\"navigation\">
+            <a href=\"index.php?q=repository&categ=create&sub=addDolly&id=". $record->getRecordId() ." \">Ajouter dans chariot</a>
+         </div>
+         
+         <div class=\"navigation\">
+            <a href=\"index.php?q=repository&categ=create&sub=export&id=". $record->getRecordId() ." \">Exporter</a>
+         </div>
+         <hr style=\"margin-top:20px;margin-bottom:20px;\"/>
+         <div class=\"navigation\">
+         <a class=\"option element\" href=\"index.php?q=repository&categ=create&sub=child&id=". $record->getRecordId() ." \">Ajouter sous-dossier</a>
+         </div>
+         <div class=\"navigation\">   
+         <a class=\"option element\" href=\"index.php?q=repository&categ=create&sub=update&id=". $record->getRecordId() ." \">Modifier</a>
+         </div>
+         <div class=\"navigation\">  
+         <a class=\"option element\" href=\"index.php?q=repository&categ=create&sub=delete&id=". $record->getRecordId() ." \">Supprimer</a>
          </div>
          ";
 }

@@ -20,7 +20,7 @@
     <a href="index.php?q=repository&categ=search&sub=classification"> Recherche par classe </a>
     </li>
     <li>
-    <a href="index.php?q=repository&categ=search&sub=AllDeposit"> Recherche par dépôt </a>
+    <a href="index.php?q=repository&categ=search&sub=deposit"> Recherche par dépôt </a>
     </li>
 </ul>
         

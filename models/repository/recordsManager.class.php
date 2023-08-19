@@ -154,6 +154,26 @@ public function recordsByOrganizationId($id_organization){
         return $stmt;
 }
 
+public function recordsByDepositId($id){
+        $stmt = $this->getCnx()->prepare("SELECT shelve_id as id FROM shelve WHERE room_id = :depositId");
+        $stmt -> execute ([':depositId' => $id]);
+        $stmt =  $stmt -> fetchAll();
+        
+        foreach($stmt as $shelve_id){
+                $stmt = $this->getCnx()->prepare("SELECT container_id as id FROM container WHERE container_shelve_id = :shelveId");
+                $stmt -> execute ([':shelveId' => $shelve_id['id']]);
+                $stmt =  $stmt -> fetchAll();
+
+                foreach($stmt as $container_id){
+                        $stmt = $this->getCnx()->prepare("SELECT record_id as id FROM record WHERE container_id = :containerId");
+                        $stmt -> execute ([':containerId' => $container_id['id']]);
+                        $stmt =  $stmt -> fetchAll();
+                        return $stmt;
+                        }
+                }
+        
+}
+
 public function countContainerUsed($container_id){
         $stmt = $this->getCnx()->prepare("SELECT COUNT(*) FROM record WHERE record.container_id = :container_id");
         $stmt-> execute([':container_id' => $container_id]);

@@ -25,11 +25,13 @@ public function setKeywordId($id){ $this->_keyword_id = $id ; }
 
 
 public function setKeyword($_keyword){ $this->_keyword = $_keyword; }
+
 public function getKeyword(){ return $this->_keyword;}
+
 public function getKeywordById(){
     $stmt = $this->getCnx()->prepare("SELECT keyword.keyword FROM keyword WHERE keyword.keyword_id = :id");
     $stmt ->execute(['id' => $this->getKeywordId()]);
-    $stmt = $stmt -> fetch();
+    $stmt = $stmt -> fetchAll();
         foreach($stmt as $keyword){
             $this->_keyword = $keyword['keyword'];
         }   
