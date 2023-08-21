@@ -53,7 +53,7 @@ public function verificationDollyRecordTitle(){
 }
 public function verificationDollyRecordIsUse(){
     $status = FALSE;
-    $stmt = $this->getCnx()->prepare("SELECT dolly_records.dolly_id FROM dolly_records WHERE dolly_records.dolly_id = :dolly_id");
+    $stmt = $this->getCnx()->prepare("SELECT dolly_record.dolly_id FROM dolly_record WHERE dolly_record.dolly_id = :dolly_id");
     $stmt->execute([':dolly_id' => $this->getDollyRecordId()]);
     if ($stmt->rowCount() > 0) {
         $status = TRUE;
@@ -66,7 +66,7 @@ public function deleteDollyRecord(){
     $stmt = $this->getCnx()->prepare("DELETE FROM dolly WHERE dolly.dolly_id = :dolly_id");
     $stmt->execute([':dolly_id' => $this->getDollyRecordId()]);
     if($this->verificationDollyRecordIsUse()){
-        $stmt = $this->getCnx()->prepare("DELETE FROM dolly_records WHERE dolly_records.dolly_id = :dolly_id");
+        $stmt = $this->getCnx()->prepare("DELETE FROM dolly_record WHERE dolly_record.dolly_id = :dolly_id");
         $stmt->execute([':dolly_id' => $this->getDollyRecordId()]);
     }
 }
@@ -74,17 +74,18 @@ public function deleteDollyRecord(){
 public function saveDollyRecord(){ 
     $stmt = $this->getCnx()->prepare("INSERT INTO dolly(dolly_title, dolly_observation) VALUES (:title, :observation)");
     $stmt->execute([':title' => $this->getDollyRecordTitle(), ':observation' => $this->getDollyRecordObservation()]);
+    return true;
 }
 
 
 public function linkDollyRecordToRecord($recordId, $dollyRecordId){
-    $stmt = $this->getCnx()->prepare("INSERT INTO dolly_records(dolly_id, id_records, user_id) VALUES (:recordId, :dollyRecordId, :userId)");
+    $stmt = $this->getCnx()->prepare("INSERT INTO dolly_record(dolly_id, id_records, user_id) VALUES (:recordId, :dollyRecordId, :userId)");
     $stmt->execute([':recordId' => $recordId, ':dollyRecordId' => $dollyRecordId, ':userId' => 1]);
 }
 
 public function countRecords(){
     $recordCount = NULL;
-    $stmt = $this->getCnx()->prepare("SELECT COUNT(*) FROM dolly_records WHERE dolly_records.dolly_id = :dolly_id");
+    $stmt = $this->getCnx()->prepare("SELECT COUNT(*) FROM dolly_record WHERE dolly_record.dolly_id = :dolly_id");
     $stmt->execute([':dolly_id' => $this->getDollyRecordId()]);
     $recordCount = $stmt->fetchColumn();
     return $recordCount;

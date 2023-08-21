@@ -10,5 +10,9 @@ $dolly -> setDollyRecordObservation($_POST['dolly_observation']);
 echo $dolly -> getDollyRecordTitle();
 echo $dolly -> getDollyRecordObservation();
 
-$dolly -> saveDollyRecord();
+if($dolly -> saveDollyRecord()){
+    echo "Enregistré...";
+}else{
+    echo "<br> Non enregistré...";
+};
 ?>

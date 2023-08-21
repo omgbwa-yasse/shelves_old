@@ -90,6 +90,12 @@ if($_GET['q'] == "repository"){
                         break ;
                         case "allrecords" : include "views/repository/dolly/dollyRecords.views.php";
                         break ;
+                        case "view" : include "views/repository/dolly/viewDollyRecord.inc.php";
+                        break ;
+                        case "addRecord" : include "views/repository/dolly/addRecordInDollyRecord.inc.php";
+                        break ;
+                        case "saveRecord" : include "views/repository/dolly/saveRecordInDollyRecord.inc.php";
+                        break ;
                         default : include "views/repository/dolly/allRecordDolly.inc.php";
                 }}
          }

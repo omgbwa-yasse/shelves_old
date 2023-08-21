@@ -129,6 +129,25 @@ public function getOrganizationTitle(){
 public function setOrganizationTitle($title){
         $this->_organization_title = $title;
 }
+
+public function getRecordsByDollyId($id){
+        $stmt = $this->getCnx()->prepare("SELECT record_id as id FROM dolly_record WHERE dolly_id =:Id");
+        $stmt -> execute([':Id' => $id]);
+        $stmt = $stmt -> fetchAll();
+        return $stmt;
+}
+
+public function isDollyRecordEmpty($id){
+        $stmt = $this->getCnx()->prepare("SELECT count(*) FROM dolly_record WHERE dolly_id =:id");
+        $stmt -> execute([':id' => $id]);
+        $stmt = $stmt -> fetch();
+        if($stmt>0){
+                return true;
+        } else{
+                return false;
+        }
+}
+
 public function setOrganizationById(){
         $rqt = "SELECT organization_id as id,
         organization_code as code, 
