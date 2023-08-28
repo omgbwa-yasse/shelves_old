@@ -94,8 +94,26 @@ if($_GET['q'] == "repository"){
                         break ;
                         case "addRecord" : include "views/repository/dolly/addRecordInDollyRecord.inc.php";
                         break ;
-                        case "saveRecord" : include "views/repository/dolly/saveRecordInDollyRecord.inc.php";
+                        case "addRecords" : include "views/repository/dolly/addRecordsInDollyRecord.inc.php";
                         break ;
+                        case "saveRecords" : include "views/repository/dolly/saveRecordsInDollyRecord.inc.php";
+                        break ;
+                        case "exportRecords" :
+                        case "printRecords" :
+                        case "deleteRecords" :
+                        case "updateClasse":
+                        case "updateOrganization" :
+                        case "updateContainer" :
+                        case "updateStatus" :
+                        case "updateSupport" :
+                        case "updateParentRecord" : 
+                        case "updateObservation" :
+                        case "updateDates" : 
+                        case "tranfer" :
+                        case "tranfered" :
+                        include "views/repository/dolly/dollyRecordsAction.inc.php";
+                        break ;
+                       
                         default : include "views/repository/dolly/allRecordDolly.inc.php";
                 }}
          }

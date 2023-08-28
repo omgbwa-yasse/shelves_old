@@ -79,8 +79,8 @@ public function saveDollyRecord(){
 
 
 public function linkDollyRecordToRecord($recordId, $dollyRecordId){
-    $stmt = $this->getCnx()->prepare("INSERT INTO dolly_record(dolly_id, id_records, user_id) VALUES (:recordId, :dollyRecordId, :userId)");
-    $stmt->execute([':recordId' => $recordId, ':dollyRecordId' => $dollyRecordId, ':userId' => 1]);
+    $stmt = $this->getCnx()->prepare("INSERT INTO dolly_record(dolly_id, record_id, user_id) VALUES (:recordId, :dollyRecordId, :userId)");
+    $stmt->execute([':recordId' => $recordId, ':dollyRecordId' => $dollyRecordId, ':userId' => 2]);
 }
 
 public function countRecords(){

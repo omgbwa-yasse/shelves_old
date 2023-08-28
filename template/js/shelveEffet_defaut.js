@@ -38,7 +38,7 @@ var icone = document.querySelectorAll(".iconePlusMoins");
 var displayStatut = false;
 
 for (let i=0; i <= icone.length; i++){
-    icone[i].addEventListener('click',function(){
+    icone[i].addEventListener('click', function(){
         if(displayStatut){
             record[i].style.display = "block";
             icone[i].src = 'template/images/moins.png';
@@ -53,6 +53,16 @@ for (let i=0; i <= icone.length; i++){
 };
 
 /* Navigation */
+
+
+
+
+
+
+/* Option chariot d'enregistrements */ 
+
+
+
 
 
   

@@ -87,11 +87,12 @@ public function getAllSubRecordsIdById($record_id){
         $stmt ->  execute();
         return $stmt; 
 }
-public function getAllClasse(){
-        $sqlClasse = "SELECT classification.classification_code_title as code_title FROM classification";
-        $allClasse = $this->getCnx()->prepare($sqlClasse);
-        $allClasse ->execute();
-        return $allClasse;
+public function getAllClasses(){
+        $stmt = "SELECT classification_observation as observation, classification_parent_id as parent_id, classification_id as id, classification_title as title, classification_code as code FROM classification";
+        $stmt = $this->getCnx()->prepare($stmt);
+        $stmt -> execute();
+        $stmt -> fetchAll();
+        return $stmt;
 }
 public function getAllStatutTitle(){
         $sqlStatut = "SELECT record_status.record_status_title as statut FROM record_status";
