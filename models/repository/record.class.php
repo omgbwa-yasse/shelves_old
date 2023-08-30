@@ -387,4 +387,53 @@ public function insertInContainer($recordId, $containerId){
     }
 
 
+    public function hydrateRecordById($id){
+        // Je recupère les donnée avec condition sur ID
+        $record = "SELECT record.record_id as id,
+                record.record_level_id as level_id, 
+                record.record_title as title, 
+                record.record_nui as nui, 
+                record.record_level_id as level_id, 
+                record.record_date_start as date_start, 
+                record.record_date_end as date_end,
+                record.record_observation as observation,
+                record.record_link_id as id_parent,
+                classification.classification_title as classe_title,
+                record_support.record_support_title as support,
+                record_status.record_status_title as statut,
+                container.container_reference as boite,
+                record.organization_id
+                FROM record
+                LEFT JOIN record_support 
+                ON record_support.record_support_id = record.record_support_id
+                LEFT JOIN classification 
+                ON classification.classification_id = record.classification_id
+                LEFT JOIN record_status 
+                ON record_status.record_status_id = record.record_status_id
+                LEFT JOIN container 
+                ON container.container_id = record.container_id
+                WHERE record.record_id = :record_id";
+    
+        $record = $this->getCnx() -> prepare($record);
+        $record ->execute([':record_id' => $id]);
+    
+        // Je set toute les propriétés de la classe courante
+        foreach ($record as $current) {
+           $this->setRecordId($current['id']);
+           $this->setRecordTitle($current['title']);
+           $this->setRecordLevelId($current['level_id']);
+           $this->setRecordNui($current['nui']);
+           $this->setRecordDateStart($current['date_start']);
+           $this->setRecordDateEnd($current['date_end']);
+           $this->setRecordObservation($current['observation']);
+           $this->setRecordClasseTitle($current['classe_title']);
+           $this->setRecordClasseByTitle();
+           $this->setRecordSupportTitle($current['support']);
+           $this->setRecordLinkId($current['id_parent']);
+           $this->setRecordContainerTitle($current['boite']);
+           $this->setRecordOrganizationId($current['organization_id']);
+           $this->setRecordOrganizationTitleById();
+        }
+    }
+
 }?>

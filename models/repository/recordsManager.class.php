@@ -132,8 +132,8 @@ public function setOrganizationTitle($title){
 }
 
 public function getRecordsByDollyId($id){
-        $stmt = $this->getCnx()->prepare("SELECT record_id as id FROM dolly_record WHERE dolly_id =:Id");
-        $stmt -> execute([':Id' => $id]);
+        $stmt = $this->getCnx()->prepare("SELECT record_id as id FROM dolly_record WHERE dolly_id =?");
+        $stmt -> execute([$id]);
         $stmt = $stmt -> fetchAll();
         return $stmt;
 }

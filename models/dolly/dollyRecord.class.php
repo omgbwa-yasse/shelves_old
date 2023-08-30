@@ -79,8 +79,8 @@ public function saveDollyRecord(){
 
 
 public function linkDollyRecordToRecord($recordId, $dollyRecordId){
-    $stmt = $this->getCnx()->prepare("INSERT INTO dolly_record(dolly_id, record_id, user_id) VALUES (:recordId, :dollyRecordId, :userId)");
-    $stmt->execute([':recordId' => $recordId, ':dollyRecordId' => $dollyRecordId, ':userId' => 2]);
+    $stmt = $this->getCnx()->prepare("INSERT INTO dolly_record(dolly_id, record_id, user_id) VALUES (:record_Id, :dollyRecordId, :userId)");
+    $stmt->execute([':record_Id' => $dollyRecordId, ':dollyRecordId' => $recordId, ':userId' => 2]);
 }
 
 public function countRecords(){
@@ -90,5 +90,16 @@ public function countRecords(){
     $recordCount = $stmt->fetchColumn();
     return $recordCount;
 }
+
+/* les actions */
+
+public function updateRecordClass(int $record_id, int $classe_id){
+    $stmt = $this->getcnx()->prepare("UPDATE record SET classification_id=? WHERE record_id =?");
+    if($stmt ->execute([$classe_id, $record_id])){ return true; }else{ return false; }
+}
+
+
+
+
 
 }?>

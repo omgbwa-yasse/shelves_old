@@ -35,12 +35,18 @@ echo "<a href=\"index.php?q=repository&categ=dolly&sub=addRecords&id=". $_GET['i
 
 $records = new recordsManager();
 if($records -> isDollyRecordEmpty($dolly -> getDollyRecordId())){
+    echo "ce panier n'est pas vide...";
     $records = $records -> getRecordsByDollyId($dolly -> getDollyRecordId());
     foreach($records as $id){
+        echo "les id des records" . $id['id'];
         $record = new record();
         $record -> setRecordId($id['id']);
         $record -> getRecordById();
-        displayRecordLight($record);
+        echo $record->getRecordId();
+        echo var_dump($record);
+        echo $record->getRecordTitle();
+        
+        //displayRecord($record);displayRecordLight($record);
     }
 } else{
     echo 'aucun document est associé à ce chariot ...';

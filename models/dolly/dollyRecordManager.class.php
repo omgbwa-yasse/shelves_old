@@ -10,9 +10,9 @@ public function getAllDollyRecord(){
     return $stmt;
 }
 
-public function getAllRecordsByDolly($dollyId){
-    $stmt = $this->getCnx()->prepare("SELECT * FROM record RIGHT JOIN dolly_record ON dolly_record.dolly_id =:dollyId");
-    $stmt ->execute([':dollyId' => $dollyId]);
+public function getAllRecordsByDolly($id){
+    $stmt = $this->getCnx()->prepare("SELECT record_id as id FROM record RIGHT JOIN dolly_record ON dolly_record.dolly_id =:dollyId");
+    $stmt ->execute([':dollyId' => $id]);
     return $stmt;
 }
 

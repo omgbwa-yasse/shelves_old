@@ -1,36 +1,29 @@
 <?php
 require_once 'models/tools/classification/classesManager.class.php';
 require_once 'models/tools/classification/class.class.php';
+require_once 'models/dolly/dollyRecordManager.class.php';
+require_once 'models/repository/record.class.php';
 
 switch($_GET['sub'])
 {
-    case 'updateClasse': dollyAction($_GET['sub'], $_GET['id']);
+    case 'updateClasse':
+    case 'updateOrganization': 
+    case 'updateContainer': 
+    case 'updateStatus': 
+    case 'updateSupport': 
+    case 'updateParentRecord': 
+    
+    case 'exportRecords':
+    case 'printRecords':
+    case 'deleteRecords':  
+    case 'tranfer': 
+    case 'tranfered': isset($_POST['to'])? dollyAction($_GET['sub'], $_GET['id'], $_POST['to']):dollyAction($_GET['sub'], $_GET['id']) ;
     break;
-    case 'updateOrganization': dollyAction($_GET['sub'], $_GET['id']);
-    break;
-    case 'updateContainer': dollyAction($_GET['sub'], $_GET['id']);
-    break;
-    case 'updateStatus': dollyAction($_GET['sub'], $_GET['id']);
-    break;
-    case 'updateSupport': dollyAction($_GET['sub'], $_GET['id']);
-    break;
-    case 'updateParentRecord': dollyAction($_GET['sub'], $_GET['id']);
-    break;
-    case 'updateObservation': dollyAction($_GET['sub'], $_GET['id']);
-    break;
-    case 'exportRecords':dollyAction($_GET['sub'], $_GET['id']);
-    break;
-    case 'printRecords':dollyAction($_GET['sub'], $_GET['id']);
-    break;
-    case 'deleteRecords': dollyAction($_GET['sub'], $_GET['id']);
-    break;  
-    case 'tranfer': dollyAction($_GET['sub'], $_GET['id']) ;
-    break;
-    case 'tranfered':dollyAction($_GET['sub'], $_GET['id'], $_GET['to']) ;
+    case 'updateObservation': isset($_POST['observation'])? dollyAction($_GET['sub'], $_GET['id'], NULL, $_POST['observation']):dollyAction($_GET['sub'], $_GET['id']) ;
     break;
 }
 
-function dollyAction(string $action,int $dollyId, int $to = NULL){
+function dollyAction(string $action,int $dollyId, int $to = NULL, string $comment = NULL){
     if($action == 'deleteRecords')
     {
         /*
@@ -62,33 +55,51 @@ function dollyAction(string $action,int $dollyId, int $to = NULL){
         Je lance la fonction qui ecrit dans un fichier excel la liste des documents
         */
     }
-    if($action == 'updateObservation' && !empty($to)){
-        /*
-            Je change l'oberservation avec élement
-        */
-    } else{
-        /*
-            J'ouvre le formulaire pour charger la valeur de element
-        */
-    }
-    if($action == 'updateClasse'){
-        $classes = new activityClassesManager();
-        $classes =  $classes -> allClasses();
-        echo "<form method=\"GET\" action=\"index.php?q=repository&categ=dolly&sub=".$action."&id=".$dollyId."\">";
-        echo "<select name=\"to\">";
-        foreach($classes as $id){
-            $class = new activityClass();
-            $class -> setClassById($id['id']);
-            echo "<option value=\"". $class->getClassId()." \">". $class->getClassCode(). " - ". $class->getClassTitle()."<option/>";  
+    if($action == 'updateObservation'){
+        if(isset($_POST['to']) && $_POST['to'] =! NULL){
+            /* la modification */
         }
-        echo "</select><input type=\"submit\"></form>";
+    } else{
 
-    } else if($action == 'updateClasse' && isset($to) && !empty($to)){
-        echo 'Hi 2.....';
-       /*
-            Je change la classe avec avec Id passé dans élement
-        */
+        echo "<form method=\"POST\" action=\"index.php?q=repository&categ=dolly&sub=".$action."&id=".$dollyId."\">";
+        echo "<textarea value=\"1\" rows=\"30\" cols=\"10\">";
+        echo "</select><input type=\"submit\"></form>";
     }
+
+    if($action == 'updateClasse')
+    {
+        if(isset($_POST['to']) && $_POST['to'] =! NULL)
+        {
+                echo "le mutation est en cours";
+                echo "la classe à muter est ..." . $_POST['to'];
+                $list = new dollyRecordManager();
+                $list -> getAllRecordsByDolly($_GET['id']);
+                $list -> fetchAll();
+                foreach($list as $id){
+                    $dollyRecord = new recordRecord();
+                    if($dollyRecord -> updateRecordClass($id['id'], $_POST['to'])){
+                        echo "Mise à jour effectuée ...";
+                    } else{
+                        echo "Mise à jour échouée...";
+                    };
+                }
+        } 
+        else
+        {
+            $classes = new activityClassesManager();
+            $classes =  $classes -> allClasses();
+            echo "<form method=\"POST\" action=\"index.php?q=repository&categ=dolly&sub=".$action."&id=".$dollyId."\">";
+            echo "<select name=\"to\">";
+            foreach($classes as $id)
+            {
+                $class = new activityClass();
+                $class -> setClassById($id['id']);
+                echo "<option value=\"". $class->getClassId()." \">". $class->getClassCode(). " - ". $class->getClassTitle()."<option/>";  
+            }
+            echo "</select><input type=\"submit\"></form>";
+        }
+    } 
+
     if($action == 'updateOrganization' && !empty($to)){
         /*
             Je change la classe avec avec Id passé dans élement
@@ -99,6 +110,7 @@ function dollyAction(string $action,int $dollyId, int $to = NULL){
             la valeur de element
         */
     }
+
     if($action == 'updateContainer' && !empty($to)){
         /*
             Je change la boite avec avec Id passé dans élement
@@ -109,6 +121,7 @@ function dollyAction(string $action,int $dollyId, int $to = NULL){
             la valeur de element
         */
     }
+
     if($action == 'updateStatus' && !empty($to)){
         /*
             Je change le status  avec avec Id passé dans élement
@@ -119,6 +132,7 @@ function dollyAction(string $action,int $dollyId, int $to = NULL){
             la valeur de element
         */
     }
+
     if($action == 'updateSupport' && !empty($to)){
         /*
             Je change du support  avec avec Id passé dans élement
@@ -129,6 +143,7 @@ function dollyAction(string $action,int $dollyId, int $to = NULL){
             la valeur de element
         */
     }
+
     if($action == 'updateParentRecord' && !empty($to)){
         /*
             Je change le Parent  avec avec Id passé dans élement
@@ -139,6 +154,6 @@ function dollyAction(string $action,int $dollyId, int $to = NULL){
             la valeur de element
         */
     }
-
 }
+
 ?>
