@@ -31,5 +31,6 @@ $user->hydrateById($_GET['id']);
 
 <div style="display:inline;margin:0px 40px 0px 0px;">
     <a href="index.php?q=setting&categ=user&sub=update&id=<?=$user->getUserId()?>">Modifier</a>
-    <a href="index.php?q=setting&categ=user&sub=delete&id=<?=$user->getUserId()?>">Supprimer</button>
+    <a href="index.php?q=setting&categ=user&sub=delete&id=<?=$user->getUserId()?>">Supprimer</a>
+    <a href="index.php?q=setting&categ=userRole&sub=update&id=<?=$user->getUserId()?>">Gerer les droits</a>
 </div>

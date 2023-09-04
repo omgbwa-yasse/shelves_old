@@ -78,13 +78,13 @@ if($_GET['q'] == "setting"){
         }
         if ($_GET['q'] == "setting" && $_GET['categ'] == "userRole" && !empty($_GET['sub'])) {
             switch($_GET['sub']){
-                case 'add' : include 'views/setting/addUserRole.views.php';
+                case 'add' : include 'views/setting/userRole/addUserRole.views.php';
                 break;
-                case 'update' : include 'views/setting/updateUserRole.views.php';
+                case 'update' : include 'views/setting/userRole/updateUserRole.views.php';
                 break;
-                case 'delete' : include 'views/setting/deleteUserRole.views.php';
+                case 'delete' : include 'views/setting/userRole/deleteUserRole.views.php';
                 break;
-                case 'views' : include 'views/setting/viewsUserRole.views.php';
+                case 'views' : include 'views/setting/userRole/viewsUserRole.views.php';
                 break;
                 case 'all' : include 'views/setting/userRole/allUserRole.views.php';
                 break;
