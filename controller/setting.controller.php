@@ -63,11 +63,13 @@ if($_GET['q'] == "setting"){
             switch($_GET['sub']){
                 case 'add' : include 'views/setting/user/addUser.views.php';
                 break;
+                case 'addControl' : include 'views/setting/user/saveUser.views.php';
+                break;
                 case 'update' : include 'views/setting/user/updateUser.views.php';
                 break;
                 case 'delete' : include 'views/setting/user/deleteUser.views.php';
                 break;
-                case 'views' : include 'views/setting/user/viewsUser.views.php';
+                case 'view' : include 'views/setting/user/viewUser.views.php';
                 break;
                 case 'all' : include 'views/setting/user/allUser.views.php';
                 break;
@@ -84,7 +86,7 @@ if($_GET['q'] == "setting"){
                 break;
                 case 'views' : include 'views/setting/viewsUserRole.views.php';
                 break;
-                case 'all' : include 'views/setting/allUserRole.views.php';
+                case 'all' : include 'views/setting/userRole/allUserRole.views.php';
                 break;
                 default : include 'views/error.views.php';
             }

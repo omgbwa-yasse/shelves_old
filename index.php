@@ -12,13 +12,11 @@ if (isset($_COOKIE['pseudo'])){
         include "template/footer.inc.php";
         echo "</body></html>";
     }
+  }else if($_GET['q'] == "session"){
+    require_once 'controller/session.controller.php';
+  }else{  
+    header('Location: index.php?q=session&categ=user&sub=form');
   }
-  else
-  {
-    require_once 'controller/session.controller.php';  
-    //header('Location: index.php?q=session&categ=user&sub=form');
-  }
-  
 ?>
 
 

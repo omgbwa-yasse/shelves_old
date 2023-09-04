@@ -1,4 +1,10 @@
 <?php
+
+
+
+
+
+
 // Charte d'archivage
 if($_GET['q'] = "tools" && $_GET['categ'] = 'chart' && isset($_GET['sub'])){
     switch($_GET['sub']){

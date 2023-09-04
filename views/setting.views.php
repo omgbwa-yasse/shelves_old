@@ -13,7 +13,6 @@ include "template/sous_menu.inc.php";
 <p class="btnSousMenu">Utilisateur</p>
 <ul class="optionSousMenu">
         <li><a href="index.php?q=setting&categ=user&sub=all"> Utilisateur </a></li>
-        <li><a href="index.php?q=setting&categ=userRole&sub=all"> Droit </a></li>
 </ul>
 <p class="btnSousMenu">Versement</p>
 <ul class="optionSousMenu">

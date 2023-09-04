@@ -13,7 +13,7 @@ if ($_GET['q'] == "session" && $_GET['categ'] == "user") {
             break;
             case 'addControl' : include 'views/connexion/addUserControl.views.php';
             break;
-            default : include 'views/error.views.php';
+            default : include 'views/connexion/connexionForm.views.php';
         }
     }
 ?>

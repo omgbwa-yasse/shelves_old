@@ -10,7 +10,12 @@
         <input type="submit" style="width:150px;height:30px;border:solid 2px grey; border-radius:12px" />
         <a href="#">avancée</a>
         <br/>
-        <a href="index.php?q=setting&categ=user&sub=<?=$_COOKIE['pseudo']?>"><?= "Bonjour ".$_COOKIE['pseudo'] ;?></a>
+        <?php 
+        require_once "models/user/user.class.php";
+        $user = new user();
+        $user -> hydrateByPseudo($_COOKIE['pseudo']);
+        ?>
+        <a href="index.php?q=setting&categ=user&sub=view&id=<?= $user->getUserId() ?>"><?= $user->getUserName() ;?></a>
     
     </form>
 

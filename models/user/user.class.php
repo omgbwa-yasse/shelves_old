@@ -1,7 +1,10 @@
 <?php
-require_once 'models/connexion.class.php';
+require_once 'models/user/userManager.class.php';
 
-class user extends connexion{
+
+
+class user extends userManager {
+    
     private $_user_pseudo;
     private $_user_password;
     private $_user_id;
@@ -49,6 +52,46 @@ class user extends connexion{
             return false;
         }
     }
+    public function hydrateById($id){
+        $stmt = $this->getCnx()->prepare('SELECT * FROM user WHERE user_id = :user_id');
+        $stmt->execute([':user_id' => $id]);
+        if ($stmt->rowCount() > 0) {
+            foreach ($stmt as $user) {
+                $this->setUserId($user['user_id']);
+                $this->setUserName($user['user_name']);
+                $this->setUserSurname($user['user_surname']);
+                $this->setUserPseudo($user['user_pseudo']);
+                $this->setUserPassword($user['user_password']);
+                $this->setUserSand($user['user_sand']);
+                $this->setUserBirthday($user['user_birthday']);
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function hydrateByPseudo($pseudo){
+        $stmt = $this->getCnx()->prepare('SELECT * FROM user WHERE user_pseudo = :pseudo');
+        $stmt->execute([':pseudo' => $pseudo]);
+        if ($stmt->rowCount() > 0) {
+            foreach ($stmt as $user) {
+                $this->setUserId($user['user_id']);
+                $this->setUserName($user['user_name']);
+                $this->setUserSurname($user['user_surname']);
+                $this->setUserPseudo($user['user_pseudo']);
+                $this->setUserPassword($user['user_password']);
+                $this->setUserSand($user['user_sand']);
+                $this->setUserBirthday($user['user_birthday']);
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+
     public function getUserId() { return $this->_user_id; }
 
     public function setUserId($id) { $this->_user_id = $id; }
