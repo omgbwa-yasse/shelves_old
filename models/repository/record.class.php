@@ -99,14 +99,18 @@ public function setRecordNui($nui){ $this->_record_nui = $nui;}
 public function getRecordNui(){ return $this->_record_nui;}
 
 public function setRecordIdByNui(){
-    $idRecords = "SELECT record.record_id FROM record WHERE record_nui = '".$this->getRecordNui()."' " ;
-    $idRecords =$this->getCnx()->prepare($idRecords);
-    $idRecords->execute();
-    foreach($idRecords as $id) {
-            $this->setRecordId($id['record_id']) ;
-            }
+    $stmt =$this->getCnx()->prepare("SELECT record.record_id as id FROM record WHERE record_nui =:nui ");
+    $stmt ->execute([':nui' => $this->getRecordNui()]);
+    foreach($stmt as $id){
+        $this->setRecordId($id['id']);
+    }
 
 }
+
+
+
+
+
 public function controlNui(){
     $control = "SELECT record_nui FROM record WHERE record.record_nui = '".$this->getRecordNui()."' " ;
     $control = $this->getCnx()->prepare($control);

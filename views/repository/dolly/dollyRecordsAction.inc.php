@@ -2,6 +2,8 @@
 require_once 'models/tools/classification/classesManager.class.php';
 require_once 'models/tools/classification/class.class.php';
 require_once 'models/dolly/dollyRecordManager.class.php';
+require_once 'models/tools/organization/organization.class.php';
+require_once 'models/tools/organization/organizationManager.class.php';
 require_once 'models/repository/record.class.php';
 
 switch($_GET['sub'])
@@ -12,72 +14,177 @@ switch($_GET['sub'])
     case 'updateStatus': 
     case 'updateSupport': 
     case 'updateParentRecord': 
-    
     case 'exportRecords':
     case 'printRecords':
     case 'deleteRecords':  
     case 'tranfer': 
     case 'tranfered': isset($_POST['to'])? dollyAction($_GET['sub'], $_GET['id'], $_POST['to']):dollyAction($_GET['sub'], $_GET['id']) ;
     break;
-    case 'updateObservation': isset($_POST['observation'])? dollyAction($_GET['sub'], $_GET['id'], NULL, $_POST['observation']):dollyAction($_GET['sub'], $_GET['id']) ;
+    case 'updateObservation': dollyAction($_GET['sub'], $_GET['id']) ;
     break;
 }
 
-function dollyAction(string $action,int $dollyId, int $to = NULL, string $comment = NULL){
+
+
+
+function dollyAction(string $action,int $currentDollyId, int $nextDollyId = NULL){
+
+    if($action == 'updateObservation'){
+        if(empty($_POST['observation'])){
+            echo "vide";
+            echo "<form method=\"POST\" action=\"index.php?q=repository&categ=dolly&sub=updateObservation&id=1&status=saved\">";
+            echo "<input type=\"text\" name=\"observation\" value=\"observation\"><br/>";
+            echo "<input type=\"submit\" value=\"envoyer\">";
+            echo "</form>";
+           }
+        else if(isset($_GET['status']) && $_GET['status'] =  'saved')
+           {
+            echo $_POST['observation'];
+            $list = new dollyRecordManager();
+            $list = $list -> getAllRecordsByDolly($currentDollyId);
+            echo var_dump($list);
+            foreach($list as $record){
+                $dollyRecord = new dollyRecord();
+                if($dollyRecord -> updateRecordObservation( $record['id'], $_POST['observtaion'])){
+                    echo "Mise à jour effectuée ...";
+                } else{
+                    echo "Mise à jour échouée...";
+                }
+        }
+    }
+
+
     if($action == 'deleteRecords')
     {
-        /*
-        1- je recupère les ID dans dolly
-        2- je lance la suppression dans un foreach
-        3- return "Documents supprimer avec succès."
-        */
+        echo "Action de chariot  la suppression...";
+        $list = new dollyRecordManager();
+        $list -> getAllRecordsByDolly($currentDollyId);
+        $list -> fetchAll();
+        foreach($list as $record){
+            $dollyRecord = new dollyRecord();
+            if($dollyRecord -> deleteRecord($record['id'])){
+                echo "Mise à jour effectuée ...";
+            } else{
+                echo "Mise à jour échouée...";
+            }
     }
+    }
+
+
+
     if($action == 'tranfer'){
-        /*
-        renvoie un formulaire qui montre le panier d'arriver
-        */
+        if(isset($_GET['to'])){
+                echo "Action de chariot  le transfer...";
+                $list = new dollyRecordManager();
+                $list -> getAllRecordsByDolly($currentDollyId);
+                $list -> fetchAll();
+                foreach($list as $id){
+                    $dollyRecord = new dollyRecord();
+                if($dollyRecord -> updateRecordDolly($id['id'], $nextDollyId)){
+                    echo "Mise à jour effectuée ...";
+                } else{
+                    echo "Mise à jour échouée...";
+                }
+            }
+        }else{
+
+            $list = new dollyRecordManager();
+            $list = $list -> getAllDollyRecord();
+            echo "<form method=\"POST\" action=\"index.php?q=repository&categ=dolly&sub=".$action."&id=".$currentDollyId."\">";
+            echo "<select name=\"to\">";
+            foreach($list as $id)
+            {
+                $dolly = new dollyRecord();
+                $dolly -> setDollyRecordId($id['dolly_id']);
+                $dolly = $dolly->setDollyRecordById();
+                echo "<option value=\"". $dolly->getDollyRecordId()." \">". $dolly->getDollyRecordTitle() ."<option/>";  
+            }
+            echo "</select><input type=\"submit\"></form>";
+        }
     }
-    if($action == 'tranfered' && !empty($to) ){
-        /*
-        j'envoie les documents du panier X vers Y
-        Je supprime après chaque transfert la ligne sur le X
-        */
-    }
+
+
+
     if($action == 'printRecords'){
+        echo "Action de chariot  le impression...";
         /* 
         je recupère la liste des documents du chariot
         Je lance la fonction qui imprime la liste des documents
         */
     }
+
+
+
     if($action == 'exportRecords'){
+        echo "Action de chariot  le exportation...";
         /* 
         je recupère la liste des documents du chariot
         Je lance la fonction qui ecrit dans un fichier excel la liste des documents
         */
     }
-    if($action == 'updateObservation'){
-        if(isset($_POST['to']) && $_POST['to'] =! NULL){
-            /* la modification */
-        }
-    } else{
 
-        echo "<form method=\"POST\" action=\"index.php?q=repository&categ=dolly&sub=".$action."&id=".$dollyId."\">";
-        echo "<textarea value=\"1\" rows=\"30\" cols=\"10\">";
-        echo "</select><input type=\"submit\"></form>";
-    }
 
+/*      
+
+
+Modification des classe      
+
+
+*/
     if($action == 'updateClasse')
     {
-        if(isset($_POST['to']) && $_POST['to'] =! NULL)
+        echo "Action de chariot  le modification de classe...";
+        if(isset($nextDollyId) && $nextDollyId =! NULL)
         {
                 echo "le mutation est en cours";
-                echo "la classe à muter est ..." . $_POST['to'];
+                echo "la classe à muter est ...". $nextDollyId;
                 $list = new dollyRecordManager();
-                $list -> getAllRecordsByDolly($_GET['id']);
+                $list -> getAllRecordsByDolly($currentDollyId);
                 $list -> fetchAll();
                 foreach($list as $id){
-                    $dollyRecord = new recordRecord();
-                    if($dollyRecord -> updateRecordClass($id['id'], $_POST['to'])){
+                    $dollyRecord = new dollyRecord();
+                    if($dollyRecord -> updateRecordClass($id['id'], $nextDollyId)){
+                        echo "Mise à jour effectuée ...";
+                    } else{
+                        echo "Mise à jour échouée...";
+                    }
+                }
+        } 
+        else
+        {
+            $list = new activityClassesManager();
+            $list =  $list -> allClasses();
+            echo "<form method=\"POST\" action=\"index.php?q=repository&categ=dolly&sub=".$action."&id=".$currentDollyId."\">";
+            echo "<select name=\"to\">";
+            foreach($list as $id)
+            {
+                $class = new activityClass();
+                $class -> getClassById($id['class_id']);
+                echo "<option value=\"". $class -> getClassId()." \">";
+                echo $class -> getClassTitle();
+                echo "</option>";
+            }
+            echo "</select><input type=\"submit\"></form>";
+        }
+    } 
+
+
+
+/*      
+
+Modification des organisations      
+
+*/
+
+    if($action == 'updateOrganization' && !empty($to)){
+        if(isset($nextDollyId) && $nextDollyId =! NULL)
+        {
+                $list = new dollyRecordManager();
+                $list -> getAllRecordsByDolly($currentDollyId);
+                $list -> fetchAll();
+                foreach($list as $id){
+                    $dollyRecord = new dollyRecord();
+                    if($dollyRecord -> updateRecordOrganization($currentDollyId, $to)){ 
                         echo "Mise à jour effectuée ...";
                     } else{
                         echo "Mise à jour échouée...";
@@ -86,9 +193,9 @@ function dollyAction(string $action,int $dollyId, int $to = NULL, string $commen
         } 
         else
         {
-            $classes = new activityClassesManager();
+            $classes = new organizationManager();
             $classes =  $classes -> allClasses();
-            echo "<form method=\"POST\" action=\"index.php?q=repository&categ=dolly&sub=".$action."&id=".$dollyId."\">";
+            echo "<form method=\"POST\" action=\"index.php?q=repository&categ=dolly&sub=".$action."&id=".$currentDollyId."\">";
             echo "<select name=\"to\">";
             foreach($classes as $id)
             {
@@ -98,20 +205,12 @@ function dollyAction(string $action,int $dollyId, int $to = NULL, string $commen
             }
             echo "</select><input type=\"submit\"></form>";
         }
-    } 
-
-    if($action == 'updateOrganization' && !empty($to)){
-        /*
-            Je change la classe avec avec Id passé dans élement
-        */
-    } else{
-        /*
-            J'ouvre le formulaire pour selection id de classe à charger 
-            la valeur de element
-        */
     }
 
+/*      Modification des containers de boites    */
+
     if($action == 'updateContainer' && !empty($to)){
+        echo "Action de chariot  la modification des containers...";
         /*
             Je change la boite avec avec Id passé dans élement
         */
@@ -122,7 +221,11 @@ function dollyAction(string $action,int $dollyId, int $to = NULL, string $commen
         */
     }
 
-    if($action == 'updateStatus' && !empty($to)){
+
+/*      Modification des status      */
+
+if($action == 'updateStatus' && !empty($to)){
+        echo "Action de chariot  la modification des status...";
         /*
             Je change le status  avec avec Id passé dans élement
         */
@@ -133,7 +236,11 @@ function dollyAction(string $action,int $dollyId, int $to = NULL, string $commen
         */
     }
 
+
+
+
     if($action == 'updateSupport' && !empty($to)){
+        echo "Action de chariot  modofication des supports...";
         /*
             Je change du support  avec avec Id passé dans élement
         */
@@ -144,7 +251,11 @@ function dollyAction(string $action,int $dollyId, int $to = NULL, string $commen
         */
     }
 
+
+
+
     if($action == 'updateParentRecord' && !empty($to)){
+        echo "Action de chariot  des parents...";
         /*
             Je change le Parent  avec avec Id passé dans élement
         */
@@ -154,6 +265,12 @@ function dollyAction(string $action,int $dollyId, int $to = NULL, string $commen
             la valeur de element
         */
     }
+
+
+
+
 }
 
-?>
+
+
+}?>

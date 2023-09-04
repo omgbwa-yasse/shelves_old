@@ -14,7 +14,7 @@ foreach($idrecords as $Idrecord){
     $record -> getRecordById();
     
     displayRecordDefault($record);
-    
+
 }
 ?>
 

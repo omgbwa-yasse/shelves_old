@@ -6,5 +6,5 @@ require_once  'models/repository/record.class.php';
 $record  = new record();
 $record -> setRecordId($_GET['id']);
 $record -> getRecordById();
-displayRecord($record);
+displayRecordLong($record);
 ?>

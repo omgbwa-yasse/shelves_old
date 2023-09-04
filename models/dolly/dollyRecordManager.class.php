@@ -11,10 +11,12 @@ public function getAllDollyRecord(){
 }
 
 public function getAllRecordsByDolly($id){
-    $stmt = $this->getCnx()->prepare("SELECT record_id as id FROM record RIGHT JOIN dolly_record ON dolly_record.dolly_id =:dollyId");
-    $stmt ->execute([':dollyId' => $id]);
+    $stmt = $this->getCnx()->prepare("SELECT record_id FROM dolly_record WHERE dolly_id =:id");
+    $stmt ->execute([':id' => $id]);
+    $stmt = $stmt -> fetchAll();
     return $stmt;
 }
+
 
 
 

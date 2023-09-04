@@ -6,17 +6,17 @@ require_once 'views/repository/records/display.inc.php';
 
 if(isset($_POST['level_id']) && isset($_POST['nui']) && isset($_POST['title']) && isset($_POST['date_start']) && isset($_POST['organization_title'])){
 
-            $_POST['level_id']= htmlspecialchars ($_POST['level_id']);
-            $_POST['nui']= htmlspecialchars ($_POST['nui']);
-            $_POST['title']= htmlspecialchars ($_POST['title']);
-            $_POST['date_start'] = htmlspecialchars ($_POST['date_start']);
-            $_POST['date_end']= htmlspecialchars ($_POST['date_end']);
-            $_POST['observation'] = htmlspecialchars($_POST['observation']) ;
-            $_POST['classification_id'] = htmlspecialchars ($_POST['classification_id']);
-            $_POST['support']= htmlspecialchars ($_POST['support']);
-            $_POST['statut']= htmlspecialchars ($_POST['statut']);
-            $_POST['keywords']= htmlspecialchars ($_POST['keywords']);
-            $_POST['organization_title']= htmlspecialchars ($_POST['organization_title']);
+            $level_id = htmlspecialchars ($_POST['level_id']);
+            $nui = htmlspecialchars ($_POST['nui']);
+            $title = htmlspecialchars ($_POST['title']);
+            $date_start = htmlspecialchars ($_POST['date_start']);
+            $date_end = htmlspecialchars ($_POST['date_end']);
+            $observation = htmlspecialchars($_POST['observation']) ;
+            $classification_id = htmlspecialchars ($_POST['classification_id']);
+            $support = htmlspecialchars ($_POST['support']);
+            $statut = htmlspecialchars ($_POST['statut']);
+            $keywords = htmlspecialchars ($_POST['keywords']);
+            $organization_title = htmlspecialchars ($_POST['organization_title']);
             
 
             $supportTitle = $_POST['support'] ;
@@ -24,17 +24,18 @@ if(isset($_POST['level_id']) && isset($_POST['nui']) && isset($_POST['title']) &
 
             $record = new record();
             $record->setRecordId(NULL);
-            $record->setRecordLevelId($_POST['level_id']);
-            $record->setRecordNui($_POST['nui']);
-            $record->setRecordTitle($_POST['title']); 
-            $record->setRecordDateStart($_POST['date_start']);               
-            $record->setRecordDateEnd($_POST['date_end']);
-            $record->setRecordObservation($_POST['observation']);
-            $record->setRecordStatusTitle($_POST['statut']);
-            $record->setRecordClasseId($_POST['classification_id']);
+            $record->setRecordLevelId($level_id);
+            $record->setRecordNui($nui);
+            $record->setRecordTitle($title); 
+            $record->setRecordDateStart($date_start);               
+            $record->setRecordDateEnd($date_end);
+            $record->setRecordObservation($observation);
+            $record->setRecordStatusTitle($statut);
+            $record->setRecordClasseId($classification_id);
             $record->setRecordClasseById();
-            $record->setRecordSupportTitle($_POST['support']); 
-            $record->setRecordOrganizationTitle($_POST['organization_title']);
+            $record->setRecordStatusTitle($statut);
+            $record->setRecordSupportTitle($support); 
+            $record->setRecordOrganizationTitle($organization_title);
             $record->setRecordIdByNui();
 
             if (!empty($_GET['parent_id'])) {

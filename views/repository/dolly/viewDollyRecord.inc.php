@@ -30,26 +30,16 @@ echo "<tr>
     </tr>
     </table>";
 
-echo "<h2>Liste des documents<h2>";
+echo "<h2>Liste des documents</h2>";
+echo "Ce panier a ". $dolly->countRecords();
+echo " enregistrement(s)";
 echo "<a href=\"index.php?q=repository&categ=dolly&sub=addRecords&id=". $_GET['id']."\">". "Ajouter plusieurs documents" ."</a> ";
 
-$records = new recordsManager();
-if($records -> isDollyRecordEmpty($dolly -> getDollyRecordId())){
-    echo "ce panier n'est pas vide...";
-    $records = $records -> getRecordsByDollyId($dolly -> getDollyRecordId());
-    foreach($records as $id){
-        echo "les id des records" . $id['id'];
-        $record = new record();
-        $record -> setRecordId($id['id']);
-        $record -> getRecordById();
-        echo $record->getRecordId();
-        echo var_dump($record);
-        echo $record->getRecordTitle();
-        
-        //displayRecord($record);displayRecordLight($record);
-    }
-} else{
-    echo 'aucun document est associé à ce chariot ...';
+$list = $dolly -> getAllRecords();
+foreach($list as $id){
+    $record = new record();
+    $record -> hydrateRecordById($id['id']);
+    displayRecordDefault($record);
 }
 
 ?>

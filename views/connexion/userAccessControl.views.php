@@ -8,8 +8,7 @@ if (isset($_POST['pseudo']) && isset($_POST['password'])) {
     $user->setPasswordByCrypt($_POST['password']);
 
     if ($user->connect()) {
-        $_SESSION['pseudo'] = $user->getUserPseudo();
-        setcookie("pseudo", $_SESSION['pseudo'], time()+7200);
+        setcookie("pseudo", $user->getUserPseudo(), time()+1800);
         // Je stocke le nom dans un cookie
         header('Location: index.php?q=repository&categ=search&sub=allrecords');    
         }else{

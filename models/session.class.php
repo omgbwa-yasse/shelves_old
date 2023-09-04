@@ -14,6 +14,16 @@
         return false;
     }
 }
-  }
 
-?>
+public function userExist($pseudo) {
+  $stmt = $this->getCnx()->prepare('SELECT * FROM user WHERE user_name = :username');
+  $stmt->execute(array(':username' => $pseudo));
+  $userSpeudo = $stmt->fetch();
+  if ($userSpeudo['user_name'] == $pseudo) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+}?>
