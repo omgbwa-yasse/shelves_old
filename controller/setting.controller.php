@@ -86,6 +86,8 @@ if($_GET['q'] == "setting"){
                 break;
                 case 'views' : include 'views/setting/userRole/viewsUserRole.views.php';
                 break;
+                case 'save' : include 'views/setting/userRole/saveUserRole.views.php';
+                break;
                 case 'all' : include 'views/setting/userRole/allUserRole.views.php';
                 break;
                 default : include 'views/error.views.php';

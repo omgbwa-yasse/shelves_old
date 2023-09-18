@@ -1,24 +1,14 @@
 
-<div>
-<div style="position:absolute;">
+<div style="overflow: auto;">
+<div style="float: left; ">
     <b style="display:left; font-size:40px;">My Shelves</b> 
 </div>
-<div style="position:relative; margin-bottom :10px; margin-left:1000px;">
-    
-<form method="GET" action="index.php?q=repository&categ=search">
-        <input type="texte" name="words" style="width:300px;height:25px;border:solid 2px grey; border-radius:12px" />
-        <input type="submit" style="width:150px;height:30px;border:solid 2px grey; border-radius:12px" />
-        <a href="#">avancée</a>
-        <br/>
-        <?php 
-        require_once "models/user/user.class.php";
-        $user = new user();
-        $user -> hydrateByPseudo($_COOKIE['pseudo']);
-        ?>
-        <a href="index.php?q=setting&categ=user&sub=view&id=<?= $user->getUserId() ?>"><?= $user->getUserName() ;?></a>
-    
+<div style="float: left;  margin-left:30px;">
+    <form method="GET" action="index.php?q=repository&categ=search">
+        <input type="texte" name="words" style="width:400px;height:25px;border:solid 2px grey; border-radius:7px" />
+        <input type="submit" value="Rechercher" style="width:90px;height:30px;border:solid 2px grey; border-radius:7px" />
+        <?php  require_once "models/user/user.class.php";  $user = new user();  $user -> hydrateByPseudo($_COOKIE['pseudo']);?>
     </form>
-
-
+</div> 
 </div>
 </div>

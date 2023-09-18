@@ -66,3 +66,5 @@ for (let i=0; i <= icone.length; i++){
 
 
   
+/*   Gestion des dates de validation */
+

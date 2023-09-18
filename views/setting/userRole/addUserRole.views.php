@@ -5,7 +5,7 @@ require_once "models/user/user.class.php";
 echo "Ajouter les rôles des utilisateurs...";
 ?>
 
-<form method="GET" action="#"> 
+<form method="POST" action="index.php?q=setting&categ=userRole&sub=save&id=<?= $_GET['id'];?>"> 
     <table>
         <tr>
         <td>
@@ -16,8 +16,8 @@ echo "Ajouter les rôles des utilisateurs...";
             <label for="transfer">versement</label>
         </td>
         <td>
-            <input type="checkbox" id="option3" name="option3" value="1"> 
-            <label for="option3">Communication</label>
+            <input type="checkbox" id="communication" name="communication" value="1"> 
+            <label for="communication">Communication</label>
         <br> 
             <input type="checkbox" id="audit" name="audit" value="1"> 
             <label for="audit">Audit</label>

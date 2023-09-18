@@ -28,8 +28,6 @@ foreach($sqlLastNui as $Nui){
 
 ?>
 
-
-
 <table class="formular">
 <tr>
 <td class="titre"> Niveau description </td><td>
@@ -40,14 +38,13 @@ foreach($sqlLastNui as $Nui){
         if($descriptionLevel['title'] == "Dossier"){ echo "selected"; }
         echo ">". $descriptionLevel['title'] ."</option>"; 
     }
-} ?>
+} 
+?>
     
-
-
 </td> </tr>
 <tr> <td class="titre"> N° inventaire </td>  <td> <input type="text" name="nui" size="30"></td> </tr>
 <tr> <td class="titre"> Intitulé / analyse </td>  <td> <input type="text" name="title" size="70"></td> </tr>
-<tr> <td class="titre"> Dates extrêmes</td>  <td><input type="date" name="date_start" size="70"> au <input type="date" name="date_end" size="70"> </td></tr>
+<tr> <td class="titre"> Dates extrêmes</td>  <td><input type="text" name="date_start" id="date"> au <input type="text" name="date_end" id="date"> </td></tr>
 <tr> <td class="titre"> Observation</td>  <td><input type="text-area" name="observation" width="70"> </td></tr>
 
 <tr><td class="titre"> Classe</td><td>

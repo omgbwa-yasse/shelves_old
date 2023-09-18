@@ -27,6 +27,7 @@ if(isset($_POST['level_id']) && isset($_POST['nui']) && isset($_POST['title']) &
             $record->setRecordLevelId($level_id);
             $record->setRecordNui($nui);
             $record->setRecordTitle($title); 
+            $record->setRecordTimeFormat($date_start);  
             $record->setRecordDateStart($date_start);               
             $record->setRecordDateEnd($date_end);
             $record->setRecordObservation($observation);

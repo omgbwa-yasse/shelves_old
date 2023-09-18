@@ -19,7 +19,8 @@ $user->hydrateById($_GET['id']);
 <ol>
     <?php
         $service = new userRole();
-        $list = $service->roleOption($user->getUserId());
+        $service -> setUserId($user->getUserId());
+        $list = $service->getUserRoles();
         foreach($list as $option){
             var_dump($option);
         }

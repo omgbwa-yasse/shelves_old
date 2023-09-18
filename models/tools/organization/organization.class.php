@@ -51,10 +51,12 @@ public function setOrganizationCreator($id){ $this->_user_id  = $id ; }
 public function saveOrganization(){
     $resultat = NULL ;
     $rqt ="INSERT INTO organization (organization_code, organization_title,	organization_observation, organization_parent, user_id)
-        VALUES('".$this->getOrganizationCode()."','".$this->getOrganizationTitle()."',
-        '". $this->getOrganizationObservation() ."','".$this->getOrganizationParentId()."', 1)";
+        VALUES(?,?,?,?,1)";
     $rqt =$this->getCnx()->prepare($rqt);
-    if($rqt ->execute()){ $resultat = "Enregistrement effectuée";}
+    if($rqt->execute(array($this->getOrganizationCode(),$this->getOrganizationTitle(),$this->getOrganizationObservation(),$this->getOrganizationParentId())))
+    { 
+        $resultat = "Enregistrement effectuée";
+    }
     return $resultat;
     }
 // Set organisation By Code
@@ -84,7 +86,7 @@ public function setOrganizationById($id){
             organization_code as code, 
             organization_title as title,	
             organization_observation as observation, 
-            organization_parent as parent_id, 
+            organization_parent_id as parent_id, 
             user_id as user
     FROM organization 
     WHERE organization.organization_id = '". $id ."'";

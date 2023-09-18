@@ -233,6 +233,19 @@ form{
     -ms-border-radius: 5px;
     -o-border-radius: 5px;
 }
+
+.formular input.date{
+    padding-right: 5px;
+    padding-left: 5px;
+    width:235px;
+    height: 30px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
 .formular input[type="text"] .important{
     background-color: rgb(238, 181, 149);
 }
@@ -323,6 +336,11 @@ ul#navigationOption li{
     -o-border-radius: 5px;
     
 }
+
+
+
+
+
 .connexion button{
     width:120px;
     height:25px;
@@ -342,7 +360,7 @@ th, td {
 
 
 th {
-  
+   padding: auto;
 }
 
 
@@ -420,6 +438,8 @@ th {
 .container .table-input td input{
     width:100%;
 }
+
+
 .container .table-input td textarea{
     width:100%;
 }

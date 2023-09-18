@@ -4,6 +4,7 @@ class record extends recordsManager{
 public $_record_id = NULL;
 public $_record_nui;
 public $_record_title;
+public $_record_time_format;
 public $_record_date_start;
 public $_record_date_end;
 public $_record_observation;
@@ -33,6 +34,7 @@ public function __construct(){
     $this->_record_id;
     $this->_record_nui;
     $this->_record_title;
+    $this->_record_time_format;
     $this->_record_date_start;
     $this->_record_date_end;
     $this->_record_observation;
@@ -107,10 +109,6 @@ public function setRecordIdByNui(){
 
 }
 
-
-
-
-
 public function controlNui(){
     $control = "SELECT record_nui FROM record WHERE record.record_nui = '".$this->getRecordNui()."' " ;
     $control = $this->getCnx()->prepare($control);
@@ -143,6 +141,31 @@ public function getRecordTitle(){ return $this->_record_title;}
 
 public function setRecordDateStart($date_start){ $this->_record_date_start = $date_start;}
 public function getRecordDateStart(){ return $this->_record_date_start;}
+
+// format de date
+
+public function setRecordTimeFormat($date){ 
+        $regex = "/^\\d{4}(\\/\\d{2}(\\/\\d{2})?)?$/";
+        if (preg_match($regex, $date)) {
+        $parts = explode("/", $date);
+        $year = $parts[0];
+        $month = isset($parts[1]) ? $parts[1] : null;
+        $day = isset($parts[2]) ? $parts[2] : null;
+            if ($month === null) {
+                $format = "A";
+            } elseif ($day === null) {
+                $format = "B";
+            } else {
+                $format = "C";
+            }
+            $this->_record_time_format = $format; 
+        return true;
+        } else {
+        return false;
+        }
+
+}
+public function getRecordTimeFormat(){ return $this->_record_time_format; }
 
 // date de fin
 
@@ -237,37 +260,37 @@ public function getRecordLinkId(){ return $this->_record_link_id;}
 public function verificationRecordsChild(){ 
     $statut = FALSE; 
     $sql = "SELECT COUNT(*) FROM record WHERE record.record_link_id = '".$this->getRecordId()."'"; 
-    $rqt = $this->getCnx()->prepare($sql); 
-    $rqt ->execute(); 
-    $occurence = $rqt->fetchColumn(); 
+    $stmt = $this->getCnx()->prepare($sql); 
+    $stmt ->execute(); 
+    $occurence = $stmt->fetchColumn(); 
     if($occurence > 0){ $statut = TRUE; } else{ $statut = FALSE; } 
 return $statut; 
 }
 public function verificationRecordsParent(){ 
     $statut = NULL; 
     $sql = "SELECT record.record_link_id as id_parent FROM record WHERE record.record_id = '".$this->getRecordId()."'"; 
-    $rqt = $this->getCnx()->prepare($sql); 
-    $rqt ->execute(); 
-    $rqt = $rqt->fetchAll(); 
-    foreach($rqt as $value){
+    $stmt = $this->getCnx()->prepare($sql); 
+    $stmt ->execute(); 
+    $stmt = $stmt->fetchAll(); 
+    foreach($stmt as $value){
         if($value['id_parent'] == NULL){ $statut = FALSE;} else{ $statut = TRUE; }
     }
     return $statut; 
 }
 // Organization
 public function setRecordOrganizationIdByTitle(){
-    $rqt= "SELECT organization_id FROM organization WHERE organization_title = '". $this->getRecordOrganizationTitle() ."'" ;
-    $rqt=$this->getCnx()->prepare($rqt);
-    $rqt->execute();
-    foreach($rqt as $id){
+    $stmt = $this->getCnx()->prepare("SELECT organization_id FROM organization WHERE organization_title = :recordOrganizationTitle");
+    $stmt ->bindValue(':recordOrganizationTitle', $this->getRecordOrganizationTitle());
+    $stmt ->execute();
+    foreach($stmt as $id){
         $this->_organization_id = $id['organization_id'];
     }
 }
 public function setRecordOrganizationTitleById(){
-    $rqt= "SELECT organization_title FROM organization WHERE organization_id = '". $this->getRecordOrganizationId() ."'" ;
-    $rqt=$this->getCnx()->prepare($rqt);
-    $rqt->execute();
-    foreach($rqt as $title){
+    $stmt= "SELECT organization_title FROM organization WHERE organization_id = '". $this->getRecordOrganizationId() ."'" ;
+    $stmt=$this->getCnx()->prepare($stmt);
+    $stmt->execute();
+    foreach($stmt as $title){
         $this->_organization_title = $title['organization_title'];
     }
 }
@@ -309,21 +332,30 @@ public function saveRecord(){
         $this->setRecordOrganizationIdByTitle();
 
         // J'enregistre les données
-        $rqt = " INSERT INTO record (record_level_id, record_id,record_nui, record_title, 
-        record_date_start,record_date_end, record_observation, 
-        record_status_id, record_support_id, record_link_id, classification_id, organization_id ) 
-        values ('".$this->getRecordLevelId()."','".$this->getRecordId()."','".$this->getRecordNui()."','". $this->getRecordTitle()."','".$this->getRecordDateStart()."',
-        '". $this->getRecordDateEnd()."', '".$this->getRecordObservation()."','".$this->getRecordStatusId()."',
-        '".$this->getRecordSupportId()."', '".$this->getRecordLinkId()."','".$this->getRecordClasseId()."', '".$this->getRecordOrganizationId()."' )";
-
-        $rqt = $this->getCnx()->prepare($rqt);
-        $rqt ->execute();
+        $stmt = $this->getCnx()->prepare(" INSERT INTO record (record_level_id, record_id,record_nui, record_title,  record_time_format, 
+        record_date_start,record_date_end, record_observation, record_status_id, record_support_id, record_link_id, classification_id, organization_id ) 
+        values (:recordLevel, :recordId, :recordNui, :recordTitle, :recordTimeFormat, :recordDateStart, :recordDateEnd, :recordObservation, :recordStatusId, :recordSupportId, 
+        :recordLink, :recordClasseId, :recordOrganizationId)");
+        $stmt->bindValue(':recordLevel', $this->getRecordLevelId(), PDO::PARAM_INT);
+        $stmt->bindValue(':recordId', $this->getRecordId(), PDO::PARAM_INT);
+        $stmt->bindValue(':recordNui', $this->getRecordNui());
+        $stmt->bindValue(':recordTitle', $this->getRecordTitle());
+        $stmt->bindValue(':recordTimeFormat', $this->getRecordTimeFormat());
+        $stmt->bindValue(':recordDateStart', $this->getRecordDateStart());
+        $stmt->bindValue(':recordDateEnd', $this->getRecordDateEnd());
+        $stmt->bindValue(':recordObservation', $this->getRecordObservation());
+        $stmt->bindValue(':recordStatusId', $this->getRecordStatusId(), PDO::PARAM_INT);
+        $stmt->bindValue(':recordSupportId', $this->getRecordSupportId(), PDO::PARAM_INT);
+        $stmt->bindValue(':recordLink', $this->getRecordLinkId(), PDO::PARAM_INT);
+        $stmt->bindValue(':recordClasseId', $this->getRecordClasseId(), PDO::PARAM_INT);
+        $stmt->bindValue(':recordOrganizationId', $this->getRecordOrganizationId(), PDO::PARAM_INT);
+        $stmt->execute();
 }
 public function getAllKeywordsIdByRecordId(){
-    $rqt = "SELECT record_keyword.keyword_id FROM record_keyword WHERE record_keyword.record_id = '". $this->getRecordId()."' ";
-    $rqt = $this->getCnx()-> prepare($rqt);
-    $rqt -> execute();
-    return $rqt;
+    $stmt = "SELECT record_keyword.keyword_id FROM record_keyword WHERE record_keyword.record_id = '". $this->getRecordId()."' ";
+    $stmt = $this->getCnx()-> prepare($stmt);
+    $stmt -> execute();
+    return $stmt;
 }
 
 public function getRecordById(){
@@ -333,6 +365,7 @@ public function getRecordById(){
             record.record_title as title, 
             record.record_nui as nui, 
             record.record_level_id as level_id, 
+            record.record_time_format as timeFormat, 
             record.record_date_start as date_start, 
             record.record_date_end as date_end,
             record.record_observation as observation,
@@ -362,6 +395,7 @@ public function getRecordById(){
        $this->setRecordTitle($current['title']);
        $this->setRecordLevelId($current['level_id']);
        $this->setRecordNui($current['nui']);
+       $this->setRecordDateStart($current['timeFormat']);
        $this->setRecordDateStart($current['date_start']);
        $this->setRecordDateEnd($current['date_end']);
        $this->setRecordObservation($current['observation']);
@@ -375,9 +409,9 @@ public function getRecordById(){
     }
 }
 public function deleteRecord($id){
-    $rqt ="DELETE FROM record WHERE record.record_id = '". $id ."'";
-    $rqt = $this->getCnx()->prepare($rqt);
-    $rqt -> execute();}
+    $stmt ="DELETE FROM record WHERE record.record_id = '". $id ."'";
+    $stmt = $this->getCnx()->prepare($stmt);
+    $stmt -> execute();}
 
 
 
