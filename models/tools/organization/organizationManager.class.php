@@ -15,13 +15,13 @@ public function OrganizationParentByChildId($id){
 // Organization child
 }
 public function organizationChildById($id){ 
-    $stmt = $this->getCnx()->prepare("SELECT organization_id as id FROM organization WHERE organization_parent = :id ORDER BY organization_code ASC");
+    $stmt = $this->getCnx()->prepare("SELECT organization_id as id FROM organization WHERE organization_parent_id = :id ORDER BY organization_code ASC");
     $stmt-> execute(['id' => $id]);
     return $stmt;
   }
 
   public function checkOrganizationChildById($id){ 
-    $stmt = $this->getCnx()->prepare("SELECT COUNT(*) FROM organization WHERE organization_parent = :id ORDER BY organization_code ASC");
+    $stmt = $this->getCnx()->prepare("SELECT COUNT(*) FROM organization WHERE organization_parent_id = :id ORDER BY organization_code ASC");
     $stmt-> execute(['id' => $id]);
     foreach($stmt as $value){
             if($value>0){
@@ -34,7 +34,7 @@ public function organizationChildById($id){
 
 // Organization All Organization
 public function getAllOrganization(){ 
-    $stmt = "SELECT * FROM organization ORDER BY organization.organization_title ASC";
+    $stmt = "SELECT organization_id as id FROM organization ORDER BY organization.organization_title ASC";
     $stmt = $this->getCnx()->prepare($stmt);
     $stmt-> execute();
     return $stmt;
@@ -42,10 +42,10 @@ public function getAllOrganization(){
 
 
 public function AllMainOrganization(){ 
-    $stmt = "SELECT * FROM organization WHERE organization_parent = 0 ORDER BY organization.organization_title ASC";
-    $stmt = $this->getCnx()->prepare($stmt);
-    $stmt-> execute();
-    return $stmt;
+    $query = "SELECT organization_id as id FROM organization WHERE organization_parent_id = 0   ORDER BY organization.organization_title ASC";
+    $organizations = $this->getCnx()->query($query);
+    $ids = $organizations->fetchAll();
+    return $ids;
 }
 
 

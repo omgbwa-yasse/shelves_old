@@ -15,6 +15,9 @@ if(isset($_POST['parent_id'])){
     $parent_id = htmlspecialchars($_POST['parent_id']);
     echo $parent_id;
     $organization -> setOrganizationParentId($parent_id);
+}else{
+    $parent_id = 0;
+    $organization -> setOrganizationParentId($parent_id);
 }
 
 

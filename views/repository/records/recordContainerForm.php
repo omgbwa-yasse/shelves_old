@@ -7,11 +7,11 @@ require_once "models/deposit/container.class.php";
 function insertRecordInUnkownContainer($recordId){
 $containerids = new containerManager();
 $containerids = $containerids ->allContainer();
-echo '<form method="POST" action="index.php?q=repository&categ=create&sub=saveRecordInContainer&containerId='.$recordId .'">
+echo '<form method="POST" action="index.php?q=repository&categ=create&sub=saveRecordInContainer&recordId='.$recordId.'">
         <table class="formular">
             <tr><td> Contenant
                 <td>
-                <select name="container_id">';
+                <select name="containerId">';
                 foreach($containerids as $id){
                     $container = new container();
                     $container ->setContainerById($id['container_id']);
@@ -24,8 +24,25 @@ echo '<form method="POST" action="index.php?q=repository&categ=create&sub=saveRe
 <input type="reset" name="Annuler"><input type="submit" name="Envoyer">
 </form>';
 }
-function insertUnkownRecordInContainer($recordId){
-
+function insertUnkownRecordInContainer($containerId){
+    $list = new recordsManager();
+    $list = $list -> recordsWithoutContainer();
+    echo '<form method="POST" action="index.php?q=repository&categ=create&sub=saveRecordInContainer&containerId='.$containerId.'">
+        <table class="formular">
+            <tr><td> Record
+                <td>
+                <select name="recordId">';
+                foreach($list as $id){
+                    $record = new record();
+                    $record ->hydrateRecordById($id['id']);
+                    echo '<option value="'. $record->getRecordId().'">'. $record->getRecordNui() .' - '.$record->getRecordTitle() .'</option>';
+                }        
+                echo '<select>
+                </td>
+            </tr>
+        </table>
+<input type="reset" name="Annuler"><input type="submit" name="Envoyer">
+</form>';
     
 ?>  
 <?php

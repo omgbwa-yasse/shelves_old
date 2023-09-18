@@ -62,7 +62,7 @@ foreach($sqlLastNui as $Nui){
 <?php if(isset($allOrganization)){
     foreach($allOrganization as $id){
         $organization = new organization();
-        $organization ->setOrganizationById($id['organization_id']);
+        $organization ->setOrganizationById($id['id']);
         echo '<option>'.$organization ->getOrganizationTitle() .'</option>'; 
     }
 } ?>

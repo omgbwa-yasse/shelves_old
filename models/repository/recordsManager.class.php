@@ -150,18 +150,19 @@ public function isDollyRecordEmpty($id){
 }
 
 public function setOrganizationById(){
-        $rqt = "SELECT organization_id as id,
+        $stmt = "SELECT organization_id as id,
         organization_code as code, 
         organization_title as title,	
-        organization_observation, 
-        organization_parent as parent_id, 
+        organization_observation as observation, 
+        organization_parent_id as parent_id, 
         user_id as user
         FROM organization 
-        WHERE organization.organization_id = '". $this->getOrganizationId() ."'";
-        $rqt = $this->getCnx()->prepare($rqt);
-        $rqt->execute();
+        WHERE organization.organization_id = :id";
+        $stmt = $this->getCnx()->prepare($stmt);
+        $stmt->bindValue(':id', $this->getOrganizationId());
+        $stmt->execute();
 
-        foreach($rqt as $organization){
+        foreach($stmt as $organization){
         $this->setOrganizationId($organization['id']);
         $this->setOrganizationTitle($organization['title']);
         }; 
@@ -185,14 +186,26 @@ public function recordsByDepositId($id){
                 $stmt =  $stmt -> fetchAll();
 
                 foreach($stmt as $container_id){
-                        $stmt = $this->getCnx()->prepare("SELECT record_id as id FROM record WHERE container_id = :containerId");
-                        $stmt -> execute ([':containerId' => $container_id['id']]);
-                        $stmt =  $stmt -> fetchAll();
-                        return $stmt;
+                        $this->recordsInContainer($container_id['id']);
                         }
                 }
         
 }
+
+public function recordsWithoutContainer(){
+        $stmt = $this->getCnx()->prepare("SELECT record_id as id FROM record WHERE container_id = 0");
+        $stmt -> execute ();
+        $stmt =  $stmt -> fetchAll();
+        return $stmt;
+}
+
+public function recordsInContainer($container_id){
+        $stmt = $this->getCnx()->prepare("SELECT record_id as id FROM record WHERE container_id = :containerId");
+        $stmt -> execute ([':containerId' => $container_id]);
+        $stmt =  $stmt -> fetchAll();
+        return $stmt;
+}
+
 
 public function countContainerUsed($container_id){
         $stmt = $this->getCnx()->prepare("SELECT COUNT(*) FROM record WHERE record.container_id = :container_id");

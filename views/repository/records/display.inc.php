@@ -64,7 +64,7 @@ function displayRecordLight($record){
 }
 
 function displayRecord($record){
-    $record-> setRecordLevelTitleByLevelId();
+    // $record->setRecordLevelTitleByLevelId();
     
     // Options sur la fiche
     echo "<div style=\"float:right; width:200px;border:solid 2px yellow;\">";

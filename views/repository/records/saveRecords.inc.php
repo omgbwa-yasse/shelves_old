@@ -56,6 +56,11 @@ if(isset($_POST['level_id']) && isset($_POST['nui']) && isset($_POST['title']) &
                 };
             $record->setRecordIdByNui();
             displayRecordLight($record);
+            require_once "views/repository/records/recordContainerForm.php";
+            echo 'Veuillez choisir le contenant à inserer...';
+            insertRecordInUnkownContainer($record->getRecordId());
+
+
 } else {
 
     $error = NULL;

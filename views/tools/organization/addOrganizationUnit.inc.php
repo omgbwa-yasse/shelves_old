@@ -1,5 +1,6 @@
 <?php
 require_once 'models/tools/organization/organizationManager.class.php';
+require_once 'models/tools/organization/organization.class.php';
 
 $allOrganization = new organizationManager();
 $list = $allOrganization -> getAllOrganization();
@@ -13,9 +14,11 @@ $list = $allOrganization -> getAllOrganization();
     <tr><td>Unite :</td><td><input type="text" name="title" style="width:400px;"></td></tr>
 
     <tr><td>Parent :</td><td><select name="parent_id" style="width:400px;"> 
-    <?php foreach($list as $organization){
-            echo "<option value=\"". $organization['organization_id'] ."\">";
-            echo $organization['organization_code'] . " - " . $organization['organization_title'];
+    <?php foreach($list as $id){
+            $organization = new organization();
+            $organization ->setOrganizationById($id['id']);
+            echo "<option value=\"". $organization ->getOrganizationId() ."\">";
+            echo  $organization ->getOrganizationCode() . " - " . $organization ->getOrganizationTitle();
             echo "<option/>";
     }?></select></td></tr>
 

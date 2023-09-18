@@ -10,6 +10,10 @@ public function allContainer(){
     return $container;
 }
 
+
+
+
+
 public function containerUsed($id){
     $stmt = $this->getCnx() -> prepare("SELECT COUNT(*) FROM record WHERE container_id = :id");
     $stmt->execute([':id' => $id]);

@@ -74,6 +74,8 @@ if($_GET['q'] == "repository"){
                 break ;
                 case "words" : include "views/repository/search/displayQuery.inc.php";
                 break ;
+                case "container" : include "views/repository/search/displayRecordsInContainer.inc.php";
+                break ;
                 case "deposit" : include "views/repository/search/searchByDeposit.inc.php";
                 break ;
                 // default : include "views/repository/search/allrecords.inc.php";

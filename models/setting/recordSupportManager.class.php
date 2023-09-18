@@ -4,7 +4,8 @@ class recordSupportManager extends connexion {
 
 
 public function allRecordSupport(){
-    $stmt = $this->getCnx()->prepare("SELECT * FROM record_support ORDER BY record_support_title ASC");
+    $stmt = $this->getCnx()->prepare("SELECT record_support_id as id, record_support_title as title, record_support_observation as observation 
+    FROM record_support ORDER BY record_support_title ASC");
     $stmt->execute();
     return $stmt->fetchAll();
 }
