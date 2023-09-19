@@ -1,6 +1,7 @@
 <?php
 require_once 'models/connexion.class.php';
-class containerManager extends connexion{
+require_once 'models/deposit/shelve.class.php';
+class containerManager extends shelveManager{
 
 
 public function allContainer(){
@@ -10,6 +11,15 @@ public function allContainer(){
     return $container;
 }
 
+
+public function allContainerInShelveId(INT $id){
+    $stmt = $this->getCnx() ->prepare("SELECT container_id as id 
+    FROM container WHERE container_shelve_id =:id ORDER BY container_reference DESC");
+    $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+    $stmt ->execute();
+    $container = $stmt -> fetchAll();
+    return $container;
+}
 
 
 
