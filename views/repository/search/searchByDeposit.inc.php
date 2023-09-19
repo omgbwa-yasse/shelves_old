@@ -8,15 +8,25 @@ require_once 'models/deposit/container.class.php';
 require_once 'models/deposit/room.class.php';
 
 if(isset($_GET['roomId'])){
+
+    $room = new room();
+    $room->setRoomById($_GET['roomId']);
+    echo "<h1>Contenant dans l'étagère n°". $room->getRoomReference() ."</h1>";
+
     $list = new shelveManager();
     $list = $list ->allSlevesInRoom($_GET['roomId']);
     foreach($list as $id){
         $shelve = new shelve();
         $shelve ->setShelveById($id['id']);
-        echo "<a href=\"index.php?q=repository&categ=search&sub=deposit&shelveId=". $shelve->getShelveId() ."\"> Salle n°" . $shelve->getShelveReference() ."<a/>"; 
+        echo "<a href=\"index.php?q=repository&categ=search&sub=deposit&shelveId=". $shelve->getShelveId() ."\"> Etagère n°" . $shelve->getShelveReference() ."<a/>"; 
     }
 
 }elseif(isset($_GET['shelveId'])){
+
+    $shelve = new shelve();
+    $shelve->setShelveById($_GET['shelveId']);
+    echo "<h1>Contenant dans l'étagère n°". $shelve->getShelveReference() ."</h1>";
+
     $list = new containerManager();
     $list = $list ->allContainerInShelveId($_GET['shelveId']);
     foreach ($list as $id) {
@@ -26,6 +36,10 @@ if(isset($_GET['roomId'])){
         ."\"> Boite n°" . $container ->getContainerReference() ."<a/>"; 
     }
 } elseif(isset($_GET['containerId'])){
+    $container = new container();
+    $container->setContainerById($_GET['containerId']);
+    echo "<h1>Enregistrement dans la boîte n°". $container->getContainerReference() ."</h1>";
+    
     $list = new recordsManager();
     $list = $list ->recordsInContainer($_GET['containerId']);
     foreach($list as $id){
