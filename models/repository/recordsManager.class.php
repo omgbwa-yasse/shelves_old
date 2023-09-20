@@ -5,6 +5,8 @@ public $_organization_id;
 public $_parent_id;
 public $_organization_title;
 
+public $_list = array();
+
 public function recordsIdsByClassId($classe_id){
         $stmt = $this->getCnx()->prepare("SELECT record_id as id FROM record WHERE record.classification_id = :id");
         $stmt -> execute([':id' => $classe_id]);
@@ -27,13 +29,13 @@ public function getstmtId(){
 }
 
 public function getAllrecordsId(){
-        $stmt = $this->getCnx()->prepare("SELECT record.record_id FROM record");
+        $stmt = $this->getCnx()->prepare("SELECT record.record_id as id FROM record");
         $stmt -> execute();
         $stmt = $stmt-> fetchAll();
         return $stmt;
 }
 public function getAllrecordsIdWithoutContainer(){
-        $stmt = $this->getCnx()->prepare("SELECT record_id FROM record WHERE container_id = 0");
+        $stmt = $this->getCnx()->prepare("SELECT record_id as id FROM record WHERE container_id = 0");
         $stmt -> execute();
         $stmt = $stmt-> fetchAll();
         return $stmt;
@@ -199,25 +201,25 @@ public function countContainerUsed($container_id){
         }   
 }
 
+/* Research Module Debut */
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+function search($word)
+{
+        $words = preg_split("/\s+|\p{P}/", $word, -1, PREG_SPLIT_NO_EMPTY);
+        $tempResult = [];
+        $results = [];
+        foreach ($words as $word) {
+                $results = [];
+                $stmt = $this->getCnx()->prepare("SELECT record_id AS id FROM record WHERE record_title LIKE '%$word%'");
+                $stmt->execute();
+                foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $result) {
+                        $tempResult[] = $result['id'];
+                }
+        $results += array_unique($tempResult);
+        }
+        return  $results;
+}
 
 
 

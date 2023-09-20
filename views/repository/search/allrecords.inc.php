@@ -10,7 +10,7 @@ $idrecords = $allrecords -> getAllrecordsId();
 
 foreach($idrecords as $Idrecord){
     $record = new record;
-    $record -> setRecordId($Idrecord['record_id']);
+    $record -> setRecordId($Idrecord['id']);
     $record -> getRecordById();
     
     displayRecordDefault($record);

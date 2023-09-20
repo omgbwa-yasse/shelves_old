@@ -19,7 +19,8 @@ function menu(){
             break;
             case "connexion" : include 'views/connexion/connexionForm.views.php';
             break;
-         } }
+         }
+        }
 
 
 ?>

@@ -115,7 +115,6 @@ if($_GET['q'] == "repository"){
                         case "tranfered" :
                         include "views/repository/dolly/dollyRecordsAction.inc.php";
                         break ;
-                       
                         default : include "views/repository/dolly/allRecordDolly.inc.php";
                 }}
          }
