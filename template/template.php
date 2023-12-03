@@ -7,13 +7,16 @@ include_once "template/header.inc.php"
  <?php if(empty($_GET['q'])){ $_GET['q'] = "repository"; } ?> 
 <nav>
     <ul>
+        <li class="<?php if ($_GET['q'] =="mail") {echo "active"; } else  {echo "";}?>"><a href ="index.php?q=mail&categ=search&sub=allmails">
+        <img src="template/css/svg/mail.svg" alt="">    
+        Courriel</a></li>
         <li class="<?php if ($_GET['q'] =="repository") {echo "active"; } else  {echo "";}?>"><a href ="index.php?q=repository&categ=search&sub=allrecords">
         <img src="template/css/svg/repertory.svg" alt="">    
         Repertoire</a></li>
-        <li class="<?php if ($_GET['q']=="versement") {echo "active"; } else  {echo "";}?>"><a href ="index.php?q=versement&categ=search&sub=allversement">
+        <li class="<?php if ($_GET['q']=="transfer") {echo "active"; } else  {echo "";}?>"><a href ="index.php?q=transfer&categ=search&sub=all">
         <img src="template/css/svg/documents-svgrepo-com.svg" alt="">  
         
-        Versement</a></li>
+        Transfert </a></li>
         <li class="<?php if ($_GET['q']=="loan") {echo "active"; } else  {echo "";}?>"><a href ="index.php?q=loan&categ=search&sub=allloan">
         <img src="template/css/svg/communication-conversation-help-svgrepo-com.svg" alt=""> 
         

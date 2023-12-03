@@ -4,75 +4,76 @@ class transferManager extends connexion{
 
 
 public function allTransfer(){
-        $stmt = $this->getCnx()->prepare("SELECT transfer_id as id FROM transfer");
-        $stmt->execute($stmt);
-        $stmt->fetch(PDO::FETCH_ASSOC);
-        return $stmt;
+    $stmt = $this->getCnx()->prepare("SELECT record_transfer_id as id FROM record_transfer");
+    $stmt->execute();
+    $stmt->fetch(PDO::FETCH_ASSOC);
+    return $stmt;
 }
 
-public function allTransferOfYear($year)
-{
-        $stmt = $this->getCnx()->prepare("SELECT transfer_id as id FROM transfer WHERE date =:year");
-        $stmt->execute(['year' => $year]);
-        $transferIds = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return $transferIds;
+public function lastTransfer(){
+    $stmt = $this->getCnx()->prepare("SELECT record_transfer_id as id FROM record_transfer ORDER BY record_transfer_id DESC LIMIT 5");
+    $stmt->execute();
+    $stmt->fetch(PDO::FETCH_ASSOC);
+    return $stmt;
 }
 
-public function transferIdsBetweenDates($start_date, $end_date)
-{
-    $stmt = $this->getCnx()->prepare("SELECT transfer_id as id FROM transfer WHERE date >= :start_date AND date <= :end_date");
-    $stmt->execute(['start_date' => $start_date, 'end_date' => $end_date]);
-    $transferIds = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    return $transferIds;
-}
 
-public function transferIdsByStatus($status)
+public function transferByYear($annee)
 {
-    $stmt = $this->getCnx()->prepare("SELECT transfer_id as id FROM transfer WHERE status = :status");
-    $stmt->execute(['status' => $status]);
+    $stmt = $this->getCnx()->prepare("SELECT record_transfer_id as id FROM record_transfer WHERE record_transfer_date_authorize =:authorize");
+    $stmt->execute(['authorize' => $annee]);
     $transferIds = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $transferIds;
 }
 
-public function transferIdsByTitle($keyword)
+
+public function transferByOrganization($organization)
 {
-    $stmt = $this->getCnx()->prepare("SELECT transfer_id as id FROM transfer WHERE transfer_title LIKE :keyword");
+    $stmt = $this->getCnx()->prepare("SELECT record_transfer_id as id FROM record_transfer WHERE organization_id =:organization");
+    $stmt->execute(['organization' => $organization]);
+    $transferIds = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $transferIds;
+}
+
+
+public function transferByStatusId(int $statusId)
+{
+    $stmt = $this->getCnx()->prepare("SELECT record_transfer_id as id FROM record_transfer WHERE record_transfer_status_id = :statut");
+    $stmt->execute(['statut' => $statusId]);
+    $transferIds = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $transferIds;
+}
+
+
+public function getAllTransferStatus()
+{
+    $stmt = $this->getCnx()->prepare("SELECT record_transfer_status_id as id FROM record_transfer_status");
+    $stmt->execute();
+    $stmt = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $stmt;
+}
+
+public function transferByKeyword($keyword)
+{
+    $stmt = $this->getCnx()->prepare("SELECT record_transfer_id as id FROM record_transfer WHERE record_transfer_title LIKE :keyword");
     $stmt->execute(['keyword' => "%$keyword%"]);
     $transferIds = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
     return $transferIds;
 }
 
 
-
-public function searchTransfersByPhrase($phrase)
+public function transferByPhrase(string $phrase): array
 {
     $words = preg_split('/[\s,]+/', $phrase);
-    $keywords = array_filter($words, function ($word) {
+    $keywords = array_map(function ($word) {
         return strlen($word) > 2;
-    });
-
-    $stmt = $this->getCnx()->prepare("SELECT transfer_id as id, transfer_title FROM transfer WHERE transfer_title LIKE :keyword");
-    $stmt->execute(['keyword' => '%' . implode('%', $keywords) . '%']);
+    }, $words);
+    $stmt = $this->getCnx()->prepare("SELECT record_transfer_id as id FROM record_transfer WHERE record_transfer_title LIKE :keywordsLikeClause");
+    $stmt->execute(['keywordsLikeClause' => '%' . implode('%', $keywords) . '%']);
     $transfers = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
     return $transfers;
 }
 
-
-public function searchTransfersDetailsByPhrase($phrase)
-{
-    $words = preg_split('/[\s,]+/', $phrase);
-    $keywords = array_filter($words, function ($word) {
-        return strlen($word) > 2;
-    });
-
-    $stmt = $this->getCnx()->prepare("SELECT producer_name, transfer_id as id, transfer_title, status FROM transfer WHERE transfer_title LIKE :keyword");
-    $stmt->execute(['keyword' => '%' . implode('%', $keywords) . '%']);
-    $transfers = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    return $transfers;
-}
 
 }?>

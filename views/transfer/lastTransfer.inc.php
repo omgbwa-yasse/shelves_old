@@ -1,10 +1,10 @@
-<h1>List des bordereaux de transfert</h1>
+<h1>les derniers bordereaux de transfert</h1>
 <?php
 require_once "models/transfer/transferManager.class.php";
 require_once "models/transfer/transfer.class.php";
 
 $list = new transferManager();
-$list = $list ->allTransfer();
+$list = $list ->lastTransfer();
 foreach($list as $id){
    
     $transfer = new transfer();

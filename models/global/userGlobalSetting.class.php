@@ -3,7 +3,7 @@ require_once 'models/user/userManager.class.php';
 require_once 'models/userRole/userRole.class.php';
 
 
-class user extends userManager{
+trait userGlobalSetting{
     private $_user_pseudo;
     private $_user_password;
     private $_user_id;
