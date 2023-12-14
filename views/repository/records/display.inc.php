@@ -5,36 +5,38 @@ require_once 'models/tools/organization/organization.class.php';
 
 function displayRecordDefault($record){
     $record-> setRecordLevelTitleByLevelId();
-    echo "<div class=\"recordTitle\"> 
-            <img src=\"template\images\plus.png\" class=\"iconePlusMoins\">
-            <a href=\"index.php?q=repository&categ=search&sub=display&id=".$record->getRecordId()."\">". $record-> getRecordTitle() ."  (". $record-> getRecordLevelTitle().")"."</a>";
+    
+    echo "<div class=\"recordTitle\">";
+    echo "<div class=\"title\"> <img src=\"template\images\plus.png\" class=\"iconePlusMoins\"><a href=\"index.php?q=repository&categ=search&sub=display&id=". $record->getRecordId()."\">". $record-> getRecordTitle() ."  (". $record-> getRecordLevelTitle().")</div>";
+    echo "<div class=\"date\">". $record ->getRecordDateStart() ." - ". $record ->getRecordDateStart()."</div>";
+    echo "</a>";  
     echo "</div>";
+
     echo "<div class=\"records\" >";
     // Options sur la fiche
     echo "<div style=\"float:right; width:200px;border:solid 2px yellow;\">";
         optionNavigationAdvanced($record);
     echo "</div>";
-    
-    echo "<div style=\"border:solid 2px red;width:650px;\">";
+
     // Aficher les enregistrement
+    echo "<div style=\"border:solid 2px red;width:650px;\">";
     $record -> setRecordClasseByTitle();
     $record -> setRecordContainerId();
     $organization = new organization();
     $organization -> setOrganizationById($record -> getRecordOrganizationId());
 
-
-    echo "<table border=\"1\"> 
-    <tr><th class=\"element\"> Reférence <td class=\"element\">". $record-> getRecordNui() ."</td></tr>
-    <tr><th class=\"element\"> Dates <td class=\"element\">". $record -> getRecordDateStart() ." au ". $record -> getRecordDateEnd()  ."</td></tr>
-    <tr><th class=\"element\"> Détenteur <td class=\"element\">
+    echo "<table class=\"record_description\"> 
+    <tr><th class=\"element\"> Description <td>". $record -> getRecordObservation()  ."</td></tr>
+    <tr><th class=\"element\"> Reférence <td>". $record-> getRecordNui() ."</td></tr>
+    <tr><th class=\"element\"> Dates <td>". $record -> getRecordDateStart() ." au ". $record -> getRecordDateEnd()  ."</td></tr>
+    <tr><th class=\"element\"> Détenteur <td>
     <a href=\"index.php?q=repository&categ=search&sub=organization&id=".$organization->getOrganizationId()."\">
     ". $record -> getRecordOrganizationTitle() ."(". $organization -> getOrganizationCode() .")</a> </td></tr>
-    <tr><th class=\"element\"> Observation <td class=\"element\">". $record -> getRecordObservation()  ."</td></tr>
-    <tr><th class=\"element\"> Contenant <td class=\"element\"><a href=\"index.php?q=repository&categ=search&sub=container&id=".$record -> getRecordContainerId() ."\">". $record -> getRecordContainerTitle() ."</a></td></tr>
-    <tr><th class=\"element\"> Classe <td class=\"element\"><a href=\"index.php?q=repository&categ=search&sub=byClasseId&id=".$record ->getRecordClasseId()."\">". $record -> getRecordClasseCode() ." - ".$record -> getRecordClasseTitle() ."</a></td></tr>
+    <tr><th class=\"element\"> Contenant <td><a href=\"index.php?q=repository&categ=search&sub=container&id=".$record -> getRecordContainerId() ."\">". $record -> getRecordContainerTitle() ."</a></td></tr>
+    <tr><th class=\"element\"> Classe <td><a href=\"index.php?q=repository&categ=search&sub=byClasseId&id=".$record ->getRecordClasseId()."\">". $record -> getRecordClasseCode() ." - ".$record -> getRecordClasseTitle() ."</a></td></tr>
     ". displayParentTitle($record) ."
-    <tr><th class=\"element\"> Support <td class=\"element\">". $record -> getRecordSupportTitle() ."</td></tr>
-    <tr><th class=\"element\"> Mots clés <td class=\"element\">";
+    <tr><th class=\"element\"> Support <td>". $record -> getRecordSupportTitle() ."</td></tr>
+    <tr><th class=\"element\"> Mots clés <td>";
 
     // Afficher les mots clés associés
     $KeywordsId = $record -> getAllKeywordsIdByRecordId();

@@ -15,7 +15,6 @@ foreach($list as $id){
     $record = new record();
     $record -> setRecordId($id['id']);
     $record -> getRecordById();
-    
-    displayRecord($record);
+    displayRecordDefault($record);
 }
 ?>

@@ -1,3 +1,5 @@
+<!-- Merci seigneur pour ce prototype de logiciel -->
+
 <?php 
 session_start();
 require_once 'models/session.class.php';

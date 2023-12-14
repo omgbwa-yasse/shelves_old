@@ -30,6 +30,8 @@ public $_record_level_id;
 public $_record_level_title;
 public $_record_level_child;
 
+public $_record_record_transfer_id;
+
 public function __construct(){
     $this->_record_id;
     $this->_record_nui;
@@ -52,6 +54,7 @@ public function __construct(){
     $this->_record_level_id;
     $this->_record_level_title;
     $this->_record_level_child;
+    $this->_record_record_transfer_id;
 }
 
 // Les Setters et les Getters
@@ -201,10 +204,10 @@ public function getRecordClasseTitle(){ return $this->_record_classe_title;}
 
 
 public function setRecordClasseByCode(){
-    $classeId = "SELECT * FROM classification WHERE classification_code = '". $this->getRecordClasseCode()."' " ;
-    $classeId=$this->getCnx()->prepare($classeId);
-    $classeId->execute();
-    foreach($classeId as $id){
+    $stmt = "SELECT * FROM classification WHERE classification_code = '". $this->getRecordClasseCode()."' " ;
+    $stmt=$this->getCnx()->prepare($stmt);
+    $stmt->execute();
+    foreach($stmt as $id){
         $this->_record_classe_id = $id['classification_id'];
         $this->_record_classe_code = $id['classification_code'];
         $this->_record_classe_title = $id['classification_title'];
@@ -212,20 +215,19 @@ public function setRecordClasseByCode(){
     }}
 
 public function setRecordClasseByTitle(){
-    $classeId = "SELECT * FROM classification WHERE classification_title = '". $this->getRecordClasseTitle()."' " ;
-    $classeId=$this->getCnx()->prepare($classeId);
-    $classeId->execute();
-    foreach($classeId as $id){
+    $stmt=$this->getCnx()->prepare("SELECT * FROM classification WHERE classification_title =:classeTitle");
+    $stmt->execute([':classeTitle' => $this->getRecordClasseTitle()]);
+    foreach($stmt as $id){
         $this->_record_classe_id = $id['classification_id'];
          $this->_record_classe_code = $id['classification_code'];
         $this->_record_classe_title = $id['classification_title'];
     }
 }
 public function setRecordClasseById(){
-    $classeId = "SELECT * FROM classification WHERE classification_id = '". $this->getRecordClasseId()."' " ;
-    $classeId=$this->getCnx()->prepare($classeId);
-    $classeId->execute();
-    foreach($classeId as $id){
+    $stmt = "SELECT * FROM classification WHERE classification_id = '". $this->getRecordClasseId()."' " ;
+    $stmt=$this->getCnx()->prepare($stmt);
+    $stmt->execute();
+    foreach($stmt as $id){
         $this->_record_classe_id = $id['classification_id'];
         $this->_record_classe_code = $id['classification_code'];
         $this->_record_classe_title = $id['classification_title'];
@@ -323,6 +325,22 @@ public function setRecordContainerId(){
     }
 }
 public function getRecordContainerId(){ return $this->_record_container_id;}
+// Transfer ID
+
+
+public function setRecordTransferId(INT $id){
+    $this->_record_record_transfer_id = $id;
+}
+public function getRecordTransferId(){
+    return $this->_record_record_transfer_id;
+    
+}
+
+
+
+
+
+
 // Les fonctions 
 public function saveRecord(){
         // je recupère les ID des container, support, status, classe
@@ -333,9 +351,9 @@ public function saveRecord(){
 
         // J'enregistre les données
         $stmt = $this->getCnx()->prepare(" INSERT INTO record (record_level_id, record_id,record_nui, record_title,  record_time_format, 
-        record_date_start,record_date_end, record_observation, record_status_id, record_support_id, record_link_id, classification_id, organization_id ) 
+        record_date_start,record_date_end, record_observation, record_status_id, record_support_id, record_link_id, classification_id, organization_id, record_transfer_id ) 
         values (:recordLevel, :recordId, :recordNui, :recordTitle, :recordTimeFormat, :recordDateStart, :recordDateEnd, :recordObservation, :recordStatusId, :recordSupportId, 
-        :recordLink, :recordClasseId, :recordOrganizationId)");
+        :recordLink, :recordClasseId, :recordOrganizationId, :transferId)");
         $stmt->bindValue(':recordLevel', $this->getRecordLevelId(), PDO::PARAM_INT);
         $stmt->bindValue(':recordId', $this->getRecordId(), PDO::PARAM_INT);
         $stmt->bindValue(':recordNui', $this->getRecordNui());
@@ -349,6 +367,7 @@ public function saveRecord(){
         $stmt->bindValue(':recordLink', $this->getRecordLinkId(), PDO::PARAM_INT);
         $stmt->bindValue(':recordClasseId', $this->getRecordClasseId(), PDO::PARAM_INT);
         $stmt->bindValue(':recordOrganizationId', $this->getRecordOrganizationId(), PDO::PARAM_INT);
+        $stmt->bindValue(':transferId', $this->getRecordTransferId(), PDO::PARAM_INT);
         $stmt->execute();
 }
 public function getAllKeywordsIdByRecordId(){
@@ -370,6 +389,7 @@ public function getRecordById(){
             record.record_date_end as date_end,
             record.record_observation as observation,
             record.record_link_id as id_parent,
+            record_transfer_id,
             classification.classification_title as classe_title,
             record_support.record_support_title as support,
             record_status.record_status_title as statut,
@@ -405,6 +425,9 @@ public function getRecordById(){
        $this->setRecordLinkId($current['id_parent']);
        $this->setRecordContainerTitle($current['boite']);
        $this->setRecordOrganizationId($current['organization_id']);
+       if(!empty($current['record_transfer_id'])){
+            $this->setRecordTransferId($current['record_transfer_id']);
+       }
        $this->setRecordOrganizationTitleById();
     }
 }
@@ -436,6 +459,7 @@ public function insertInContainer($recordId, $containerId){
                 record.record_date_end as date_end,
                 record.record_observation as observation,
                 record.record_link_id as id_parent,
+                record_transfer_id,
                 classification.classification_title as classe_title,
                 record_support.record_support_title as support,
                 record_status.record_status_title as statut,
@@ -466,6 +490,7 @@ public function insertInContainer($recordId, $containerId){
            $this->setRecordObservation($current['observation']);
            $this->setRecordClasseTitle($current['classe_title']);
            $this->setRecordClasseByTitle();
+           $this->setRecordTransferId($current['record_transfer_id']);
            $this->setRecordSupportTitle($current['support']);
            $this->setRecordLinkId($current['id_parent']);
            $this->setRecordContainerTitle($current['boite']);

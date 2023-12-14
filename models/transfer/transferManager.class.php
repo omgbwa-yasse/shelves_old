@@ -18,6 +18,15 @@ public function lastTransfer(){
 }
 
 
+public function transfertLastRecordNui(int $transfer_id){
+    $stmt =  $this->getCnx()->prepare("SELECT record_nui as nui FROM record 
+                                       WHERE record_transfer_id=?
+                                       ORDER BY record_id DESC LIMIT 1");
+    $stmt->execute([$transfer_id]);
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $result;
+}
+
 
 public function transferByYear($annee)
 {

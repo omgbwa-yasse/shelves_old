@@ -177,6 +177,14 @@ public function recordsByOrganizationId($id_organization){
         return $stmt;
 }
 
+public function recordsByTransferId($transfer_id){
+        $stmt = $this->getCnx()->prepare("SELECT record.record_id as id FROM record WHERE record.record_transfer_id = :id");
+        $stmt -> execute([':id' => $transfer_id]);
+        $stmt =  $stmt -> fetchAll();
+        return $stmt;
+    }
+
+
 public function recordsWithoutContainer(){
         $stmt = $this->getCnx()->prepare("SELECT record_id as id FROM record WHERE container_id = 0");
         $stmt -> execute ();

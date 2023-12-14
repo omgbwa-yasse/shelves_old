@@ -4,7 +4,7 @@ require 'models/repository/record.class.php';
 require_once 'views/repository/records/display.inc.php';
 
 
-if(isset($_POST['level_id']) && isset($_POST['nui']) && isset($_POST['title']) && isset($_POST['date_start']) && isset($_POST['organization_title'])){
+if(isset($_GET['id']) && isset($_POST['level_id']) && isset($_POST['nui']) && isset($_POST['title']) && isset($_POST['date_start']) && isset($_POST['organization_title'])){
 
             $level_id = htmlspecialchars ($_POST['level_id']);
             $nui = htmlspecialchars ($_POST['nui']);
@@ -17,6 +17,7 @@ if(isset($_POST['level_id']) && isset($_POST['nui']) && isset($_POST['title']) &
             $statut = htmlspecialchars ($_POST['statut']);
             $keywords = htmlspecialchars ($_POST['keywords']);
             $organization_title = htmlspecialchars ($_POST['organization_title']);
+            $transfer_id = htmlspecialchars ($_GET['id']);
             
 
             $supportTitle = $_POST['support'] ;
@@ -38,6 +39,7 @@ if(isset($_POST['level_id']) && isset($_POST['nui']) && isset($_POST['title']) &
             $record->setRecordSupportTitle($support); 
             $record->setRecordOrganizationTitle($organization_title);
             $record->setRecordIdByNui();
+            $record->setRecordTransferId($transfer_id);
 
             if (!empty($_GET['parent_id'])) {
                 $_GET['id_parent']= htmlspecialchars ($_GET['parent_id']);

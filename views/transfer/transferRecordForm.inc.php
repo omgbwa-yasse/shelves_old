@@ -4,6 +4,7 @@ require_once 'models/repository/record.class.php';
 require_once 'models/tools/organization/organizationManager.class.php';
 require_once 'models/tools/organization/organization.class.php';
 require_once 'models/tools/classification/classesManager.class.php';
+require_once 'models/transfer/transferManager.class.php';
     
 
 $records = new recordsManager();
@@ -12,18 +13,19 @@ $allClasses = $allClasses ->allClasses();
 $allStatut = $records -> getAllStatutTitle();
 $allSupport = $records -> getAllSupportTitle();
 $sqlLastNui = $records -> getLastNui();
+
 $descriptionLevels = $records -> getAllDesciptionLevels();
 
 $organisation = new organizationManager();
 $allOrganization = $organisation -> getAllOrganization();
 
-    
+$transferLastRecordNui = new transferManager();
+$transferLastRecordNui = $transferLastRecordNui ->transfertLastRecordNui($_GET['id']); 
 
-foreach($sqlLastNui as $Nui){
-    echo "<div id=\"notice\">Le dernier enregistrement est : ". $Nui['nui'];
-    echo "</div>";
+foreach($transferLastRecordNui as $Nui){
+    echo "Dernier enregistrement : ";
+    echo $Nui;
 }
-
 
 ?>
 
