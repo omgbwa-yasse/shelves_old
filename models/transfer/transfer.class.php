@@ -92,7 +92,9 @@ public function getTransferDateCreation(){
 
 // Date authorize
 public function setTransferDateAuthorize($transferDateAuthorize){
-    $this->_record_transfer_date_authorize = htmlspecialchars($transferDateAuthorize);
+    if(!is_null($transferDateAuthorize)){
+        $this->_record_transfer_date_authorize = htmlspecialchars($transferDateAuthorize);
+    }
 }
 public function getTransferDateAuthorize(){
     return $this->_record_transfer_date_authorize;
@@ -121,6 +123,11 @@ public function getTransferStatusId(){
     return $this->_record_transfer_status_id;
 }
 
+public function transfertLastRecordNui(){
+    $stmt = $this->getCnx()->prepare("SELECT record_nui as nui FROM record WHERE record_transfer_id =:id ORDER BY record_id DESC LIMIT 1");
+    $stmt -> execute([':id' => $this->getTransferId()]);
+    $stmt = $stmt -> fetch(PDO::FETCH_ASSOC);
+}
 
 // Recupération des données de la base, fonction secondaire
 public function hydrateById(INT $id){

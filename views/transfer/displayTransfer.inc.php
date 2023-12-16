@@ -40,7 +40,7 @@ function displayTransfer(INT $id)
         $record = new record();
         $record -> setRecordId($id['id']);
         $record -> getRecordById();
-        displayRecord($record);
+        displayRecordDefault($record);
     }
 
 }

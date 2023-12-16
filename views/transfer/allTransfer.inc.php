@@ -6,7 +6,6 @@ require_once "models/transfer/transfer.class.php";
 $list = new transferManager();
 $list = $list ->allTransfer();
 foreach($list as $id){
-   
     $transfer = new transfer();
     $transfer ->hydrateById($id['id']);
     echo "<a href=\"index.php?q=transfer&categ=search&sub=transfer&id=".$transfer->getTransferId()."\">";

@@ -6,7 +6,7 @@ include "template/sous_menu.inc.php";
 <p class="btnSousMenu">Recherche </p>
             <ul class="optionSousMenu">        
             <li>
-                <a href="index.php?q=loan&categ=search&sub=allloan"> Toutes les demandes </a>
+                <a href="index.php?q=loan&categ=search&sub=allLoan"> Toutes les demandes </a>
             </li>       
             <li>
                 <a href="index.php?q=loan&categ=search&sub=organization"> Demande par Direction </a>
@@ -25,14 +25,15 @@ include "template/sous_menu.inc.php";
         
         <p class="btnSousMenu">Demandes</p>
         <ul class="optionSousMenu">
-            <li><a href="index.php?q=demande&categ=create&sub=new">Nouvelle demande </a></li>
-            <li><a href="index.php?q=demande&categ=create&sub=last">Dernières demandes </a></li>
+            <li><a href="index.php?q=loan&categ=create&sub=new">Nouvelle demande </a></li>
+            <li><a href="index.php?q=loan&categ=create&sub=last">Dernières demandes </a></li>
         </ul>
         <p class="btnSousMenu">Status</p>
         <ul class="optionSousMenu">
-            <li><a href="index.php?q=dolly&categ=demande&sub=current"> En cours (15) </a></li>
-            <li><a href="index.php?q=dolly&categ=demande&sub=cancel"> Annulée </a></li>
-            <li><a href="index.php?q=dolly&categ=demande&sub="> A traiter (10) </a></li>
+            <li><a href="index.php?q=loan&categ=create&sub=ask"> Demande (04) </a></li>
+            <li><a href="index.php?q=loan&categ=create&sub=current"> En cours (15) </a></li>
+            <li><a href="index.php?q=loan&categ=create&sub=cancel"> Annulée </a></li>
+            <li><a href="index.php?q=loan&categ=create&sub=archives"> A traiter (10) </a></li>
         </ul>
         
         <p class="btnSousMenu">Chariot</p>

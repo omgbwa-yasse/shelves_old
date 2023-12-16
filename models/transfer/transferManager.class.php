@@ -10,23 +10,20 @@ public function allTransfer(){
     return $stmt;
 }
 
-public function lastTransfer(){
-    $stmt = $this->getCnx()->prepare("SELECT record_transfer_id as id FROM record_transfer ORDER BY record_transfer_id DESC LIMIT 5");
+public function allTransferReference(){
+    $stmt = $this->getCnx()->prepare("SELECT record_transfer_id as id, record_transfer_reference as reference FROM record_transfer ORDER BY reference ASC");
     $stmt->execute();
     $stmt->fetch(PDO::FETCH_ASSOC);
     return $stmt;
 }
 
 
-public function transfertLastRecordNui(int $transfer_id){
-    $stmt =  $this->getCnx()->prepare("SELECT record_nui as nui FROM record 
-                                       WHERE record_transfer_id=?
-                                       ORDER BY record_id DESC LIMIT 1");
-    $stmt->execute([$transfer_id]);
-    $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    return $result;
+public function lastTransfer(){
+    $stmt = $this->getCnx()->prepare("SELECT record_transfer_id as id FROM record_transfer ORDER BY record_transfer_id DESC LIMIT 5");
+    $stmt->execute();
+    $stmt->fetch(PDO::FETCH_ASSOC);
+    return $stmt;
 }
-
 
 public function transferByYear($annee)
 {
@@ -71,19 +68,19 @@ public function transferByKeyword($keyword)
     return $transferIds;
 }
 
-public function getTransferByDates($dateStart, $dateEnd)
+public function transferByDates($dateStart, $dateEnd)
 {
     if(!empty($dateEnd)){
         $stmt = $this->getCnx()->prepare("SELECT record_transfer_id as id 
         FROM record_transfer 
-        WHERE record_transfer_date < :dateStart AND record_transfer_date > :dateEnd");
-        $stmt->execute([':dateStart' => $start], [':dateEnd' => $dateEnd],);
+        WHERE record_transfer_date_creation > :dateStart AND record_transfer_date_creation < :dateEnd");
+        $stmt->execute([':dateStart' => $dateStart, ':dateEnd' => $dateEnd],);
         $transferIds = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $transferIds;
     } else{
         $stmt = $this->getCnx()->prepare("SELECT record_transfer_id as id 
-        FROM record_transfer WHERE record_transfer_date < :dateStart");
-        $stmt->execute([':dateStart' => $start]);
+        FROM record_transfer WHERE record_transfer_date_creation > :dateStart");
+        $stmt->execute([':dateStart' => $dateStart]);
         $transferIds = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $transferIds;
     }

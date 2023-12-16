@@ -11,24 +11,24 @@ include_once "template/header.inc.php"
         <img src="template/css/svg/mail.svg" alt="">    
         Courriel</a></li>
         <li class="<?php if ($_GET['q'] =="repository") {echo "active"; } else  {echo "";}?>"><a href ="index.php?q=repository&categ=search&sub=allrecords">
-        <img src="template/css/svg/repertory.svg" alt="">    
-        Repertoire</a></li>
+        <img src="template/css/svg/repertory.svg" alt=""> Repertoire</a></li>
+
         <li class="<?php if ($_GET['q']=="transfer") {echo "active"; } else  {echo "";}?>"><a href ="index.php?q=transfer&categ=search&sub=all">
-        <img src="template/css/svg/documents-svgrepo-com.svg" alt="">  
-        
-        Transfert </a></li>
+        <img src="template/css/svg/documents-svgrepo-com.svg" alt="">Transfert </a></li>
+
         <li class="<?php if ($_GET['q']=="loan") {echo "active"; } else  {echo "";}?>"><a href ="index.php?q=loan&categ=search&sub=allloan">
-        <img src="template/css/svg/communication-conversation-help-svgrepo-com.svg" alt=""> 
-        
-        Communication</a></li>
-        <li class="<?php if ($_GET['q']=="audit") {echo "active"; } else  {echo "";}?>"><a href ="index.php?q=audit&categ=default&sub=default">
-        <img src="template/css/svg/audit-report-svgrepo-com.svg" alt="">    
-        
-        Audit</a></li>
+        <img src="template/css/svg/communication-conversation-help-svgrepo-com.svg" alt="">Communication</a></li>
+
+
+
+        <li class="<?php if ($_GET['q']=="audit") {echo "active"; } else  {echo "";}?>"><a href ="index.php?q=audit&categ=create&sub=add">
+        <img src="template/css/svg/audit-report-svgrepo-com.svg" alt=""> Audit</a></li>
+
+
         <li class="<?php if ($_GET['q']=="deposit") {echo "active"; } else  {echo "";}?>"><a href ="index.php?q=deposit&categ=search&sub=all">
-         <img src="template/css/svg/deposit-svgrepo-com.svg" alt="">   
-        
-        Dépôt</a></li>
+         <img src="template/css/svg/deposit-svgrepo-com.svg" alt=""> Dépôt</a></li>
+
+
         <li class="<?php if ($_GET['q']=="dolly") {echo "active"; } else  {echo "";}?>"><a href ="index.php?q=dolly&categ=records&sub=allDolly">
         <img src="template/css/svg/dolly-solid-svgrepo-com.svg" alt="">
         Chariot</a></li>

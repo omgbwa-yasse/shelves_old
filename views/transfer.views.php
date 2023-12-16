@@ -6,8 +6,8 @@ echo '
         <ul class="optionSousMenu">
                 <li><a href="index.php?q=transfer&categ=search&sub=all"/> Tous les recherche </a></li>
                 <li><a href="index.php?q=transfer&categ=search&sub=reference"/> Recherche par n° transfert </a></li>
-                <li><a href="index.php?q=transfer&categ=search&sub=date"/> Recherche par date </a></li>
-                <li><a href="index.php?q=transfer&categ=search&sub=organization"/> Recherche par detenteur</a></li>
+                <li><a href="index.php?q=transfer&categ=search&sub=selectDates"/> Recherche par date </a></li>
+                <li><a href="index.php?q=transfer&categ=search&sub=allOrganization"/> Recherche par producteur</a></li>
         </ul>
         <p class="btnSousMenu">Versement</p>
         <ul class="optionSousMenu">

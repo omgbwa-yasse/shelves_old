@@ -5,6 +5,7 @@ require_once 'models/tools/organization/organizationManager.class.php';
 require_once 'models/tools/organization/organization.class.php';
 require_once 'models/tools/classification/classesManager.class.php';
 require_once 'models/transfer/transferManager.class.php';
+require_once 'models/transfer/transfer.class.php';
     
 
 $records = new recordsManager();
@@ -19,13 +20,8 @@ $descriptionLevels = $records -> getAllDesciptionLevels();
 $organisation = new organizationManager();
 $allOrganization = $organisation -> getAllOrganization();
 
-$transferLastRecordNui = new transferManager();
-$transferLastRecordNui = $transferLastRecordNui ->transfertLastRecordNui($_GET['id']); 
+// Je vais afficher le dernier numéro de versement 
 
-foreach($transferLastRecordNui as $Nui){
-    echo "Dernier enregistrement : ";
-    echo $Nui;
-}
 
 ?>
 
