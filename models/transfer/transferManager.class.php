@@ -71,6 +71,25 @@ public function transferByKeyword($keyword)
     return $transferIds;
 }
 
+public function getTransferByDates($dateStart, $dateEnd)
+{
+    if(!empty($dateEnd)){
+        $stmt = $this->getCnx()->prepare("SELECT record_transfer_id as id 
+        FROM record_transfer 
+        WHERE record_transfer_date < :dateStart AND record_transfer_date > :dateEnd");
+        $stmt->execute([':dateStart' => $start], [':dateEnd' => $dateEnd],);
+        $transferIds = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $transferIds;
+    } else{
+        $stmt = $this->getCnx()->prepare("SELECT record_transfer_id as id 
+        FROM record_transfer WHERE record_transfer_date < :dateStart");
+        $stmt->execute([':dateStart' => $start]);
+        $transferIds = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $transferIds;
+    }
+    
+}
+
 
 public function transferByPhrase(string $phrase): array
 {
