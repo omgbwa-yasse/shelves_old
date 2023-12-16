@@ -3,7 +3,7 @@
 if($_GET['q'] == "loan"){
     if($_GET['q'] == "loan" && $_GET['categ'] == "search" && !empty($_GET['sub'])){
             switch($_GET['sub']){
-                case "all" : echo "tous les demandes";
+                case "allLoan" : echo "tous les demandes";
                 break ;
                 case "organization" : echo "Enregistrer";
                 break ;
@@ -11,6 +11,7 @@ if($_GET['q'] == "loan"){
                 break ;
                 case "class" : echo "Classe"; 
                 break ;
+                
                 case "user" : echo "Utilisateur"; 
                 break ;
             }
