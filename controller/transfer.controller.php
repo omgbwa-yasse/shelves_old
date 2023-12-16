@@ -1,47 +1,25 @@
 <?php
 if($_GET['q'] == "transfer"){
-
-    /* redirige si il y'a pas de categorie */
-    if(empty($_GET['categ'])){
-        include 'views/transfer/allTransfer.inc.php';
-    }else{
-    
     // Partie recherche
-            if($_GET['q'] = "transfer" && $_GET['categ'] = 'search' && isset($_GET['sub'])){
+            if($_GET['categ'] = 'search'){
                     switch($_GET['sub']){
                         case 'all' : include 'views/transfer/allTransfer.inc.php';
                         break;
-                        case 'date' : include 'views/transfer/search/transferByDate.inc.php';
+                        case 'selectDates' : include 'views/transfer/search/transferByDate.inc.php';
                         break;
-                        case 'reference' : echo "Rechercher par reference";
+                        case 'date' : include 'views/transfer/search/displayTransferByDate.inc.php';
                         break;
-                        case 'organization' : echo "Rechercher par organisation";
+                        case 'reference' : include 'views/transfer/search/searchTransferByReference.inc.php';
+                        break;
+                        case 'allOrganization' : include "views/transfer/search/transferByOrganization.inc.php";
+                        break;
+                        case 'organization' : include "views/transfer/search/displayOrganizationTransfer.inc.php";
                         break;
                         case 'user' : echo "Rechercher par utilisateur";
                         break;
-                        case 'last' : echo "les derniers transfert";
+                        case 'last' : include "views/transfer/lastTransfer.inc.php";
                         break;
-                        case 'transfer' : echo "le transfert";
-                        break;
-                    }
-                }
-
-            // Affichage du resultat de la recherche
-            if($_GET['q'] = "transfer" && $_GET['categ'] = 'display' && isset($_GET['sub'])){
-                    switch($_GET['sub']){
-                        case 'all' : include 'views/transfer/allTransfer.inc.php';
-                        break;
-                        case 'date' : echo 'afficher par date';
-                        break;
-                        case 'reference' : echo "Afficher par reference";
-                        break;
-                        case 'organization' : include '';
-                        break;
-                        case 'user' : include '';
-                        break;
-                        case 'last' : include 'views/transfer/lastTransfer.inc.php';
-                        break;
-                        case 'transfer' : include 'views/transfer/transfer.inc.php';
+                        case 'transfer' : include "views/transfer/transfer.inc.php";
                         break;
                     }
                 }
@@ -66,6 +44,5 @@ if($_GET['q'] == "transfer"){
                     }
                 }
             }
-        }
 
 ?>

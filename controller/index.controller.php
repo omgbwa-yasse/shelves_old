@@ -7,7 +7,7 @@ function menu(){
                 break;
                 case "transfer" : include 'views/transfer.views.php';
                 break;
-                case "loan" : include 'views/demande.views.php';
+                case "loan" : include 'views/loan.views.php';
                 break;
                 case "deposit" : include 'views/deposit.views.php';
                 break;
