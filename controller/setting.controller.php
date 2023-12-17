@@ -126,7 +126,7 @@ if($_GET['q'] == "setting"){
                 break;
                 case 'update' : include 'views/setting/loanType/loanTypeUpdate.inc.php';
                 break;
-                case 'delete' : include '';
+                case 'delete' : include 'views/setting/loanType/loanTypeDelete.inc.php';
                 break;
                 case 'all' : include "views/setting/loanType/loanTypeAll.inc.php";
                 break;
@@ -141,9 +141,9 @@ if($_GET['q'] == "setting"){
                 break;
                 case 'save' : include 'views/setting/loanDuration/LoanDurationSave.inc.php';
                 break;
-                case 'update' : include '';
+                case 'update' : include 'views/setting/loanDuration/loanDurationUpdate.inc.php';
                 break;
-                case 'delete' : include '';
+                case 'delete' : include 'views/setting/loanDuration/loanDurationDelete.inc.php';
                 break;
                 case 'all' : include "views/setting/loanDuration/loanDurationAll.inc.php";
                 break;

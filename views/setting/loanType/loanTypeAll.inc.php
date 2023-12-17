@@ -18,8 +18,7 @@ foreach($typeList as $type){
             </td><td><?= $loanType->getLoanTypeObservation();?></td>
             </td><td>
             <?php 
-                $booleanValue = filter_var($loanType->getLoanTypeCopy(), FILTER_VALIDATE_BOOLEAN);
-                if($booleanValue == true ){ echo "Oui"; }else{ echo "Non";} 
+                if($loanType->getLoanTypeCopy() == true ){ echo "Oui"; }else{ echo "Non";} 
             ?>
             </td>
         </tr>

@@ -21,5 +21,5 @@ $loanType->hydrateById($_GET['id']);
     </tr>
 </table>
 
-<a href="index.php?q=setting&categ=loanType&sub=update&id=6"><button>Modifier</button></a>
-<a href="index.php?q=setting&categ=loanType&sub=delete&id=6"><button>Supprimer</button></a>
+<a href="index.php?q=setting&categ=loanType&sub=update&id=<?=$_GET['id']?>"><button>Modifier</button></a>
+<a href="index.php?q=setting&categ=loanType&sub=delete&id=<?=$_GET['id']?>"><button>Supprimer</button></a>

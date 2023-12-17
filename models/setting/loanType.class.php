@@ -26,7 +26,7 @@ public function getLoanTypeObservation(){ return $this->_observation; }
 public function setLoanTypeObservation($observation){ $this->_observation= $observation;}
 
 // copy
-public function setLoanTypeCopy($copy){ $this->_type_copy = $copy;}
+public function setLoanTypeCopy($copy){  $this->_type_copy  = filter_var($copy, FILTER_VALIDATE_BOOLEAN); }
 public function getLoanTypeCopy(){ return $this->_type_copy; }
 
 // enregistrer
@@ -42,23 +42,35 @@ public function saveLoanType(){
 }
 
 // supprimer une durée
-public function deleteLoanType(){
-    $stmt = $this->getCnx()->prepare("DELETE FROM loan_type WHERE loan_type_id =?");
-    $stmt->bindParam(":id", $this->_id, PDO::PARAM_INT);
-    if($stmt->execute()){
-        return true;
+public function deleteLoanType() {
+    try {
+        $sql = "DELETE FROM loan_type WHERE loan_type_id = :id";
+        $stmt = $this->getCnx()->prepare($sql);
+        $values = [':id' => $this->getLoanTypeId()];
+        if ($stmt->execute($values)) {
+            return true;
+        } else {
+            return false;
+        }
+    } catch (PDOException $e) {
+        return false;
     }
 }
 
+
+
 //Mise à jour
-public function updateLoanType(){
-    $stmt = $this->getCnx()->prepare("UPDATE loan_type SET (loan_type_title, loan_type_observation, loan_type_copy) VALUE(:title, :observation, :type_copy) WHERE loan_type_id =:id");
-    $stmt->bindParam(":title", $this->_title, PDO::PARAM_STR);
-    $stmt->bindParam(":observation", $this->_observation, PDO::PARAM_STR);
-    $stmt->bindParam(":type_copy", $this->_type_copy, PDO::PARAM_STR);
-    $stmt->bindParam(":id", $this->_id, PDO::PARAM_INT);
-    if($stmt->execute()){
-        return true;
+public function updateLoanType() {
+    try {
+        $stmt = $this->getCnx()->prepare("UPDATE loan_type SET loan_type_title = :title, loan_type_observation = :observation, loan_type_copy = :type_copy WHERE loan_type_id = :id");
+        $values = [':title' => $this->getLoanTypeTitle(), ':observation' => $this->getLoanTypeObservation(), ':type_copy' => $this->getLoanTypeCopy(),':id' => $this->getLoanTypeId()];
+        if ($stmt->execute($values)) {
+            return true;
+        } else {
+            return false;
+        }
+    }catch(PDOException $e) {
+        return false;
     }
 }
 

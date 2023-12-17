@@ -6,7 +6,7 @@ $loanType = new LoanType();
 $loanType->hydrateById($_GET['id']);
 ?>
 
-<form method="POST" action="index.php?q=setting&categ=loanType&sub=update&id=<?=$_GET['id']?>">
+<form method="POST" action="index.php?q=setting&categ=loanType&sub=save&id=<?=$_GET['id']?>">
 <table border="0">
 <tr>
     <td>Intitulé :</td>
@@ -20,10 +20,10 @@ $loanType->hydrateById($_GET['id']);
     <td>Accès à une copie :</td>
     <td>
         <select name="copy">
-            <option value="True"> 
+            <option value="True" <?php  if(!$loanType->getLoanTypeCopy()){ echo "selected"; } ?>> 
                 Oui
             </option>
-            <option value="False">
+            <option value="False" <?php  if($loanType->getLoanTypeCopy()){ echo "selected"; } ?>>
                 Non
             </option>
         </select>
