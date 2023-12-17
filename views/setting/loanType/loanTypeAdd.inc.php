@@ -1,5 +1,5 @@
-<h1>Ajouter type de prêt</h1>
-<form method="POST" action="index.php?q=setting&categ=loan&sub=saveType">
+<h1>Ajouter un nouveau type de prêt</h1>
+<form method="POST" action="index.php?q=setting&categ=loanType&sub=save">
 <table border="0">
 <tr>
     <td>Intitulé :</td>

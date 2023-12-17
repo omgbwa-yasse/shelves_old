@@ -67,7 +67,7 @@ public function hydrateById(INT $id){
     $stmt=$this->getCnx()->prepare("SELECT loan_type_id as id, loan_type_title as title, loan_type_observation as observation, loan_type_copy as type_copy FROM loan_type WHERE loan_type_id =:id");
     $stmt->bindParam(":id", $id, PDO::PARAM_INT);
     $stmt->execute();
-    $stmt=$stmt->fetch(PDO::FETCH_ASSOC);
+    $stmt=$stmt->fetchAll(PDO::FETCH_ASSOC);
     foreach($stmt as $data){
         $this->setLoanTypeId($data['id']);
         $this->setLoanTypeTitle($data['title']);

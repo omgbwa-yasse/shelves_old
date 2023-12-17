@@ -113,34 +113,39 @@ if($_GET['q'] == "setting"){
                 // All paramèter
                 case 'all' : include 'views/setting/loan/loanSetting.inc.php';
                 break;
+            }
+        }
+        
+        if ($_GET['q'] == "setting" && $_GET['categ'] == "loanType" && !empty($_GET['sub'])) {
+                switch($_GET['sub']){
+                case 'view' : include 'views/setting/loanType/loanTypeView.inc.php';
+                break;
+                case 'save' : include 'views/setting/loanType/loanTypeSave.inc.php';
+                break;
+                case 'add' : include 'views/setting/loanType/loanTypeAdd.inc.php';
+                break;
+                case 'update' : include 'views/setting/loanType/loanTypeUpdate.inc.php';
+                break;
+                case 'delete' : include '';
+                break;
+                case 'all' : include "views/setting/loanType/loanTypeAll.inc.php";
+                break;
+                }
+            }
 
-                // Type of loan
-                case 'type' : include 'views/setting/laon/viewLoan.inc.php';
+        if ($_GET['q'] == "setting" && $_GET['categ'] == "loanDuration" && !empty($_GET['sub'])) {
+                    switch($_GET['sub']){
+                case 'view' : include 'views/setting/loanDuration/loanDurationView.inc.php';
                 break;
-                case 'saveType' : include 'views/setting/loan/loanTypeSave.inc.php';
+                case 'add' : include 'views/setting/loanDuration/LoanDurationAdd.inc.php';
                 break;
-                case 'addType' : include 'views/setting/loan/loanTypeAdd.inc.php';
+                case 'save' : include 'views/setting/loanDuration/LoanDurationSave.inc.php';
                 break;
-                case 'updateType' : include '';
+                case 'update' : include '';
                 break;
-                case 'deleteType' : include '';
+                case 'delete' : include '';
                 break;
-                case 'allType' : include "views/setting/loan/loanTypeAll.inc.php";
-                break;
-
-
-                // Duration
-                case 'duration' : include 'views/setting/laon/loanDurationView.inc.php';
-                break;
-                case 'addDuration' : include 'views/setting/loan/LoanDurationAdd.inc.php';
-                break;
-                case 'saveDuration' : include 'views/setting/loan/LoanDurationSave.inc.php';
-                break;
-                case 'updateDuration' : include '';
-                break;
-                case 'deleteDuration' : include '';
-                break;
-                case 'allDuration' : include "views/setting/loan/loanDurationAll.inc.php";
+                case 'all' : include "views/setting/loanDuration/loanDurationAll.inc.php";
                 break;
                 
             }
