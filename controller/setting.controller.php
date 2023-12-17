@@ -108,5 +108,42 @@ if($_GET['q'] == "setting"){
                 default : include 'views/error.views.php';
             }
         }
+        if ($_GET['q'] == "setting" && $_GET['categ'] == "loan" && !empty($_GET['sub'])) {
+            switch($_GET['sub']){
+                // All paramèter
+                case 'all' : include 'views/setting/loan/loanSetting.inc.php';
+                break;
+
+                // Type of loan
+                case 'type' : include 'views/setting/laon/viewLoan.inc.php';
+                break;
+                case 'saveType' : include 'views/setting/loan/loanTypeSave.inc.php';
+                break;
+                case 'addType' : include 'views/setting/loan/loanTypeAdd.inc.php';
+                break;
+                case 'updateType' : include '';
+                break;
+                case 'deleteType' : include '';
+                break;
+                case 'allType' : include "views/setting/loan/loanTypeAll.inc.php";
+                break;
+
+
+                // Duration
+                case 'duration' : include 'views/setting/laon/loanDurationView.inc.php';
+                break;
+                case 'addDuration' : include 'views/setting/loan/LoanDurationAdd.inc.php';
+                break;
+                case 'saveDuration' : include 'views/setting/loan/LoanDurationSave.inc.php';
+                break;
+                case 'updateDuration' : include '';
+                break;
+                case 'deleteDuration' : include '';
+                break;
+                case 'allDuration' : include "views/setting/loan/loanDurationAll.inc.php";
+                break;
+                
+            }
+        }
 }}
 ?>

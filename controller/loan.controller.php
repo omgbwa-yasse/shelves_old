@@ -3,9 +3,9 @@
 if($_GET['q'] == "loan"){
     if($_GET['q'] == "loan" && $_GET['categ'] == "search" && !empty($_GET['sub'])){
             switch($_GET['sub']){
-                case "allLoan" : echo "tous les demandes";
+                case "all" : echo "tous les demandes";
                 break ;
-                case "organization" : echo "Enregistrer";
+                case "organization" : echo "organisation";
                 break ;
                 case "date" : echo "Date de communication";
                 break ;
@@ -14,13 +14,15 @@ if($_GET['q'] == "loan"){
                 
                 case "user" : echo "Utilisateur"; 
                 break ;
+                case "last" : echo "Derniers engistrements"; 
+                break ;
             }
     }
     else if($_GET['q'] == "loan" && $_GET['categ'] == "create" && !empty($_GET['sub'])){
         switch($_GET['sub']){
-            case "add" : echo "Creer";
+            case "add" : include "views/loan/addLoan.inc.php";
             break ;
-            case "save" : echo "Enregistrer";
+            case "save" : include "views/setting/loan/loanTypeSave.inc.php";
             break ;
             case "update" : echo "Modifier";
             break ;
@@ -30,13 +32,13 @@ if($_GET['q'] == "loan"){
     }
     else if($_GET['q'] == "loan" && $_GET['categ'] == "status" && !empty($_GET['sub'])){
         switch($_GET['sub']){
-            case "ask" : echo "Creer";
+            case "ask" : echo "Demandes à traiter";
             break ;
-            case "courrent" : echo "Creer";
+            case "courrent" : echo "Demande en cours";
             break ;
-            case "cancel" : echo "Enregistrer";
+            case "cancel" : echo "Demandes annulées";
             break ;
-            case "archives" : echo "Modifier";
+            case "archives" : echo "Demandes archivées";
             break ;
         }
     }

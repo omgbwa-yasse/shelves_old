@@ -21,7 +21,7 @@ public function userExist($pseudo) {
   $userSpeudo = $stmt->fetch();
   if ($userSpeudo['user_name'] == $pseudo) {
     return true;
-  } else {
+  }else{
     return false;
   }
 }

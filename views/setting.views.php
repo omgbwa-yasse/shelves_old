@@ -9,7 +9,8 @@ include "template/sous_menu.inc.php";
         <li><a href="index.php?q=setting&categ=user&sub=all"> Utilisateur </a></li>
         <li><a href="index.php?q=setting&categ=transfer&sub=all"> Versement </a></li>
         <li><a href="index.php?q=setting&categ=transfer&sub=all"> Audit </a></li>
-        <li><a href="index.php?q=setting&categ=deposit&sub=all"> Depôt </a></li>
+        <li><a href="index.php?q=setting&categ=deposit&sub=all">Depôt</a></li>
+        <li><a href="index.php?q=setting&categ=loan&sub=all">Communication</a></li>
 </ul>
 <p class="btnSousMenu">Autres paramètres</p>
 <ul class="optionSousMenu">
