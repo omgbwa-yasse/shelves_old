@@ -75,21 +75,19 @@ public function updateLoanType() {
 }
 
 // hydrate {
-public function hydrateById(INT $id){
-    $stmt=$this->getCnx()->prepare("SELECT loan_type_id as id, loan_type_title as title, loan_type_observation as observation, loan_type_copy as type_copy FROM loan_type WHERE loan_type_id =:id");
-    $stmt->bindParam(":id", $id, PDO::PARAM_INT);
-    $stmt->execute();
-    $stmt=$stmt->fetchAll(PDO::FETCH_ASSOC);
-    foreach($stmt as $data){
-        $this->setLoanTypeId($data['id']);
-        $this->setLoanTypeTitle($data['title']);
-        $this->setLoanTypeObservation($data['observation']);
-        $this->setLoanTypeCopy($data['type_copy']);
+public function createCustomerAddress($customer_address_id, $customer_address_phone1, 
+            $customer_address_phone2, $customer_address_email1, 
+            $customer_address_email2, $customer_address_location) {
+    $sql = "INSERT INTO customer_address (customer_address_id, customer_address_phone1, 
+            customer_address_phone2, customer_address_email1, 
+            customer_address_email2, customer_address_location)
+            VALUES (?, ?, ?, ?, ?, ?)";
+    $stmt = $this->getCnx()->prepare($sql);
+    $stmt->execute([$customer_address_id, $customer_address_phone1, 
+            $customer_address_phone2, $customer_address_email1, 
+            $customer_address_email2, $customer_address_location]);
     }
-
-}
-
-
+    
 
 }
 ?>

@@ -20,7 +20,7 @@ if($_GET['q'] == "loan"){
     }
     else if($_GET['q'] == "loan" && $_GET['categ'] == "create" && !empty($_GET['sub'])){
         switch($_GET['sub']){
-            case "add" : include "views/loan/addLoan.inc.php";
+            case "add" : include "views/loan/loanAdd.inc.php";
             break ;
             case "save" : include "views/setting/loan/loanTypeSave.inc.php";
             break ;
