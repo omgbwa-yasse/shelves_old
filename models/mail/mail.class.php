@@ -1,7 +1,7 @@
 <?php
 require_once 'models/connexion.class.php';
 
-class courriel extends Connexion {
+class mail extends Connexion {
 //variable
   private $mail_id;
   private $mail_reference;
