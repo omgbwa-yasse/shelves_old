@@ -1,7 +1,7 @@
 <?php
 require_once 'models/connexion.class.php';
 
-class mail extends Connexion {
+class mailPriority extends Connexion {
 //variable
   private $mail_priority_id;
   private $mail_priority_title;

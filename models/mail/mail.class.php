@@ -1,6 +1,6 @@
 <?php
 require_once 'models/connexion.class.php';
-
+require_once 'models/mail/mailContainer.class.php';
 class mail extends Connexion {
 //variable
   private $mail_id;
@@ -84,37 +84,33 @@ public function createMail($mail_id,$mail_reference,$mail_title,$mail_observatio
                     ':process_id'=>$process_id,
                     ':mail_typology_id'=>$mail_typology_id]);
 }
-public function updateMail($mail_id,$mail_reference,$mail_title,$mail_observation,$mail_date_creation,$mail_basket_id,$mail_priority_id,$mail_docnum_id,$process_id,$mail_typology_id){
-    $mail = $this->getCnx()->prepare( 'UPDATE mail 
+public function updateMail($mail_id, $mail_reference, $mail_title, $mail_observation, $mail_date_creation, $mail_basket_id, $mail_priority_id, $docnum_id, $process_id, $mail_typology_id){
+    $mail = $this->getCnx()->prepare('UPDATE mail 
                     SET 
-                    mail_id = :mail_id,
                     mail_reference = :mail_reference,
                     mail_title = :mail_title,
                     mail_observation = :mail_observation,
                     mail_date_creation = :mail_date_creation,
                     mail_basket_id = :mail_basket_id,
                     mail_priority_id = :mail_priority_id,
-                    mail_docnum_id = :mail_docnum_id,
+                    docnum_id = :docnum_id,
                     process_id = :process_id,
                     mail_typology_id = :mail_typology_id
-                    
-                    WHERE mail_id=:mail_id
-                    ');
-                    
-                    
-                    
-    $mail->execute([':mail_id'=>$mail_id,
-                    ':mail_reference'=>$mail_reference,
-                    ':mail_title'=>$mail_title,
-                    ':mail_observation'=>$mail_observation,
-                    ':mail_date_creation'=>$mail_date_creation,
-                    ':mail_basket_id'=>$mail_basket_id,
-                    ':mail_priority_id'=>$mail_priority_id,
-                    ':mail_docnum_id'=>$mail_docnum_id,
-                    ':process_id'=>$process_id,
-                    ':mail_typology_id'=>$mail_typology_id]);
-
+                    WHERE mail_id = :mail_id');
+    $mail->execute([
+        ':mail_id' => $mail_id,
+        ':mail_reference' => $mail_reference,
+        ':mail_title' => $mail_title,
+        ':mail_observation' => $mail_observation,
+        ':mail_date_creation' => $mail_date_creation,
+        ':mail_basket_id' => $mail_basket_id,
+        ':mail_priority_id' => $mail_priority_id,
+        ':docnum_id' => $docnum_id,
+        ':process_id' => $process_id,
+        ':mail_typology_id' => $mail_typology_id
+    ]);
 }
+
 public function deleteMail($mail_id){
     $mail = $this->getCnx()->prepare('DELETE FROM mail Where mail_id=:mail_id');
     $mail->execute([':mail_id'=>$mail_id]);
@@ -180,10 +176,29 @@ public function searchByMailProcessId( $process_id ){
     $mail = $this->getCnx()->prepare('SELECT * FROM mail WHERE process_id LIKE :process_id');
     $mail->execute(['process_id'=>$process_id]);
     return $mail->fetch(PDO::FETCH_ASSOC);
+
+
 }
 
+//search with container 
+public function searchByMailContainerReference( $container_reference ){
+    $mail = $this->getCnx()->prepare('SELECT * FROM mail WHERE mail_id IN 
+                                            (SELECT mail_id FROM mail_in_container WHERE container_id IN 
+                                                ( SELECT container_id FROM mail_container WHERE mail_container_reference=:ref)');
+    $mail->execute(['ref'=>$container_reference]);
 
 
+    return $mail->fetch(PDO::FETCH_ASSOC);
 }
 
+public function searchByMailContainerTitle( $container_Title){
+    $mail = $this->getCnx()->prepare('SELECT * FROM mail WHERE mail_id IN 
+                                            (SELECT mail_id FROM mail_in_container WHERE container_id IN 
+                                                ( SELECT container_id FROM mail_container WHERE mail_container_title=:Title)'); 
+                                                   $mail->execute([':Title'=>$container_Title]);
+
+
+    return $mail->fetch(PDO::FETCH_ASSOC);
+}
+}
 ?>
