@@ -2,16 +2,16 @@
 
 require_once "models/setting/customerManager.class.php";
 class customer extends customerManager{
-    private $_customer_id;
-    private $_customer_pseudo;
-    private $_customer_password;
-    private $_customer_name;
-    private $_customer_surname;
-    private $_customer_sand;
-    private $_customer_birthday;
-    private $_customer_gender;
-    private $_organization_id ;
-    private $_customer_address_id ;
+    public $_customer_id;
+    public $_customer_pseudo;
+    public $_customer_password;
+    public $_customer_name;
+    public $_customer_surname;
+    public $_customer_sand;
+    public $_customer_birthday;
+    public $_customer_gender;
+    public $_organization_id ;
+    public $_customer_address_id ;
 
     public function __construct(){
         $this->_customer_pseudo;
@@ -29,6 +29,7 @@ class customer extends customerManager{
     public function createCustomerSand(){
         $fullSand = sha1(rand(1,1000)."G2D".time().rand(1,1000));
         $this->_customer_sand = substr($fullSand,0,5);
+        return true;
     }
 
     public function setCustomerSand($sand){ $this->_customer_sand = $sand; }
@@ -78,9 +79,6 @@ class customer extends customerManager{
                 $this->setCustomerSand($customer['customer_sand']);
                 $this->setCustomerBirthday($customer['customer_birthday']);
                 $this->setCustomerGender($customer['customer_gender']);
-                $this->setCustomerOrganizationId($customer['organization_id']);
-                $this->setCustomerAddressId($customer['customer_address_id']);
-
             }
             return true;
         } else {
@@ -101,15 +99,12 @@ class customer extends customerManager{
                 $this->setCustomerSand($customer['customer_sand']);
                 $this->setCustomerBirthday($customer['customer_birthday']);
                 $this->setCustomerGender($customer['customer_gender']);
-                $this->setCustomerOrganizationId($customer['organization_id']);
-                $this->setCustomerAddressId($customer['customer_address_id']);
             }
             return true;
         } else {
             return false;
         }
     }
-
 
 
     public function getCustomerId() { return $this->_customer_id; }

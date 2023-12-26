@@ -10,21 +10,19 @@ $list = $list->AllCustomer();
 <a href="index.php?q=setting&categ=customer&sub=add">Ajouter un utilisateur</a>
 <table>
         <?php
-        echo "<tr>
-                <th> Login <th> Nom(s) <th>option
-            </tr>";
+        echo "<tr><th> Login <th> Nom(s) <th> Option</tr>";
         foreach($list as $id){
-            $user = new user();
+            $user = new customer();
             $user->hydrateById($id['id']);
             echo "<tr>";
             echo "<td>";
-                echo $user->getUserPseudo() ."<br/>";
+                echo $user->getCustomerPseudo() ."<br/>";
             echo "</td>";
             echo "<td>";
-                echo $user->getUserName()."<br/>";
+                echo $user->getCustomerName()."<br/>";
             echo "</td>";
             echo "<td>";
-                echo "<a href=\"index.php?q=setting&categ=user&sub=view&id=". $user->getUserId() ."\">voir+</a>";
+                echo "<a href=\"index.php?q=setting&categ=customer&sub=view&id=". $user->getCustomerId() ."\">voir+</a>";
             echo "</td>";
             echo "</tr>";
         }?>
