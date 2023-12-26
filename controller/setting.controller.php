@@ -150,5 +150,39 @@ if($_GET['q'] == "setting"){
                 
             }
         }
+
+    // Gestion des utilisateurs
+
+        if ($_GET['q'] == "setting" && $_GET['categ'] == "customer" && !empty($_GET['sub'])) {
+            switch($_GET['sub']){
+                case 'add' : include 'views/setting/customer/customerAdd.inc.php';
+                break;
+                case 'save' : include 'views/setting/customer/customerSave.inc.php';
+                break;
+                case 'update' : include 'views/setting/customer/customerUpdate.inc.php';
+                break;
+                case 'delete' : include 'views/setting/customer/customerDelete.inc.php';
+                break;
+                case 'view' : include 'views/setting/customer/viewCustomer.views.php';
+                break;
+                case 'all' : include 'views/setting/customer/customerAll.inc.php';
+                break;
+                default : include 'views/error.views.php';
+                
+            }
+        }
+        if ($_GET['q'] == "setting" && $_GET['categ'] == "customerRole" && !empty($_GET['sub'])) {
+            switch($_GET['sub']){
+                case 'add' : include 'views/setting/customerRole/customerRoleAdd.views.php';
+                break;
+                case 'update' : include 'views/setting/customerRole/customerRoleUpdate.views.php';
+                break;
+                case 'save' : include 'views/setting/customerRole/customerRoleSave.views.php';
+                break;
+                case 'all' : include 'views/setting/customerRole/customerRoleAll.views.php';
+                break;
+                default : include 'views/error.views.php';
+            }
+        }
 }}
 ?>

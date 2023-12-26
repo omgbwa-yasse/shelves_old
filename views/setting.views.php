@@ -7,6 +7,7 @@ include "template/sous_menu.inc.php";
         <li><a href="index.php?q=setting&categ=recordStatus&sub=all"> Enregistrement </a></li>  
         <li><a href="index.php?q=setting&categ=containerStatus&sub=all"> Contenant </a></li>
         <li><a href="index.php?q=setting&categ=user&sub=all"> Utilisateur </a></li>
+        <li><a href="index.php?q=setting&categ=customer&sub=all"> Usager </a></li>
         <li><a href="index.php?q=setting&categ=transfer&sub=all"> Versement </a></li>
         <li><a href="index.php?q=setting&categ=transfer&sub=all"> Audit </a></li>
         <li><a href="index.php?q=setting&categ=deposit&sub=all">Depôt</a></li>
