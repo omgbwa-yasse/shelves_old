@@ -8,7 +8,7 @@ class mailManager extends mail {
     }
 
 
-    
+    //mail
 public function searchByMailTitle($title){
     $mail = $this->getCnx()->prepare('SELECT * FROM mail WHERE mail_title LIKE :title ');
     $mail->execute(['title'=>$title]);
@@ -25,7 +25,7 @@ public function searchByMailReference($reference){
 }
 
 public function searchByMailPriorityId($priority_id){
-    $mail = $this->getCnx()->prepare('SELECT * FROM mail WHERE mail_priority_id LIKE :priority_id ');
+    $mail = $this->getCnx()->prepare('SELECT * FROM mail WHERE mail_priority_id = :priority_id ');
     $mail->execute([':priority_id'=>$priority_id]);
 
     return $mail->fetch(PDO::FETCH_ASSOC);
@@ -53,10 +53,7 @@ public function searchByMailDocnum( $docum_id ){
     return $mail->fetch(PDO::FETCH_ASSOC);
 }
 
-public function searchByMailTypologyId( $mail_typology_id ){
-    $mail = $this->getCnx()->prepare('SELECT * FROM mail WHERE mail_typology_id LIKE :mail_typology_id ');
-    $mail->execute(['mail_typology_id'=>$mail_typology_id]);
-    return $mail->fetch(PDO::FETCH_ASSOC);}
+
 
 public function searchByMailObservation( $Observation ){
     $mail = $this->getCnx()->prepare('SELECT * FROM mail WHERE mail_observation LIKE :mail_observation');
@@ -123,6 +120,7 @@ public function searchMailSendByDate($mail_send_date) {
 
 // Docnum
 
+
 public function searchById($mail_docnum_id) {
     $mail_docnum = $this->getCnx()->prepare('SELECT * FROM mail_docnum WHERE mail_docnum_id = :mail_docnum_id');
     $mail_docnum->execute([':mail_docnum_id' => $mail_docnum_id]);
@@ -140,5 +138,44 @@ public function searchByFileName($mail_docnum_filename) {
     $mail_docnum->execute([':mail_docnum_filename' => $mail_docnum_filename]);
     return $mail_docnum->fetchAll();
 }
+
+public function searchMailByFileName( $mail_docnum_filename) {
+    $mail_docnum = $this->getCnx()->prepare('');
+}
+//priority 
+
+public function searchByMailPriorityTitle($mail_priority_title){
+    $mail_priority = $this->getCnx()->prepare('SELECT * FROM mail_priority WHERE mail_priority_title like= :mail_priority_title ');
+    $mail_priority->execute([':mail_priority_title'=> $mail_priority_title]);
+    
+    return $mail_priority->fetchAll();
 }
 
+
+
+//Typology
+public function searchByMailTypologyId( $mail_typology_id ){
+    $mail = $this->getCnx()->prepare('SELECT * FROM mail WHERE mail_typology_id = :mail_typology_id ');
+    $mail->execute(['mail_typology_id'=>$mail_typology_id]);
+    return $mail->fetch(PDO::FETCH_ASSOC);}
+
+public function searchByMailTypologyTitle($mail_typology_title) {
+    $mail_typology = $this->getCnx()->prepare('SELECT * FROM mail_typology WHERE mail_typology_title = :mail_typology_title');
+    $mail_typology->execute([':mail_typology_title' => $mail_typology_title]);
+    return $mail_typology->fetchAll();
+}
+
+//treatment duration 
+public function searchTreatmentDurationByTime($treatment_duration_time) {
+    $treatment_duration = $this->getCnx()->prepare('SELECT * FROM treatment_duration WHERE treatment_duration_time = :treatment_duration_time');
+    $treatment_duration->execute([':treatment_duration_time' => $treatment_duration_time]);
+    return $treatment_duration->fetchAll();
+}
+public function searchMailByTreatmentDurationTime($treatment_duration_time) {
+    $mail= $this->getCnx()->prepare('SELECT * FROM mail WHERE mail_id IN 
+                                                    (SELECT mail_id FROM mail_typology  WHERE treatment_duration_id IN 
+                                                        (SELECT treatment_duration_id FROM treatment_duration WHERE treatment_duration_time= :treatment_duration_time)) ');
+    $mail->execute(['treatment_duration_time'=> $treatment_duration_time]);
+}
+
+}

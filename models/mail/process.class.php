@@ -1,7 +1,8 @@
 <?php
 require_once 'models/connexion.class.php';
+require_once 'models/mail/mail.class.php';
 
-class process extends Connexion {
+class process extends mail {
 //variable
   private $process_id;
   private $process_reference;

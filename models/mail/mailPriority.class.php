@@ -1,7 +1,9 @@
 <?php
 require_once 'models/connexion.class.php';
+require_once 'models/mail/mail.class.php';
 
-class mailPriority extends Connexion {
+
+class mailPriority extends mail {
 //variable
   private $mail_priority_id;
   private $mail_priority_title;
@@ -9,8 +11,6 @@ class mailPriority extends Connexion {
   public function __construct() {
     $this->mail_priority_id= NULL;
     $this->mail_priority_title= NULL;
-   
-
 
 }
 

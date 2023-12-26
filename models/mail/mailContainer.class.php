@@ -1,7 +1,8 @@
 <?php
 require_once 'models/connexion.class.php';
+require_once 'models/mail/mail.class.php';
 
-class MailContainer extends Connexion {
+class MailContainer extends mail {
     private $mail_container_id;
     private $mail_container_reference;
     private $mail_container_title;

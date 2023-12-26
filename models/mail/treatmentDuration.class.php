@@ -1,7 +1,9 @@
 <?php
 require_once 'models/connexion.class.php';
+require_once 'models/mail/mail.class.php';
 
-class TreatmentDuration extends Connexion {
+
+class TreatmentDuration extends mail {
     // Variables
     private $treatment_duration_id;
     private $treatment_duration_time;
@@ -61,10 +63,6 @@ class TreatmentDuration extends Connexion {
         return $treatment_duration->fetchAll();
     }
 
-    public function searchByTime($treatment_duration_time) {
-        $treatment_duration = $this->getCnx()->prepare('SELECT * FROM treatment_duration WHERE treatment_duration_time = :treatment_duration_time');
-        $treatment_duration->execute([':treatment_duration_time' => $treatment_duration_time]);
-        return $treatment_duration->fetchAll();
-    }
+  
 }
 ?>

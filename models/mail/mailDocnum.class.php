@@ -1,7 +1,9 @@
 <?php
 require_once 'models/connexion.class.php';
+require_once 'models/mail/mail.class.php';
 
-class MailDocNum extends Connexion {
+
+class MailDocNum extends mail {
     // Variables
     private $mail_docnum_id;
     private $mail_docnum_path;
@@ -55,22 +57,5 @@ class MailDocNum extends Connexion {
         $mail_docnum->execute([':mail_docnum_id' => $mail_docnum_id, ':mail_docnum_path' => $mail_docnum_path, 'mail_docnum_filename' => $mail_docnum_filename]);
     }
 
-    public function searchById($mail_docnum_id) {
-        $mail_docnum = $this->getCnx()->prepare('SELECT * FROM mail_docnum WHERE mail_docnum_id = :mail_docnum_id');
-        $mail_docnum->execute([':mail_docnum_id' => $mail_docnum_id]);
-        return $mail_docnum->fetchAll();
-    }
-
-    public function searchByPath($mail_docnum_path) {
-        $mail_docnum = $this->getCnx()->prepare('SELECT * FROM mail_docnum WHERE mail_docnum_path = :mail_docnum_path');
-        $mail_docnum->execute([':mail_docnum_path' => $mail_docnum_path]);
-        return $mail_docnum->fetchAll();
-    }
-
-    public function searchByFileName($mail_docnum_filename) {
-        $mail_docnum = $this->getCnx()->prepare('SELECT * FROM mail_docnum WHERE mail_docnum_filename = :mail_docnum_filename');
-        $mail_docnum->execute([':mail_docnum_filename' => $mail_docnum_filename]);
-        return $mail_docnum->fetchAll();
-    }
 }
 ?>
