@@ -5,25 +5,25 @@
 <p class="btnSousMenu">Recherche</p>
 <ul class="optionSousMenu">        
     <li>
-        <a href="#"> Tous afficher </a>
+        <a href="index.php?q=mail&categ=mail&sub=allmail"> Tous afficher </a>
     </li>
     <li>
-        <a href="#"> Par affaire </a>
+        <a href="index.php?q=mail&categ=mail&sub=allmail"> Par affaire </a>
     </li>
     <li>
-        <a href="#"> Par référence </a>
+        <a href="index.php?q=mail&categ=mail&sub=allmail"> Par référence </a>
     </li>
     <li>
-        <a href="#"> Par activité </a>
+        <a href="index.php?q=mail&categ=mail&sub=allmail"> Par activité </a>
     </li>
     <li>
-        <a href="#"> Par date </a>
+        <a href="index.php?q=mail&categ=mail&sub=allmail"> Par date </a>
     </li>
     <li>
-        <a href="#"> Par détenteur </a>
+        <a href="index.php?q=mail&categ=mail&sub=allmail"> Par détenteur </a>
     </li>
     <li>
-        <a href="#"> Par producteur </a>
+        <a href="index.php?q=mail&categ=mail&sub=allmail"> Par producteur </a>
     </li>
     
 </ul>
@@ -32,7 +32,7 @@
 <ul class="optionSousMenu">
     <li><a href="#"> Recevoir </a></li>
     <li><a href="#"> Transmettre </a></li>
-    <li><a href="#"> Creer une affaire </a></li>
+    <li><a href="index.php?q=mail&categ=process&sub=createProcess"> Creer une affaire </a></li>
 </ul>
 <p class="btnSousMenu">Gestion des espaces</p>
 <ul class="optionSousMenu">
