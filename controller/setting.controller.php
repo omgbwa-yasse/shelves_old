@@ -163,7 +163,7 @@ if($_GET['q'] == "setting"){
                 break;
                 case 'delete' : include 'views/setting/customer/customerDelete.inc.php';
                 break;
-                case 'view' : include 'views/setting/customer/viewCustomer.views.php';
+                case 'view' : include 'views/setting/customer/customerView.inc.php';
                 break;
                 case 'all' : include 'views/setting/customer/customerAll.inc.php';
                 break;
