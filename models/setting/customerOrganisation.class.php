@@ -1,10 +1,10 @@
 <?php
 
 require_once "models/setting/customer.class.php";
-class CustomerOrganisation extends customer {
+class customerOrganisation extends customer {
 
-    private $_organization_id;
-    private $_customer_id;
+    public $_organization_id;
+    public $_customer_id;
     public function __construct() {
         $this->_organization_id;
         $this->_customer_id;

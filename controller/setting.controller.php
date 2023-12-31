@@ -201,5 +201,10 @@ if($_GET['q'] == "setting"){
                 default : include 'views/error.views.php';
                 
             }
-}}
+        }
+
+
+}
+}
+
 ?>
