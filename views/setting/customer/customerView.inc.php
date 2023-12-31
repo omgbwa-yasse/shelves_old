@@ -28,6 +28,7 @@ $customer->hydrateById($_GET['id']);
   <li>Direction ressources Matérielle </li>
   <li>Direction ressources finance </li>
 </ol>
+<a href="">Ajouter une organisation</a>
 
 <h2>Contact</h2>
 <ol>

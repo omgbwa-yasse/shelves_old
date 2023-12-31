@@ -184,5 +184,22 @@ if($_GET['q'] == "setting"){
                 default : include 'views/error.views.php';
             }
         }
+        if ($_GET['q'] == "setting" && $_GET['categ'] == "customerOrganization" && !empty($_GET['sub'])) {
+            switch($_GET['sub']){
+                case 'add' : include 'views/setting/customerOrganization/customerOrganizationAdd.inc.php';
+                break;
+                case 'save' : include 'views/setting/customerOrganization/customerOrganizationSave.inc.php';
+                break;
+                case 'update' : include 'views/setting/customerOrganization/customerOrganizationUpdate.inc.php';
+                break;
+                case 'delete' : include 'views/setting/customerOrganization/customerOrganizationDelete.inc.php';
+                break;
+                case 'view' : include 'views/setting/customerOrganization/customerOrganizationView.inc.php';
+                break;
+                case 'all' : include 'views/setting/customerOrganization/customerOrganizationAll.inc.php';
+                break;
+                default : include 'views/error.views.php';
+                
+            }
 }}
 ?>
