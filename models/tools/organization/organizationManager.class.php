@@ -37,6 +37,7 @@ public function getAllOrganization(){
     $stmt = "SELECT organization_id as id FROM organization ORDER BY organization.organization_title ASC";
     $stmt = $this->getCnx()->prepare($stmt);
     $stmt-> execute();
+    $stmt = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $stmt;
 }
 
@@ -47,9 +48,6 @@ public function AllMainOrganization(){
     $ids = $organizations->fetchAll();
     return $ids;
 }
-
-
-
 
 public function OrganizationByCode($code){
     $stmt = "SELECT organization_id as id FROM organization 
