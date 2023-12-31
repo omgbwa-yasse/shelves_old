@@ -3,9 +3,9 @@ require_once 'models/mail/process.class.php';
 
 $process= new process();
 
-if (isset($_POST['process_reference']) && isset($_POST['process_title']) && isset($_POST['process_date']) ) {
+if (isset($_POST['process_reference']) && isset($_POST['process_title']) ) {
  
-    $process -> createProcess(NULL,$_POST['process_reference'],$_POST['process_title'],$_POST['process_date'] );
+    $process -> createProcess(NULL,$_POST['process_reference'],$_POST['process_title']);
 }
 ?>
 <h1>Creer une Affaire </h1>
