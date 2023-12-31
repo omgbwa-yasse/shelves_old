@@ -1,10 +1,19 @@
 <?php
-require_once 'models/setting/customerRole.class.php';
-require_once "models/setting/customer.class.php";
+    require_once 'models/setting/customerRole.class.php';
+    require_once "models/setting/customer.class.php";
+    require_once 'models/tools/organization/organization.class.php';
+    require_once 'models/setting/customerOrganization.class.php';
 
-$customer = new customer();
-$customer->hydrateById($_GET['id']);
+    $customer = new customer();
+    $customer->hydrateById($_GET['id']);
+    $customerOrganization  = new customerOrganization();
+    $customerOrganization->setCustomerId($_GET['id']);
+    $customerOrganization->hydrate();
+    $id = $customerOrganization->getCustomerId();
+    $list = new customerManager();
+    $list->allOrganizationByCustomerId($id);
 ?>
+
 <h1>Fiche usager</h1>
 <h2>Infomations</h2>
 <table style="border: 1px solid red; margin-bottom:20px;">
@@ -23,10 +32,24 @@ $customer->hydrateById($_GET['id']);
 </table>
 
 <h2>Organisation</h2>
+<?
+
+foreach($list as $item) {
+  echo $item["id"];
+}
+
+?>
+
+
 <ol>
-  <li>Direction ressources humaine</li>
-  <li>Direction ressources Matérielle </li>
-  <li>Direction ressources finance </li>
+    <?php 
+      $organization = new organization();
+      $organization->setOrganizationById($id);
+      echo "<li>";
+        echo $organization->getOrganizationTitle();
+        echo "(" . $organization->getOrganizationCode(). ")";
+      echo "</li>";
+    ?>
 </ol>
 <a href="index.php?q=setting&categ=customerOrganization&sub=add&id=<?=$customer->getCustomerId()?>">Ajouter une organisation</a>
 
