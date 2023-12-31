@@ -7,11 +7,11 @@ $mailManager= new mailManager();
 
 if (isset($_POST['mail_reference']) && isset($_POST['mail_title']) && isset($_POST['mail_observation']) && isset($_POST['mail_date_creation']) && isset($_POST['mail_basket_id']) && isset($_POST['mail_priority_id']) && isset($_POST['mail_docnum_id']) && isset($_POST['process_id']) && isset($_POST['mail_typology_id'])) {
  
-$mail->createMail('',$_POST['mail_reference'],$_POST['mail_title'],$_POST['mail_observation'],$_POST['mail_date_creation'],$_POST['mail_basket_id'],$_POST['mail_priority_id'],$_POST['mail_docnum_id'],$_POST['process_id'],$_POST['mail_typology_id']);
+$mail->createMail(8,$_POST['mail_reference'],$_POST['mail_title'],$_POST['mail_observation'],$_POST['mail_date_creation'],$_POST['mail_basket_id'],$_POST['mail_priority_id'],$_POST['mail_docnum_id'],$_POST['process_id'],$_POST['mail_typology_id']);
 
 }
 ?>
-<h1>Ajouter une regle de communicabilite</h1>
+<h1>Creer un Couriel</h1>
 
 <form  method="POST" action="index.php?q=mail&categ=mail&sub=createMail">
 <table>
@@ -69,7 +69,7 @@ $mail->createMail('',$_POST['mail_reference'],$_POST['mail_title'],$_POST['mail_
      foreach($allMailDocnum as $docnum){
         
          echo "<option value=\"".$docnum['mail_docnum_id']."\">";
-         echo $docnum['mail_docnum_title'] ."</option>";
+         echo $docnum['mail_docnum_filename'] ."</option>";
      }
  ?>
                 </select></td>
@@ -90,7 +90,7 @@ $mail->createMail('',$_POST['mail_reference'],$_POST['mail_title'],$_POST['mail_
     <td><label for="mail_typology_id">Typologie du Couriel :</label></td>
     <td> <select name="mail_typology_id">
 <?php
-       $allMailTypology=$mailManager->allProcess();
+       $allMailTypology=$mailManager->allMailTypology();
        foreach($allMailTypology as $typology){
            echo "<option value=\"".$typology['mail_typology_id']."\">";
            echo $typology['mail_typology_title'] ."</option>";

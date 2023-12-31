@@ -66,15 +66,38 @@ public function getDocnumId() { return $this->docnum_id; }
 public function getMailTypologyId() { return $this->mail_typology_id; }
 public  function getMailProcess(){ return $this->mail_process_id; }
 
+public function getMailFromDB($id){
+    $mail = $this->getCnx()->prepare('SELECT * FROM mail WHERE mail_id = '.$id.' ');
+    $mail->execute();
 
+   return $mail->fetchAll();;
+}
+public function setMailById($id) {
+    // Suppose getMailFromDatabase is a method that retrieves a mail from your database based on its ID
+    $mail = $this->getMailFromDB($id);
+
+    if ($mail) {
+        $this->mail_id = $mail['mail_id'];
+        $this->mail_reference = $mail['mail_reference'];
+        $this->mail_title = $mail['mail_title'];
+        $this->mail_observation = $mail['mail_observation'];
+        $this->mail_date_creation = $mail['mail_date_creation'];
+        $this->mail_basket_id = $mail['mail_basket_id'];
+        $this->mail_priority_id = $mail['mail_priority_id'];
+        $this->docnum_id = $mail['docnum_id'];
+        $this->mail_typology_id = $mail['mail_typology_id'];
+        $this->mail_process_id = $mail['mail_process_id'];
+    } else {
+        echo "Aucun courrier trouvé avec l'ID : " . $id;
+    }
+}
 
 //create a mail
 
 public function createMail($mail_id,$mail_reference,$mail_title,$mail_observation,$mail_date_creation,$mail_basket_id,$mail_priority_id,$mail_docnum_id,$process_id,$mail_typology_id){
     $mail  = $this->getCnx()->prepare( "INSERT INTO mail ( mail_id,mail_reference,mail_title,mail_observation,mail_date_creation,mail_basket_id,mail_priority_id,mail_docnum_id,process_id,mail_typology_id) 
-    VALUES ( :mail_id,:mail_reference,:mail_title,:mail_observation,:mail_date_creation,:mail_basket_id,:mail_priority_id,:mail_docnum_id,:process_id,:mail_typology_id");
-    $mail->execute([':mail_id'=>$mail_id,
-                    ':mail_reference'=>$mail_reference,
+    VALUES ( NULL,:mail_reference,:mail_title,:mail_observation,:mail_date_creation,:mail_basket_id,:mail_priority_id,:mail_docnum_id,:process_id,:mail_typology_id)");
+    $mail->execute([':mail_reference'=>$mail_reference,
                     ':mail_title'=>$mail_title,
                     ':mail_observation'=>$mail_observation,
                     ':mail_date_creation'=>$mail_date_creation,

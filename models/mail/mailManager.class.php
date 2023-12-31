@@ -13,13 +13,13 @@ public function allMail(){
     $mail = $this->getCnx()->prepare('SELECT * FROM mail');
     $mail->execute();
 
-    return $mail->fetch(PDO::FETCH_ASSOC);
+   return $mail->fetchAll();;
 } 
 public function searchByMailTitle($title){
     $mail = $this->getCnx()->prepare('SELECT * FROM mail WHERE mail_title LIKE :title ');
     $mail->execute(['title'=>$title]);
 
-    return $mail->fetch(PDO::FETCH_ASSOC);
+   return $mail->fetchAll();;
 }
 
 
@@ -27,14 +27,14 @@ public function searchByMailReference($reference){
     $mail = $this->getCnx()->prepare('SELECT * FROM mail WHERE mail_reference LIKE :reference ');
     $mail->execute([':reference'=>$reference]);
 
-    return $mail->fetch(PDO::FETCH_ASSOC);
+   return $mail->fetchAll();;
 }
 
 public function searchByMailPriorityId($priority_id){
     $mail = $this->getCnx()->prepare('SELECT * FROM mail WHERE mail_priority_id = :priority_id ');
     $mail->execute([':priority_id'=>$priority_id]);
 
-    return $mail->fetch(PDO::FETCH_ASSOC);
+   return $mail->fetchAll();;
 
 }
 
@@ -42,21 +42,21 @@ public function searchByMailDateCreation($date_creation){
     $mail = $this->getCnx()->prepare('SELECT * FROM mail WHERE mail_date_creation LIKE :date_creation ');
     $mail->execute([':date_creation'=>$date_creation]);
 
-    return $mail->fetch(PDO::FETCH_ASSOC);
+   return $mail->fetchAll();;
 }
 
 public function searchByMailBasketId( $basket_id ){
     $mail = $this->getCnx()->prepare('SELECT * FROM mail WHERE mail_basket_id = :basket_id ');
     $mail->execute([':basket_id'=>$basket_id]);
 
-    return $mail->fetch(PDO::FETCH_ASSOC);
+   return $mail->fetchAll();;
 }
 
 public function searchByMailDocnum( $docum_id ){
     $mail = $this->getCnx()->prepare('SELECT * FROM mail WHERE mail_docnum_id = :docnum_id ');
     $mail->execute(['docnum_id'=>$docum_id]);
 
-    return $mail->fetch(PDO::FETCH_ASSOC);
+   return $mail->fetchAll();;
 }
 
 
@@ -64,13 +64,13 @@ public function searchByMailDocnum( $docum_id ){
 public function searchByMailObservation( $Observation ){
     $mail = $this->getCnx()->prepare('SELECT * FROM mail WHERE mail_observation LIKE :mail_observation');
     $mail->execute(['mail_observation'=>$Observation]);
-    return $mail->fetch(PDO::FETCH_ASSOC);
+   return $mail->fetchAll();;
 }
 
 public function searchByMailProcessId( $process_id ){
     $mail = $this->getCnx()->prepare('SELECT * FROM mail WHERE process_id LIKE :process_id');
     $mail->execute(['process_id'=>$process_id]);
-    return $mail->fetch(PDO::FETCH_ASSOC);
+   return $mail->fetchAll();;
 
 
 }
@@ -80,7 +80,7 @@ public function allMailContainer(){
     $mail = $this->getCnx()->prepare('SELECT * FROM mail_container ');
     $mail->execute();
 
-    return $mail->fetch(PDO::FETCH_ASSOC);
+   return $mail->fetchAll();;
 }
 public function searchByMailContainerReference( $container_reference ){
     $mail = $this->getCnx()->prepare('SELECT * FROM mail WHERE mail_id IN 
@@ -89,7 +89,7 @@ public function searchByMailContainerReference( $container_reference ){
     $mail->execute(['ref'=>$container_reference]);
 
 
-    return $mail->fetch(PDO::FETCH_ASSOC);
+   return $mail->fetchAll();;
 }
 
 public function searchByMailContainerTitle( $container_Title){
@@ -99,7 +99,7 @@ public function searchByMailContainerTitle( $container_Title){
                                                    $mail->execute([':Title'=>$container_Title]);
 
 
-    return $mail->fetch(PDO::FETCH_ASSOC);
+   return $mail->fetchAll();;
 }
 
 //Mail Received
@@ -107,7 +107,7 @@ public function allMailReceived(){
     $mail = $this->getCnx()->prepare('SELECT * FROM mail_received ');
     $mail->execute();
 
-    return $mail->fetch(PDO::FETCH_ASSOC);
+   return $mail->fetchAll();;
 }
 
 public function searchMailReceivedById($mail_received_id) {
@@ -128,7 +128,7 @@ public function allMailSend(){
     $mail = $this->getCnx()->prepare('SELECT * FROM mail_send ');
     $mail->execute();
 
-    return $mail->fetch(PDO::FETCH_ASSOC);
+   return $mail->fetchAll();;
 }
 public function searchMailSendById($mail_send_id) {
     $mail_send = $this->getCnx()->prepare('SELECT * FROM mail_send WHERE mail_send_id = :mail_send_id');
@@ -148,7 +148,7 @@ public function allDocnum(){
     $mail = $this->getCnx()->prepare('SELECT * FROM mail_docnum ');
     $mail->execute();
 
-    return $mail->fetch(PDO::FETCH_ASSOC);
+   return $mail->fetchAll();;
 }
 public function searchById($mail_docnum_id) {
     $mail_docnum = $this->getCnx()->prepare('SELECT * FROM mail_docnum WHERE mail_docnum_id = :mail_docnum_id');
@@ -176,7 +176,7 @@ public function allMailPriority(){
     $mail = $this->getCnx()->prepare('SELECT * FROM mail_priority ');
     $mail->execute();
 
-    return $mail->fetch(PDO::FETCH_ASSOC);
+   return $mail->fetchAll();;
 }
 
 public function searchByMailPriorityTitle($mail_priority_title){
@@ -193,12 +193,12 @@ public function allMailTypology(){
     $mail = $this->getCnx()->prepare('SELECT * FROM mail_typology ');
     $mail->execute();
 
-    return $mail->fetch(PDO::FETCH_ASSOC);
+   return $mail->fetchAll();;
 }
 public function searchByMailTypologyId( $mail_typology_id ){
     $mail = $this->getCnx()->prepare('SELECT * FROM mail WHERE mail_typology_id = :mail_typology_id ');
     $mail->execute(['mail_typology_id'=>$mail_typology_id]);
-    return $mail->fetch(PDO::FETCH_ASSOC);}
+    return $mail->fetchAll();}
 
 public function searchByMailTypologyTitle($mail_typology_title) {
     $mail_typology = $this->getCnx()->prepare('SELECT * FROM mail_typology WHERE mail_typology_title = :mail_typology_title');
@@ -211,7 +211,7 @@ public function allMailTreatmentDuration(){
     $mail = $this->getCnx()->prepare('SELECT * FROM treatment_duration ');
     $mail->execute();
 
-    return $mail->fetch(PDO::FETCH_ASSOC);
+    return $mail->fetchAll();
 }
 public function searchTreatmentDurationByTime($treatment_duration_time) {
     $treatment_duration = $this->getCnx()->prepare('SELECT * FROM treatment_duration WHERE treatment_duration_time = :treatment_duration_time');
@@ -229,14 +229,14 @@ public function allMailBasket(){
     $mail = $this->getCnx()->prepare('SELECT * FROM mail_basket ');
     $mail->execute();
 
-    return $mail->fetch(PDO::FETCH_ASSOC);
+    return $mail->fetchAll();
 }
 //mail process 
 public function allProcess(){
     $mail = $this->getCnx()->prepare('SELECT * FROM process ');
     $mail->execute();
 
-    return $mail->fetch(PDO::FETCH_ASSOC);
+    return $mail->fetchAll();
 }
 
 }

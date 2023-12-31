@@ -1,12 +1,6 @@
 <?php
 
-    /* default  */    
-if($_GET['q'] == "mail"){
-
-        /* redirige si il y'a pas de categorie */
-        if(empty($_GET['categ'])){
-            include "views/repository/search/allrecords.inc.php" ;
-        }else{
+    /* default  */      
         // mail
             if($_GET['q'] == "mail" && $_GET['categ'] == "mail" && !empty($_GET['sub'])){
                 switch($_GET['sub']){
@@ -165,6 +159,6 @@ if($_GET['q'] == "mail"){
          
         
     
-         }
-    } 
+         
+
 ?>

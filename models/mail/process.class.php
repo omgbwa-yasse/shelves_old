@@ -41,10 +41,12 @@ public function setProcessId($process_id) {
         $this->process_reference=$process_reference;
     }
 
-public function createProcess($process_id,$process_reference, $process_title, $process_date) {
-    $process  = $this->getCnx()->prepare( "INSERT INTO process (process_id,process_reference,process_title,process_date) 
-    VALUES ( :process_id,:process_reference ,:process_title, :process_date)");
-    $process->execute(["process_id"=>$process_id,"process_reference"=>$process_reference,"process_title"=>$process_title,"process_date"=>$process_date]);   
+public function createProcess($process_id,$process_reference, $process_title) {
+    $process  = $this->getCnx()->prepare("INSERT INTO process (process_id, process_reference, process_title, process_date) 
+VALUES (:process_id, :process_reference, :process_title, :process_date)");
+$process_date = date('Y-m-d H:i:s');
+$process->execute(["process_id"=>$process_id, "process_reference"=>$process_reference, "process_title"=>$process_title, "process_date"=>$process_date]);
+
 }
 
 public function DeleteMailPriority($process_id) {

@@ -38,7 +38,7 @@ class Activity extends Connexion {
     public function getActivityParentId() {
         return $this->activity_parent_id;
     }
-
+    
     // Database operations
     public function createActivity($activity_id, $activity_title, $activity_parent_id) {
         $activity = $this->getCnx()->prepare("INSERT INTO activity (activity_id, activity_title, activity_parent_id) VALUES (:activity_id, :activity_title, :activity_parent_id)");

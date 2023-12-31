@@ -3,7 +3,13 @@
     
 ?>
 <p class="btnSousMenu">Recherche</p>
-<ul class="optionSousMenu">        
+<ul class="optionSousMenu">  
+    <li>
+        <a href="index.php?q=mail&categ=mail&sub=allmail">  afficher  les Couriel</a>
+    </li>      
+    <li>
+        <a href="index.php?q=mail&categ=mail&sub=createMail">  Creer un Couriel</a>
+    </li>   
     <li>
         <a href="index.php?q=mail&categ=mail&sub=allmail"> Tous afficher </a>
     </li>
@@ -32,8 +38,10 @@
 <ul class="optionSousMenu">
     <li><a href="#"> Recevoir </a></li>
     <li><a href="#"> Transmettre </a></li>
-    <li><a href="index.php?q=mail&categ=process&sub=createProcess"> Creer une affaire </a></li>
+    <li><a href="index.php?q=mail&categ=process&sub=createProcess"> Affaire </a></li>
 </ul>
+
+
 <p class="btnSousMenu">Gestion des espaces</p>
 <ul class="optionSousMenu">
     <li><a href="#"> Salles </a></li>
@@ -49,7 +57,7 @@
 </ul>
 <?php
     include_once "template/container.inc.php";
-    include_once "controller/repository.controller.php";
+    include_once "controller/mail.controller.php";
     
     
 ?>

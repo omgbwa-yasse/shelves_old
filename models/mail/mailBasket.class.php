@@ -40,7 +40,19 @@ class MailBasket extends mail {
     public function getMailBasketObservation() {
         return $this->mail_basket_observation;
     }
-
+    public function setMailBasketById($id) {
+        
+        $mailBasket = $this->searchById($id);
+    
+        if ($mailBasket) {
+            $this->mail_basket_id = $mailBasket['mail_basket_id'];
+            $this->mail_basket_title = $mailBasket['mail_basket_title'];
+            $this->mail_basket_observation = $mailBasket['mail_basket_observation'];
+        } else {
+            echo "Aucun panier de courrier trouvé avec l'ID : " . $id;
+        }
+    }
+    
     // Database operations
     public function createMailBasket($mail_basket_id, $mail_basket_title, $mail_basket_observation) {
         $mail_basket = $this->getCnx()->prepare("INSERT INTO mail_basket (mail_basket_id, mail_basket_title, mail_basket_observation) VALUES (:mail_basket_id, :mail_basket_title, :mail_basket_observation)");
