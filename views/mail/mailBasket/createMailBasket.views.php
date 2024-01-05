@@ -1,25 +1,36 @@
 <?php
-require_once 'models/mail/MailBasket.class.php';
+require_once 'models/mail/MailReceived.class.php';
 
-$mailBasket = new MailBasket();
+$mailReceived = new MailReceived();
 
-if ( isset($_POST['mail_basket_title']) && isset($_POST['mail_basket_observation'])) {
+if (isset($_POST['mail_received_id']) && isset($_POST['mail_received_date']) && isset($_POST['type_id']) && isset($_POST['mail_id']) && isset($_POST['organization_id'])) {
  
-    $mailBasket -> createMailBasket(NULL,$_POST['mail_basket_title'], $_POST['mail_basket_observation']);
+    $mailReceived -> createMailReceived(NULL,$_POST['mail_received_id'],$_POST['mail_received_date'], $_POST['type_id'], $_POST['mail_id'], $_POST['organization_id']);
 }
 ?>
-<h1>Créer un Mail Basket </h1>
+<h1>Créer un Courriel Reçu </h1>
 
-<form  method="POST" action="index.php?q=mail&categ=mailBasket&sub=createMailBasket">
+<form  method="POST" action="index.php?q=mail&categ=mailReceived&sub=createMailReceived">
 <table>
- 
   <tr>
-    <td><label for="mail_basket_title">Titre du Mail Basket :</label></td>
-    <td><input type="text" id="mail_basket_title" name="mail_basket_title"></td>
+    <td><label for="mail_received_id">ID du Courriel Reçu :</label></td>
+    <td><input type="text" id="mail_received_id" name="mail_received_id"></td>
   </tr>
   <tr>
-    <td><label for="mail_basket_observation">Observation du Mail Basket :</label></td>
-    <td><input type="text" id="mail_basket_observation" name="mail_basket_observation"></td>
+    <td><label for="mail_received_date">Date de réception du Courriel Reçu :</label></td>
+    <td><input type="text" id="mail_received_date" name="mail_received_date"></td>
+  </tr>
+  <tr>
+    <td><label for="type_id">ID du type :</label></td>
+    <td><input type="text" id="type_id" name="type_id"></td>
+  </tr>
+  <tr>
+    <td><label for="mail_id">ID du mail :</label></td>
+    <td><input type="text" id="mail_id" name="mail_id"></td>
+  </tr>
+  <tr>
+    <td><label for="organization_id">ID de l'organisation :</label></td>
+    <td><input type="text" id="organization_id" name="organization_id"></td>
   </tr>
  <tr><td><input type="submit" value="Submit"></td>   <td><input type="reset" value="Annuler"></td></tr> </table>
 </form>

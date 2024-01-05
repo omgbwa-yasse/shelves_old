@@ -270,5 +270,18 @@ public function processByID($id){
     return $mail->fetchAll();
 }
 
+//organisation 
+public function organisationByID($id){
+    $mail = $this->getCnx()->prepare('SELECT * FROM organization WHERE organization_id = :id');
+    $mail->execute([':id' => $id]);
+
+    return $mail->fetchAll();
+}
+public function allorganisation(){
+    $mail = $this->getCnx()->prepare('SELECT * FROM organization ');
+    $mail->execute();
+
+    return $mail->fetchAll();
+}
 
 }
