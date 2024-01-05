@@ -186,6 +186,12 @@ public function searchByMailPriorityTitle($mail_priority_title){
     return $mail_priority->fetchAll();
 }
 
+public function PriorityByid($mail_priority_id){
+    $mail_priority = $this->getCnx()->prepare('SELECT * FROM mail_priority WHERE mail_priority_id = :mail_priority_title ');
+    $mail_priority->execute([':mail_priority_id'=> $mail_priority_id]);
+    
+    return $mail_priority->fetchAll();
+}
 
 
 //Typology
