@@ -49,20 +49,19 @@ public function createProcess($process_id,$process_reference, $process_title) {
 
 }
 
-public function DeleteMailPriority($process_id) {
+public function deleteMailProcess($process_id) {
     $process = $this->getCnx()->prepare('DELETE FROM process WHERE process_id= :id');
     $process->execute(['id'=>$process_id]);
 }
 
-public function updateMailPriority($process_id,$process_reference, $process_title, $process_date){
+public function updateMailProcess($process_id, $process_reference, $process_title){
     $process = $this->getCnx()->prepare('UPDATE process 
-                                                SET 
-                                                process_reference =:process_reference,
-                                                process_title =:process_title,
-                                                process_date =:process_date
-                                                WHERE process_id=:process_id');     
-    $process->execute([':process_id'=>$process_id,':process_reference'=>$process_reference, ':process_title'=>$process_title,'process_date'=>$process_date]);
-
+                                         SET 
+                                         process_reference = :process_reference,
+                                         process_title = :process_title
+                                         WHERE process_id = :process_id');     
+    $process->execute([':process_id' => $process_id, ':process_reference' => $process_reference, ':process_title' => $process_title]);
 }
+
 }
 ?>

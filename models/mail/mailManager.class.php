@@ -238,5 +238,12 @@ public function allProcess(){
 
     return $mail->fetchAll();
 }
+public function processByID($id){
+    $mail = $this->getCnx()->prepare('SELECT * FROM process WHERE process_id = :id');
+    $mail->execute([':id' => $id]);
+
+    return $mail->fetchAll();
+}
+
 
 }
