@@ -1,7 +1,7 @@
 <?php
 
 require_once "models/setting/customer.class.php";
-class customerOrganisation extends customer {
+class customerOrganization extends customer {
 
     public $_organization_id;
     public $_customer_id;
@@ -67,13 +67,11 @@ class customerOrganisation extends customer {
         }
     
         public function hydrate() {
-            $sql = "SELECT * FROM customer_organization WHERE customer_id = :customer_id AND organization_id = :organization_id";
+            $sql = "SELECT * FROM customer_organization WHERE customer_id = :customer_id";
             $stmt = $this->getCnx()->prepare($sql);
             $stmt->bindParam(":customer_id", $this->_customer_id);
-            $stmt->bindParam(":organization_id", $this->_organization_id);
-
             if($stmt->execute()) {
-                return $stmt->fetchObject();
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
             } else {
                 return null;
             }
