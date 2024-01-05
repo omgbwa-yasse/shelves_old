@@ -1,52 +1,100 @@
 <?php
-require_once 'models/tools/classification/classesManager.class.php';
-require_once 'models/tools/classification/class.class.php';
+require_once 'models/mail/mail.class.php';
+require_once 'models/mail/mailManager.class.php';
 
-$id = new activityClassesManager();
-$ids = $id ->allClasses();
-require_once 'models/tools/commuicability/comrule.class.php';
-$comrule = new comrule();
-if (isset($_POST['communicability_time']) && isset($_POST['communicability_title']) && isset($_POST['communicability_reference']) && isset($_POST['classification_id'])) {
+$mail= new mail();
+$mailManager= new mailManager();
+
+if (isset($_POST['mail_reference']) && isset($_POST['mail_title']) && isset($_POST['mail_observation']) && isset($_POST['mail_date_creation']) && isset($_POST['mail_basket_id']) && isset($_POST['mail_priority_id']) && isset($_POST['mail_docnum_id']) && isset($_POST['process_id']) && isset($_POST['mail_typology_id'])) {
  
-$comrule->updatecomrule();
+$mail->updateMail($_GET['id'],$_POST['mail_reference'],$_POST['mail_title'],$_POST['mail_observation'],$_POST['mail_date_creation'],$_POST['mail_basket_id'],$_POST['mail_priority_id'],$_POST['mail_docnum_id'],$_POST['process_id'],$_POST['mail_typology_id']);
 
 }
-
-$comrule ->setcomrulebyid($_GET['id']);
 ?>
-<h1>Modifier une regle de communicabilite</h1>
+<h1>Modifier un Couriel</h1>
 
-<form  method="POST" action="index.php?q=tools&categ=communicability&sub=updaterule&id=<?=$comrule ->getcomrule_id();?>">
+<form  method="POST" action="index.php?q=mail&categ=mail&sub=updateMail&id=<?=$_GET['id']?>">
 <table>
-<tr>
-    <td><label for="communicability_id">Communicability ID:</label></td>
-    <td><input type="number" id="communicability_id" name="communicability_id"  value= <?=$comrule ->getcomrule_id();?>  readonly></td>
+  <tr>
+    <td><label for="mail_reference">Reference du Courrier  :</label></td>
+    <td><input type="text" id="mail_reference" name="mail_reference"></td>
   </tr>
   <tr>
-    <td><label for="communicability_time">Communicability Time:</label></td>
-    <td><input type="number" id="communicability_time" name="communicability_time" value= <?=$comrule ->getcomrule_time();?> ></td>
+    <td><label for="mail_title">Titre du Courriel :</label></td>
+    <td><input type="text" id="mail_title" name="mail_title"></td>
   </tr>
   <tr>
-    <td><label for="communicability_title">Communicability Title:</label></td>
-    <td><input type="text" id="communicability_title" name="communicability_title" value= <?=$comrule ->getcomrule_title();?> ></td>
+    <td><label for="mail_observation">Observation du Courriel:</label></td>
+    <td><textarea id="mail_observation" name="mail_observation"></textarea></td>
   </tr>
   <tr>
-    <td><label for="communicability_reference">Communicability Reference:</label></td>
-    <td><textarea id="communicability_reference" name="communicability_reference" ><?=$comrule ->getcomrule_ref();?></textarea></td>
+    <td><label for="mail_date_creation">Date de creation du Courriel</label></td>
+    <td><input type="date" id="mail_date_creation" name="mail_date_creation"></td>
   </tr>
   <tr>
-    <td><label for="classification_id">Classification ID:</label></td>
-    <td> <select name="classification_id" value= <?=$comrule ->getcomrule_class_id();?>>
+    <td><label for="mail_basket_id">Panier du mail :</label></td>
+    <td> <select name="mail_basket_id">
 <?php
-    foreach($ids as $id){
-        $class = new activityClass();
-        $class -> setClassById($id['id']);
-        echo "<option value=\"".$class ->getClassId()."\">";
-        echo $class->getClassCode() ." - ". $class->getClassTitle() ."</option>";
+    $allmailBasket=$mailManager->allMailBasket();
+    foreach($allmailBasket as $basket){
+       
+        echo "<option value=\"".$basket['mail_basket_id']."\">";
+        echo $basket['mail_basket_title'] ."</option>";
     }
  ?>
                 </select></td>
   </tr>
+  <tr>
+    <td><label for="mail_priority_id">Niveau de Priorité :</label></td>
+    <td> <select name="mail_priority_id">
+<?php
+    $allmailPriority=$mailManager->allMailPriority();
+    foreach($allmailPriority as $priority){
+       
+        echo "<option value=\"".$priority['mail_priority_id']."\">";
+        echo $priority['mail_priority_title'] ."</option>";
+    }
+ ?>
+                </select></td>
+  </tr>
+  <tr>
+    <td><label for="mail_docnum_id">Docnum du Couriel:</label></td>
+    <td> <select name="mail_docnum_id">
+<?php
+     $allMailDocnum=$mailManager->allDocnum();
+     foreach($allMailDocnum as $docnum){
+        
+         echo "<option value=\"".$docnum['mail_docnum_id']."\">";
+         echo $docnum['mail_docnum_filename'] ."</option>";
+     }
+ ?>
+                </select></td>
+  </tr>
+  <tr>
+    <td><label for="process_id">Affaire:</label></td>
+    <td> <select name="process_id">
+<?php
+     $allProcess=$mailManager->allProcess();
+     foreach($allProcess as $process){
+         echo "<option value=\"".$process['process_id']."\">";
+         echo $process['process_title'] ."</option>";
+     }
+ ?>
+                </select></td>
+  </tr>
+  <tr>
+    <td><label for="mail_typology_id">Typologie du Couriel :</label></td>
+    <td> <select name="mail_typology_id">
+<?php
+       $allMailTypology=$mailManager->allMailTypology();
+       foreach($allMailTypology as $typology){
+           echo "<option value=\"".$typology['mail_typology_id']."\">";
+           echo $typology['mail_typology_title'] ."</option>";
+       }
+ ?>
+                </select></td>
+  </tr>
+
 
  <tr><td><input type="submit" value="Submit"></td>   <td><input type="reset" value="Annuler"></td></tr> </table>
 </form>

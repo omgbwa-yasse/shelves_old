@@ -1,30 +1,45 @@
 <?php
-require_once 'models/tools/commuicability/comrule.class.php';
-$comrules = new comrule();
-$allcomrules =$comrules->allcomrule();
+require_once 'models/mail/mailManager.class.php';
+
 ?>
-<h1>Regle de communicabilité</h1>
+<ul class="S_optionSousMenu">
+    <li><a href="index.php?q=mail&categ=mail&sub=createMail"> Créer un Courrier </a></li>
+</ul>
+
+<h1>Courriers</h1>
 <table border="2" width="800px">
-    <tr>
-        <th>Time</th>
-        <th>title</th>
-        <th>references </th>
-        <th>id de la classe associer</th>
-        <th colspan =3>action</th>
+    <tr>        
+        <th>ID </th>
+        <th>Référence</th>
+        <th>Titre</th>
+        <th>Observation</th>
+        <th>Date de création</th>
+        <th>ID du panier</th>
+        <th>ID de la priorité</th>
+        <th>ID du docnum</th>
+        <th>ID de la typologie</th>
+        <th>ID du processus</th>
+        <th colspan =3>Action</th>
     </tr>
 <?php
-foreach($allcomrules as $rule){
-    $comrule = new comrule();
-    $comrule ->setcomrulebyid($rule['communicability_id']);
+$mail = new mailManager();
+$allMails = $mail -> allMail();
+foreach($allMails as $mail){
     echo "<tr>";
-    echo "<td>". $comrule ->getcomrule_time();
-    echo "<td>".$comrule ->getcomrule_title();
-    echo "<td>".$comrule ->getcomrule_ref();
-    echo "<td>".$comrule ->getcomrule_class_id();
+    echo "<td>". $mail['mail_id'];
+    echo "<td>". $mail['mail_reference'];
+    echo "<td>". $mail['mail_title'];
+    echo "<td>". $mail['mail_observation'];
+    echo "<td>". $mail['mail_date_creation'];
+    echo "<td>". $mail['mail_basket_id'];
+    echo "<td>". $mail['mail_priority_id'];
+    echo "<td>". $mail['docnum_id'];
+    echo "<td>". $mail['mail_typology_id'];
+    echo "<td>". $mail['mail_process_id'];
    
-    echo "<td><a href=\"index.php?q=tools&categ=communicability&sub=viewrule&id=".$comrule ->getcomrule_id()."\">Afficher</a>";
-    echo "<td><a href=\"index.php?q=tools&categ=communicability&sub=deleterule&id=".$comrule ->getcomrule_id()."\">Supprimmer</a>";
-    echo "<td><a href=\"index.php?q=tools&categ=communicability&sub=updaterule&id=".$comrule ->getcomrule_id()."\">Modifier</a>";
+   
+    echo "<td><a href=\"index.php?q=mail&categ=mail&sub=deleteMail&id=". $mail['mail_id'] ."\">Supprimer</a>";
+    echo "<td><a href=\"index.php?q=mail&categ=mail&sub=updateMail&id=". $mail['mail_id'] ."\">Modifier</a>";
     
     
 
