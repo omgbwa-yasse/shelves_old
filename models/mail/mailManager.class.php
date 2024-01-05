@@ -82,6 +82,13 @@ public function allMailContainer(){
 
    return $mail->fetchAll();;
 }
+public function mailContainerByID($id){
+    $mail = $this->getCnx()->prepare('SELECT * FROM mail_container WHERE mail_container_id = :id');
+    $mail->execute([':id' => $id]);
+
+    return $mail->fetchAll();
+}
+
 public function searchByMailContainerReference( $container_reference ){
     $mail = $this->getCnx()->prepare('SELECT * FROM mail WHERE mail_id IN 
                                             (SELECT mail_id FROM mail_in_container WHERE container_id IN 
@@ -150,7 +157,7 @@ public function allDocnum(){
 
    return $mail->fetchAll();;
 }
-public function searchById($mail_docnum_id) {
+public function mailDocNumByID($mail_docnum_id) {
     $mail_docnum = $this->getCnx()->prepare('SELECT * FROM mail_docnum WHERE mail_docnum_id = :mail_docnum_id');
     $mail_docnum->execute([':mail_docnum_id' => $mail_docnum_id]);
     return $mail_docnum->fetchAll();
@@ -201,7 +208,7 @@ public function allMailTypology(){
 
    return $mail->fetchAll();;
 }
-public function searchByMailTypologyId( $mail_typology_id ){
+public function mailTypologyByID( $mail_typology_id ){
     $mail = $this->getCnx()->prepare('SELECT * FROM mail WHERE mail_typology_id = :mail_typology_id ');
     $mail->execute(['mail_typology_id'=>$mail_typology_id]);
     return $mail->fetchAll();}
@@ -219,6 +226,11 @@ public function allMailTreatmentDuration(){
 
     return $mail->fetchAll();
 }
+public function treatmentDurationByID($treatment_duration_id) {
+    $treatment_duration = $this->getCnx()->prepare('SELECT * FROM treatment_duration WHERE treatment_duration_id = :treatment_duration_id');
+    $treatment_duration->execute([':treatment_duration_id' => $treatment_duration_id]);
+    return $treatment_duration->fetchAll();
+}
 public function searchTreatmentDurationByTime($treatment_duration_time) {
     $treatment_duration = $this->getCnx()->prepare('SELECT * FROM treatment_duration WHERE treatment_duration_time = :treatment_duration_time');
     $treatment_duration->execute([':treatment_duration_time' => $treatment_duration_time]);
@@ -234,6 +246,13 @@ public function searchMailByTreatmentDurationTime($treatment_duration_time) {
 public function allMailBasket(){
     $mail = $this->getCnx()->prepare('SELECT * FROM mail_basket ');
     $mail->execute();
+
+    return 
+    $mail->fetchAll();
+}
+public function mailBasketByID($id){
+    $mail = $this->getCnx()->prepare('SELECT * FROM mail_basket WHERE mail_basket_id = :id');
+    $mail->execute([':id' => $id]);
 
     return $mail->fetchAll();
 }
