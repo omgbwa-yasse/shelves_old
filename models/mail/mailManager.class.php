@@ -10,11 +10,25 @@ class mailManager extends mail {
 
     //mail
 public function allMail(){
-    $mail = $this->getCnx()->prepare('SELECT * FROM mail');
+    $mail = $this->getCnx()->prepare('SELECT * FROM mail
+                                        LEFT JOIN mail_priority ON mail_priority.mail_priority_id = mail.mail_priority_id
+                                        LEFT JOIN mail_docnum ON mail_docnum.mail_docnum_id = mail.mail_docnum_id
+                                        LEFT JOIN mail_typology ON mail_typology.mail_typology_id = mail.mail_typology_id');
     $mail->execute();
 
    return $mail->fetchAll();;
 } 
+public function mailByID($id){
+    $mail = $this->getCnx()->prepare('SELECT * FROM mail 
+                                        LEFT JOIN mail_priority ON mail_priority.mail_priority_id = mail.mail_priority_id
+                                        LEFT JOIN mail_docnum ON mail_docnum.mail_docnum_id = mail.mail_docnum_id
+                                        LEFT JOIN mail_typology ON mail_typology.mail_typology_id = mail.mail_typology_id
+                                        WHERE mail.mail_id = :id ');
+    $mail->execute(['id'=>$id]);
+
+   return $mail->fetchAll();;
+}
+
 public function searchByMailTitle($title){
     $mail = $this->getCnx()->prepare('SELECT * FROM mail WHERE mail_title LIKE :title ');
     $mail->execute(['title'=>$title]);
@@ -45,12 +59,6 @@ public function searchByMailDateCreation($date_creation){
    return $mail->fetchAll();;
 }
 
-public function searchByMailBasketId( $basket_id ){
-    $mail = $this->getCnx()->prepare('SELECT * FROM mail WHERE mail_basket_id = :basket_id ');
-    $mail->execute([':basket_id'=>$basket_id]);
-
-   return $mail->fetchAll();;
-}
 
 public function searchByMailDocnum( $docum_id ){
     $mail = $this->getCnx()->prepare('SELECT * FROM mail WHERE mail_docnum_id = :docnum_id ');
@@ -67,13 +75,7 @@ public function searchByMailObservation( $Observation ){
    return $mail->fetchAll();;
 }
 
-public function searchByMailProcessId( $process_id ){
-    $mail = $this->getCnx()->prepare('SELECT * FROM mail WHERE process_id LIKE :process_id');
-    $mail->execute(['process_id'=>$process_id]);
-   return $mail->fetchAll();;
 
-
-}
 
 //search with container 
 public function allMailContainer(){
@@ -109,7 +111,7 @@ public function searchByMailContainerTitle( $container_Title){
    return $mail->fetchAll();;
 }
 
-//Mail Received
+// Couriels Received
 public function allMailReceived(){
     $mail = $this->getCnx()->prepare('SELECT * FROM mail_received ');
     $mail->execute();
@@ -130,9 +132,11 @@ public function searchMailReceivedByDate($mail_received_date) {
 }
 
 
-//Mail Sended
+// Couriels Envoyer
 public function allMailSend(){
-    $mail = $this->getCnx()->prepare('SELECT * FROM mail_send ');
+    $mail = $this->getCnx()->prepare('SELECT * FROM mail_send 
+                                        LEFT JOIN mail ON mail.mail_id = mail_send.mail_id 
+                                        LEFT JOIN organization ON organization.organization_id = mail_send.organization_id');
     $mail->execute();
 
    return $mail->fetchAll();;
@@ -219,56 +223,6 @@ public function searchByMailTypologyTitle($mail_typology_title) {
     return $mail_typology->fetchAll();
 }
 
-//treatment duration 
-public function allMailTreatmentDuration(){
-    $mail = $this->getCnx()->prepare('SELECT * FROM treatment_duration ');
-    $mail->execute();
-
-    return $mail->fetchAll();
-}
-public function treatmentDurationByID($treatment_duration_id) {
-    $treatment_duration = $this->getCnx()->prepare('SELECT * FROM treatment_duration WHERE treatment_duration_id = :treatment_duration_id');
-    $treatment_duration->execute([':treatment_duration_id' => $treatment_duration_id]);
-    return $treatment_duration->fetchAll();
-}
-public function searchTreatmentDurationByTime($treatment_duration_time) {
-    $treatment_duration = $this->getCnx()->prepare('SELECT * FROM treatment_duration WHERE treatment_duration_time = :treatment_duration_time');
-    $treatment_duration->execute([':treatment_duration_time' => $treatment_duration_time]);
-    return $treatment_duration->fetchAll();
-}
-public function searchMailByTreatmentDurationTime($treatment_duration_time) {
-    $mail= $this->getCnx()->prepare('SELECT * FROM mail WHERE mail_id IN 
-                                                    (SELECT mail_id FROM mail_typology  WHERE treatment_duration_id IN 
-                                                        (SELECT treatment_duration_id FROM treatment_duration WHERE treatment_duration_time= :treatment_duration_time)) ');
-    $mail->execute(['treatment_duration_time'=> $treatment_duration_time]);
-}
-//mail basket
-public function allMailBasket(){
-    $mail = $this->getCnx()->prepare('SELECT * FROM mail_basket ');
-    $mail->execute();
-
-    return 
-    $mail->fetchAll();
-}
-public function mailBasketByID($id){
-    $mail = $this->getCnx()->prepare('SELECT * FROM mail_basket WHERE mail_basket_id = :id');
-    $mail->execute([':id' => $id]);
-
-    return $mail->fetchAll();
-}
-//mail process 
-public function allProcess(){
-    $mail = $this->getCnx()->prepare('SELECT * FROM process ');
-    $mail->execute();
-
-    return $mail->fetchAll();
-}
-public function processByID($id){
-    $mail = $this->getCnx()->prepare('SELECT * FROM process WHERE process_id = :id');
-    $mail->execute([':id' => $id]);
-
-    return $mail->fetchAll();
-}
 
 //organisation 
 public function organisationByID($id){
@@ -284,4 +238,50 @@ public function allorganisation(){
     return $mail->fetchAll();
 }
 
+//Activity 
+public function allActivity(){
+    $activity = $this->getCnx()->prepare('SELECT * FROM activity ');
+    $activity->execute();
+    return $activity->fetchAll();
+}
+
+public function searchById($activity_id) {
+    $activity = $this->getCnx()->prepare('SELECT * FROM activity WHERE activity_id = :activity_id');
+    $activity->execute([':activity_id' => $activity_id]);
+    return $activity->fetchAll();
+}
+
+public function searchByTitle($activity_title) {
+    $activity = $this->getCnx()->prepare('SELECT * FROM activity WHERE activity_title like :activity_title');
+    $activity->execute([':activity_title' => $activity_title]);
+    return $activity->fetchAll();
+}
+
+public function searchByParentId($activity_parent_id) {
+    $activity = $this->getCnx()->prepare('SELECT * FROM activity WHERE activity_parent_id = :activity_parent_id');
+    $activity->execute([':activity_parent_id' => $activity_parent_id]);
+    return $activity->fetchAll();
+}
+
+
+
+
+//copy type 
+public function allCopyType() {
+    $copy_type = $this->getCnx()->prepare('SELECT * FROM copy_type ');
+    $copy_type->execute();
+    return $copy_type->fetchAll();
+}
+
+public function searchCopyTypeById($copy_type_id) {
+    $copy_type = $this->getCnx()->prepare('SELECT * FROM copy_type WHERE copy_type_id = :copy_type_id');
+    $copy_type->execute([':copy_type_id' => $copy_type_id]);
+    return $copy_type->fetchAll();
+}
+
+public function searchCopyTypeByTitle($copy_type_title) {
+    $copy_type = $this->getCnx()->prepare('SELECT * FROM copy_type WHERE copy_type_title = :copy_type_title');
+    $copy_type->execute([':copy_type_title' => $copy_type_title]);
+    return $copy_type->fetchAll();
+}
 }

@@ -61,9 +61,15 @@ class MailSend extends mail {
     }
 
     // Database operations
-    public function createMailSend($mail_send_id, $mail_send_date, $type_id, $mail_id, $organization_id) {
-        $mail_send = $this->getCnx()->prepare("INSERT INTO mail_send (mail_send_id, mail_send_date, type_id, mail_id, organization_id) VALUES (:mail_send_id, :mail_send_date, :type_id, :mail_id, :organization_id)");
-        $mail_send->execute(["mail_send_id" => $mail_send_id, "mail_send_date" => $mail_send_date, "type_id" => $type_id, "mail_id" => $mail_id, "organization_id" => $organization_id]);
+    public function createMailSend( $mail_send_date, $mail_id, $organization_id) {
+        $mail_send = $this->getCnx()->prepare("INSERT INTO mail_send (mail_send_id, mail_send_date,  mail_id, organization_id) VALUES (NULL, :mail_send_date,  :mail_id, :organization_id)");
+       
+        if( $mail_send->execute([ "mail_send_date" => $mail_send_date,  "mail_id" => $mail_id, "organization_id" => $organization_id])){
+            return 'true';
+        }
+        else {
+            return 'false';
+        }
     }
 
     public function deleteMailSend($mail_send_id) {
@@ -71,9 +77,9 @@ class MailSend extends mail {
         $mail_send->execute(['id' => $mail_send_id]);
     }
 
-    public function updateMailSend($mail_send_id, $mail_send_date, $type_id, $mail_id, $organization_id) {
-        $mail_send = $this->getCnx()->prepare('UPDATE mail_send SET mail_send_date = :mail_send_date, type_id = :type_id, mail_id = :mail_id, organization_id = :organization_id WHERE mail_send_id = :mail_send_id');
-        $mail_send->execute([':mail_send_id' => $mail_send_id, ':mail_send_date' => $mail_send_date, ':type_id' => $type_id, 'mail_id' => $mail_id, 'organization_id' => $organization_id]);
+    public function updateMailSend($mail_send_id, $mail_send_date, $mail_id, $organization_id) {
+        $mail_send = $this->getCnx()->prepare('UPDATE mail_send SET mail_send_date = :mail_send_date, mail_id = :mail_id, organization_id = :organization_id WHERE mail_send_id = :mail_send_id');
+        $mail_send->execute([':mail_send_id' => $mail_send_id, ':mail_send_date' => $mail_send_date,  'mail_id' => $mail_id, 'organization_id' => $organization_id]);
     }
 
  

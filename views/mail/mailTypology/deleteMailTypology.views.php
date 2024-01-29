@@ -5,7 +5,7 @@ $mailTypologyManager = new mailManager();
 $mailTypology = $mailTypologyManager ->mailTypologyByID($_GET['id']);
 foreach ($mailTypology as $mailTypology) {
 
-    echo '<h1>Vous avez supprimé ce Mail Typology avec succès :</h1>';
+    echo '<h1>Vous avez supprimé ce Typologie de Couriels avec succès :</h1>';
     echo "<table border='0'>";
     echo "<tr>";   
     echo "<td><b> ID  :</b>".$mailTypology['mail_typology_id'];
@@ -28,4 +28,4 @@ echo "<hr/>";
 }
 
 ?>
-<a href="index.php?q=mail&categ=mailTypology&sub=allMailTypologies"> <- tous les Mail Typologies</a>
+<a href="index.php?q=mail&categ=mailTypology&sub=allMailTypologies"> <- tous les  Couriels Typologies</a>

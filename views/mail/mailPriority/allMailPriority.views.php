@@ -8,7 +8,10 @@ require_once 'models/mail/mailManager.class.php';
 </ul>
 
 <h1>niveau de priorité</h1>
+<a href="index.php?q=mail&categ=mailPriority&sub=createPriority">Creer un niveau de priorité</a>
 <table border="2" width="800px">
+
+
     <tr>        
         <th>#</th>
         <th>title</th>
@@ -23,7 +26,7 @@ foreach($allProcess as $priority){
     echo "<td>". $priority['mail_priority_title'];
    
    
-    echo "<td><a href=\"index.php?q=mail&categ=mailPriority&sub=deletePriority&id=". $priority['mail_priority_id'] ."\">Supprimmer</a>";
+    echo "<td><a href=\"c&id=". $priority['mail_priority_id'] ."\">Supprimmer</a>";
     echo "<td><a href=\"index.php?q=mail&categ=mailPriority&sub=updatePriority&id=". $priority['mail_priority_id'] ."\">Modifier</a>";
     
     

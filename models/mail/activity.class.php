@@ -54,23 +54,7 @@ class Activity extends Connexion {
         $activity = $this->getCnx()->prepare('UPDATE activity SET activity_title = :activity_title, activity_parent_id = :activity_parent_id WHERE activity_id = :activity_id');
         $activity->execute([':activity_id' => $activity_id, ':activity_title' => $activity_title, 'activity_parent_id' => $activity_parent_id]);
     }
-    public function searchById($activity_id) {
-        $activity = $this->getCnx()->prepare('SELECT * FROM activity WHERE activity_id = :activity_id');
-        $activity->execute([':activity_id' => $activity_id]);
-        return $activity->fetchAll();
-    }
-    
-    public function searchByTitle($activity_title) {
-        $activity = $this->getCnx()->prepare('SELECT * FROM activity WHERE activity_title like :activity_title');
-        $activity->execute([':activity_title' => $activity_title]);
-        return $activity->fetchAll();
-    }
-    
-    public function searchByParentId($activity_parent_id) {
-        $activity = $this->getCnx()->prepare('SELECT * FROM activity WHERE activity_parent_id = :activity_parent_id');
-        $activity->execute([':activity_parent_id' => $activity_parent_id]);
-        return $activity->fetchAll();
-    }
+   
     
 }
 ?>

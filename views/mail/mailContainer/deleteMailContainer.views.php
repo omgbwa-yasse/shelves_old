@@ -5,7 +5,7 @@ $mailContainerManager = new mailManager();
 $mailContainer = $mailContainerManager ->mailContainerByID($_GET['id']);
 foreach ($mailContainer as $mailContainer) {
 
-    echo '<h1>Vous avez supprimé ce Mail Container avec succès :</h1>';
+    echo '<h1>Vous avez supprimé ce Conteneur de Couriels avec succès :</h1>';
     echo "<table border='0'>";
     echo "<tr>";   
     echo "<td><b> Référence  :</b>".$mailContainer['mail_container_reference'];
@@ -24,4 +24,4 @@ echo "<hr/>";
 }
 
 ?>
-<a href="index.php?q=mail&categ=mailContainer&sub=allMailContainer"> <- tous les Mail Containers</a>
+<a href="index.php?q=mail&categ=mailContainer&sub=allMailContainer"> <- tous les  Couriels Containers</a>

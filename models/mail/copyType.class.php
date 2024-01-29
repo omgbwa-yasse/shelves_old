@@ -65,22 +65,6 @@ class CopyType extends Connexion {
         $copy_type->execute([':copy_type_id' => $copy_type_id, ':copy_type_title' => $copy_type_title, 'copy_type_status' => $copy_type_status, 'copy_type_observation' => $copy_type_observation]);
     }
 
-    public function searchById($copy_type_id) {
-        $copy_type = $this->getCnx()->prepare('SELECT * FROM copy_type WHERE copy_type_id = :copy_type_id');
-        $copy_type->execute([':copy_type_id' => $copy_type_id]);
-        return $copy_type->fetchAll();
-    }
-
-    public function searchByTitle($copy_type_title) {
-        $copy_type = $this->getCnx()->prepare('SELECT * FROM copy_type WHERE copy_type_title = :copy_type_title');
-        $copy_type->execute([':copy_type_title' => $copy_type_title]);
-        return $copy_type->fetchAll();
-    }
-
-    public function searchByStatus($copy_type_status) {
-        $copy_type = $this->getCnx()->prepare('SELECT * FROM copy_type WHERE copy_type_status = :copy_type_status');
-        $copy_type->execute([':copy_type_status' => $copy_type_status]);
-        return $copy_type->fetchAll();
-    }
+ 
 }
 ?>

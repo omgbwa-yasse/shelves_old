@@ -5,43 +5,51 @@
 <p class="btnSousMenu">Recherche</p>
 <ul class="optionSousMenu">  
     <li>
-        <a href="index.php?q=mail&categ=mail&sub=allmail">  afficher  les Couriel</a>
-    </li>      
-    <li>
-        <a href="index.php?q=mail&categ=mail&sub=createMail">  Creer un Couriel</a>
+        <a href="index.php?q=mail&categ=mail&sub=allmail">  afficher  les Couriels</a>
     </li>   
     <li>
-        <a href="index.php?q=mail&categ=mail&sub=allmail"> Tous afficher </a>
-    </li>
+        <a href="index.php?q=mail&categ=mailSended&sub=all">  afficher  les Couriels Envoyé</a>
+
+    </li>     
     <li>
-        <a href="index.php?q=mail&categ=mail&sub=allmail"> Par affaire </a>
-    </li>
-    <li>
-        <a href="index.php?q=mail&categ=mail&sub=allmail"> Par référence </a>
-    </li>
-    <li>
-        <a href="index.php?q=mail&categ=mail&sub=allmail"> Par activité </a>
-    </li>
-    <li>
-        <a href="index.php?q=mail&categ=mail&sub=allmail"> Par date </a>
-    </li>
-    <li>
-        <a href="index.php?q=mail&categ=mail&sub=allmail"> Par détenteur </a>
-    </li>
-    <li>
-        <a href="index.php?q=mail&categ=mail&sub=allmail"> Par producteur </a>
-    </li>
+        <a href="index.php?q=mail&categ=mailReceived&sub=all">  afficher  les Couriels Reçu</a>
+        
+    </li> 
+   
     
 </ul>
+
+
         
 <p class="btnSousMenu">Courriel</p>
 <ul class="optionSousMenu">
-    <li><a href="#"> Recevoir </a></li>
-    <li><a href="#"> Transmettre </a></li>
-    <li><a href="index.php?q=mail&categ=process&sub=createProcess"> Affaire </a></li>
+    <li>
+        <a href="index.php?q=mail&categ=mail&sub=createMail">  Créer un Couriel</a>
+    </li>  
+    <li><a href="index.php?q=mail&categ=mailReceived&sub=create"> Recevoir </a></li>
+    <li><a href="index.php?q=mail&categ=mailSended&sub=create"> Transmettre </a></li>
+</ul>
+
+<p class="btnSousMenu">Activité </p>
+<ul class="optionSousMenu">
+    <li>
+        <a href="index.php?q=mail&categ=mailActivity&sub=all">  Gérer  les Activitées</a>
+    </li>   
 </ul>
 
 
+<p class="btnSousMenu">Paramètre</p>
+<ul class="optionSousMenu">
+    <li>
+        <a href="index.php?q=mail&categ=mailCopy&sub=all">  Gérer  les types de copies </a>
+
+    </li>  
+    <li>
+        <a href="index.php?q=mail&categ=mailPriority&sub=allmailPriority">  Gérer  les Niveaux de Priorité </a>
+        
+    </li>  
+</ul>
+       
 <p class="btnSousMenu">Gestion des espaces</p>
 <ul class="optionSousMenu">
     <li><a href="#"> Salles </a></li>

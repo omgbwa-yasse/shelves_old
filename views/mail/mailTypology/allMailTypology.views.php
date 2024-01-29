@@ -3,10 +3,10 @@ require_once 'models/mail/mailManager.class.php';
 
 ?>
 <ul class="S_optionSousMenu">
-    <li><a href="index.php?q=mail&categ=mailTypology&sub=createMailTypology"> Créer un Mail Typology </a></li>
+    <li><a href="index.php?q=mail&categ=mailTypology&sub=createMailTypology"> Créer un Typologie de Couriels </a></li>
 </ul>
 
-<h1>Mail Typologies</h1>
+<h1> Couriels Typologies</h1>
 <table border="2" width="800px">
     <tr>        
         <th>ID </th>

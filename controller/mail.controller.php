@@ -8,6 +8,8 @@
                     break ;
                     case "allMail": include "views/mail/allMail.views.php";
                     break ;
+                    case "view": include "views/mail/viewMail.views.php";
+                    break ;
                     case "allMailGrouped": include "views/mail/allMailGrouped.views.php";
                     break ;
                     case "updateMail": include "views/mail/updateMail.views.php";
@@ -20,21 +22,7 @@
             }
 
 
-        //mail basket
-            elseif($_GET['q'] == "mail" && $_GET['categ'] == "mailBasket" && !empty($_GET['sub'])){
-                switch($_GET['sub']){
-                    case "createMailBasket" : include "views/mail/mailBasket/createMailBasket.views.php";
-                    break ;
-                    case "allMailBasket": include "views/mail/mailBasket/allMailBasket.views.php";
-                    break ;
-                    case "updateMailBasket": include "views/mail/mailBasket/UpdateMailBasket.views.php";
-                    break ;
-                    case "deleteMailBasket": include "views/mail/mailBasket/deleteMailBasket.views.php";
-                    break ;
-                
-                    default : include "views/mail/mailBasket/allMailBasket.views.php";
-                }
-        }
+ 
 
         //mail container
             elseif($_GET['q'] == "mail" && $_GET['categ'] == "mailContainer" && !empty($_GET['sub'])){
@@ -87,72 +75,70 @@
         //mail Received
             elseif($_GET['q'] == "mail" && $_GET['categ'] == "mailReceived" && !empty($_GET['sub'])){
                 switch($_GET['sub']){
-                    case "allMailReceived": include "views/mail/mailReceived/allMailReceived.views.php";
+                    case "all": include "views/mail/mailReceived/all.views.php";
                     break ;
-                    case "deleteMailReceived": include "views/mail/mailReceived/deleteMailReceived.views.php";
+                    case "delete": include "views/mail/mailReceived/delete.views.php";
                     break ;
+                    case "create": include "views/mail/mailReceived/create.views.php";
+                    break ;
+                    case "update": include "views/mail/mailReceived/update.views.php";
+                    break ;
+                    
+                
                 
                     default : include "views/mail/mailReceived/allMailReceived.views.php";
                 }
     }
-        //mail Sended
+        // Couriels Envoyered
             elseif($_GET['q'] == "mail" && $_GET['categ'] == "mailSended" && !empty($_GET['sub'])){
                 switch($_GET['sub']){
-                    case "allMailSended": include "views/mail/mailSended/allMailSended.views.php";
-                    break ;
-                    case "deleteMailSended": include "views/mail/mailSended/deleteMailSended.views.php";
-                    break ;
-                
-                    default : include "views/mail/mailSended/allMailSended.views.php";
-                }
-    }
-        //mail Typology
-            elseif($_GET['q'] == "mail" && $_GET['categ'] == "mailTypology" && !empty($_GET['sub'])){
-                switch($_GET['sub']){
-                    case "createMailTypology" : include "views/mail/mailTypology/createMailTypology.views.php";
-                    break ;
-                    case "allMailTypology": include "views/mail/mailTypology/allMailTypology.views.php";
-                    break ;
-                    case "updateMailTypology": include "views/mail/mailTypology/UpdateMailTypology.views.php";
-                    break ;
-                    case "deleteMailTypology": include "views/mail/mailTypology/deleteMailTypology.views.php";
-                    break ;
-                
-                    default : include "views/mail/mailTypology/allMailTypology.views.php";
-                }
-    }
 
-        //process 
-            elseif($_GET['q'] == "mail" && $_GET['categ'] == "process" && !empty($_GET['sub'])){
-                switch($_GET['sub']){
-                    case "createprocess" : include "views/mail/process/createprocess.views.php";
+                    case "all": include "views/mail/mailSended/all.views.php";
                     break ;
-                    case "allprocess": include "views/mail/process/allprocess.views.php";
+                    case "delete": include "views/mail/mailSended/delete.views.php";
                     break ;
-                    case "updateprocess": include "views/mail/process/Updateprocess.views.php";
+                    case "create": include "views/mail/mailSended/create.views.php";
                     break ;
-                    case "deleteprocess": include "views/mail/process/deleteprocess.views.php";
+                    case "update": include "views/mail/mailSended/update.views.php";
                     break ;
                 
-                    default : include "views/mail/process/allprocess.views.php";
+                    default : include "views/mail/mailSended/all.views.php";
                 }
     }
-        //Treatment Duration 
-            elseif($_GET['q'] == "mail" && $_GET['categ'] == "TreatmentDuration" && !empty($_GET['sub'])){
+        //mail copy
+            elseif($_GET['q'] == "mail" && $_GET['categ'] == "mailcopy" && !empty($_GET['sub'])){
                 switch($_GET['sub']){
-                    case "createTreatmentDuration" : include "views/mail/TreatmentDuration/createTreatmentDuration.views.php";
+                    case "create" : include "views/mail/mailcopy/create.views.php";
                     break ;
-                    case "allTreatmentDuration": include "views/mail/TreatmentDuration/allTreatmentDuration.views.php";
+                    case "all": include "views/mail/mailcopy/all.views.php";
                     break ;
-                    case "updateTreatmentDuration": include "views/mail/TreatmentDuration/UpdateTreatmentDuration.views.php";
+                    case "update": include "views/mail/mailcopy/Update.views.php";
                     break ;
-                    case "deleteTreatmentDuration": include "views/mail/TreatmentDuration/deleteTreatmentDuration.views.php";
+                    case "delete": include "views/mail/mailcopy/delete.views.php";
                     break ;
                 
-                    default : include "views/mail/TreatmentDuration/allTreatmentDuration.views.php";
+                    default : include "views/mail/mailcopy/allMailcopy.views.php";
                 }
     }
+       //mail Typology
+       elseif($_GET['q'] == "mail" && $_GET['categ'] == "mailTypology" && !empty($_GET['sub'])){
+        switch($_GET['sub']){
+            case "createMailTypology" : include "views/mail/mailTypology/createMailTypology.views.php";
+            break ;
+            case "allMailTypology": include "views/mail/mailTypology/allMailTypology.views.php";
+            break ;
+            case "updateMailTypology": include "views/mail/mailTypology/UpdateMailTypology.views.php";
+            break ;
+            case "deleteMailTypology": include "views/mail/mailTypology/deleteMailTypology.views.php";
+            break ;
+        
+            default : include "views/mail/mailTypology/allMailTypology.views.php";
+        }
 
+        
+}
+
+      
 
 
 

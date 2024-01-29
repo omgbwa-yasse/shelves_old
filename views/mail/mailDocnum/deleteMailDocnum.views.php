@@ -5,7 +5,7 @@ $mailDocNumManager = new mailManager();
 $mailDocNum = $mailDocNumManager ->mailDocNumByID($_GET['id']);
 foreach ($mailDocNum as $mailDocNum) {
 
-    echo '<h1>Vous avez supprimé ce Mail DocNum avec succès :</h1>';
+    echo '<h1>Vous avez supprimé ce  Couriels DocNum avec succès :</h1>';
     echo "<table border='0'>";
     echo "<tr>";   
     echo "<td><b> ID  :</b>".$mailDocNum['mail_docnum_id'];
@@ -24,4 +24,4 @@ echo "<hr/>";
 }
 
 ?>
-<a href="index.php?q=mail&categ=mailDocNum&sub=allMailDocnum"> <- tous les Mail DocNums</a>
+<a href="index.php?q=mail&categ=mailDocNum&sub=allMailDocnum"> <- tous les  Couriels DocNums</a>

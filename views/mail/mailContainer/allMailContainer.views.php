@@ -3,10 +3,10 @@ require_once 'models/mail/mailManager.class.php';
 
 ?>
 <ul class="S_optionSousMenu">
-    <li><a href="index.php?q=mail&categ=mailContainer&sub=createMailContainer"> Créer un Mail Container </a></li>
+    <li><a href="index.php?q=mail&categ=mailContainer&sub=createMailContainer"> Créer un Conteneur de Couriels </a></li>
 </ul>
 
-<h1>Mail Containers</h1>
+<h1> Couriels Containers</h1>
 <table border="2" width="800px">
     <tr>        
         <th>références </th>

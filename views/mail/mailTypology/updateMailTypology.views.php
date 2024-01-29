@@ -13,7 +13,7 @@ if (isset($_POST['mail_typology_id']) && isset($_POST['mail_typology_title']) &&
     $mailTypology = $mailTypologyManager ->mailTypologyByID($_GET['id']) ;
     foreach ($mailTypology as $mailTypology) {
 ?>
-<h1>Modifier un Mail Typology </h1>
+<h1>Modifier un Typologie de Couriels </h1>
 
 <form  method="POST" action="index.php?q=mail&categ=mailTypology&sub=updateMailTypology&id=<?=$_GET['id']?>">
 <table>
@@ -22,11 +22,11 @@ if (isset($_POST['mail_typology_id']) && isset($_POST['mail_typology_title']) &&
     <td><input type="text" id="mail_typology_id" name="mail_typology_id" value="<?= htmlspecialchars($mailTypology['mail_typology_id'], ENT_QUOTES); ?>" disabled></td>
   </tr>
   <tr>
-    <td><label for="mail_typology_title">Titre du Mail Typology :</label></td>
+    <td><label for="mail_typology_title">Titre du Typologie de Couriels :</label></td>
     <td><input type="text" id="mail_typology_title" name="mail_typology_title" value="<?= htmlspecialchars($mailTypology['mail_typology_title'], ENT_QUOTES); ?>" ></td>
   </tr>
   <tr>
-    <td><label for="mail_typology_observation">Observation du Mail Typology :</label></td>
+    <td><label for="mail_typology_observation">Observation du Typologie de Couriels :</label></td>
     <td><input type="text" id="mail_typology_observation" name="mail_typology_observation" value="<?= htmlspecialchars($mailTypology['mail_typology_observation'], ENT_QUOTES); ?>" /></td>
   </tr>
   <tr>

@@ -35,19 +35,8 @@ $mail->createMail(8,$_POST['mail_reference'],$_POST['mail_title'],$_POST['mail_o
     <td><label for="mail_date_creation">Date de creation du Courriel</label></td>
     <td><input type="date" id="mail_date_creation" name="mail_date_creation"></td>
   </tr>
-  <tr>
-    <td><label for="mail_basket_id">Panier du mail :</label></td>
-    <td> <select name="mail_basket_id">
-<?php
-    $allmailBasket=$mailManager->allMailBasket();
-    foreach($allmailBasket as $basket){
-       
-        echo "<option value=\"".$basket['mail_basket_id']."\">";
-        echo $basket['mail_basket_title'] ."</option>";
-    }
- ?>
-                </select></td>
-  </tr>
+  
+ 
   <tr>
     <td><label for="mail_priority_id">Niveau de Priorité :</label></td>
     <td> <select name="mail_priority_id">
@@ -74,18 +63,7 @@ $mail->createMail(8,$_POST['mail_reference'],$_POST['mail_title'],$_POST['mail_o
  ?>
                 </select></td>
   </tr>
-  <tr>
-    <td><label for="process_id">Affaire:</label></td>
-    <td> <select name="process_id">
-<?php
-     $allProcess=$mailManager->allProcess();
-     foreach($allProcess as $process){
-         echo "<option value=\"".$process['process_id']."\">";
-         echo $process['process_title'] ."</option>";
-     }
- ?>
-                </select></td>
-  </tr>
+
   <tr>
     <td><label for="mail_typology_id">Typologie du Couriel :</label></td>
     <td> <select name="mail_typology_id">
@@ -98,6 +76,8 @@ $mail->createMail(8,$_POST['mail_reference'],$_POST['mail_title'],$_POST['mail_o
  ?>
                 </select></td>
   </tr>
+
+  
 
 
  <tr><td><input type="submit" value="Submit"></td>   <td><input type="reset" value="Annuler"></td></tr> </table>

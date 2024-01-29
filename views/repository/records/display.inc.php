@@ -1,3 +1,37 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+    <style>
+         .container a{
+    color: black;
+ 
+    background-color: white;
+    border-radius: 14px;
+    font-weight: bold;
+    font-size: 16px;
+    width: 80%;
+
+    background-image: radial-gradient(0% 0% at 0% 0%, rgba(0, 0, 0, 0.23) 0%, transparent 86.18%), radial-gradient(66% 66% at 26% 20%, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0) 69.79%, rgba(255, 255, 255, 0) 100%);
+    box-shadow: inset -3px -3px 9px rgba(255, 255, 255, 0), inset 0px 3px 9px rgba(255, 255, 255, 0), inset 0px 1px 1px rgba(255, 255, 255, 0), inset 0px -8px 36px rgba(0, 0, 0, 0), inset 0px 1px 5px rgba(255, 255, 255, 0), 2px 19px 31px rgba(0, 0, 0,0);
+    
+    
+    border: 0;
+  
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  
+    cursor: pointer;
+  } 
+
+    </style>
+    
+</body>
+</html>
+
 <?php
 require_once 'models/repository/record.class.php';
 require_once 'models/repository/keyword.class.php';
@@ -19,13 +53,13 @@ function displayRecordDefault($record){
     echo "</div>";
 
     // Aficher les enregistrement
-    echo "<div style=\"border:solid 2px red;width:650px;\">";
+    echo "<div class=\"\" style=\"border:solid 2px red;width:650px;\">";
     $record -> setRecordClasseByTitle();
     $record -> setRecordContainerId();
     $organization = new organization();
     $organization -> setOrganizationById($record -> getRecordOrganizationId());
 
-    echo "<table class=\"record_description\"> 
+    echo "<table class=\"\"> 
     <tr><th class=\"element\"> Description <td>". $record -> getRecordObservation()  ."</td></tr>
     <tr><th class=\"element\"> Reférence <td>". $record-> getRecordNui() ."</td></tr>
     <tr><th class=\"element\"> Dates <td>". $record -> getRecordDateStart() ." au ". $record -> getRecordDateEnd()  ."</td></tr>
@@ -73,13 +107,13 @@ function displayRecord($record){
         optionNavigation($record);
     echo "</div>";
 
-    echo "<div style=\"border:solid 2px red;width:650px;\">";
+    echo "<div class=\"\" style=\"border:solid 2px red;width:650px;\">";
     // Aficher les enregistrement
     $record -> setRecordClasseByTitle();
     $record -> setRecordContainerId();
     $organization = new organization();
     $organization -> setOrganizationById($record -> getRecordOrganizationId());
-
+ 
     echo "<table border=\"1\"> 
     <tr><th class=\"title\" colspan=\"2\">
     <a href=\"index.php?q=repository&categ=search&sub=display&id=".$record->getRecordId()."\">". $record-> getRecordTitle() ."  (". $record-> getRecordLevelTitle().")"."</a></th></tr> 
