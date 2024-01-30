@@ -1,4 +1,5 @@
 <?php
+
     require_once "models/user/user.class.php";
     $user = new user();
     $user ->hydrateById($_GET['id']);
@@ -10,5 +11,10 @@
         echo "<br/> a été suprimé.";
     }
     ;
+
+
+
+
+    
 
 ?>

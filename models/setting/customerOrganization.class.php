@@ -1,7 +1,6 @@
 <?php
-
-require_once "models/setting/customer.class.php";
-class customerOrganization extends customer {
+require_once "models/setting/customerOrganizationManager.class.php";
+class customerOrganization extends customerOrganizationManager {
 
     public $_organization_id;
     public $_customer_id;
@@ -9,6 +8,16 @@ class customerOrganization extends customer {
         $this->_organization_id;
         $this->_customer_id;
     }
+
+    // Verifie si usager est associé à une organisation
+    public function customerOrganizationExist($id) {
+            $stmt = $this->getCnx()->prepare("SELECT COUNT(*) FROM customer_organization WHERE customer_id = :customerId");
+            $stmt->bindParam(':customerId', $id, PDO::PARAM_INT); 
+            $stmt->execute();
+            $existe = $stmt->fetchColumn(); 
+            return $existe > 0; 
+    }
+    
 
 
     // Customer organization 
@@ -23,7 +32,7 @@ class customerOrganization extends customer {
     public function setCustomerId($id) {
         $this->_customer_id = $id;
     }
-    public function getCustomer(){
+    public function getCustomerId(){
         return $this->_customer_id;
     }
 
@@ -70,6 +79,17 @@ class customerOrganization extends customer {
             $sql = "SELECT * FROM customer_organization WHERE customer_id = :customer_id";
             $stmt = $this->getCnx()->prepare($sql);
             $stmt->bindParam(":customer_id", $this->_customer_id);
+            if($stmt->execute()) {
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            } else {
+                return null;
+            }
+        }
+
+        public function hydrateById(INT $id) {
+            $sql = "SELECT * FROM customer_organization WHERE customer_id = :customer_id";
+            $stmt = $this->getCnx()->prepare($sql);
+            $stmt->bindParam(":customer_id", $id);
             if($stmt->execute()) {
                 return $stmt->fetchAll(PDO::FETCH_ASSOC);
             } else {

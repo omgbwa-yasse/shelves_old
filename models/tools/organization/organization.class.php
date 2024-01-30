@@ -44,8 +44,8 @@ public function getOrganizationParentId(){ return $this->_organization_parent_id
 // Organization
 public function saveOrganization(){
     $resultat = NULL ;
-    $rqt ="INSERT INTO organization (organization_code, organization_title,	organization_observation, organization_parent_id, user_id)
-        VALUES(?,?,?,?,1)";
+    $rqt ="INSERT INTO organization (organization_code, organization_title,	organization_observation, organization_parent_id)
+        VALUES(?,?,?,?)";
     $rqt =$this->getCnx()->prepare($rqt);
     if($rqt->execute(array($this->getOrganizationCode(),$this->getOrganizationTitle(),$this->getOrganizationObservation(),$this->getOrganizationParentId())))
     { 
@@ -61,7 +61,7 @@ public function setOrganizationByCode($code){
             organization_code as code, 
             organization_title as title,	
             organization_observation, 
-            organization_parent_id as parent_id, 
+            organization_parent_id as parent_id
     FROM organization 
     WHERE organization.organization_code = :code";
     $rqt = $this->getCnx()->prepare($rqt);

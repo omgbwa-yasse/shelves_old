@@ -32,26 +32,27 @@
 </table>
 
 <h2>Organisation</h2>
-<?
-
-foreach($list as $item) {
-  echo $item["id"];
-}
-
+<?php
+if($customerOrganization->customerOrganizationExist($customer->getCustomerId())){
 ?>
-
-
 <ol>
-    <?php 
-      $organization = new organization();
-      $organization->setOrganizationById($id);
-      echo "<li>";
-        echo $organization->getOrganizationTitle();
-        echo "(" . $organization->getOrganizationCode(). ")";
-      echo "</li>";
-    ?>
+<?php 
+    $organization = new organization();
+    $organization->setOrganizationById($id);
+    echo "<li>";
+      echo $organization->getOrganizationTitle();
+      echo "(" . $organization->getOrganizationCode(). ")";
+    echo "</li>";
+}
+?>
 </ol>
+
+
+
+
+
 <a href="index.php?q=setting&categ=customerOrganization&sub=add&id=<?=$customer->getCustomerId()?>">Ajouter une organisation</a>
+<a href="index.php?q=setting&categ=customerOrganization&sub=delete&id=<?=$customer->getCustomerId()?>">Supprimer une organisation</a>
 
 <h2>Contact</h2>
 <ol>
