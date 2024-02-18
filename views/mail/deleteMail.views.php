@@ -18,15 +18,12 @@ foreach ($mail as $mail) {
     echo "<tr>";
     echo "<td><b> Date de création  :</b>".$mail['mail_date_creation'];
     echo "<tr>";
-    echo "<td><b> ID du panier  :</b>".$mail['mail_basket_id'];
-    echo "<tr>";
+
     echo "<td><b> ID de la priorité  :</b>".$mail['mail_priority_id'];
     echo "<tr>";
     echo "<td><b> ID du docnum  :</b>".$mail['docnum_id'];
     echo "<tr>";
     echo "<td><b> ID de la typologie  :</b>".$mail['mail_typology_id'];
-    echo "<tr>";
-    echo "<td><b> ID du processus  :</b>".$mail['mail_process_id'];
     echo "<tr>";
     echo "</table>";
     $mailObj = new Mail();
