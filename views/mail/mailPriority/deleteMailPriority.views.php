@@ -20,4 +20,4 @@ echo "<hr/>";
 }
 
 ?>
-<a href="index.php?q=mail&categ=priority&sub=allPriority"> <- tous les niveau de priorité</a>
+<a href="index.php?q=mail&categ=priority&sub=all"> <- tous les niveau de priorité</a>

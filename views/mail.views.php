@@ -5,6 +5,9 @@
 <p class="btnSousMenu">Recherche</p>
 <ul class="optionSousMenu">  
     <li>
+        <a href="index.php?q=mail&categ=mailDocnum&sub=create">Creer un document numerique </a>
+    </li>
+    <li>
         <a href="index.php?q=mail&categ=mail&sub=allmail">  afficher  les Couriels</a>
     </li>   
     <li>
@@ -48,6 +51,11 @@
         <a href="index.php?q=mail&categ=mailPriority&sub=allmailPriority">  Gérer  les Niveaux de Priorité </a>
         
     </li>  
+
+    <li>
+        <a href="index.php?q=mail&categ=mailTypology&sub=all">  Gérer  les Typologies  </a>
+        
+    </li> 
 </ul>
        
 <p class="btnSousMenu">Gestion des espaces</p>

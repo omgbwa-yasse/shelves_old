@@ -61,9 +61,9 @@ class MailTypology extends mail {
     }
 
     // Database operations
-    public function createMailTypology($mail_typology_id, $mail_typology_title, $mail_typology_observation, $activity_id, $treatment_duration_id) {
-        $mail_typology = $this->getCnx()->prepare("INSERT INTO mail_typology (mail_typology_id, mail_typology_title, mail_typology_observation, activity_id, treatment_duration_id) VALUES (:mail_typology_id, :mail_typology_title, :mail_typology_observation, :activity_id, :treatment_duration_id)");
-        $mail_typology->execute(["mail_typology_id" => $mail_typology_id, "mail_typology_title" => $mail_typology_title, "mail_typology_observation" => $mail_typology_observation, "activity_id" => $activity_id, "treatment_duration_id" => $treatment_duration_id]);
+    public function createMailTypology($mail_typology_id, $mail_typology_title, $mail_typology_observation) {
+        $mail_typology = $this->getCnx()->prepare("INSERT INTO mail_typology (mail_typology_id, mail_typology_title, mail_typology_observation) VALUES (:mail_typology_id, :mail_typology_title, :mail_typology_observation)");
+        $mail_typology->execute(["mail_typology_id" => $mail_typology_id, "mail_typology_title" => $mail_typology_title, "mail_typology_observation" => $mail_typology_observation]);
     }
 
     public function deleteMailTypology($mail_typology_id) {

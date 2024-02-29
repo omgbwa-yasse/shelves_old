@@ -94,17 +94,16 @@ public function setMailById($id) {
 
 //create a mail
 
-public function createMail($mail_id,$mail_reference,$mail_title,$mail_observation,$mail_date_creation,$mail_basket_id,$mail_priority_id,$mail_docnum_id,$process_id,$mail_typology_id){
-    $mail  = $this->getCnx()->prepare( "INSERT INTO mail ( mail_id,mail_reference,mail_title,mail_observation,mail_date_creation,mail_basket_id,mail_priority_id,mail_docnum_id,process_id,mail_typology_id) 
-    VALUES ( NULL,:mail_reference,:mail_title,:mail_observation,:mail_date_creation,:mail_basket_id,:mail_priority_id,:mail_docnum_id,:process_id,:mail_typology_id)");
+public function createMail($mail_id,$mail_reference,$mail_title,$mail_observation,$mail_date_creation,$mail_priority_id,$mail_docnum_id,$mail_typology_id){
+    $mail  = $this->getCnx()->prepare( "INSERT INTO mail ( mail_id,mail_reference,mail_title,mail_observation,mail_date_creation,mail_priority_id,mail_docnum_id,mail_typology_id) 
+    VALUES ( NULL,:mail_reference,:mail_title,:mail_observation,:mail_date_creation,:mail_priority_id,:mail_docnum_id,:mail_typology_id)");
     $mail->execute([':mail_reference'=>$mail_reference,
                     ':mail_title'=>$mail_title,
                     ':mail_observation'=>$mail_observation,
                     ':mail_date_creation'=>$mail_date_creation,
-                    ':mail_basket_id'=>$mail_basket_id,
+                   
                     ':mail_priority_id'=>$mail_priority_id,
                     ':mail_docnum_id'=>$mail_docnum_id,
-                    ':process_id'=>$process_id,
                     ':mail_typology_id'=>$mail_typology_id]);
 }
 public function updateMail($mail_id, $mail_reference, $mail_title, $mail_observation, $mail_date_creation, $mail_basket_id, $mail_priority_id, $docnum_id, $process_id, $mail_typology_id){

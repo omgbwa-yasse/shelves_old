@@ -15,7 +15,7 @@ if (isset($_POST['priority_reference'])) {
 ?>
 <h1>Modifier  un Niveau de priorité </h1>
 
-<form  method="POST" action="index.php?q=mail&categ=mailPriority&sub=updatePriority&id=<?=$_GET['id']?>">
+<form  method="POST" action="index.php?q=mail&categ=mailPriority&sub=update&id=<?=$_GET['id']?>">
 <table>
 
    

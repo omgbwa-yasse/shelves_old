@@ -31,19 +31,7 @@ $mail->updateMail($_GET['id'],$_POST['mail_reference'],$_POST['mail_title'],$_PO
     <td><label for="mail_date_creation">Date de creation du Courriel</label></td>
     <td><input type="date" id="mail_date_creation" name="mail_date_creation"></td>
   </tr>
-  <tr>
-    <td><label for="mail_basket_id">Panier du mail :</label></td>
-    <td> <select name="mail_basket_id">
-<?php
-    $allmailBasket=$mailManager->allMailBasket();
-    foreach($allmailBasket as $basket){
-       
-        echo "<option value=\"".$basket['mail_basket_id']."\">";
-        echo $basket['mail_basket_title'] ."</option>";
-    }
- ?>
-                </select></td>
-  </tr>
+  
   <tr>
     <td><label for="mail_priority_id">Niveau de Priorité :</label></td>
     <td> <select name="mail_priority_id">

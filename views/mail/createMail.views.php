@@ -5,11 +5,14 @@ require_once 'models/mail/mailManager.class.php';
 $mail= new mail();
 $mailManager= new mailManager();
 
-if (isset($_POST['mail_reference']) && isset($_POST['mail_title']) && isset($_POST['mail_observation']) && isset($_POST['mail_date_creation']) && isset($_POST['mail_basket_id']) && isset($_POST['mail_priority_id']) && isset($_POST['mail_docnum_id']) && isset($_POST['process_id']) && isset($_POST['mail_typology_id'])) {
- 
-$mail->createMail(8,$_POST['mail_reference'],$_POST['mail_title'],$_POST['mail_observation'],$_POST['mail_date_creation'],$_POST['mail_basket_id'],$_POST['mail_priority_id'],$_POST['mail_docnum_id'],$_POST['process_id'],$_POST['mail_typology_id']);
-
+if (isset($_POST['mail_reference']) && isset($_POST['mail_title']) && isset($_POST['mail_observation']) && isset($_POST['mail_date_creation'])  && isset($_POST['mail_priority_id'])  && isset($_POST['mail_typology_id'])) {
+ if (!isset($_POST['mail_docnum_id']) ) {
+     $_POST['mail_docnum_id'] = null ;
+ }
+$mail->createMail(null,$_POST['mail_reference'],$_POST['mail_title'],$_POST['mail_observation'],$_POST['mail_date_creation'],$_POST['mail_priority_id'],$_POST['mail_docnum_id'],$_POST['mail_typology_id']);
+echo '<p> success </p> ';
 }
+
 ?>
 <h1>Creer un Couriel</h1>
 
@@ -21,7 +24,7 @@ $mail->createMail(8,$_POST['mail_reference'],$_POST['mail_title'],$_POST['mail_o
   </tr> -->
   <tr>
     <td><label for="mail_reference">Reference du Courrier  :</label></td>
-    <td><input type="text" id="mail_reference" name="mail_reference"></td>
+    <td><input type="number" id="mail_reference" name="mail_reference"></td>
   </tr>
   <tr>
     <td><label for="mail_title">Titre du Courriel :</label></td>

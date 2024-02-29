@@ -15,7 +15,7 @@ if (isset($_POST['mail_typology_id']) && isset($_POST['mail_typology_title']) &&
 ?>
 <h1>Modifier un Typologie de Couriels </h1>
 
-<form  method="POST" action="index.php?q=mail&categ=mailTypology&sub=updateMailTypology&id=<?=$_GET['id']?>">
+<form  method="POST" action="index.php?q=mail&categ=mailTypology&sub=update&id=<?=$_GET['id']?>">
 <table>
    <tr>
     <td><label for="mail_typology_id">ID :</label></td>

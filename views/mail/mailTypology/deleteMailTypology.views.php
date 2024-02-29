@@ -28,4 +28,4 @@ echo "<hr/>";
 }
 
 ?>
-<a href="index.php?q=mail&categ=mailTypology&sub=allMailTypologies"> <- tous les  Couriels Typologies</a>
+<a href="index.php?q=mail&categ=mailTypology&sub=all"> <- tous les  Couriels Typologies</a>

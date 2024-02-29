@@ -43,13 +43,13 @@
     //mail Docnum
             elseif($_GET['q'] == "mail" && $_GET['categ'] == "mailDocnum" && !empty($_GET['sub'])){
                 switch($_GET['sub']){
-                    case "createMailDocnum" : include "views/mail/mailDocnum/createMailDocnum.views.php";
+                    case "create" : include "views/mail/mailDocnum/createMailDocnum.views.php";
                     break ;
-                    case "allMailDocnum": include "views/mail/mailDocnum/allMailDocnum.views.php";
+                    case "all": include "views/mail/mailDocnum/allMailDocnum.views.php";
                     break ;
-                    case "updateMailDocnum": include "views/mail/mailDocnum/UpdateMailDocnum.views.php";
+                    case "update": include "views/mail/mailDocnum/UpdateMailDocnum.views.php";
                     break ;
-                    case "deleteMailDocnum": include "views/mail/mailDocnum/deleteMailDocnum.views.php";
+                    case "delete": include "views/mail/mailDocnum/deleteMailDocnum.views.php";
                     break ;
                 
                     default : include "views/mail/mailDocnum/allMailDocnum.views.php";
@@ -60,13 +60,13 @@
         // mail priority
             elseif($_GET['q'] == "mail" && $_GET['categ'] == "mailPriority" && !empty($_GET['sub'])){
                 switch($_GET['sub']){
-                    case "createMailPriority" : include "views/mail/mailPriority/createMailPriority.views.php";
+                    case "create" : include "views/mail/mailPriority/createMailPriority.views.php";
                     break ;
-                    case "allMailPriority": include "views/mail/mailPriority/allMailPriority.views.php";
+                    case "all": include "views/mail/mailPriority/allMailPriority.views.php";
                     break ;
-                    case "updateMailPriority": include "views/mail/mailPriority/UpdateMailPriority.views.php";
+                    case "update": include "views/mail/mailPriority/UpdateMailPriority.views.php";
                     break ;
-                    case "deleteMailPriority": include "views/mail/mailPriority/deleteMailPriority.views.php";
+                    case "delete": include "views/mail/mailPriority/deleteMailPriority.views.php";
                     break ;
                 
                     default : include "views/mail/mailPriority/allMailPriority.views.php";
@@ -123,13 +123,13 @@
        //mail Typology
        elseif($_GET['q'] == "mail" && $_GET['categ'] == "mailTypology" && !empty($_GET['sub'])){
         switch($_GET['sub']){
-            case "createMailTypology" : include "views/mail/mailTypology/createMailTypology.views.php";
+            case "create" : include "views/mail/mailTypology/createMailTypology.views.php";
             break ;
-            case "allMailTypology": include "views/mail/mailTypology/allMailTypology.views.php";
+            case "all": include "views/mail/mailTypology/allMailTypology.views.php";
             break ;
-            case "updateMailTypology": include "views/mail/mailTypology/UpdateMailTypology.views.php";
+            case "update": include "views/mail/mailTypology/UpdateMailTypology.views.php";
             break ;
-            case "deleteMailTypology": include "views/mail/mailTypology/deleteMailTypology.views.php";
+            case "delete": include "views/mail/mailTypology/deleteMailTypology.views.php";
             break ;
         
             default : include "views/mail/mailTypology/allMailTypology.views.php";

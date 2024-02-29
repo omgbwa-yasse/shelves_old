@@ -2,19 +2,18 @@
 require_once 'models/mail/mailManager.class.php';
 
 ?>
-<ul class="S_optionSousMenu">
-    <li><a href="index.php?q=mail&categ=mailTypology&sub=createMailTypology"> Créer un Typologie de Couriels </a></li>
-</ul>
+
+
 
 <h1> Couriels Typologies</h1>
+<a href="index.php?q=mail&categ=mailTypology&sub=create"> Créer un Typologie de Couriels </a>
+<br>
 <table border="2" width="800px">
     <tr>        
         <th>ID </th>
         <th>Titre</th>
         <th>Observation</th>
-        <th>ID de l'activité</th>
-        <th>ID de la durée du traitement</th>
-        <th colspan =3>Action</th>
+        <th colspan =2>Action</th>
     </tr>
 <?php
 $mailTypology = new mailManager();
@@ -24,12 +23,11 @@ foreach($allMailTypologies as $mailTypology){
     echo "<td>". $mailTypology['mail_typology_id'];
     echo "<td>". $mailTypology['mail_typology_title'];
     echo "<td>". $mailTypology['mail_typology_observation'];
-    echo "<td>". $mailTypology['activity_id'];
-    echo "<td>". $mailTypology['treatment_duration_id'];
    
    
-    echo "<td><a href=\"index.php?q=mail&categ=mailTypology&sub=deleteMailTypology&id=". $mailTypology['mail_typology_id'] ."\">Supprimer</a>";
-    echo "<td><a href=\"index.php?q=mail&categ=mailTypology&sub=updateMailTypology&id=". $mailTypology['mail_typology_id'] ."\">Modifier</a>";
+   
+    echo "<td><a href=\"index.php?q=mail&categ=mailTypology&sub=delete&id=". $mailTypology['mail_typology_id'] ."\"><i class='fas fa-trash'></a>";
+    echo "<td><a href=\"index.php?q=mail&categ=mailTypology&sub=update&id=". $mailTypology['mail_typology_id'] ."\"><i class='fas fa-edit'></a>";
     
     
 

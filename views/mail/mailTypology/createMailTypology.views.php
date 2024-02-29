@@ -3,14 +3,15 @@ require_once 'models/mail/MailTypology.class.php';
 
 $mailTypology = new MailTypology();
 
-if ( isset($_POST['mail_typology_title']) && isset($_POST['mail_typology_observation']) && isset($_POST['activity_id']) && isset($_POST['treatment_duration_id'])) {
+if ( isset($_POST['mail_typology_title']) && isset($_POST['mail_typology_observation'])) {
  
-    $mailTypology -> createMailTypology(NULL,$_POST['mail_typology_title'], $_POST['mail_typology_observation'], $_POST['activity_id'], $_POST['treatment_duration_id']);
+    $mailTypology -> createMailTypology(NULL,$_POST['mail_typology_title'], $_POST['mail_typology_observation']);
+    echo '<p> success </p> ';
 }
 ?>
 <h1>Créer un Typologie de Couriels </h1>
 
-<form  method="POST" action="index.php?q=mail&categ=mailTypology&sub=createMailTypology">
+<form  method="POST" action="index.php?q=mail&categ=mailTypology&sub=create">
 <table>
  
   <tr>
@@ -21,13 +22,6 @@ if ( isset($_POST['mail_typology_title']) && isset($_POST['mail_typology_observa
     <td><label for="mail_typology_observation">Observation du Typologie de Couriels :</label></td>
     <td><input type="text" id="mail_typology_observation" name="mail_typology_observation"></td>
   </tr>
-  <tr>
-    <td><label for="activity_id">ID de l'activité :</label></td>
-    <td><input type="text" id="activity_id" name="activity_id"></td>
-  </tr>
-  <tr>
-    <td><label for="treatment_duration_id">ID de la durée du traitement :</label></td>
-    <td><input type="text" id="treatment_duration_id" name="treatment_duration_id"></td>
-  </tr>
+
  <tr><td><input type="submit" value="Submit"></td>   <td><input type="reset" value="Annuler"></td></tr> </table>
 </form>
