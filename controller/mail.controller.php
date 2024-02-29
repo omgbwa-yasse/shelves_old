@@ -106,18 +106,18 @@
                 }
     }
         //mail copy
-            elseif($_GET['q'] == "mail" && $_GET['categ'] == "mailcopy" && !empty($_GET['sub'])){
+            elseif($_GET['q'] == "mail" && $_GET['categ'] == "mailCopy" && !empty($_GET['sub'])){
                 switch($_GET['sub']){
-                    case "create" : include "views/mail/mailcopy/create.views.php";
+                    case "create" : include "views/mail/mailCopy/create.views.php";
                     break ;
-                    case "all": include "views/mail/mailcopy/all.views.php";
+                    case "all": include "views/mail/mailCopy/all.views.php";
                     break ;
-                    case "update": include "views/mail/mailcopy/Update.views.php";
+                    case "update": include "views/mail/mailCopy/Update.views.php";
                     break ;
-                    case "delete": include "views/mail/mailcopy/delete.views.php";
+                    case "delete": include "views/mail/mailCopy/delete.views.php";
                     break ;
                 
-                    default : include "views/mail/mailcopy/allMailcopy.views.php";
+                    default : include "views/mail/mailCopy/all.views.php";
                 }
     }
        //mail Typology

@@ -46,5 +46,17 @@ if (isset($_POST['mail_send_date']) && isset($_POST['mail_id']) && isset($_POST[
       ?>
                 </select></td>
   </tr>
+  <tr>
+    <td><label for="copy_type_id">Entrez le Type de copy :</label></td>
+    <td> <select name="copy_type_id">
+      <?php
+            $allcopytype =$mailManager->allCopyType();
+            foreach($allcopytype as $copytype){
+                echo "<option value=\"".$copytype['copy_type_id']."\">";
+                echo $copytype['copy_type_title'] ."</option>";
+            }
+      ?>
+                </select></td>
+  </tr>
  <tr><td><input type="submit" value="Submit"></td>   <td><input type="reset" value="Annuler"></td></tr> </table>
 </form>

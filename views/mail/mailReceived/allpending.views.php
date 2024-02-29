@@ -17,8 +17,8 @@ foreach($mailReceiveds as $mailReceived){
     echo "<td>". $mailReceived['type_id'];
     echo "<td>". $mailReceived['mail_id'];
     echo "<td>". $mailReceived['organization_id'];
-    echo "<td><a href=\"index.php?q=mailReceived&sub=delete&id=". $mailReceived['mail_received_id'] ."\"><i class='fas fa-trash'></a>";
-    echo "<td><a href=\"index.php?q=mailReceived&sub=update&id=". $mailReceived['mail_received_id'] ."\"><i class='fas fa-edit'></a>";
+    echo "<td><a href=\"index.php?q=mailReceived&sub=create&id=". $mailReceived['mail_received_id'] ."\"><i class='fas fa-thumbs-up'></a>";
+    echo "<td><a href=\"index.php?q=mailReceived&sub=reject&id=". $mailReceived['mail_received_id'] ."\"><i class='fas fa-thumbs-down'></a>";
 }
 echo "</table>";
 ?>

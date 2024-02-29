@@ -12,6 +12,8 @@ class user extends userManager{
     private $_user_sand;
     private $_user_birthday;
 
+    private $_organization_id;
+
     public function __construct(){
         $this->_user_pseudo;
         $this->_user_password;
@@ -20,6 +22,7 @@ class user extends userManager{
         $this->_user_id;
         $this->_user_sand;
         $this->_user_birthday;
+        $this->_organization_id;
     }
     public function getUserSand(){ return $this->_user_sand;}
     public function createUserSand(){
@@ -27,10 +30,22 @@ class user extends userManager{
         $this->_user_sand = substr($fullSand,0,5);
     }
 
+    
     public function setUserSand($sand){ $this->_user_sand = $sand; }
     
     public function setUserName($name){ $this->_user_name = $name;}
     public function getUserName(){ return $this->_user_name;}
+
+
+    public function getorganization_id() {
+        return $this->_organization_id;
+    }
+    public function setOrganizationId($organization_id) {
+        $this->_organization_id = $organization_id;
+    }
+    
+
+
     public function setUserSurname($surname){ $this->_user_surname = $surname;}
     public function getUserSurname(){ return $this->_user_surname;}
 
@@ -39,6 +54,7 @@ class user extends userManager{
     public function setPasswordByCrypt($password){ 
         $this->_user_password = sha1(sha1($password).$this->getUserSand());
     }
+
  
     public function setUserSandByPseudo() {
         $stmt = $this->getCnx()->prepare('SELECT user_sand FROM user WHERE user_pseudo = :pseudo');
@@ -155,15 +171,19 @@ public function passwordVerification() {
         $stmt = $this->getCnx()->prepare('UPDATE user SET user_pseudo = :newPseudo WHERE user_pseudo = :user_pseudo');
         $stmt->execute([':newPseudo' => $newPseudo, ':user_pseudo' => $user_pseudo]);
     }
+
+   
+
     public function saveUser(){
-        $stmt = $this->getCnx()->prepare("INSERT INTO user(user_pseudo,user_name,user_surname,user_password, user_sand, user_birthday) VALUES(:user_pseudo,:user_name,:user_surname,:user_password,:user_sand,:user_birthday)");
+        $stmt = $this->getCnx()->prepare("INSERT INTO user(user_pseudo,user_name,user_surname,user_password, user_sand, user_birthday, organization_id) VALUES(:user_pseudo,:user_name,:user_surname,:user_password,:user_sand,:user_birthday ,:organization_id)");
         $stmt->execute([
             ':user_pseudo' => $this->getUserPseudo(),
             ':user_name' => $this->getUserName(),
             ':user_surname' => $this->getUserSurname(),
             ':user_password' => $this->getUserPassword(),
             ':user_sand' => $this->getUserSand(),
-            ':user_birthday' => $this->getUserBirthday()
+            ':user_birthday' => $this->getUserBirthday(),
+            ':organization_id' => $this->getUserBirthday()
         ]);
         return $stmt->rowCount() > 0;
     }

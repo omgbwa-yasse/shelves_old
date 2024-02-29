@@ -33,12 +33,12 @@
     <li><a href="index.php?q=mail&categ=mailSended&sub=create"> Transmettre </a></li>
 </ul>
 
-<p class="btnSousMenu">Activité </p>
+<!-- <p class="btnSousMenu">Activité </p>
 <ul class="optionSousMenu">
     <li>
         <a href="index.php?q=mail&categ=mailActivity&sub=all">  Gérer  les Activitées</a>
     </li>   
-</ul>
+</ul> -->
 
 
 <p class="btnSousMenu">Paramètre</p>

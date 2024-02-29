@@ -25,7 +25,7 @@ foreach($allMailSends as $mailSend){
 
     echo "<td>". $mailSend['mail_reference'];
     echo "<td>". $mailSend['organization_title'];
-    echo "<td>\\";
+    echo "<td>". $mailSend['status'];
    
     echo "<td><a href=\"index.php?q=mail&categ=mailSended&sub=delete&id=". $mailSend['mail_send_id'] ."\"><i class='fas fa-trash'></i></a>";
     echo "<td><a href=\"index.php?q=mail&categ=mailSended&sub=update&id=". $mailSend['mail_send_id'] ."\"><i class='fas fa-edit'></i></a>";
