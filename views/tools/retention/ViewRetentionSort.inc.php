@@ -8,11 +8,11 @@ $retention_sort->setretention_sortById($id);
 <?php
 echo "<table border='0'>";
 echo "<tr>";
-echo "<td><b>Code:</b> " . $retention_sort->getretention_sortcode();
+echo "<td><b>Code de Trie de conservation parent :</b> " . $retention_sort->getretention_sortcode();
 echo "<tr>";
-echo "<td><b>Title:</b> " . $retention_sort->getretention_sortSort();
+echo "<td><b>Titre de Trie de conservation parent :</b> " . $retention_sort->getretention_sortSort();
 echo "<tr>";
-echo "<td><b>Comment:</b> " . $retention_sort->getretention_sortcomment();
+echo "<td><b>Commentaire:</b> " . $retention_sort->getretention_sortcomment();
 echo "<tr>";
 echo "<td><b><a href=\"index.php?q=tools&categ=retentonsort&sub=deleteretentionsort&id=" . $retention_sort->getretention_sortId() . "\">deleteretentionsort</a>";
 echo "<td><b><a href=\"index.php?q=tools&categ=retentonsort&sub=updaterententionsort&id=" . $retention_sort->getretention_sortId() . "\">updaterententionsort</a>";

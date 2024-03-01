@@ -23,28 +23,28 @@ $comrule ->setcomrulebyid($_GET['id']);
     <td><input type="number" id="communicability_id" name="communicability_id"  value= <?=$comrule ->getcomrule_id();?>  readonly></td>
   </tr>
   <tr>
-    <td><label for="communicability_time">Communicability Time:</label></td>
+    <td><label for="communicability_time">Duree de communicabilite:</label></td>
     <td><input type="number" id="communicability_time" name="communicability_time" value= <?=$comrule ->getcomrule_time();?> ></td>
   </tr>
   <tr>
-    <td><label for="communicability_title">Communicability Title:</label></td>
+    <td><label for="communicability_title">titre de communicabilite:</label></td>
     <td><input type="text" id="communicability_title" name="communicability_title" value= <?=$comrule ->getcomrule_title();?> ></td>
   </tr>
   <tr>
-    <td><label for="communicability_reference">Communicability Reference:</label></td>
+    <td><label for="communicability_reference">Reference de communicabilite:</label></td>
     <td><textarea id="communicability_reference" name="communicability_reference" ><?=$comrule ->getcomrule_ref();?></textarea></td>
   </tr>
   <tr>
-    <td><label for="classification_id">Classification ID:</label></td>
+    <td><label for="classification_id">Classification associer:</label></td>
     <td> <select name="classification_id" value= <?=$comrule ->getcomrule_class_id();?>>
-<?php
-    foreach($ids as $id){
-        $class = new activityClass();
-        $class -> setClassById($id['id']);
-        echo "<option value=\"".$class ->getClassId()."\">";
-        echo $class->getClassCode() ." - ". $class->getClassTitle() ."</option>";
-    }
- ?>
+        <?php
+            foreach($ids as $id){
+                $class = new activityClass();
+                $class -> setClassById($id['id']);
+                echo "<option value=\"".$class ->getClassId()."\">";
+                echo $class->getClassCode() ." - ". $class->getClassTitle() ."</option>";
+            }
+        ?>
                 </select></td>
   </tr>
 

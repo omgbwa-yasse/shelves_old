@@ -10,15 +10,15 @@ $retention_sort->setretention_sortById($_GET['id']);
 <form method="POST" action="index.php?q=tools&categ=retentonsort&sub=updaterententionsort&id=<?= $retention_sort->getretention_sortId(); ?>">
   <table>
     <tr>
-      <td><label for="retention_sort_code">Retention retentonsort Code:</label></td>
+      <td><label for="retention_sort_code"> Code de conservation:</label></td>
       <td><input type="text" id="retention_sort_code" name="retention_sort_code" value=<?= $retention_sort->getretention_sortcode(); ?>></td>
     </tr>
     <tr>
-      <td><label for="retention_sort_title">Retention retentonsort Title:</label></td>
+      <td><label for="retention_sort_title">Titre de Trie de conservation :</label></td>
       <td><input type="text" id="retention_sort_title" name="retention_sort_title" value=<?= $retention_sort->getretention_sortSort(); ?>></td>
     </tr>
     <tr>
-      <td><label for="retention_sort_comment">Retention retentonsort Comment:</label></td>
+      <td><label for="retention_sort_comment">Commentaire :</label></td>
       <td><textarea id="retention_sort_comment" name="retention_sort_comment"><?= $retention_sort->getretention_sortcomment(); ?></textarea></td>
     </tr>
     <tr>

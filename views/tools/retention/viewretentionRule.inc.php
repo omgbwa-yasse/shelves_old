@@ -8,13 +8,13 @@ $retention->setRetentionById($id);
 <?php
 echo "<table border='0'>";
 echo "<tr>";
-echo "<td><b>Duration:</b> " . $retention->getRetentionDuration();
+echo "<td><b>Duree de conservation::</b> " . $retention->getRetentionDuration();
 echo "<tr>";
-echo "<td><b>retentonsort:</b> " . $retention->getRetentionSort();
+echo "<td><b>Trie de conservation:</b> " . $retention->getRetentionSort();
 echo "<tr>";
-echo "<td><b>Reference:</b> " . $retention->getRetentionReference();
+echo "<td><b>Reference de conservation :</b> " . $retention->getRetentionReference();
 echo "<tr>";
-echo "<td><b>retentonsort ID:</b> " . $retention->getRetentionSortId();
+echo "<td><b>Trie de conservation parent :</b> " . $retention->getRetentionSortId();
 echo "<tr>";
 echo "<td><b><a href=\"index.php?q=tools&categ=retention&sub=delete&id=" . $retention->getRetentionId() . "\">Delete</a>";
 echo "<td><b><a href=\"index.php?q=tools&categ=retention&sub=update&id=" . $retention->getRetentionId() . "\">Update</a>";

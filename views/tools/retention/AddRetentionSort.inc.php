@@ -9,7 +9,7 @@ if (isset($_POST['retention_sort_code']) && isset($_POST['retention_sort_title']
 <form method="POST" action="index.php?q=tools&categ=retentonsort&sub=addretentionsort">
   <table>
     <tr>
-      <td><label for="retention_sort_code">Code du tri:</label></td>
+      <td><label for="retention_sort_code">Code du tri de conservation:</label></td>
       <td><input type="text" id="retention_sort_code" name="retention_sort_code"></td>
     </tr>
     <tr>
@@ -17,7 +17,7 @@ if (isset($_POST['retention_sort_code']) && isset($_POST['retention_sort_title']
       <td><input type="text" id="retention_sort_title" name="retention_sort_title"></td>
     </tr>
     <tr>
-      <td><label for="retention_sort_comment">Commentaire du tri de conservation:</label></td>
+      <td><label for="retention_sort_comment">Commentaire :</label></td>
       <td><textarea id="retention_sort_comment" name="retention_sort_comment"></textarea></td>
     </tr>
     <tr>

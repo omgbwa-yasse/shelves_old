@@ -13,7 +13,7 @@ $comrule ->setcomrulebyid($id);
 
 echo "<table border='0'>";
 echo "<tr>";
-echo "<td><b>  TIME  :</b>". $comrule ->getcomrule_time();
+echo "<td><b>  Duree  :</b>". $comrule ->getcomrule_time();
 echo "<tr>";
 echo "<td><b> TITRE  :</b>".$comrule ->getcomrule_title();
 echo "<tr>";

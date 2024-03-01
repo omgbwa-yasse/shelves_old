@@ -6,10 +6,10 @@ $allcomrules =$comrules->allcomrule();
 <h1>Regle de communicabilité</h1>
 <table border="2" width="800px">
     <tr>
-        <th>Time</th>
-        <th>title</th>
+        <th>Duree</th>
+        <th>titre</th>
         <th>references </th>
-        <th>id de la classe associer</th>
+        <th>classe associer</th>
         <th colspan =3>action</th>
     </tr>
 <?php

@@ -14,19 +14,19 @@ $retention->setRetentionById($_GET['id']);
      <td><input type="number" id="retention_id" name="retention_id"  value= <?=$retention ->getRetentionId();?>  readonly></td>
     </tr>
     <tr>
-      <td><label for="retention_duration">Retention Duration:</label></td>
+      <td><label for="retention_duration">Duree de conservation::</label></td>
       <td><input type="number" id="retention_duration" name="retention_duration" value=<?= $retention->getRetentionDuration(); ?>></td>
     </tr>
     <tr>
-      <td><label for="retention_sort">Retention retentonsort:</label></td>
+      <td><label for="retention_sort">Trie de conservation:</label></td>
       <td><input type="text" id="retention_sort" name="retention_sort" value=<?= $retention->getRetentionSort(); ?>></td>
     </tr>
     <tr>
-      <td><label for="retention_reference">Retention Reference:</label></td>
+      <td><label for="retention_reference">Reference de conservation :</label></td>
       <td><textarea id="retention_reference" name="retention_reference"><?= $retention->getRetentionReference(); ?></textarea></td>
     </tr>
     <tr>
-      <td><label for="retention_sort_id">Retention retentonsort ID:</label></td>
+      <td><label for="retention_sort_id">Trie de conservation parent :</label></td>
       <td><input type="number" id="retention_sort_id" name="retention_sort_id" value=<?= $retention->getRetentionSortId(); ?>></td>
     </tr>
     <tr>

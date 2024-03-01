@@ -7,8 +7,8 @@ $allRetentionSorts = $retention_sorts->allretention_sorts();
 <table border="2" width="800px">
   <tr>
     <th>Code</th>
-    <th>Title</th>
-    <th>Comment</th>
+    <th>titre</th>
+    <th>Commentaire</th>
     <th colspan=3>Action</th>
   </tr>
   <?php

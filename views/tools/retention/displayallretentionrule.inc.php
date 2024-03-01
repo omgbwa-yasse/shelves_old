@@ -6,10 +6,10 @@ $allRetentions = $retentions->allRetentions();
 <h1>Retentions</h1>
 <table border="2" width="800px">
   <tr>
-    <th>Duration</th>
-    <th>retentonsort</th>
+    <th>Duree</th>
+    <th>Trie de conservation</th>
     <th>Reference</th>
-    <th>retentonsort ID</th>
+    <th>Parent</th>
     <th colspan=3>Action</th>
   </tr>
   <?php
