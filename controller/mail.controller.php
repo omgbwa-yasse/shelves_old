@@ -86,6 +86,12 @@
                     
                     case "allpending": include "views/mail/mailReceived/allpending.views.php";
                     break ;
+
+                    case "reject": include "views/mail/mailReceived/reject.views.php";
+                    break ;
+                    
+                    case "receive": include "views/mail/mailReceived/receive.views.php";
+                    break ;
                 
                     default : include "views/mail/mailReceived/allMailReceived.views.php";
                 }

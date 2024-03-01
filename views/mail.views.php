@@ -33,7 +33,7 @@
     <li>
         <a href="index.php?q=mail&categ=mail&sub=createMail">  Créer un Couriel</a>
     </li>  
-    <li><a href="index.php?q=mail&categ=mailReceived&sub=create"> Recevoir </a></li>
+    <li><a href="index.php?q=mail&categ=mailReceived&sub=receive"> Recevoir </a></li>
     <li><a href="index.php?q=mail&categ=mailSended&sub=create"> Transmettre </a></li>
 </ul>
 

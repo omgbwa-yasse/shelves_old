@@ -87,6 +87,11 @@ class MailSend extends mail {
         $mail_send->execute(['mail_send_id' => $mail_send_id]);
 
     }
+    public function reject($mail_send_id) {
+        $mail_send = $this->getCnx()->prepare('UPDATE mail_send SET  status = "Refuser" WHERE mail_send_id = :mail_send_id');
+        $mail_send->execute(['mail_send_id' => $mail_send_id]);
+
+    }
 }
 
 ?>
