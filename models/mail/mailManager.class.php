@@ -117,7 +117,8 @@ public function myReceivedMail($id){
     $mail = $this->getCnx()->prepare('SELECT * FROM mail_send 
                                         inner JOIN user ON user.organization_id = mail_send.organization_id 
                                         inner JOIN organization ON user.organization_id = organization.organization_id 
-                                        WHERE user.user_id = :user_id ');
+                                        inner JOIN mail ON mail.mail_id = mail_send.mail_id
+                                            WHERE user.user_id = :user_id ');
     $mail->execute([':user_id' => $id]);
 
    return $mail->fetchAll();;
@@ -127,7 +128,7 @@ public function allMailReceived(){
     $mail = $this->getCnx()->prepare('SELECT * FROM mail_received ');
     $mail->execute();
 
-   return $mail->fetchAll();;
+   return $mail->fetchAll();
 }
 
 public function searchMailReceivedById($mail_received_id) {

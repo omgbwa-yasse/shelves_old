@@ -82,6 +82,11 @@ class MailSend extends mail {
         $mail_send->execute([':mail_send_id' => $mail_send_id, ':mail_send_date' => $mail_send_date,  'mail_id' => $mail_id, 'organization_id' => $organization_id]);
     }
 
- 
+    public function updateMailSendStatus($mail_send_id) {
+        $mail_send = $this->getCnx()->prepare('UPDATE mail_send SET  status = "Reçu" WHERE mail_send_id = :mail_send_id');
+        $mail_send->execute(['mail_send_id' => $mail_send_id]);
+
+    }
 }
+
 ?>

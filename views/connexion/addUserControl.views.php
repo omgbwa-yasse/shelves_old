@@ -24,6 +24,7 @@ $user->setUserPseudo($_POST['pseudo']);
 $user->setUserName($_POST['name']);
 $user->setUserSurname($_POST['surname']);
 $user->setUserBirthday($_POST['birthday']);
+$user->setOrganizationId($_POST['organization_id']);
 $user->saveUser();
 
 echo "<div class=\"connexion\">";

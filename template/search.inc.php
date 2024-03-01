@@ -10,5 +10,6 @@
         <?php  require_once "models/user/user.class.php";  $user = new user();  $user -> hydrateByPseudo($_COOKIE['pseudo']);?>
     </form>
 </div> 
+<a href="index.php?q=session&categ=user&sub=deconnexion">Deconnexion</a>
 </div>
 </div>

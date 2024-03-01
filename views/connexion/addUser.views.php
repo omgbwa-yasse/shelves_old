@@ -11,7 +11,7 @@ $mailManager= new mailManager();
     <tr><td>retaper le Mot de passe </td><td><input  type="password" name="password2" required></td></tr>
     <tr><td>Année naissance</td><td><input  type="date" name="birthday" required></td></tr>
     <tr>
-    <td><label for="organization_id">Entrez le Nom du receveur :</label></td>
+    <td><label for="organization_id">Entrez le Nom de votre organisation :</label></td>
     <td> <select name="organization_id">
       <?php
             $allorganisation =$mailManager->allorganisation();

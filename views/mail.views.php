@@ -18,6 +18,10 @@
         <a href="index.php?q=mail&categ=mailReceived&sub=all">  afficher  les Couriels Reçu</a>
         
     </li> 
+    <li>
+        <a href="index.php?q=mail&categ=mailReceived&sub=allpending">  afficher  les Couriels Entrant</a>
+        
+    </li>
    
     
 </ul>

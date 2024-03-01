@@ -79,6 +79,7 @@ class user extends userManager{
                 $this->setUserPassword($user['user_password']);
                 $this->setUserSand($user['user_sand']);
                 $this->setUserBirthday($user['user_birthday']);
+                $this->setOrganizationId($user['organization_id']);
             }
             return true;
         } else {
@@ -98,6 +99,7 @@ class user extends userManager{
                 $this->setUserPassword($user['user_password']);
                 $this->setUserSand($user['user_sand']);
                 $this->setUserBirthday($user['user_birthday']);
+                $this->setOrganizationId($user['organization_id']);
             }
             return true;
         } else {
@@ -154,6 +156,7 @@ public function passwordVerification() {
                     $this->setUserPassword($user['user_password']);
                     $this->setUserSand($user['user_sand']);
                     $this->setUserBirthday($user['user_birthday']);
+                    $this->setOrganizationId($user['organization_id']);
                 }
                 return true;
             } else {
@@ -183,7 +186,7 @@ public function passwordVerification() {
             ':user_password' => $this->getUserPassword(),
             ':user_sand' => $this->getUserSand(),
             ':user_birthday' => $this->getUserBirthday(),
-            ':organization_id' => $this->getUserBirthday()
+            ':organization_id' => $this->getorganization_id()
         ]);
         return $stmt->rowCount() > 0;
     }
