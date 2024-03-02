@@ -2,7 +2,7 @@
 require_once 'models/mail/mailManager.class.php';
 
 ?>
-  <a href="index.php?q=mail&categ=mailSend&sub=createMailSend">Envoyer un  Couriels </a>
+  <a href="index.php?q=mail&categ=mailSended&sub=create">Envoyer un  Couriels </a>
 
 <h1> Couriels Envoyers</h1>
 <table width="800px">
