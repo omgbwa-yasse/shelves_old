@@ -1,7 +1,6 @@
 <!-- Merci seigneur pour ce prototype de logiciel -->
 
 <?php 
-// Je test
 session_start();
 require_once 'models/session.class.php';
 $access = new administrator(); 
