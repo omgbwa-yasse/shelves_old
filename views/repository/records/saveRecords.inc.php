@@ -1,10 +1,11 @@
 <?php
 
 require 'models/repository/record.class.php';
+require 'models/repository/author.class.php';
 require_once 'views/repository/records/display.inc.php';
 
 
-if(isset($_POST['level_id']) && isset($_POST['nui']) && isset($_POST['title']) && isset($_POST['date_start']) && isset($_POST['organization_title'])){
+if(isset($_POST['level_id']) && isset($_POST['nui']) && isset($_POST['title']) && isset($_POST['date_start']) && isset($_POST['organization_title']) && isset($_POST['authors'])){
 
             $level_id = htmlspecialchars ($_POST['level_id']);
             $nui = htmlspecialchars ($_POST['nui']);
@@ -44,11 +45,23 @@ if(isset($_POST['level_id']) && isset($_POST['nui']) && isset($_POST['title']) &
             } 
 
             if($record ->controlNui() == TRUE){
+                    
+                    // Enregistrement en générant un NUI
                     $record->setRecordTempNui();
                     $record->saveRecord();
+
+                    // Enregistrement des auteurs
+                    $author = new author();
+                    $author -> setAuthors($_POST['authors'], $record->getRecordId());
                     include "views/repository/records/saveRecordsKeywords.inc.php";
                 } else {
+                    
+                    // Enregitrement avec NUI
                     $record->saveRecord();
+                    
+                    // Enregistrement des auteurs
+                    $author = new author();
+                    $author -> setAuthors($_POST['authors'], $record->getRecordId());
                     include "views/repository/records/saveRecordsKeywords.inc.php";
                 };
             $record->setRecordIdByNui();
