@@ -140,13 +140,15 @@ public function setRecordTempNui(){
 public function setRecordTitle($title){ $this->_record_title = $title;}
 public function getRecordTitle(){ return $this->_record_title;}
 
+
+
 // date de début
 
 public function setRecordDateStart($date_start){ $this->_record_date_start = $date_start;}
 public function getRecordDateStart(){ return $this->_record_date_start;}
 
 
-public function RecordDateFormatType($date){
+public function dateFormatType($date){
   $regexAAAA = '/^[0-9]{4}$/';
   $regexAAAA_MM = '/^[0-9]{4}\/[0-9]{2}$/';
   $regexAAAA_MM_JJ = '/^[0-9]{4}\/[0-9]{2}\/[0-9]{2}$/';
@@ -162,8 +164,8 @@ public function RecordDateFormatType($date){
 }
 
 
-public function getRecordDateFormat(){ 
-    $this->_record_date_format = $this->RecordDateFormatType($this->_record_date_start);
+public function getDateFormat(){ 
+    $this->_record_date_format = $this->dateFormatType($this->_record_date_start);
     return $this->_record_date_format; 
 }
 
@@ -355,7 +357,7 @@ public function saveRecord(){
         $stmt->bindValue(':recordId', $this->getRecordId(), PDO::PARAM_INT);
         $stmt->bindValue(':recordNui', $this->getRecordNui());
         $stmt->bindValue(':recordTitle', $this->getRecordTitle());
-        $stmt->bindValue(':recordTimeFormat', $this->getRecordDateFormat());
+        $stmt->bindValue(':recordTimeFormat', $this->getDateFormat());
         $stmt->bindValue(':recordDateStart', $this->getRecordDateStart());
         $stmt->bindValue(':recordDateEnd', $this->getRecordDateEnd());
         $stmt->bindValue(':recordObservation', $this->getRecordObservation());

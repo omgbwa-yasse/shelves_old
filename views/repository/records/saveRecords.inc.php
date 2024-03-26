@@ -41,9 +41,7 @@ if(isset($_POST['level_id']) && isset($_POST['nui']) && isset($_POST['title']) &
             if (!empty($_GET['parent_id'])) {
                 $_GET['id_parent']= htmlspecialchars ($_GET['parent_id']);
                 $record->setRecordLinkId($_GET['parent_id']);
-            } else {}
-
-
+            } 
 
             if($record ->controlNui() == TRUE){
                     $record->setRecordTempNui();
