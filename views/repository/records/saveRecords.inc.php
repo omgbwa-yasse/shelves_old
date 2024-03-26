@@ -27,7 +27,6 @@ if(isset($_POST['level_id']) && isset($_POST['nui']) && isset($_POST['title']) &
             $record->setRecordLevelId($level_id);
             $record->setRecordNui($nui);
             $record->setRecordTitle($title); 
-            $record->setRecordTimeFormat($date_start);  
             $record->setRecordDateStart($date_start);               
             $record->setRecordDateEnd($date_end);
             $record->setRecordObservation($observation);
@@ -58,7 +57,7 @@ if(isset($_POST['level_id']) && isset($_POST['nui']) && isset($_POST['title']) &
             displayRecordLight($record);
             require_once "views/repository/records/recordContainerForm.php";
             echo 'Veuillez choisir le contenant à inserer...';
-            insertRecordInUnkownContainer($record->getRecordId());
+            addInContainer($record->getRecordNui());
 
 
 } else {

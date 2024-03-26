@@ -4,9 +4,9 @@ class record extends recordsManager{
 public $_record_id = NULL;
 public $_record_nui;
 public $_record_title;
-public $_record_time_format;
 public $_record_date_start;
 public $_record_date_end;
+public $_record_date_format;
 public $_record_observation;
 public $_record_status_title;
 public $_record_status_id;
@@ -36,7 +36,7 @@ public function __construct(){
     $this->_record_id;
     $this->_record_nui;
     $this->_record_title;
-    $this->_record_time_format;
+    $this->_record_date_format;
     $this->_record_date_start;
     $this->_record_date_end;
     $this->_record_observation;
@@ -145,30 +145,27 @@ public function getRecordTitle(){ return $this->_record_title;}
 public function setRecordDateStart($date_start){ $this->_record_date_start = $date_start;}
 public function getRecordDateStart(){ return $this->_record_date_start;}
 
-// format de date
 
-public function setRecordTimeFormat($date){ 
-        $regex = "/^\\d{4}(\\/\\d{2}(\\/\\d{2})?)?$/";
-        if (preg_match($regex, $date)) {
-        $parts = explode("/", $date);
-        $year = $parts[0];
-        $month = isset($parts[1]) ? $parts[1] : null;
-        $day = isset($parts[2]) ? $parts[2] : null;
-            if ($month === null) {
-                $format = "A";
-            } elseif ($day === null) {
-                $format = "B";
-            } else {
-                $format = "C";
-            }
-            $this->_record_time_format = $format; 
-        return true;
-        } else {
-        return false;
-        }
-
+public function RecordDateFormatType($date){
+  $regexAAAA = '/^[0-9]{4}$/';
+  $regexAAAA_MM = '/^[0-9]{4}\/[0-9]{2}$/';
+  $regexAAAA_MM_JJ = '/^[0-9]{4}\/[0-9]{2}\/[0-9]{2}$/';
+  if (preg_match($regexAAAA, $date)) {
+    return "A";
+  } elseif (preg_match($regexAAAA_MM, $date)) {
+    return "B";
+  } elseif (preg_match($regexAAAA_MM_JJ, $date)) {
+    return "C";
+  } else {
+    return 'D';
+  }
 }
-public function getRecordTimeFormat(){ return $this->_record_time_format; }
+
+
+public function getRecordDateFormat(){ 
+    $this->_record_date_format = $this->RecordDateFormatType($this->_record_date_start);
+    return $this->_record_date_format; 
+}
 
 // date de fin
 
@@ -358,7 +355,7 @@ public function saveRecord(){
         $stmt->bindValue(':recordId', $this->getRecordId(), PDO::PARAM_INT);
         $stmt->bindValue(':recordNui', $this->getRecordNui());
         $stmt->bindValue(':recordTitle', $this->getRecordTitle());
-        $stmt->bindValue(':recordTimeFormat', $this->getRecordTimeFormat());
+        $stmt->bindValue(':recordTimeFormat', $this->getRecordDateFormat());
         $stmt->bindValue(':recordDateStart', $this->getRecordDateStart());
         $stmt->bindValue(':recordDateEnd', $this->getRecordDateEnd());
         $stmt->bindValue(':recordObservation', $this->getRecordObservation());

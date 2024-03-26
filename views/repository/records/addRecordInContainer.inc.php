@@ -3,25 +3,26 @@ require_once "models/repository/recordsManager.class.php";
 require_once "models/deposit/containerManager.class.php";
 require_once "models/repository/record.class.php";
 require_once "models/deposit/container.class.php";
-require_once "views/repository/records/recordContainerForm.php";
 
-if(isset($_POST['nui']) && isset($_POST['container_id'])){
-    $recordId = new record();
-    $recordId -> setRecordNui($_POST['nui']);
-    $recordId -> setRecordIdByNui();
-    saveRecordInContainer($_POST['container_id'],$recordId->getRecordId());
-}
+    $containerids = new containerManager();
+    $containerids = $containerids ->allContainer();
+    echo '<form method="POST" action="index.php?q=repository&categ=create&sub=saveRecordInContainer">
+        <table class="formular" border = "1">
+            <tr>
+                <td>Insérer la cote du dossier à inserer :
+                <td><input type="text" name="nui"/>
+            <tr/>
+            <tr>
+                <td>Choisir le numéro de contenant :</td>
+                <td> <select name="container_id">';
+                    foreach($containerids as $id){
+                        $container = new container();
+                        $container ->setContainerById($id['container_id']);
+                        echo '<option value="'. $container->getContainerId().'">'. $container->getContainerReference() .'</option>';
+                    } echo '<select>
+                </td>
+            </tr>
+            </table>
+    <input type="reset" name="Annuler"><input type="submit" name="Envoyer">
+    </form>';
 
-function saveRecordInContainer($containerId,$recordId){
-    $record = new record();
-    $record -> setRecordId($recordId);
-    $record -> getRecordById();
-    echo $record->getRecordTitle();
-    $container = new container;
-    $container ->setContainerById($containerId);
-    echo $container->getContainerId();
-    $record->insertInContainer($record->getRecordId(), $container->getContainerId());
-    echo "<br/>Ajouter des documents...";
-    addRecordInContainer($container->getContainerId());
-}
-?>
