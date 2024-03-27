@@ -68,3 +68,43 @@ for (let i=0; i <= icone.length; i++){
   
 /*   Gestion des dates de validation */
 
+
+
+
+
+
+/*   Ajoute des champs */
+
+
+const nomInput = document.getElementById('authors');
+const ajouterBtn = document.getElementById('ajouter');
+const auteursDiv = document.getElementById('auteurs');
+
+let nbAuteurs = 0;
+
+ajouterBtn.addEventListener('click', () => {
+  nbAuteurs++;
+
+  // Créer un nouvel élément pour l'auteur
+  const auteurEl = document.createElement('div');
+  auteurEl.classList.add('auteur');
+
+  // Créer un champ pour le nom de l'auteur
+  const nomInput = document.createElement('input');
+  nomInput.type = 'text';
+  nomInput.name = `nom${nbAuteurs}`;
+  nomInput.required = true;
+
+  // Créer un label pour le champ
+  const nomLabel = document.createElement('label');
+  nomLabel.for = nomInput.name;
+  nomLabel.textContent = `Nom de l'auteur ${nbAuteurs} :`;
+
+  // Ajouter le label et le champ à l'élément auteur
+  auteurEl.appendChild(nomLabel);
+  auteurEl.appendChild(nomInput);
+
+  // Ajouter l'élément auteur à la div
+  auteursDiv.appendChild(auteurEl);
+});
+
