@@ -368,6 +368,7 @@ public function saveRecord(){
         $stmt->bindValue(':recordOrganizationId', $this->getRecordOrganizationId(), PDO::PARAM_INT);
         $stmt->bindValue(':transferId', $this->getRecordTransferId(), PDO::PARAM_INT);
         $stmt->execute();
+        return $this->getCnx()->lastInsertId();
 }
 public function getAllKeywordsIdByRecordId(){
     $stmt = "SELECT record_keyword.keyword_id FROM record_keyword WHERE record_keyword.record_id = '". $this->getRecordId()."' ";

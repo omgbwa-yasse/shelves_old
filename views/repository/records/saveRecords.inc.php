@@ -1,8 +1,8 @@
 <?php
 
 require 'models/repository/record.class.php';
-require 'models/repository/author.class.php';
 require_once 'views/repository/records/display.inc.php';
+require_once 'models/repository/authors.class.php';
 
 
 if(isset($_POST['level_id']) && isset($_POST['nui']) && isset($_POST['title']) && isset($_POST['date_start']) && isset($_POST['organization_title']) && isset($_POST['authors'])){
@@ -49,18 +49,19 @@ if(isset($_POST['level_id']) && isset($_POST['nui']) && isset($_POST['title']) &
                     // Enregistrement en générant un NUI
                     $record->setRecordTempNui();
                     $record->saveRecord();
+                    $record->setRecordIdByNui();
 
                     // Enregistrement des auteurs
-                    $author = new author();
+                    $author = new authors();
                     $author -> setAuthors($_POST['authors'], $record->getRecordId());
                     include "views/repository/records/saveRecordsKeywords.inc.php";
                 } else {
                     
                     // Enregitrement avec NUI
                     $record->saveRecord();
-                    
                     // Enregistrement des auteurs
-                    $author = new author();
+                    $record->setRecordIdByNui();
+                    $author = new authors();
                     $author -> setAuthors($_POST['authors'], $record->getRecordId());
                     include "views/repository/records/saveRecordsKeywords.inc.php";
                 };
