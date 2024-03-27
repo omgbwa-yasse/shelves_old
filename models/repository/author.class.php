@@ -2,7 +2,7 @@
 
 require_once 'models/repository/authorManager.class.php';
 
-class Author extends AuthorManager
+class Author extends authorManager
 {
 
     public $_author_title;
