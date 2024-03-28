@@ -76,9 +76,9 @@ for (let i=0; i <= icone.length; i++){
 /*   Ajoute des champs */
 
 
-const nomInput = document.getElementById('authors');
-const ajouterBtn = document.getElementById('ajouter');
-const auteursDiv = document.getElementById('auteurs');
+const nomInput = document.getElementById('author');
+const ajouterBtn = document.getElementById('addAuthor');
+const auteursDiv = document.getElementById('authors');
 
 let nbAuteurs = 0;
 

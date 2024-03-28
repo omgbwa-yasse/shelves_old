@@ -651,50 +651,86 @@ table a:hover {
   } 
 
 
-.navigation {
-    
-}
+/* Style formulaire de saisie*/
 
-
+/* General styles */
 .formulaire {
-    display: flex;
-    flex-wrap: wrap;
+    background-color: #efefef; /* Light gray background */
+    border: 1px solid #ddd; /* Light gray border */
+    padding: 15px;
+    border-radius: 5px;
+    margin: 0 auto; /* Center the form horizontally */
+    width: 90%; /* Adjust width as needed */
   }
   
-  .champ {
-    margin: 10px;
-    width: 50%;
-    border: 15px red solid;
-  }
-  
+  /* Field labels and text fields */
   .champ label {
     display: block;
-    margin-bottom: 5px;
-    width : 100px;
-    border: #000000 solid 2px;
+    margin-top: 20px;
+    font-weight: bold;
+    color: #333; /* Dark gray text for labels */
   }
   
-  .champ input,
+  .champ input[type="text"],
   .champ textarea,
+  .champ select,
   .champ select {
-    width: 100%;
+    width: 90%;
     padding: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid #ccc; /* Light gray border for inputs */
+    border-radius: 3px;
+    font-family: inherit;
   }
-  
-  .boutons {
-    display: flex;
-    justify-content: flex-end;
+
+  .champ input.short{
+    width:250px;
+    border-color: #36abd6;
   }
-  
+  .champ input.medium{
+    width:50%;
+    border-color: #36abd6;
+  }
+  .champ input.large{
+    width:90%;
+    border-color: #36abd6;
+  }
+
+  .champ select.short{
+    width:250px;
+    border-color: #36abd6;
+    height: 35px;
+  }
+  .bg-grey{
+    background-color:  #e3e3e3;
+  }
+  .short{
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+
+  /* Buttons */
   .boutons button {
-    margin: 10px;
-    padding: 5px 10px;
-    border: 1px solid #ccc;
-    background-color: #eee;
+    background-color: #333; /* Dark gray background for buttons */
+    color: #fff; /* White text for buttons */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
     cursor: pointer;
+    margin-right: 10px;
   }
   
   .boutons button:hover {
-    background-color:red;
-  }  
+    background-color: #222; /* Darker gray on hover */
+  }
+  
+  /* Styling specific elements */
+  .champ button[name="ajouter"] { /* Style the "Ajouter" button */
+    background-color: #4CAF50; /* Green background for "Ajouter" */
+    color: #fff; /* White text  */
+  }
+  
+  .champ button[name="ajouter"]:hover {
+    background-color: #ea2a0c; /* Darker green on hover */
+  }
+  
