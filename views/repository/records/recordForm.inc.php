@@ -17,11 +17,10 @@
       <input type="text" name="title" id="title" >
     </div>
     <div class="champ" id="authors">
-      <label for="author">Producteurs</label>
-      <input type="text" name="author" id="author" class="meduim">
-      <button name="ajouter" id="addAuthor" onclick="">Ajouter</button>
+        <label for="author">Producteur</label>
+        <input type="text" name="author1" id="author" class="meduim">
+        <button name="ajouter" id="addAuthor">Ajouter</button>
     </div>
-    
     <div class="champ" style="display:flex">
       <div style="width:250px; margin-left:10px">
         <label for="date_debut">Date de début</label>

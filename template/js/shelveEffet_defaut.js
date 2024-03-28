@@ -75,30 +75,29 @@ for (let i=0; i <= icone.length; i++){
 
 /*   Ajoute des champs */
 
+var nomInput = document.getElementById('author');
+var ajouterBtn = document.getElementById('addAuthor');
+var auteursDiv = document.getElementById('authors');
 
-const nomInput = document.getElementById('author');
-const ajouterBtn = document.getElementById('addAuthor');
-const auteursDiv = document.getElementById('authors');
-
-let nbAuteurs = 0;
+let nbAuteurs = 1;
 
 ajouterBtn.addEventListener('click', () => {
   nbAuteurs++;
 
   // Créer un nouvel élément pour l'auteur
-  const auteurEl = document.createElement('div');
+  var auteurEl = document.createElement('div');
   auteurEl.classList.add('auteur');
 
   // Créer un champ pour le nom de l'auteur
-  const nomInput = document.createElement('input');
+  var nomInput = document.createElement('input');
   nomInput.type = 'text';
-  nomInput.name = `nom${nbAuteurs}`;
+  nomInput.name = `author${nbAuteurs}`;
   nomInput.required = true;
 
   // Créer un label pour le champ
-  const nomLabel = document.createElement('label');
+  var nomLabel = document.createElement('label');
   nomLabel.for = nomInput.name;
-  nomLabel.textContent = `Nom de l'auteur ${nbAuteurs} :`;
+  nomLabel.textContent = `Producteur n° ${nbAuteurs} :`;
 
   // Ajouter le label et le champ à l'élément auteur
   auteurEl.appendChild(nomLabel);
@@ -107,4 +106,6 @@ ajouterBtn.addEventListener('click', () => {
   // Ajouter l'élément auteur à la div
   auteursDiv.appendChild(auteurEl);
 });
+
+
 
