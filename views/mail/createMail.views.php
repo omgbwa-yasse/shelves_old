@@ -5,11 +5,20 @@ require_once 'models/mail/mailManager.class.php';
 $mail= new mail();
 $mailManager= new mailManager();
 
-if (isset($_POST['mail_reference']) && isset($_POST['mail_title']) && isset($_POST['mail_observation']) && isset($_POST['mail_date_creation'])  && isset($_POST['mail_priority_id'])  && isset($_POST['mail_typology_id'])) {
+if (  isset($_POST['mail_title']) && isset($_POST['mail_observation'])  && isset($_POST['mail_priority_id'])  && isset($_POST['mail_typology_id'])) {
  if (!isset($_POST['mail_docnum_id']) ) {
      $_POST['mail_docnum_id'] = null ;
  }
-$mail->createMail(null,$_POST['mail_reference'],$_POST['mail_title'],$_POST['mail_observation'],$_POST['mail_date_creation'],$_POST['mail_priority_id'],$_POST['mail_docnum_id'],$_POST['mail_typology_id']);
+ 
+// Define $now before using it
+$now = new DateTime();
+
+$mail_reference = $now->format('YmdHis');
+
+echo $mail_reference;
+// Utilisez $mail_reference pour créer le courrier
+$mail->createMail(null, $mail_reference, $_POST['mail_title'], $_POST['mail_observation'], date('Y-m-d-H:i:s'), $_POST['mail_priority_id'], $_POST['mail_docnum_id'], $_POST['mail_typology_id']);
+
 echo '<p> success </p> ';
 }
 
@@ -22,10 +31,10 @@ echo '<p> success </p> ';
     <td><label for="mail_id">mail ID:</label></td>
     <td><input type="number" id="communicability_id" name="communicability_id"></td>
   </tr> -->
-  <tr>
+  <!-- <tr>
     <td><label for="mail_reference">Reference du Courrier  :</label></td>
     <td><input type="number" id="mail_reference" name="mail_reference"></td>
-  </tr>
+  </tr> -->
   <tr>
     <td><label for="mail_title">Titre du Courriel :</label></td>
     <td><input type="text" id="mail_title" name="mail_title"></td>
@@ -34,11 +43,11 @@ echo '<p> success </p> ';
     <td><label for="mail_observation">Observation du Courriel:</label></td>
     <td><textarea id="mail_observation" name="mail_observation"></textarea></td>
   </tr>
-  <tr>
+  <!-- <tr>
     <td><label for="mail_date_creation">Date de creation du Courriel</label></td>
     <td><input type="date" id="mail_date_creation" name="mail_date_creation"></td>
   </tr>
-  
+   -->
  
   <tr>
     <td><label for="mail_priority_id">Niveau de Priorité :</label></td>
